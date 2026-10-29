@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.5 (draft preparation)
+
+- Map all nine copied Windows DLLs to exact upstream binary hashes, component
+  versions, sources, and original notices, including OpenSSL 3.0.19, Tcl/Tk's
+  zlib 1.3.1, and Microsoft runtime 14.42.34438.0.
+- Reject unknown or changed DLLs during notice staging, packaging, and relocated
+  verification. Carry the scoped verification through release manifests and
+  receipts; legacy archives retain their pending review.
+- Record the maintainer's decision to include game materials in good faith and
+  remove or replace them on a request from GGG. Fair use is the project's
+  position; GGG permission and a legal determination are not claimed.
+
 ## 0.1.4 (private draft)
 
 - Prepare complete Windows x64 and Linux x86_64 archives with manifests,

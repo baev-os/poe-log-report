@@ -67,19 +67,26 @@ written approval. The gameplay video provision in clause 8 does not establish
 permission for this bundled asset collection. This is a scope review, not a
 legal determination.
 
-The following distribution questions remain unresolved in this repository:
+On 2026-10-29, the maintainer decided to retain the following materials in good
+faith for this fan-made, noncommercial log-analysis project. The maintainer's
+reference to fair use records the project's rationale. It is not an established
+legal determination, confirmation of an applicable exception, or GGG permission.
+The noncommercial purpose does not change the MIT license for original code.
 
-| Material | Inventory | Review needed before public source/binary publication |
+| Material | Inventory | Recorded inclusion purpose |
 | --- | --- | --- |
-| Map artwork from the game CDN | `site/static/images/maps/`, [asset manifest](report-assets.json) | Record applicable permission for redistributing image files, or replace/remove the bundled artwork |
-| Game names, identifiers, and derived area/map data | `site/data/`, [RePoE source snapshot](repoe-snapshot.json) | Review the included subset and record the distribution basis; RePoE's MIT notice does not grant additional game-material rights |
-| Mercenary dialogue/greeting text | `site/data/mercenary-greetings.json`, [source manifest](mercenary-greetings.json) | Preserve Exile-UI attribution and review the underlying game dialogue scope |
+| Map artwork from the game CDN | `site/static/images/maps/`, [asset manifest](report-assets.json) | Illustrate map visits in local log-analysis reports |
+| Game names, identifiers, and derived area/map data | `site/data/`, [RePoE source snapshot](repoe-snapshot.json) | Recognize and label locations and events found in game logs |
+| Mercenary dialogue/greeting text | `site/data/mercenary-greetings.json`, [source manifest](mercenary-greetings.json) | Recognize relevant dialogue events while preserving Exile-UI attribution |
 
-No written GGG redistribution approval is recorded in the reviewed project
-documents. A maintainer must resolve the intended asset scope through applicable
-permission, an appropriately reviewed basis, or replacement/removal. Keep this
-item open until that decision is documented; do not describe all bundled content
-as MIT-licensed. Existing source URLs and hashes provide provenance, not a grant.
+The inclusion decision is now recorded; permission remains unconfirmed. No
+written GGG redistribution approval is recorded in the reviewed project
+documents. GGG retains its rights and may request removal of its materials.
+The maintainer will promptly remove or replace affected materials on a request
+from GGG, including in source and downloads controlled by the project, and
+update the associated inventory. Existing source URLs and hashes provide
+provenance, not a grant. Do not describe all bundled content as MIT-licensed.
+The continuing policy is recorded in [GAME_DATA.md](../licenses/GAME_DATA.md).
 
 ## Builds and publication
 
@@ -95,14 +102,40 @@ records and 18 Pillow-wheel records. All 31 referenced native notice entries
 exist; the final libraries, provenance records, and notice hashes match the
 reviewed v0.1.3 package and anonymous-user compiler-report replay.
 
-Windows CPython, libffi, Tcl/Tk, and Microsoft distributable conditions have
-preserved notice text. Explicit DLL-to-version/source/notice mappings for
-`libcrypto-3.dll`, `libssl-3.dll`, and `zlib1.dll` remain to be documented. Exact
-Visual C runtime provenance and distribution conditions also remain a maintainer
-review item. Generic Apache-2.0/zlib text alone does not record those mappings.
-The builder retains `native_dependencies_review`; draft metadata and notes keep
-this review visible. This inventory establishes recorded bytes and provenance,
-not a legal determination or publication approval.
+### Windows provenance follow-up
+
+All nine copied DLLs have now been matched byte-for-byte to official CPython
+3.14.4 x64 packages whose SHA-256 values match the Python release records.
+Six match the official embeddable ZIP; Tcl, Tk, and `zlib1.dll` match files
+extracted as data from the official installer. No upstream executable was run
+during this review. The complete per-DLL mapping is in
+[WindowsNative.json](../licenses/WindowsNative.json), with unchanged original
+notices in [WindowsNative.txt](../licenses/WindowsNative.txt).
+
+| DLLs | Component version | Verified binary source |
+| --- | --- | --- |
+| `libcrypto-3.dll`, `libssl-3.dll` | OpenSSL 3.0.19 | CPython 3.14.4 x64 embeddable ZIP |
+| `zlib1.dll` | zlib 1.3.1 | CPython 3.14.4 x64 installer, Tcl/Tk component |
+| `vcruntime140.dll`, `vcruntime140_1.dll` | Microsoft Visual C++ Runtime 14.42.34438.0 | CPython 3.14.4 x64 embeddable ZIP |
+| `libffi-8.dll` | libffi 3.4.4 | CPython 3.14.4 x64 embeddable ZIP and pinned dependency records |
+| `tcl86t.dll`, `tk86t.dll` | Tcl/Tk 8.6.15 | CPython 3.14.4 x64 installer |
+| `python314.dll` | CPython 3.14.4 | CPython 3.14.4 x64 embeddable ZIP |
+
+The source pins distinguish Tcl/Tk's zlib from CPython's separate zlib-ng.
+Microsoft producer/version metadata and CPython's build sources identify the
+runtime collection chain; no unverified complete Visual Studio installer
+package is claimed. Original Microsoft conditions are preserved in full; see
+[WINDOWS_RUNTIME.md](../licenses/WINDOWS_RUNTIME.md) for the exact source and
+downstream obligations. Technical provenance does not establish compliance
+with every redistribution condition or approve publication.
+
+New Windows builds require a complete compiler report, known source paths and
+hashes, and an exact match of all shipped DLLs. Packaging and relocated
+verification repeat the DLL and original-notice checks. A scoped `included_dll`
+summary must match across build metadata, release manifest, and verification
+receipt before the draft helper clears the copied-DLL review item. This scope
+does not claim a separate provenance audit of every Python extension. Older
+archives without that summary retain their pending item.
 
 ### v0.1.4 native acceptance
 
@@ -158,7 +191,8 @@ The release workflow prepares drafts only. Before publication, confirm:
 - Archives contain the entire portable directory and licenses, with no local
   logs, generated reports, secret files, or build-machine diagnostics.
 - Native-library and Tcl/Tk notices match the exact shipped files.
-- Game-material distribution scope is resolved and documented.
+- The recorded game-material inclusion decision, unconfirmed GGG permission,
+  and removal policy remain accurate and documented.
 - The maintainer has approved the separate visibility and release publication
   actions.
 

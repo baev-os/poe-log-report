@@ -14,14 +14,18 @@ from unittest.mock import patch
 from poe_log_analyze.runtime.NativePlatform import NativePlatform
 
 from poe_log_analyze.tooling.BuildVersion import BuildVersion
+from poe_log_analyze.tooling.LicenseTextArchive import LicenseTextArchive
 from poe_log_analyze.tooling.ReleasePackager import ReleasePackager
 from poe_log_analyze.tooling.ReleaseVerifier import ReleaseVerifier
+from poe_log_analyze.tooling.WindowsNativeCatalogue import WindowsNativeCatalogue
 
 
 class ReleasePackagingTests(unittest.TestCase):
     """Verify portable contents, identity, safe extraction, and real shell execution."""
 
     COMMIT = "a" * 40
+    PROVENANCE = {"verified": True, "scope": "included_dll", "libraries": 9,
+                  "python": "3.14.4", "catalogue_sha256": "b" * 64}
 
     def setUp(self):
         temporary = Path(__file__).resolve().parents[1] / "build/tmp"
@@ -72,6 +76,17 @@ class ReleasePackagingTests(unittest.TestCase):
     def package(self):
         return ReleasePackager.package(self.distribution, self.output, "v0.1.0", self.COMMIT)
 
+    def windows_provenance_fixture(self):
+        build = self.fixture("Windows")
+        build["license_bundle"] = {"windows_native_provenance": dict(self.PROVENANCE)}
+        (self.distribution / ReleasePackager.METADATA).write_text(json.dumps(build), encoding = "utf-8")
+        licenses = self.distribution / "app/poe_log_analyze/resources/licenses"
+        archive = LicenseTextArchive()
+        archive.add("native/windows/synthetic/LICENSE", b"Original synthetic DLL notice\r\n")
+        archive.write(licenses / "THIRD_PARTY_LICENSES.txt", licenses / "sources.json")
+
+        return build
+
     @unittest.skipUnless(os.name == "posix", "Linux modes and symlinks require POSIX")
     def test_tar_roundtrip_preserves_internal_symlink_modes_resources_and_notices(self):
         self.fixture()
@@ -110,6 +125,118 @@ class ReleasePackagingTests(unittest.TestCase):
         self.assertEqual(manifest["commit"], self.COMMIT)
         self.assertEqual(manifest["tag"], "v0.1.0")
         self.assertEqual(manifest["archive_sha256"], ReleasePackager.sha256(artifact.archive))
+        self.assertNotIn("windows_native_provenance", manifest)
+
+    def test_windows_provenance_is_rechecked_and_retained_in_manifest_and_verification(self):
+        self.windows_provenance_fixture()
+
+        with patch.object(WindowsNativeCatalogue, "verify_distribution", return_value = dict(self.PROVENANCE)) as verify:
+            artifact = self.package()
+            self.assertEqual(verify.call_args.args[0], self.distribution / "app")
+            archive = verify.call_args.args[1]
+            self.assertEqual(next(iter(archive.texts.values())), b"Original synthetic DLL notice\r\n")
+
+            with patch.object(NativePlatform, "current", return_value = NativePlatform("Windows", "AMD64", 64)), \
+                    patch.dict(os.environ, {"SYSTEMROOT": str(self.root / "Windows")}), \
+                    patch("subprocess.run", side_effect = self.windows_self_test):
+                report = ReleaseVerifier.verify(artifact.archive, artifact.manifest, self.output / "verification")
+
+        manifest = json.loads(artifact.manifest.read_text())
+        receipt = json.loads(report.read_text())
+
+        self.assertEqual(verify.call_count, 2)
+        self.assertEqual(manifest["windows_native_provenance"], self.PROVENANCE)
+        self.assertEqual(receipt["windows_native_provenance"], self.PROVENANCE)
+        self.assertNotEqual(verify.call_args_list[1].args[0], self.distribution / "app")
+
+    def test_windows_provenance_claim_cannot_bypass_failed_dll_or_notice_verification(self):
+        self.windows_provenance_fixture()
+
+        with patch.object(WindowsNativeCatalogue, "verify_distribution", side_effect = ValueError("Changed DLL bytes")) as verify:
+            with self.assertRaisesRegex(ValueError, "Changed DLL bytes"):
+                self.package()
+
+        verify.assert_called_once()
+        self.assertFalse(self.output.exists())
+
+    def test_windows_build_summary_must_match_rechecked_dlls_and_notices(self):
+        self.windows_provenance_fixture()
+        changed = dict(self.PROVENANCE, catalogue_sha256 = "c" * 64)
+
+        with patch.object(WindowsNativeCatalogue, "verify_distribution", return_value = changed):
+            with self.assertRaisesRegex(ValueError, "does not match the actual DLLs"):
+                self.package()
+
+        self.assertFalse(self.output.exists())
+
+    def test_corrupted_original_notice_archive_prevents_native_claim_from_packaging(self):
+        self.windows_provenance_fixture()
+        licenses = self.distribution / "app/poe_log_analyze/resources/licenses"
+        (licenses / "THIRD_PARTY_LICENSES.txt").write_bytes(b"Changed original notice")
+
+        with patch.object(WindowsNativeCatalogue, "verify_distribution") as verify:
+            with self.assertRaisesRegex(ValueError, "hash mismatch"):
+                self.package()
+
+        verify.assert_not_called()
+        self.assertFalse(self.output.exists())
+
+    def test_windows_provenance_is_rejected_on_linux_and_when_explicitly_null(self):
+        build = self.fixture()
+        metadata = self.distribution / ReleasePackager.METADATA
+
+        for summary in (dict(self.PROVENANCE), None):
+            with self.subTest(summary = summary):
+                build["license_bundle"] = {"windows_native_provenance": summary}
+                metadata.write_text(json.dumps(build))
+
+                with self.assertRaisesRegex(ValueError, "Windows distribution"):
+                    self.package()
+
+        self.assertFalse(self.output.exists())
+
+    def test_windows_verifier_rejects_missing_changed_or_malformed_manifest_provenance(self):
+        self.windows_provenance_fixture()
+
+        with patch.object(WindowsNativeCatalogue, "verify_distribution", return_value = dict(self.PROVENANCE)):
+            artifact = self.package()
+
+        original = json.loads(artifact.manifest.read_text())
+
+        for index, summary in enumerate((None, dict(self.PROVENANCE, catalogue_sha256 = "c" * 64),
+                                         dict(self.PROVENANCE, libraries = 9.0))):
+            metadata = dict(original)
+
+            if summary is None:
+                del metadata["windows_native_provenance"]
+            else:
+                metadata["windows_native_provenance"] = summary
+
+            artifact.manifest.write_text(json.dumps(metadata))
+
+            with self.subTest(summary = summary), \
+                    patch.object(NativePlatform, "current", return_value = NativePlatform("Windows", "AMD64", 64)), \
+                    patch.object(WindowsNativeCatalogue, "verify_distribution", return_value = dict(self.PROVENANCE)), \
+                    patch("subprocess.run") as run:
+                with self.assertRaisesRegex(ValueError, "provenance"):
+                    ReleaseVerifier.verify(artifact.archive, artifact.manifest, self.output / ("verification-" + str(index)))
+
+                run.assert_not_called()
+
+    def test_windows_verifier_rechecks_dlls_before_executing_an_archived_application(self):
+        self.windows_provenance_fixture()
+
+        with patch.object(WindowsNativeCatalogue, "verify_distribution", return_value = dict(self.PROVENANCE)):
+            artifact = self.package()
+
+        with patch.object(NativePlatform, "current", return_value = NativePlatform("Windows", "AMD64", 64)), \
+                patch.object(WindowsNativeCatalogue, "verify_distribution", side_effect = ValueError("Changed DLL bytes")) as verify, \
+                patch("subprocess.run") as run:
+            with self.assertRaisesRegex(ValueError, "Changed DLL bytes"):
+                ReleaseVerifier.verify(artifact.archive, artifact.manifest, self.output / "verification")
+
+        verify.assert_called_once()
+        run.assert_not_called()
 
     def test_dirty_or_mismatched_release_build_is_rejected_before_creating_assets(self):
         build = self.fixture()

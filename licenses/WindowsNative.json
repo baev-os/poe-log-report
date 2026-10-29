@@ -1,0 +1,361 @@
+{
+  "version": "1",
+  "metadata": {
+    "target": "Windows",
+    "python": "3.14.4",
+    "architecture": "x86_64",
+    "reviewed_application": {
+      "version": "0.1.4",
+      "commit": "e58fad5ca46bb58e726b72dfde13a7be6e4c07f6",
+      "archive_sha256": "358862f7e48d879f9f43395a8bb424d01f0a4064df57a2dd2721e51917d819b7"
+    },
+    "reference_artifacts": {
+      "cpython_embeddable": {
+        "url": "https://www.python.org/ftp/python/3.14.4/python-3.14.4-embed-amd64.zip",
+        "sha256": "cda80a9b1e75c0f1b4f9872ca1b417f0d19bce32facc811aea9180e70fad5fb9"
+      },
+      "cpython_installer": {
+        "url": "https://www.python.org/ftp/python/3.14.4/python-3.14.4-amd64.exe",
+        "sha256": "b571567bd11ea98fd7a2cf85791d2c8557a63b1e04e9d1dae665a275cac87f1b"
+      },
+      "cpython_installer_sbom": {
+        "url": "https://www.python.org/ftp/python/3.14.4/python-3.14.4-amd64.exe.spdx.json",
+        "sha256": "21b228bdeb1b900266187bfcc4c9b606290dba1de1553c7f00faa01af41b4b24"
+      }
+    },
+    "review_method": "PE VERSIONINFO read as data; every DLL SHA256 matched official CPython 3.14.4 x64 distribution bytes; DLLs and executables were not run.",
+    "redistribution_conditions": {
+      "notice": "native/windows/CPython/LICENSE.txt",
+      "section": "Additional Conditions for this Windows binary build",
+      "status": "Original Microsoft Distributable Code conditions are preserved. Technical source/hash validation does not determine downstream compliance with these conditions."
+    },
+    "libraries": {
+      "libcrypto-3.dll": {
+        "component": "OpenSSL",
+        "version": "3.0.19",
+        "python_relative_path": "DLLs/libcrypto-3.dll",
+        "original_sha256": "eaf6d613b95b61a39558d84c50e72630a66c99914292df88e7b54ebd60c5bd34",
+        "notices": [
+          "native/windows/OpenSSL/LICENSE.txt",
+          "native/windows/OpenSSL/AUTHORS.md"
+        ],
+        "sources": [
+          "https://www.python.org/downloads/release/python-3144/",
+          "https://www.python.org/ftp/python/3.14.4/python-3.14.4-embed-amd64.zip",
+          "https://github.com/python/cpython/blob/23116f998f6789d8c2fbe5ed5b8146854c8c2a4f/PCbuild/get_externals.bat",
+          "https://github.com/python/cpython-bin-deps/tree/b685024825ea765e8d616337306f284ca7873dd6",
+          "https://github.com/openssl/openssl/tree/a22063cd69a077cc68bb4c10e9f351f75899b194"
+        ],
+        "binary_reference": {
+          "artifact": "cpython_embeddable",
+          "path": "libcrypto-3.dll",
+          "sha256_match": true
+        },
+        "pe_version": "3.0.19",
+        "pe_product_version": "3.0.19",
+        "version_evidence": "PE FileVersion and ProductVersion; exact binary matches the pinned official CPython reference artifact."
+      },
+      "libffi-8.dll": {
+        "component": "libffi",
+        "version": "3.4.4",
+        "python_relative_path": "DLLs/libffi-8.dll",
+        "original_sha256": "eff52743773eb550fcc6ce3efc37c85724502233b6b002a35496d828bd7b280a",
+        "notices": [
+          "native/windows/libffi/LICENSE"
+        ],
+        "sources": [
+          "https://www.python.org/downloads/release/python-3144/",
+          "https://www.python.org/ftp/python/3.14.4/python-3.14.4-embed-amd64.zip",
+          "https://www.python.org/ftp/python/3.14.4/python-3.14.4-amd64.exe.spdx.json",
+          "https://github.com/python/cpython/blob/23116f998f6789d8c2fbe5ed5b8146854c8c2a4f/PCbuild/get_externals.bat",
+          "https://github.com/python/cpython-bin-deps/tree/94cb9a1c7feb608adf2b9f8fe2dbd6925ffbf90d",
+          "https://github.com/python/cpython-source-deps/tree/73b247f34ef3ae1859b8c2c34d321d34ebc5db15"
+        ],
+        "binary_reference": {
+          "artifact": "cpython_embeddable",
+          "path": "libffi-8.dll",
+          "sha256_match": true
+        },
+        "pe_version": null,
+        "pe_product_version": null,
+        "version_evidence": "No PE version resource. CPython 3.14.4 official installer SBOM and pinned external dependency are libffi 3.4.4; DLL bytes match the official embeddable distribution."
+      },
+      "libssl-3.dll": {
+        "component": "OpenSSL",
+        "version": "3.0.19",
+        "python_relative_path": "DLLs/libssl-3.dll",
+        "original_sha256": "cf1a5fdcefa3daf69041f31f98ece1d7911ca4fcb8e9f1043b4d0f459ae4c936",
+        "notices": [
+          "native/windows/OpenSSL/LICENSE.txt",
+          "native/windows/OpenSSL/AUTHORS.md"
+        ],
+        "sources": [
+          "https://www.python.org/downloads/release/python-3144/",
+          "https://www.python.org/ftp/python/3.14.4/python-3.14.4-embed-amd64.zip",
+          "https://github.com/python/cpython/blob/23116f998f6789d8c2fbe5ed5b8146854c8c2a4f/PCbuild/get_externals.bat",
+          "https://github.com/python/cpython-bin-deps/tree/b685024825ea765e8d616337306f284ca7873dd6",
+          "https://github.com/openssl/openssl/tree/a22063cd69a077cc68bb4c10e9f351f75899b194"
+        ],
+        "binary_reference": {
+          "artifact": "cpython_embeddable",
+          "path": "libssl-3.dll",
+          "sha256_match": true
+        },
+        "pe_version": "3.0.19",
+        "pe_product_version": "3.0.19",
+        "version_evidence": "PE FileVersion and ProductVersion; exact binary matches the pinned official CPython reference artifact."
+      },
+      "python314.dll": {
+        "component": "CPython",
+        "version": "3.14.4",
+        "python_relative_path": "python314.dll",
+        "original_sha256": "a07f7d09c3121492bb066535c6d0811df5fbc2090cbca7031a97bb47ce1480c9",
+        "notices": [
+          "native/windows/CPython/LICENSE.txt"
+        ],
+        "sources": [
+          "https://www.python.org/downloads/release/python-3144/",
+          "https://www.python.org/ftp/python/3.14.4/python-3.14.4-embed-amd64.zip",
+          "https://github.com/python/cpython/blob/23116f998f6789d8c2fbe5ed5b8146854c8c2a4f/PCbuild/pythoncore.vcxproj"
+        ],
+        "binary_reference": {
+          "artifact": "cpython_embeddable",
+          "path": "python314.dll",
+          "sha256_match": true
+        },
+        "pe_version": "3.14.4",
+        "pe_product_version": "3.14.4",
+        "version_evidence": "PE FileVersion and ProductVersion; exact binary matches the pinned official CPython reference artifact."
+      },
+      "tcl86t.dll": {
+        "component": "Tcl",
+        "version": "8.6.15",
+        "python_relative_path": "DLLs/tcl86t.dll",
+        "original_sha256": "a308beae8555cff5ac2aff7eaf0aef40b5fe173f047e246dc49da9a4d3ef62f9",
+        "notices": [
+          "native/windows/Tcl/license.terms"
+        ],
+        "sources": [
+          "https://www.python.org/downloads/release/python-3144/",
+          "https://www.python.org/ftp/python/3.14.4/python-3.14.4-amd64.exe",
+          "https://github.com/python/cpython/blob/23116f998f6789d8c2fbe5ed5b8146854c8c2a4f/PCbuild/tcltk.props",
+          "https://github.com/python/cpython-bin-deps/tree/5a51bb7b87efa119332c52b04a84c49d3042279c/amd64/bin",
+          "https://github.com/python/cpython-source-deps/blob/275286594fd3e162af29e8c0ba4e365d3d1f7775/license.terms"
+        ],
+        "binary_reference": {
+          "artifact": "cpython_installer",
+          "path": "tcltk.msi/cab1.cab/tcl86t.dll",
+          "sha256_match": true
+        },
+        "pe_version": "8.6.15",
+        "pe_product_version": "8.6.15",
+        "version_evidence": "PE FileVersion and ProductVersion; exact binary matches the pinned official CPython reference artifact."
+      },
+      "tk86t.dll": {
+        "component": "Tk",
+        "version": "8.6.15",
+        "python_relative_path": "DLLs/tk86t.dll",
+        "original_sha256": "20f4876506bce7f89e53570e64fd1dce30a64548326b45f372871c7019560df4",
+        "notices": [
+          "native/windows/Tk/license.terms"
+        ],
+        "sources": [
+          "https://www.python.org/downloads/release/python-3144/",
+          "https://www.python.org/ftp/python/3.14.4/python-3.14.4-amd64.exe",
+          "https://github.com/python/cpython/blob/23116f998f6789d8c2fbe5ed5b8146854c8c2a4f/PCbuild/tcltk.props",
+          "https://github.com/python/cpython-bin-deps/tree/5a51bb7b87efa119332c52b04a84c49d3042279c/amd64/bin",
+          "https://github.com/python/cpython-source-deps/blob/a526badcf885e4986e13e68695398a0bb64d5ea1/license.terms"
+        ],
+        "binary_reference": {
+          "artifact": "cpython_installer",
+          "path": "tcltk.msi/cab1.cab/tk86t.dll",
+          "sha256_match": true
+        },
+        "pe_version": "8.6.15",
+        "pe_product_version": "8.6.15",
+        "version_evidence": "PE FileVersion and ProductVersion; exact binary matches the pinned official CPython reference artifact."
+      },
+      "vcruntime140.dll": {
+        "component": "Microsoft Visual C++ Runtime",
+        "version": "14.42.34438.0",
+        "python_relative_path": "vcruntime140.dll",
+        "original_sha256": "052ad6a20d375957e82aa6a3c441ea548d89be0981516ca7eb306e063d5027f4",
+        "notices": [
+          "native/windows/CPython/LICENSE.txt"
+        ],
+        "sources": [
+          "https://www.python.org/downloads/release/python-3144/",
+          "https://www.python.org/ftp/python/3.14.4/python-3.14.4-embed-amd64.zip",
+          "https://github.com/python/cpython/blob/23116f998f6789d8c2fbe5ed5b8146854c8c2a4f/PCbuild/pyproject.props",
+          "https://github.com/python/cpython/blob/23116f998f6789d8c2fbe5ed5b8146854c8c2a4f/PCbuild/pythoncore.vcxproj",
+          "https://learn.microsoft.com/en-us/cpp/windows/redistributing-visual-cpp-files"
+        ],
+        "binary_reference": {
+          "artifact": "cpython_embeddable",
+          "path": "vcruntime140.dll",
+          "sha256_match": true
+        },
+        "pe_version": "14.42.34438.0",
+        "pe_product_version": "14.42.34438.0",
+        "version_evidence": "PE FileVersion and ProductVersion; bytes match CPython official embeddable package. No separate Visual Studio installer package identity is asserted."
+      },
+      "vcruntime140_1.dll": {
+        "component": "Microsoft Visual C++ Runtime",
+        "version": "14.42.34438.0",
+        "python_relative_path": "vcruntime140_1.dll",
+        "original_sha256": "6a99bc0128e0c7d6cbbf615fcc26909565e17d4ca3451b97f8987f9c6acbc6c8",
+        "notices": [
+          "native/windows/CPython/LICENSE.txt"
+        ],
+        "sources": [
+          "https://www.python.org/downloads/release/python-3144/",
+          "https://www.python.org/ftp/python/3.14.4/python-3.14.4-embed-amd64.zip",
+          "https://github.com/python/cpython/blob/23116f998f6789d8c2fbe5ed5b8146854c8c2a4f/PCbuild/pyproject.props",
+          "https://github.com/python/cpython/blob/23116f998f6789d8c2fbe5ed5b8146854c8c2a4f/PCbuild/pythoncore.vcxproj",
+          "https://learn.microsoft.com/en-us/cpp/windows/redistributing-visual-cpp-files"
+        ],
+        "binary_reference": {
+          "artifact": "cpython_embeddable",
+          "path": "vcruntime140_1.dll",
+          "sha256_match": true
+        },
+        "pe_version": "14.42.34438.0",
+        "pe_product_version": "14.42.34438.0",
+        "version_evidence": "PE FileVersion and ProductVersion; bytes match CPython official embeddable package. No separate Visual Studio installer package identity is asserted."
+      },
+      "zlib1.dll": {
+        "component": "zlib",
+        "version": "1.3.1",
+        "python_relative_path": "DLLs/zlib1.dll",
+        "original_sha256": "1dd27f0411ebb31bd148a61589cee254410915f1e6c37aa3ffa52fac71a5426c",
+        "notices": [
+          "native/windows/zlib/LICENSE"
+        ],
+        "sources": [
+          "https://www.python.org/downloads/release/python-3144/",
+          "https://www.python.org/ftp/python/3.14.4/python-3.14.4-amd64.exe",
+          "https://github.com/python/cpython/blob/23116f998f6789d8c2fbe5ed5b8146854c8c2a4f/PCbuild/tcltk.props",
+          "https://github.com/python/cpython-bin-deps/tree/5a51bb7b87efa119332c52b04a84c49d3042279c/amd64/bin",
+          "https://github.com/madler/zlib/tree/51b7f2abdade71cd9bb0e7a373ef2610ec6f9daf"
+        ],
+        "binary_reference": {
+          "artifact": "cpython_installer",
+          "path": "tcltk.msi/cab1.cab/zlib1.dll",
+          "sha256_match": true
+        },
+        "pe_version": "1.3.1",
+        "pe_product_version": "1.3.1",
+        "version_evidence": "PE FileVersion and ProductVersion; exact binary matches the pinned official CPython reference artifact."
+      }
+    }
+  },
+  "entries": [
+    {
+      "name": "native/windows/CPython/LICENSE.txt",
+      "sha256": "935cf13e19f8c31b497d20b05d73623431a226b230c3599bc30fa3348979bc68",
+      "details": {
+        "component": "CPython Windows binary distribution",
+        "version": "3.14.4",
+        "source": "https://www.python.org/ftp/python/3.14.4/python-3.14.4-embed-amd64.zip",
+        "archive_sha256": "cda80a9b1e75c0f1b4f9872ca1b417f0d19bce32facc811aea9180e70fad5fb9",
+        "archive_member": "LICENSE.txt"
+      }
+    },
+    {
+      "name": "native/windows/OpenSSL/AUTHORS.md",
+      "sha256": "5076ca441daef7fb35e904c2ac070880c7b3d58300a5a6aecac41e8f525f4412",
+      "details": {
+        "component": "OpenSSL",
+        "version": "3.0.19",
+        "source": "https://github.com/openssl/openssl/blob/a22063cd69a077cc68bb4c10e9f351f75899b194/AUTHORS.md",
+        "commit": "a22063cd69a077cc68bb4c10e9f351f75899b194"
+      }
+    },
+    {
+      "name": "native/windows/OpenSSL/LICENSE.txt",
+      "sha256": "7d5450cb2d142651b8afa315b5f238efc805dad827d91ba367d8516bc9d49e7a",
+      "details": {
+        "component": "OpenSSL",
+        "version": "3.0.19",
+        "source": "https://github.com/openssl/openssl/blob/a22063cd69a077cc68bb4c10e9f351f75899b194/LICENSE.txt",
+        "commit": "a22063cd69a077cc68bb4c10e9f351f75899b194",
+        "license": "Apache-2.0"
+      }
+    },
+    {
+      "name": "native/windows/Tcl/license.terms",
+      "sha256": "c0a69a2bfd757361ec7e6143973b103c90409316b49e9c88db26ad6388e79f16",
+      "details": {
+        "source": "CPython source-deps",
+        "commit": "275286594fd3e162af29e8c0ba4e365d3d1f7775",
+        "url": "https://github.com/python/cpython-source-deps/blob/275286594fd3e162af29e8c0ba4e365d3d1f7775/license.terms",
+        "component": "Tcl",
+        "version": "8.6.15"
+      }
+    },
+    {
+      "name": "native/windows/Tk/license.terms",
+      "sha256": "2cde822b93ca16ae535c954b7dfe658b4ad10df2a193628d1b358f1765e8b198",
+      "details": {
+        "source": "CPython source-deps",
+        "commit": "a526badcf885e4986e13e68695398a0bb64d5ea1",
+        "url": "https://github.com/python/cpython-source-deps/blob/a526badcf885e4986e13e68695398a0bb64d5ea1/license.terms",
+        "component": "Tk",
+        "version": "8.6.15"
+      }
+    },
+    {
+      "name": "native/windows/libffi/LICENSE",
+      "sha256": "2c9c2acb9743e6b007b91350475308aee44691d96aa20eacef8e199988c8c388",
+      "details": {
+        "component": "libffi",
+        "version": "3.4.4",
+        "source": "https://github.com/python/cpython-source-deps/blob/73b247f34ef3ae1859b8c2c34d321d34ebc5db15/LICENSE",
+        "commit": "73b247f34ef3ae1859b8c2c34d321d34ebc5db15",
+        "license": "MIT"
+      }
+    },
+    {
+      "name": "native/windows/zlib/LICENSE",
+      "sha256": "845efc77857d485d91fb3e0b884aaa929368c717ae8186b66fe1ed2495753243",
+      "details": {
+        "component": "zlib",
+        "version": "1.3.1",
+        "source": "https://github.com/madler/zlib/blob/51b7f2abdade71cd9bb0e7a373ef2610ec6f9daf/LICENSE",
+        "commit": "51b7f2abdade71cd9bb0e7a373ef2610ec6f9daf",
+        "license": "Zlib"
+      }
+    }
+  ],
+  "texts": {
+    "935cf13e19f8c31b497d20b05d73623431a226b230c3599bc30fa3348979bc68": {
+      "offset": 302,
+      "bytes": 35407
+    },
+    "5076ca441daef7fb35e904c2ac070880c7b3d58300a5a6aecac41e8f525f4412": {
+      "offset": 35891,
+      "bytes": 990
+    },
+    "7d5450cb2d142651b8afa315b5f238efc805dad827d91ba367d8516bc9d49e7a": {
+      "offset": 37064,
+      "bytes": 10175
+    },
+    "c0a69a2bfd757361ec7e6143973b103c90409316b49e9c88db26ad6388e79f16": {
+      "offset": 47420,
+      "bytes": 2255
+    },
+    "2cde822b93ca16ae535c954b7dfe658b4ad10df2a193628d1b358f1765e8b198": {
+      "offset": 49855,
+      "bytes": 2267
+    },
+    "2c9c2acb9743e6b007b91350475308aee44691d96aa20eacef8e199988c8c388": {
+      "offset": 52300,
+      "bytes": 1132
+    },
+    "845efc77857d485d91fb3e0b884aaa929368c717ae8186b66fe1ed2495753243": {
+      "offset": 53608,
+      "bytes": 1002
+    }
+  },
+  "text_sha256": "d0dfd456d07970bd864987b62e9f3b8e3e86808c3198cb2de18d241f1a262d61"
+}

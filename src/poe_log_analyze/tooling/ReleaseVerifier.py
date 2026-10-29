@@ -52,7 +52,7 @@ class ReleaseVerifier:
         extraction.mkdir(parents = True, exist_ok = False)
         ReleaseVerifier.extract(archive, extraction, root)
         distribution = extraction / root
-        ReleasePackager.read_identity(distribution, metadata["tag"], metadata["commit"])
+        build = ReleasePackager.read_identity(distribution, metadata["tag"], metadata["commit"])
         paths = ReleasePackager.validate_paths(distribution, metadata["target"])
         actual_files = {path.relative_to(distribution).as_posix(): ReleasePackager.sha256(path)
                         for path in paths if path.is_file() and not path.is_symlink()}
@@ -61,6 +61,17 @@ class ReleaseVerifier:
 
         if actual_files != metadata["files_sha256"] or actual_links != metadata["symlinks"]:
             raise ValueError("Extracted application files or symlinks do not match the release manifest")
+
+        provenance = ReleasePackager.windows_provenance(distribution, build)
+
+        if ("windows_native_provenance" in metadata) != (provenance is not None):
+            raise ValueError("Windows native provenance is missing from the build or release manifest")
+
+        if provenance is not None:
+            recorded = ReleasePackager.validate_windows_provenance(metadata["windows_native_provenance"])
+
+            if recorded != provenance:
+                raise ValueError("Windows native provenance differs between the build and release manifest")
 
         windows = metadata["target"] == "Windows"
         launcher = distribution / ("poe-log-analyze.cmd" if windows else "poe-log-analyze")
@@ -107,11 +118,16 @@ class ReleaseVerifier:
             results[language] = {"passed": True}
 
         report = output / "verification.json"
-        JsonFiles.write_json(report, {
+        verification = {
             "passed": True, "archive": archive.name, "archive_sha256": metadata["archive_sha256"],
             "tag": metadata["tag"], "commit": metadata["commit"], "target": metadata["target"],
             "relocated": True, "languages": results,
-        })
+        }
+
+        if provenance is not None:
+            verification["windows_native_provenance"] = provenance
+
+        JsonFiles.write_json(report, verification)
 
         return report
 

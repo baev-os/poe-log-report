@@ -37,6 +37,8 @@ class DraftRelease:
             raise ValueError("The repository must be an explicit owner/name")
 
         artifacts = DraftRelease.validate_assets(assets, tag, commit)
+        windows_manifest = json.loads(artifacts["Windows"].manifest.read_text(encoding = "utf-8"))
+        provenance = windows_manifest.get("windows_native_provenance")
         clean_linux = assets / "verification-clean-Linux.json"
 
         if clean_linux.exists() or clean_linux.is_symlink():
@@ -72,8 +74,10 @@ class DraftRelease:
         lines = [artifact.checksum.read_text(encoding = "ascii") for artifact in artifacts.values()]
         checksums.write_text("".join(sorted(lines, key = lambda line: line.split("  ", 1)[1])),
                              encoding = "ascii", newline = "\n")
-        pending = ["manual_clean_windows_10_11_acceptance", "game_material_redistribution_review",
-                   "windows_native_dependency_provenance_review"]
+        pending = ["manual_clean_windows_10_11_acceptance"]
+
+        if provenance is None:
+            pending.append("windows_native_dependency_provenance_review")
 
         if not clean_linux.exists():
             pending.append("clean_linux_runtime_acceptance")
@@ -86,6 +90,8 @@ class DraftRelease:
                                  "verification": f"verification-{target}.json"}
                         for target, artifact in artifacts.items()},
             "clean_linux_runtime_verified": clean_linux.exists(),
+            "game_materials": {"decision": "included_in_good_faith", "permission_confirmed": False,
+                               "removal_on_request": True, "policy": "licenses/GAME_DATA.md"},
             "pending_publication_checks": pending,
         })
         notes.write_text(
@@ -97,12 +103,19 @@ class DraftRelease:
             "to a relocated directory containing spaces and Unicode.\n\n"
             + ("The Linux archive additionally passed the same checks in a clean runtime container.\n\n"
                if clean_linux.exists() else "Clean Linux runtime acceptance remains pending.\n\n")
-            + "Manual acceptance on clean Windows 10/11 client systems and review of game-material "
-            "redistribution remain pending. A Windows compiler-runner check does not establish "
+            + "Manual acceptance on clean Windows 10/11 client systems remains pending. "
+            "A Windows compiler-runner check does not establish "
             "client-system compatibility.\n\n"
-            "Windows OpenSSL/zlib DLL source and notice mappings and Visual C runtime provenance "
-            "remain maintainer review items before publication. Recorded notice hashes do not settle "
-            "those mappings.\n\n"
+            + ("The copied Windows DLLs and their original notice mappings were checked against the "
+               "exact native catalogue. This check covers included DLLs; it does not establish client-system "
+               "compatibility.\n\n" if provenance is not None else
+               "Windows OpenSSL/zlib DLL source and notice mappings and Visual C runtime provenance "
+               "remain maintainer review items before publication. Recorded notice hashes do not settle "
+               "those mappings.\n\n")
+            + "The maintainer includes game materials in good faith and refers to fair use as the project's "
+            "position. This is not a legal clearance or confirmation of GGG's permission. GGG may request "
+            "removal; affected materials will be removed or replaced in the source and downloads controlled "
+            "by the project. See `licenses/GAME_DATA.md`.\n\n"
             "Extract the entire archive into a writable folder. Start `poe-log-analyze.cmd` on Windows "
             "or `./poe-log-analyze` on Linux. Keep the `app/` directory and license notices together.\n\n"
             "This draft records release preparation. Publishing the release and changing repository "
@@ -172,6 +185,19 @@ class DraftRelease:
                 or any(metadata.get("languages", {}).get(language, {}).get("passed") is not True
                        for language in ("en", "ru"))):
             raise ValueError("Complete verification for the exact archive is required: " + target)
+
+        manifest = json.loads(artifact.manifest.read_text(encoding = "utf-8"))
+        field = "windows_native_provenance"
+
+        if field in manifest or field in metadata:
+            if target != "Windows" or field not in manifest or field not in metadata:
+                raise ValueError("Matching Windows native provenance is required in the manifest and verification")
+
+            summary = ReleasePackager.validate_windows_provenance(manifest[field])
+            receipt = ReleasePackager.validate_windows_provenance(metadata[field])
+
+            if summary != receipt:
+                raise ValueError("Windows native provenance differs between the manifest and verification")
 
     @staticmethod
     def regular_file(path: Path) -> None:

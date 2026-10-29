@@ -16,6 +16,8 @@ class DraftReleaseTests(unittest.TestCase):
     """Incomplete or inconsistent artifacts must never reach a release mutation."""
 
     COMMIT = "a" * 40
+    PROVENANCE = {"verified": True, "scope": "included_dll", "libraries": 9,
+                  "python": "3.14.4", "catalogue_sha256": "b" * 64}
 
     def setUp(self):
         temporary = Path(__file__).resolve().parents[1] / "build/tmp"
@@ -54,6 +56,12 @@ class DraftReleaseTests(unittest.TestCase):
                 self.response(1, stderr = "release not found"),
                 self.response(stdout = "https://github.com/synthetic/example/releases/tag/v0.1.0\n")]
 
+    def windows_provenance_fixture(self):
+        for name in ("poe-log-report-0.1.0-windows-x64.json", "verification-Windows.json"):
+            metadata = json.loads((self.assets / name).read_text())
+            metadata["windows_native_provenance"] = dict(self.PROVENANCE)
+            self.write(name, metadata)
+
     def test_success_creates_only_draft_with_two_verified_targets_and_sorted_checksums(self):
         (self.assets / "unrelated-private.log").write_text("Synthetic unused file")
 
@@ -81,8 +89,68 @@ class DraftReleaseTests(unittest.TestCase):
         self.assertEqual(set(metadata["targets"]), {"Linux", "Windows"})
         self.assertFalse(metadata["clean_linux_runtime_verified"])
         self.assertIn("manual_clean_windows_10_11_acceptance", metadata["pending_publication_checks"])
-        self.assertIn("game_material_redistribution_review", metadata["pending_publication_checks"])
-        self.assertIn("remain pending", (self.assets / "release-notes.md").read_text())
+        self.assertIn("windows_native_dependency_provenance_review", metadata["pending_publication_checks"])
+        self.assertNotIn("game_material_redistribution_review", metadata["pending_publication_checks"])
+        self.assertEqual(metadata["game_materials"], {
+            "decision": "included_in_good_faith", "permission_confirmed": False,
+            "removal_on_request": True, "policy": "licenses/GAME_DATA.md"})
+        notes = (self.assets / "release-notes.md").read_text()
+
+        self.assertIn("remain maintainer review items", notes)
+        self.assertIn("fair use as the project's position", notes)
+        self.assertIn("not a legal clearance", notes)
+        self.assertIn("GGG may request removal", notes)
+
+    def test_matching_verified_dll_summary_removes_only_its_pending_review(self):
+        self.windows_provenance_fixture()
+
+        with patch("subprocess.run", side_effect = self.successful_responses()):
+            self.create()
+
+        metadata = json.loads((self.assets / "RELEASE_METADATA.json").read_text())
+        pending = metadata["pending_publication_checks"]
+        notes = (self.assets / "release-notes.md").read_text()
+
+        self.assertNotIn("windows_native_dependency_provenance_review", pending)
+        self.assertIn("manual_clean_windows_10_11_acceptance", pending)
+        self.assertIn("clean_linux_runtime_acceptance", pending)
+        self.assertIn("This check covers included DLLs", notes)
+        self.assertNotIn("remain maintainer review items", notes)
+
+    def test_missing_changed_or_unverified_dll_summary_prevents_any_github_call(self):
+        self.windows_provenance_fixture()
+        manifest_name = "poe-log-report-0.1.0-windows-x64.json"
+        receipt_name = "verification-Windows.json"
+        manifest = json.loads((self.assets / manifest_name).read_text())
+        receipt = json.loads((self.assets / receipt_name).read_text())
+
+        for case in ("missing_manifest", "missing_receipt", "changed_receipt", "unverified", "broad_scope", "truthy_count"):
+            changed_manifest = json.loads(json.dumps(manifest))
+            changed_receipt = json.loads(json.dumps(receipt))
+
+            if case == "missing_manifest":
+                del changed_manifest["windows_native_provenance"]
+            elif case == "missing_receipt":
+                del changed_receipt["windows_native_provenance"]
+            elif case == "changed_receipt":
+                changed_receipt["windows_native_provenance"]["catalogue_sha256"] = "c" * 64
+            elif case == "unverified":
+                changed_receipt["windows_native_provenance"]["verified"] = False
+            elif case == "broad_scope":
+                changed_manifest["windows_native_provenance"]["scope"] = "all_native_code"
+            else:
+                changed_receipt["windows_native_provenance"]["libraries"] = True
+
+            self.write(manifest_name, changed_manifest)
+            self.write(receipt_name, changed_receipt)
+
+            with self.subTest(case = case), patch("subprocess.run") as run:
+                with self.assertRaisesRegex(ValueError, "provenance"):
+                    self.create()
+
+                run.assert_not_called()
+
+        self.assertFalse((self.assets / "RELEASE_METADATA.json").exists())
 
     def test_missing_platform_archive_prevents_any_github_call(self):
         (self.assets / "poe-log-report-0.1.0-windows-x64.zip").unlink()

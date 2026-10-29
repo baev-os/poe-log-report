@@ -2,7 +2,9 @@
 
 import hashlib
 import json
+import platform
 import unittest
+import xml.etree.ElementTree as ET
 
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -23,7 +25,7 @@ class LicenseBundleTests(unittest.TestCase):
 
         for name in ("LICENSE", "THIRD_PARTY_NOTICES.md", "licenses/README.md", "licenses/GAME_DATA.md",
                      "licenses/Exile-UI.txt", "site/static/vendor/bootstrap-LICENSE.txt", "reports/fonts/LICENSE.txt",
-                     "python.txt", "dependency/LICENSE"):
+                     "licenses/WINDOWS_RUNTIME.md", "python.txt", "dependency/LICENSE"):
             self.write(name, b"Synthetic notice\r\n")
 
     def write(self, name, content):
@@ -32,8 +34,32 @@ class LicenseBundleTests(unittest.TestCase):
         path.write_bytes(content)
 
     def stage(self, dependencies = ("example",), system = "Linux"):
+        options = {}
+
+        if system == "Windows":
+            source = self.root / "DLLs/synthetic.dll"
+            self.write("DLLs/synthetic.dll", b"Synthetic native library")
+            self.write("compiled/synthetic.dll", source.read_bytes())
+            catalogue = LicenseTextArchive(metadata = {
+                "target": "Windows", "architecture": "x86_64", "python": platform.python_version(),
+                "libraries": {"synthetic.dll": {
+                    "component": "synthetic", "version": "1.0", "python_relative_path": "DLLs/synthetic.dll",
+                    "original_sha256": hashlib.sha256(source.read_bytes()).hexdigest(),
+                    "notices": ["native/windows/synthetic/LICENSE"], "sources": ["https://example.org/synthetic"],
+                }},
+            })
+            catalogue.add("native/windows/synthetic/LICENSE", b"Synthetic original native notice\r\n")
+            catalogue.write(self.root / "licenses/WindowsNative.txt", self.root / "licenses/WindowsNative.json")
+            compilation = ET.Element("report", {"completion": "yes", "mode": "standalone"})
+            ET.SubElement(compilation, "included_dll", {
+                "name": source.name, "source_path": str(source), "dest_path": source.name, "ignored": "no",
+            })
+            report = self.root / "report.xml"
+            ET.ElementTree(compilation).write(report)
+            options = {"native_report": report, "distribution": self.root / "compiled"}
+
         return LicenseBundleWriter.stage(self.root, self.root / "bundle", dependencies,
-                                         self.root / "python.txt", system = system)
+                                         self.root / "python.txt", system = system, **options)
 
     def test_notices_and_manifest_include_actual_copied_bytes(self):
         distribution = Mock(files = [Path("example.dist-info/licenses/LICENSE")])
@@ -105,8 +131,13 @@ class LicenseBundleTests(unittest.TestCase):
         for component in ("tcl", "tk"):
             self.write(f"tcl/{component}8.6/license.terms", (component + "\r\nOriginal notice").encode("utf-8"))
 
-        self.stage((), "Windows")
+        result = self.stage((), "Windows")
         archive = LicenseTextArchive.read(self.root / "bundle/THIRD_PARTY_LICENSES.txt", self.root / "bundle/sources.json")
+
+        self.assertEqual(result["windows_native_provenance"]["scope"], "included_dll")
+        self.assertEqual(result["windows_native_provenance"], archive.metadata["windows_native_provenance"])
+        self.assertEqual((self.root / "bundle/WINDOWS_RUNTIME.md").read_bytes(),
+                         (self.root / "licenses/WINDOWS_RUNTIME.md").read_bytes())
 
         for component in ("tcl", "tk"):
             entry = next(row for row in archive.entries if row["name"] == f"toolkit/{component}/license.terms")
@@ -117,6 +148,25 @@ class LicenseBundleTests(unittest.TestCase):
     def test_windows_without_toolkit_licenses_is_rejected(self):
         with self.assertRaisesRegex(ValueError, "license.*tcl"):
             self.stage((), "Windows")
+
+    def test_windows_dependencies_keep_the_compiled_distribution_for_native_verification(self):
+        self.toolkit_catalogue()
+        installed = Mock(files = [Path("example.dist-info/licenses/LICENSE")])
+        installed.locate_file.return_value = self.root / "dependency/LICENSE"
+
+        with patch("importlib.metadata.version", return_value = "1"), patch("importlib.metadata.distribution", return_value = installed):
+            result = self.stage(("example",), "Windows")
+
+        self.assertTrue(result["windows_native_provenance"]["verified"])
+        self.assertEqual(result["windows_native_provenance"]["libraries"], 1)
+
+    def test_windows_without_compiler_report_cannot_claim_verified_notices(self):
+        self.toolkit_catalogue()
+
+        with self.assertRaisesRegex(ValueError, "require the compiler report"):
+            LicenseBundleWriter.stage(self.root, self.root / "bundle", (), self.root / "python.txt", system = "Windows")
+
+        self.assertFalse((self.root / "bundle/manifest.json").exists())
 
     def toolkit_catalogue(self):
         catalogue = LicenseTextArchive(metadata = {"versions": {"tcl": "8.6.15", "tk": "8.6.15"}})

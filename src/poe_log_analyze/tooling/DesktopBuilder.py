@@ -130,12 +130,13 @@ class DesktopBuilder:
                                                   python_license,
                                                   system = native.system,
                                                   native_report = output / "compilation-report.xml",
-                                                  native_catalogue = catalogue)
+                                                  native_catalogue = catalogue, distribution = dist)
         build["license_bundle"] = license_bundle
         JsonFiles.write_json(final_resources / "build-info.json", build)
         JsonFiles.write_json(output / "license-check.json", {
             "gui": "tkinter", "license_files": len(license_bundle["files_sha256"]),
-            "pending_release_checks": ["native_dependencies_review"]})
+            "windows_native_provenance": license_bundle.get("windows_native_provenance"),
+            "pending_release_checks": [] if native.windows else ["native_dependencies_review"]})
         DesktopDistribution.arrange(dist, native)
         JsonFiles.write_json(output / "distribution-sha256.json", {
             p.relative_to(dist).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()

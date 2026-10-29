@@ -33,8 +33,8 @@ outstanding rights review.
 
 ## Prepare the source
 
-1. Resolve the outstanding items in [public-readiness.md](public-readiness.md),
-   especially game-material distribution scope and private-data review.
+1. Review the outstanding items in [public-readiness.md](public-readiness.md),
+   private-data checks, and the recorded game-material inclusion/removal policy.
 2. Choose a version, update `pyproject.toml` and `CHANGELOG.md`, and finish the
    release notes. Describe known limitations and the platforms actually tested.
 3. Run the source checks from [tests/README.md](../tests/README.md) and development
@@ -148,6 +148,15 @@ The license bundle must describe the actual shipped dependencies. Linux native
 library changes require review of the catalogue and original notices. Windows
 Tcl/Tk notices must match the installed toolkit version. Preserve full original
 notices and review the builder's `pending_release_checks` explicitly.
+
+Windows copied DLLs are pinned in `licenses/WindowsNative.json` and its adjacent
+original-notice archive. A Python or native DLL update requires reviewing the
+official binary source, exact component version, hash, and applicable notices.
+Unknown DLLs, changed bytes, or missing source/notice mappings fail the build.
+The package and relocated verifier repeat these checks and carry the scoped
+result through the release manifest and verification receipt. Legacy archives
+without this result retain their native-provenance review item. Microsoft
+runtime conditions are described in [WINDOWS_RUNTIME.md](../licenses/WINDOWS_RUNTIME.md).
 
 On a clean supported target, extract the archive into a path containing spaces
 and non-ASCII characters, then launch from a different current directory. Use

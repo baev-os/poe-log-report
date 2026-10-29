@@ -4,6 +4,11 @@ The project's own code is licensed under [MIT](LICENSE). This license does not r
 the terms for libraries, fonts, or game materials.
 
 - Python: PSF; Tcl/Tk: their original notices.
+- Windows copied DLLs: exact binary hashes, component versions, upstream sources,
+  and notice mappings are recorded in [licenses/WindowsNative.json](licenses/WindowsNative.json).
+  Microsoft runtime files retain their separate
+  [governing conditions](licenses/WINDOWS_RUNTIME.md); the project's MIT license
+  does not relicense them.
 - Jinja2, MarkupSafe, Python-Markdown, and ReportLab: BSD.
 - Bootstrap, Pillow, and charset-normalizer: their respective MIT notices.
 - tzdata: Apache-2.0 and separate IANA database terms.
@@ -24,4 +29,8 @@ Sources and hashes: [docs/mercenary-greetings.json](docs/mercenary-greetings.jso
 
 Game data and images belong to Grinding Gear Games.
 The project's and RePoE's MIT licenses grant no additional rights to game materials.
-[Contents and sources](licenses/GAME_DATA.md).
+The maintainer includes these materials in good faith for this noncommercial
+fan-made log-analysis project. The project's fair-use rationale is not an
+established legal determination or GGG permission. GGG retains its rights;
+the maintainer will remove or replace affected materials on a request from GGG.
+[Contents, sources, and maintainer decision](licenses/GAME_DATA.md).

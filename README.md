@@ -69,4 +69,8 @@ See [desktop usage and packaging](docs/desktop.md) and the [changelog](CHANGELOG
 
 The code is licensed under [MIT](LICENSE). Library licenses and game resource terms
 are listed in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+Path of Exile materials belong to Grinding Gear Games and are included in good
+faith for this noncommercial fan project. GGG retains its rights; affected
+materials will be removed or replaced on its request. See the
+[game-material policy](licenses/GAME_DATA.md).
 This project is not affiliated with or endorsed by Grinding Gear Games.

@@ -1,5 +1,19 @@
 # Handoff
 
+The v0.1.5 follow-up adds an exact Windows copied-DLL catalogue and original
+notices, verified against official CPython 3.14.4 binaries without executing
+upstream files. Windows staging, packaging, and relocated verification compare
+source/shipped hashes and complete DLL inventory; matching scoped receipts
+clear the copied-DLL review item. Legacy archives keep their pending item.
+Original Microsoft conditions and downstream responsibilities remain explicit
+in [WINDOWS_RUNTIME.md](../licenses/WINDOWS_RUNTIME.md).
+
+The maintainer has decided to include game materials in good faith and to remove
+or replace affected materials in source and downloads on GGG's request. Fair use
+is the project's rationale; GGG permission or a legal determination is not
+claimed. The decision is in [GAME_DATA.md](../licenses/GAME_DATA.md) and draft
+metadata records it separately from automated verification.
+
 Private release preparation uses tag `v0.1.4` at
 `e58fad5ca46bb58e726b72dfde13a7be6e4c07f6`. Both native archive jobs passed in
 [workflow 40838577731](https://github.com/baev-os/poe-log-report/actions/runs/40838577731),
@@ -43,8 +57,9 @@ paths using `~/lib` share one validated home-expanding resolver with catalogue
 verification. Actual CI-report replay as an anonymous UID verified all 42
 libraries without recompilation. The final archives preserve the reviewed
 Windows nine-DLL and Linux 42-library inventories and all notice hashes.
-Windows OpenSSL/zlib source-to-notice mappings and exact Visual C runtime
-provenance remain a manual publication review item.
+The subsequent v0.1.5 catalogue records the Windows OpenSSL/zlib mappings and
+the verified CPython source of the Visual C runtime. Original governing
+conditions remain separate from technical provenance.
 
 Cross-platform fixture fixes keep Chrome sockets in short temporary paths,
 close browser logs before Windows cleanup, and isolate no-Git source copies
@@ -58,8 +73,8 @@ charts. Deterministic regressions fail the old code and pass the fix, including
 separate native mouse-input evidence. Seven focused browser harnesses passed
 76 scenarios and 2,296 assertions before the complete local and CI matrix.
 
-The game-material distribution scope, Windows native provenance review, and
-clean client Windows 10/11 acceptance remain explicit manual checks. See
+Clean client Windows 10/11 acceptance remains a manual check. The game-material
+inclusion decision and Microsoft runtime conditions are documented separately. See
 [releasing.md](releasing.md) and [public-readiness.md](public-readiness.md).
 The repository must stay private and the release must stay in draft until
 publication is separately requested. Earlier private tags were preserved;

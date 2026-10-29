@@ -3,6 +3,8 @@
 
 # These third-party files have pinned byte hashes, including line endings.
 licenses/Native.txt -text -whitespace
+# OpenSSL's original AUTHORS heading uses seven equals signs.
+licenses/WindowsNative.txt -text -whitespace conflict-marker-size=32
 licenses/Exile-UI.txt -text -whitespace
 site/data/mercenary-greetings.json -text -whitespace
 site/static/vendor/** -text

@@ -15,7 +15,9 @@ from poe_log_analyze.runtime.JsonFiles import JsonFiles
 from poe_log_analyze.runtime.Workspace import Workspace
 
 from poe_log_analyze.tooling.BuildVersion import BuildVersion
+from poe_log_analyze.tooling.LicenseTextArchive import LicenseTextArchive
 from poe_log_analyze.tooling.ReleaseArtifact import ReleaseArtifact
+from poe_log_analyze.tooling.WindowsNativeCatalogue import WindowsNativeCatalogue
 
 
 class ReleasePackager:
@@ -76,6 +78,7 @@ class ReleasePackager:
                 raise ValueError("Required distribution file is missing: " + name)
 
         paths = ReleasePackager.validate_paths(distribution, target)
+        provenance = ReleasePackager.windows_provenance(distribution, build)
 
         if target == "Linux" and any(not os.access(distribution / name, os.X_OK) for name in (launcher, binary)):
             raise ValueError("Linux launcher and native executable must have executable permissions")
@@ -114,7 +117,7 @@ class ReleasePackager:
         with checksums.open("a", encoding = "ascii", newline = "\n") as stream:
             stream.write(line)
 
-        JsonFiles.write_json(manifest, {
+        release = {
             "release_manifest_version": "1", "version": build["version"], "tag": tag,
             "commit": commit, "target": target, "architecture": "x86_64",
             "archive": archive.name, "archive_sha256": digest, "root": name,
@@ -122,7 +125,12 @@ class ReleasePackager:
                              for path in paths if path.is_file() and not path.is_symlink()},
             "symlinks": {path.relative_to(distribution).as_posix(): os.readlink(path)
                          for path in paths if path.is_symlink()},
-        })
+        }
+
+        if provenance is not None:
+            release["windows_native_provenance"] = provenance
+
+        JsonFiles.write_json(manifest, release)
 
         return ReleaseArtifact(archive, checksum, manifest)
 
@@ -151,6 +159,46 @@ class ReleasePackager:
             raise ValueError("A supported Windows/Linux x86_64 app distribution is required")
 
         return build
+
+    @staticmethod
+    def windows_provenance(distribution: Path, build: dict) -> dict | None:
+        """Recheck copied Windows DLLs against the bundled original notice catalogue."""
+        bundle = build.get("license_bundle", {})
+
+        if not isinstance(bundle, dict):
+            raise ValueError("Invalid build license bundle metadata")
+
+        if "windows_native_provenance" not in bundle:
+            return None
+
+        if build["target"] != "Windows":
+            raise ValueError("Windows native provenance requires a Windows distribution")
+
+        summary = ReleasePackager.validate_windows_provenance(bundle["windows_native_provenance"])
+        licenses = distribution / "app/poe_log_analyze/resources/licenses"
+        archive = LicenseTextArchive.read(licenses / "THIRD_PARTY_LICENSES.txt", licenses / "sources.json")
+        actual = WindowsNativeCatalogue.verify_distribution(distribution / "app", archive)
+
+        if actual != summary:
+            raise ValueError("Windows native provenance does not match the actual DLLs and notices")
+
+        return summary
+
+    @staticmethod
+    def validate_windows_provenance(summary: object) -> dict:
+        """Accept only a complete, explicitly scoped DLL verification summary."""
+        fields = {"verified", "scope", "libraries", "python", "catalogue_sha256"}
+
+        if (not isinstance(summary, dict) or set(summary) != fields
+                or summary.get("verified") is not True or summary.get("scope") != "included_dll"
+                or type(summary.get("libraries")) is not int or summary["libraries"] <= 0
+                or not isinstance(summary.get("python"), str)
+                or not re.fullmatch(r"[0-9]+\.[0-9]+\.[0-9]+", summary["python"])
+                or not isinstance(summary.get("catalogue_sha256"), str)
+                or not re.fullmatch(r"[0-9a-f]{64}", summary["catalogue_sha256"])):
+            raise ValueError("Invalid Windows native provenance summary")
+
+        return summary
 
     @staticmethod
     def validate_paths(distribution: Path, target: str) -> list[Path]:

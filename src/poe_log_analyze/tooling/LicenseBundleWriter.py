@@ -11,6 +11,7 @@ from poe_log_analyze.runtime.JsonFiles import JsonFiles
 
 from poe_log_analyze.tooling.LicenseTextArchive import LicenseTextArchive
 from poe_log_analyze.tooling.NativeLicenseCatalogue import NativeLicenseCatalogue
+from poe_log_analyze.tooling.WindowsNativeCatalogue import WindowsNativeCatalogue
 
 
 class LicenseBundleWriter:
@@ -21,7 +22,7 @@ class LicenseBundleWriter:
     @staticmethod
     def stage(root: Path, destination: Path, dependencies: tuple[str, ...],
               python_license: Path, *, system: str, native_report: Path | None = None,
-              native_catalogue: Path | None = None) -> dict:
+              native_catalogue: Path | None = None, distribution: Path | None = None) -> dict:
 
         archive = LicenseTextArchive(metadata = {"gui": "tkinter", "target": system})
         versions = {name: metadata.version(name) for name in dependencies}
@@ -43,10 +44,10 @@ class LicenseBundleWriter:
             if name in LicenseBundleWriter.BUILD_ONLY:
                 continue
 
-            distribution = metadata.distribution(name)
+            installed = metadata.distribution(name)
             count = 0
 
-            for relative in distribution.files or []:
+            for relative in installed.files or []:
                 path = Path(relative)
 
                 if not re.fullmatch(r"(?:licen[sc]e|copying|copyright|notice)(?:[-_.].*)?", path.name, re.I):
@@ -55,7 +56,7 @@ class LicenseBundleWriter:
                 if path.is_absolute() or ".." in path.parts:
                     raise ValueError(f"Invalid package license path for {name}")
 
-                source = Path(distribution.locate_file(relative))
+                source = Path(installed.locate_file(relative))
 
                 if source.is_file():
                     archive.add(f"dependencies/{name}/{path.as_posix()}", source.read_bytes(),
@@ -71,7 +72,13 @@ class LicenseBundleWriter:
         if system == "Linux" and native_report is not None:
             NativeLicenseCatalogue.append(root, native_report, archive, native_catalogue)
         elif system == "Windows":
+            LicenseBundleWriter.copy(root / "licenses/WINDOWS_RUNTIME.md", destination / "WINDOWS_RUNTIME.md")
             LicenseBundleWriter.add_windows_toolkit(archive, python_license.parent, root)
+
+            if native_report is None or distribution is None:
+                raise ValueError("Windows notices require the compiler report and compiled distribution")
+
+            WindowsNativeCatalogue.append(root, native_report, archive, python_license.parent, distribution)
 
         archive.write(destination / "THIRD_PARTY_LICENSES.txt", destination / "sources.json")
         result = {
@@ -82,6 +89,10 @@ class LicenseBundleWriter:
                 for path in sorted(destination.rglob("*")) if path.is_file()
             },
         }
+
+        if system == "Windows":
+            result["windows_native_provenance"] = archive.metadata["windows_native_provenance"]
+
         JsonFiles.write_json(destination / "manifest.json", result)
 
         return result
