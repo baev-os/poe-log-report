@@ -58,12 +58,38 @@ class MapRunDetailsBrowserTests {
     const tooltip = document.getElementById(point.getAttribute('aria-describedby'));
     this.assert(!tooltip.hidden && tooltip.textContent.includes('2026'), "Instant tooltip with date");
 
+    const scroll = chart.closest('.session-chart-scroll');
+    scroll.dispatchEvent(new Event('scroll'));
+    this.assert(document.activeElement === point && !tooltip.hidden, "Scrolling preserves the focused tooltip");
+
+    const top = tooltip.style.top;
+    chart.style.transform = 'translateY(32px)';
+    scroll.dispatchEvent(new Event('scroll'));
+    this.assert(!tooltip.hidden && tooltip.style.top !== top, "Focused tooltip follows its moved anchor");
+    chart.style.transform = '';
+    window.dispatchEvent(new Event('resize'));
+    this.assert(document.activeElement === point && !tooltip.hidden, "Resizing preserves the focused tooltip");
+
+    const other = [...chart.querySelectorAll('a')].find(link => link !== point);
+    other.focus({preventScroll: true});
+    point.focus({preventScroll: true});
+    const focusedText = tooltip.textContent;
+    other.dispatchEvent(new PointerEvent('pointerleave'));
+    this.assert(!tooltip.hidden && tooltip.textContent === focusedText, "A stale leave cannot hide another focused point");
+    other.dispatchEvent(new PointerEvent('pointerenter'));
+    this.assert(!tooltip.hidden && tooltip.textContent === focusedText, "Focus owns the shared tooltip while another point is hovered");
+    point.dispatchEvent(new PointerEvent('pointerleave'));
+    this.assert(document.activeElement === point && !tooltip.hidden, "Leaving a focused point preserves its tooltip");
+
     await new Promise(resolve => setTimeout(resolve, 1100));
 
     this.assert(!tooltip.hidden, "Tooltip remains while focused");
 
     point.dispatchEvent(new KeyboardEvent('keydown', {key: 'Escape', bubbles: true}));
     this.assert(tooltip.hidden, "Escape hides the tooltip");
+    scroll.dispatchEvent(new Event('scroll'));
+    window.dispatchEvent(new Event('resize'));
+    this.assert(tooltip.hidden, "Geometry changes do not reopen a dismissed tooltip");
 
     point.dispatchEvent(new Event('pointerenter'));
     this.assert(!tooltip.hidden, "Hover tooltip");
@@ -75,6 +101,16 @@ class MapRunDetailsBrowserTests {
     this.assert(new URL(gap.href.baseVal, location.href).hash.startsWith('#gap-'), "Gap links to details");
 
     select.focus(); this.assert(document.activeElement === select, "Zoom is keyboard accessible");
+    point.dispatchEvent(new PointerEvent('pointerenter'));
+    this.assert(!tooltip.hidden, "An unfocused hovered point shows its tooltip");
+    scroll.dispatchEvent(new Event('scroll'));
+    this.assert(tooltip.hidden, "Scrolling hides a hover-only tooltip");
+
+    point.focus({preventScroll: true});
+    select.value = '4'; select.dispatchEvent(new Event('change'));
+    this.assert(tooltip.hidden, "An explicit zoom change dismisses the focused tooltip");
+    select.value = '1'; select.dispatchEvent(new Event('change'));
+    select.focus();
 
     await new Promise(resolve => setTimeout(resolve, 150));
 

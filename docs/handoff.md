@@ -50,6 +50,24 @@ build/license-replay-v0.1.3/. Corrections move forward to v0.1.3; earlier privat
 tags are preserved and no release has been published. Local evidence remains
 ignored under build/.
 
+Both v0.1.3 native targets passed archived EN/RU self-tests; clean Ubuntu without
+Python also passed. Windows source validation passed 692 tests (7 documented
+platform/input/display skips) and mypy for 42 files. Linux unit/type checks
+passed, then browser validation exposed an existing focused-tooltip defect:
+scroll/resize callbacks hid a tooltip while its point remained focused.
+
+Point tooltips now keep an actual focused owner, refresh only a visible focused
+tooltip after geometry changes, and preserve Escape/explicit-change dismissal.
+A WeakMap avoids retaining replaced comparison charts. Deterministic regressions
+fail the old code and pass the fix, including native mouse input. Seven relevant
+browser harnesses passed 76 scenarios/2296 assertions under 3 GiB. The other
+12 browser harnesses also passed sequentially on the same unchanged code,
+completing all 19 before the v0.1.4 release attempt.
+
+Draft metadata explicitly retains Windows native dependency provenance review:
+the bytes/notices are preserved, but OpenSSL/zlib DLL mappings and Visual C
+runtime provenance require maintainer review before public distribution.
+
 Clean client Windows 10/11 acceptance and the game-material distribution review
 remain separate from compiler-runner checks. See [releasing.md](releasing.md)
 and [public-readiness.md](public-readiness.md). Keep the repository private and

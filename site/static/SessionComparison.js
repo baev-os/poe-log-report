@@ -20,7 +20,7 @@ class SessionComparison {
       [this.selects[0].value, this.selects[1].value] = [this.selects[1].value, this.selects[0].value];
       this.update();
     });
-    window.addEventListener('resize', () => this.scale());
+    window.addEventListener('resize', () => this.scale(true));
     root.querySelector('[data-comparison-controls]').hidden = false;
     this.update();
   }
@@ -52,6 +52,7 @@ class SessionComparison {
     this.root.querySelector('[data-comparison-types-empty]').hidden = keys.length !== 0;
   }
   update() {
+    this.hideTooltips();
     const ids = this.selects.map(select => select.value);
     const same = ids[0] === ids[1];
     this.root.querySelector('[data-same-session]').hidden = !same;
@@ -79,7 +80,7 @@ class SessionComparison {
         this.root.querySelectorAll('.session-chart-scroll').forEach(scroll => {
           if (scroll.scrollLeft !== event.target.scrollLeft) scroll.scrollLeft = event.target.scrollLeft;
         });
-        this.hideTooltips();
+        this.refreshTooltips();
       });
     });
     this.chartIds = ids;
@@ -89,8 +90,12 @@ class SessionComparison {
   hideTooltips() {
     document.querySelectorAll('[id^="chart-tooltip-session-comparison-"]').forEach(node => { node.hidden = true; });
   }
-  scale() {
+  refreshTooltips() {
+    this.root.querySelectorAll('[data-comparison-chart] svg').forEach(chart => this.interactions.refreshPointTooltip(chart));
+  }
+  scale(preserveFocus = false) {
     ComparisonDisplay.scale([...this.root.querySelectorAll('[data-comparison-chart] svg')], Number(this.zoom.value));
-    this.hideTooltips();
+    if (preserveFocus) this.refreshTooltips();
+    else this.hideTooltips();
   }
 }

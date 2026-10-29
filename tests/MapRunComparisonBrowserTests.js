@@ -68,6 +68,9 @@ class MapRunComparisonBrowserTests {
     const point = charts[0].querySelector('a'); point.focus();
     const tooltip = document.getElementById(point.getAttribute('aria-describedby'));
     this.assert(!tooltip.hidden && tooltip.textContent.includes('2026'), "Instant tooltip with original date");
+    point.closest('.session-chart-scroll').dispatchEvent(new Event('scroll'));
+    window.dispatchEvent(new Event('resize'));
+    this.assert(document.activeElement === point && !tooltip.hidden, "Run comparison geometry preserves the focused tooltip");
 
     await new Promise(resolve => setTimeout(resolve, 1100));
 
@@ -75,6 +78,9 @@ class MapRunComparisonBrowserTests {
 
     point.dispatchEvent(new KeyboardEvent('keydown', {key: 'Escape', bubbles: true}));
     this.assert(tooltip.hidden, "Escape closes the tooltip");
+    point.closest('.session-chart-scroll').dispatchEvent(new Event('scroll'));
+    window.dispatchEvent(new Event('resize'));
+    this.assert(tooltip.hidden, "Run comparison geometry does not reopen a dismissed tooltip");
 
     const zoom = root.querySelector('[data-run-zoom]'); zoom.value = '64'; zoom.dispatchEvent(new Event('change'));
     this.assert(charts.every(chart => parseFloat(chart.style.width) >= 64000), "Shared ×64 zoom");

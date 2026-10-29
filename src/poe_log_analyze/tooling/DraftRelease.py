@@ -72,7 +72,8 @@ class DraftRelease:
         lines = [artifact.checksum.read_text(encoding = "ascii") for artifact in artifacts.values()]
         checksums.write_text("".join(sorted(lines, key = lambda line: line.split("  ", 1)[1])),
                              encoding = "ascii", newline = "\n")
-        pending = ["manual_clean_windows_10_11_acceptance", "game_material_redistribution_review"]
+        pending = ["manual_clean_windows_10_11_acceptance", "game_material_redistribution_review",
+                   "windows_native_dependency_provenance_review"]
 
         if not clean_linux.exists():
             pending.append("clean_linux_runtime_acceptance")
@@ -99,6 +100,9 @@ class DraftRelease:
             + "Manual acceptance on clean Windows 10/11 client systems and review of game-material "
             "redistribution remain pending. A Windows compiler-runner check does not establish "
             "client-system compatibility.\n\n"
+            "Windows OpenSSL/zlib DLL source and notice mappings and Visual C runtime provenance "
+            "remain maintainer review items before publication. Recorded notice hashes do not settle "
+            "those mappings.\n\n"
             "Extract the entire archive into a writable folder. Start `poe-log-analyze.cmd` on Windows "
             "or `./poe-log-analyze` on Linux. Keep the `app/` directory and license notices together.\n\n"
             "This draft records release preparation. Publishing the release and changing repository "

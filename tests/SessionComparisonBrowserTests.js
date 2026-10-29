@@ -63,6 +63,9 @@ class SessionComparisonBrowserTests {
     const point = charts[0].querySelector('a'); point.focus();
     const tooltip = document.getElementById(point.getAttribute('aria-describedby'));
     this.assert(!tooltip.hidden && tooltip.textContent.includes('2026'), "Instant tooltip contains the original date");
+    point.closest('.session-chart-scroll').dispatchEvent(new Event('scroll'));
+    window.dispatchEvent(new Event('resize'));
+    this.assert(document.activeElement === point && !tooltip.hidden, "Comparison geometry preserves the focused tooltip");
 
     await new Promise(resolve => setTimeout(resolve, 800));
 
@@ -70,6 +73,9 @@ class SessionComparisonBrowserTests {
 
     point.dispatchEvent(new KeyboardEvent('keydown', {key: 'Escape', bubbles: true}));
     this.assert(tooltip.hidden, "Escape closes the tooltip");
+    point.closest('.session-chart-scroll').dispatchEvent(new Event('scroll'));
+    window.dispatchEvent(new Event('resize'));
+    this.assert(tooltip.hidden, "Comparison geometry does not reopen a dismissed tooltip");
 
     const zoom = root.querySelector('[data-comparison-zoom]'); zoom.value = '4'; zoom.dispatchEvent(new Event('change'));
     this.assert(charts.every(chart => parseFloat(chart.style.width) >= 4000), "Shared zoom");

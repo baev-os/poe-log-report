@@ -79,6 +79,27 @@ as MIT-licensed. Existing source URLs and hashes provide provenance, not a grant
 
 ## Builds and publication
 
+### Native notice inventory
+
+A private v0.1.3 inventory review verified archive, embedded build, license-file,
+and original notice-text hashes. All nine Windows DLLs matched the compiler
+report. Their bytes and every license-bundle file matched the independently
+reviewed v0.1.1 package. No packaged Windows code was executed during this review.
+
+The Linux package records all 42 reported native libraries: 24 Debian-package
+records and 18 Pillow-wheel records. All 31 referenced native notice entries
+exist; the final collected/staged records and notice hashes match the reviewed
+anonymous-user compiler-report replay.
+
+Windows CPython, libffi, Tcl/Tk, and Microsoft distributable conditions have
+preserved notice text. Explicit DLL-to-version/source/notice mappings for
+`libcrypto-3.dll`, `libssl-3.dll`, and `zlib1.dll` remain to be documented. Exact
+Visual C runtime provenance and distribution conditions also remain a maintainer
+review item. Generic Apache-2.0/zlib text alone does not record those mappings.
+The builder retains `native_dependencies_review`; draft metadata and notes keep
+this review visible. This inventory establishes recorded bytes and provenance,
+not a legal determination or publication approval.
+
 The planned targets are Ubuntu 24.04 x86_64 and Windows 10/11 x64. Source checks,
 native compilation, archive checks, clean-target smoke tests, and native GUI
 review are separate evidence. Current preparation does not establish that either

@@ -17,7 +17,7 @@ class MapRunComparison {
       this.update();
     });
     this.zoom.addEventListener('change', () => this.scale());
-    window.addEventListener('resize', () => this.scale());
+    window.addEventListener('resize', () => this.scale(true));
     root.querySelector('[data-run-controls]').hidden = false;
     this.update();
   }
@@ -78,17 +78,21 @@ class MapRunComparison {
         this.root.querySelectorAll('.session-chart-scroll').forEach(scroll => {
           if (scroll.scrollLeft !== event.target.scrollLeft) scroll.scrollLeft = event.target.scrollLeft;
         });
-        this.hideTooltips();
+        this.refreshTooltips();
       });
     });
     this.scale();
     this.interactions.syncTheme(document.querySelector('[data-theme-toggle]'));
   }
-  scale() {
+  scale(preserveFocus = false) {
     ComparisonDisplay.scale([...this.root.querySelectorAll('[data-run-chart] svg')], Number(this.zoom.value));
-    this.hideTooltips();
+    if (preserveFocus) this.refreshTooltips();
+    else this.hideTooltips();
   }
   hideTooltips() {
     document.querySelectorAll('[id^="chart-tooltip-map-run-comparison-"]').forEach(node => { node.hidden = true; });
+  }
+  refreshTooltips() {
+    this.root.querySelectorAll('[data-run-chart] svg').forEach(chart => this.interactions.refreshPointTooltip(chart));
   }
 }

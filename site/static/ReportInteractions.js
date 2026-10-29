@@ -1,6 +1,7 @@
 /* Filter the generated report locally without network requests. */
 class ReportInteractions {
   constructor() {
+    this.pointTooltips = new WeakMap();
     this.setupActivityTimeline();
     this.setupPlaytimeChart();
     this.setupPlaytimeMode();
@@ -94,7 +95,7 @@ class ReportInteractions {
       node.textContent = value;
       return node;
     };
-    const update = () => {
+    const update = (preserveFocus = false) => {
       const old = chart.viewBox.baseVal.width;
       const center = (scroll.scrollLeft + scroll.clientWidth / 2) / old;
       const width = Math.max(1000, scroll.clientWidth) * Number(select.value);
@@ -117,13 +118,14 @@ class ReportInteractions {
         ticks.append(text(x, 20, date.format(moment)), text(x, 38, time.format(moment)), line);
       }
       scroll.scrollLeft = center * width - scroll.clientWidth / 2;
-      document.querySelectorAll('.playtime-tooltip').forEach(tooltip => { tooltip.hidden = true; });
+      if (preserveFocus) this.refreshPointTooltip(chart);
+      else document.querySelectorAll('.playtime-tooltip').forEach(tooltip => { tooltip.hidden = true; });
     };
     root.querySelector('.session-chart-controls').hidden = false;
-    select.addEventListener('change', update);
+    select.addEventListener('change', () => update());
     root.querySelector('[data-session-reset]').addEventListener('click', () => { select.value = '1'; update(); scroll.scrollLeft = 0; });
-    window.addEventListener('resize', update);
-    scroll.addEventListener('scroll', () => document.querySelectorAll('.playtime-tooltip').forEach(tooltip => { tooltip.hidden = true; }));
+    window.addEventListener('resize', () => update(true));
+    scroll.addEventListener('scroll', () => this.refreshPointTooltip(chart));
     update();
   }
   setupWeeklyPace() {
@@ -212,6 +214,24 @@ class ReportInteractions {
     tooltip.setAttribute('role', 'tooltip');
     tooltip.hidden = true;
     document.body.append(tooltip);
+    let owner = null;
+    const show = link => {
+      const focused = document.activeElement;
+      if (chart.contains(focused) && focused.matches('[data-point-tooltip]') && focused !== link) return;
+      owner = link;
+      tooltip.textContent = link.dataset.chartTip;
+      tooltip.hidden = false;
+      const bar = link.getBoundingClientRect();
+      const box = tooltip.getBoundingClientRect();
+      const left = Math.max(8, Math.min(innerWidth - box.width - 8, bar.left + bar.width / 2 - box.width / 2));
+      const top = bar.top >= box.height + 16 ? bar.top - box.height - 8 : bar.bottom + 8;
+      tooltip.style.left = `${left}px`;
+      tooltip.style.top = `${Math.max(8, Math.min(innerHeight - box.height - 8, top))}px`;
+    };
+    this.pointTooltips.set(chart, () => {
+      if (!tooltip.hidden && owner === document.activeElement) show(owner);
+      else tooltip.hidden = true;
+    });
     chart.querySelectorAll('a').forEach(link => {
       const title = link.querySelector('title');
       const text = title.textContent;
@@ -220,28 +240,21 @@ class ReportInteractions {
       // Native tooltips are delayed and disappear on the browser timer.
       title.remove();
       link.setAttribute('aria-describedby', tooltip.id);
-      const show = () => {
-        tooltip.textContent = text;
-        tooltip.hidden = false;
-        const bar = link.getBoundingClientRect();
-        const box = tooltip.getBoundingClientRect();
-        const left = Math.max(8, Math.min(innerWidth - box.width - 8, bar.left + bar.width / 2 - box.width / 2));
-        const top = bar.top >= box.height + 16 ? bar.top - box.height - 8 : bar.bottom + 8;
-        tooltip.style.left = `${left}px`;
-        tooltip.style.top = `${Math.max(8, Math.min(innerHeight - box.height - 8, top))}px`;
-      };
-      link.addEventListener('pointerenter', show);
-      link.addEventListener('focus', show);
+      link.addEventListener('pointerenter', () => show(link));
+      link.addEventListener('focus', () => show(link));
       link.addEventListener('pointerleave', () => {
-        if (!link.matches(':focus-visible')) tooltip.hidden = true;
+        if (owner === link && document.activeElement !== link) tooltip.hidden = true;
       });
       link.addEventListener('blur', () => {
-        if (!link.matches(':hover')) tooltip.hidden = true;
+        if (owner === link && !link.matches(':hover')) tooltip.hidden = true;
       });
     });
     chart.addEventListener('keydown', event => {
       if (event.key === 'Escape') tooltip.hidden = true;
     });
+  }
+  refreshPointTooltip(chart) {
+    this.pointTooltips.get(chart)?.();
   }
   setupActivityTimeline() {
     const select = document.querySelector('[data-activity-period]');
