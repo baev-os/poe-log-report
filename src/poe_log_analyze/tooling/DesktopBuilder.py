@@ -25,6 +25,9 @@ from poe_log_analyze.stages.composition.localization.TranslationCatalogue import
 from poe_log_analyze.tooling.LicenseBundleWriter import LicenseBundleWriter
 from poe_log_analyze.tooling.LicenseTextArchive import LicenseTextArchive
 from poe_log_analyze.tooling.DesktopDistribution import DesktopDistribution
+from poe_log_analyze.tooling.BuildVersion import BuildVersion
+from poe_log_analyze.tooling.NativeLicenseCollector import NativeLicenseCollector
+from poe_log_analyze.tooling.PythonLicense import PythonLicense
 
 class DesktopBuilder:
     """Build a native Linux/Windows x86_64 application directory with Nuitka."""
@@ -40,8 +43,17 @@ class DesktopBuilder:
         parser = argparse.ArgumentParser(description = 'Native build for Linux/Windows x86_64')
         parser.add_argument("--output", type = Path, default = DesktopBuilder.ROOT / "build" / "standalone")
         parser.add_argument("--jobs", type = int, default = 2)
+        parser.add_argument("--release-tag", help = "Require a clean checkout of this exact application version tag")
+        catalogues = parser.add_mutually_exclusive_group()
+        catalogues.add_argument("--native-catalogue", type = Path, help = "Use a verified native notice catalogue (.json and .txt)")
+        catalogues.add_argument("--collect-native-licenses", action = "store_true",
+                                help = "Collect a separate Linux catalogue from actual installed Debian packages and wheels")
         args = parser.parse_args()
         native = NativePlatform.current()
+        version = BuildVersion.read(DesktopBuilder.ROOT, args.release_tag)
+
+        if native.windows and (args.native_catalogue is not None or args.collect_native_licenses):
+            parser.error('Native catalogue options are supported only for Linux builds')
 
         for language in ("ru", "en"):
             TranslationCatalogue(language, DesktopBuilder.ROOT)
@@ -65,22 +77,23 @@ class DesktopBuilder:
         if not native.windows:
             dependencies += ("patchelf",)
 
-        python_license = (Path(sys.base_prefix) / "LICENSE.txt" if native.windows else
-                          Path(sys.base_prefix) / "share" / "doc" / "python3.14" / "copyright")
+        python_license = PythonLicense.find()
 
         if native.windows:
             LicenseBundleWriter.add_windows_toolkit(LicenseTextArchive(), python_license.parent, DesktopBuilder.ROOT)
 
         build = {
             "build_schema_version": "2", "python": platform.python_version(), "distribution_layout": "app",
+            "version": version.version, "release_tag": version.release_tag,
             "target": native.system, "architecture": "x86_64", "report_languages": ["ru", "en"],
             "gui": {"name": "tkinter", "bindings": "stdlib"},
             "platform": platform.platform(), "libc": platform.libc_ver(),
+            "source_image": os.environ.get("POE_BUILD_IMAGE"),
             "dependencies": {name: metadata.version(name) for name in dependencies},
             "timezone_database": tzdata.IANA_VERSION,
             "renderer": {"name": "Jinja2", "versions": {name: metadata.version(name)
                          for name in ("Jinja2", "MarkupSafe", "Markdown", "reportlab", "pillow", "charset-normalizer")}},
-            "code": {"git": CodeProvenance.git_state(DesktopBuilder.ROOT), "files_sha256": CodeProvenance.source_hashes(DesktopBuilder.ROOT / "src" / "poe_log_analyze")},
+            "code": {"git": {"sha": version.commit, "dirty": version.dirty}, "files_sha256": CodeProvenance.source_hashes(DesktopBuilder.ROOT / "src" / "poe_log_analyze")},
             "templates_sha256": {name: hashlib.sha256((DesktopBuilder.ROOT / name).read_bytes()).hexdigest() for name in ReportTemplates.files()},
             "excluded_packages": list(DesktopBuilder.EXCLUDED_PACKAGES),
         }
@@ -108,10 +121,16 @@ class DesktopBuilder:
         dist = output / "poe_desktop.dist"
         LicenseBundleWriter.finish_distribution(DesktopBuilder.ROOT, dist)
         final_resources = dist / "poe_log_analyze" / "resources"
+        catalogue = args.native_catalogue
+
+        if args.collect_native_licenses:
+            catalogue = NativeLicenseCollector.collect(output / "compilation-report.xml", output / "native-licenses/Native.json")
+
         license_bundle = LicenseBundleWriter.stage(DesktopBuilder.ROOT, final_resources / "licenses", dependencies,
                                                   python_license,
                                                   system = native.system,
-                                                  native_report = output / "compilation-report.xml")
+                                                  native_report = output / "compilation-report.xml",
+                                                  native_catalogue = catalogue)
         build["license_bundle"] = license_bundle
         JsonFiles.write_json(final_resources / "build-info.json", build)
         JsonFiles.write_json(output / "license-check.json", {
@@ -126,6 +145,7 @@ class DesktopBuilder:
         for name in ("tmp", "cache", "staging", "poe_desktop.build"):
             shutil.rmtree(output / name, ignore_errors = True)
 
+        version.verify(DesktopBuilder.ROOT)
         print(f"Application directory: {dist}")
         print('Check the application on a clean supported system before distribution.')
 

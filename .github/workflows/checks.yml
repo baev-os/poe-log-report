@@ -1,0 +1,70 @@
+name: Checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_call:
+    inputs:
+      ref:
+        description: Exact source revision to check
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  source:
+    name: Source (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        os: [ubuntu-24.04, windows-2022]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: ${{ inputs.ref || github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
+        with:
+          python-version-file: .python-version
+          architecture: x64
+      - name: Set up Python environment
+        run: |
+          python -m venv .venv
+          .venv/${{ runner.os == 'Windows' && 'Scripts/python.exe' || 'bin/python' }} -m pip install -r requirements-desktop.txt -r requirements-dev.txt
+      - name: Scan available history and nonignored source files
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          mkdir -p build/tools
+          curl --fail --location --retry 3 https://github.com/gitleaks/gitleaks/releases/download/v8.24.3/gitleaks_8.24.3_linux_x64.tar.gz -o build/tools/gitleaks.tar.gz
+          printf '%s  build/tools/gitleaks.tar.gz\n' 9991e0b2903da4c8f6122b5c3186448b927a5da4deef1fe45271c3793f4ee29c | sha256sum --check -
+          tar -xzf build/tools/gitleaks.tar.gz -C build/tools gitleaks
+          .venv/bin/python -B scripts/scan_secrets.py --output build/checks/secret-scan
+      - name: Linux checks, including browser scenarios
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb xauth libtk8.6
+          sudo systemd-run --scope -p MemoryMax=7G -p MemorySwapMax=0 --uid="$(id -u)" --gid="$(id -g)" --working-directory="$PWD" --setenv="PATH=$PATH" --setenv="LD_LIBRARY_PATH=${LD_LIBRARY_PATH:-}" xvfb-run -a "$PWD/.venv/bin/python" -B scripts/check.py --browser
+      - name: Windows checks
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          . ./scripts/WindowsMemoryBudget.ps1
+          & ./.venv/Scripts/python.exe -B scripts/check.py
+          exit $LASTEXITCODE
+      - name: Retain check evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: checks-${{ matrix.os }}
+          path: build/checks/
+          retention-days: 14

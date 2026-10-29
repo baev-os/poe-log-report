@@ -51,3 +51,12 @@ class NativeLicenseCatalogueTests(unittest.TestCase):
 
         with self.assertRaisesRegex(ValueError, "No validated"):
             NativeLicenseCatalogue.append(self.root, self.report, LicenseTextArchive())
+
+    def test_missing_notice_reference_is_rejected(self):
+        manifest = self.root / "licenses/Native.json"
+        catalogue = LicenseTextArchive.read(manifest.with_suffix(".txt"), manifest)
+        catalogue.metadata["libraries"][self.library.name]["notices"] = ["native/missing/copyright"]
+        catalogue.write(manifest.with_suffix(".txt"), manifest)
+
+        with self.assertRaisesRegex(ValueError, "notice is missing"):
+            NativeLicenseCatalogue.append(self.root, self.report, LicenseTextArchive())

@@ -1,0 +1,9 @@
+*
+!requirements-rendering.txt
+!requirements-desktop.txt
+!requirements-build.txt
+!requirements-dev.txt
+!scripts/
+!scripts/linux/
+!scripts/linux/Dockerfile
+!scripts/linux/Runtime.Dockerfile

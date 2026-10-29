@@ -11,6 +11,15 @@ export PYTHONPATH=src
 .venv/bin/python -B -m mypy
 ```
 
+`python scripts/check.py` runs both checks sequentially and retains logs and a
+summary in `build/checks/`. Add `--browser` on Linux to run every separate browser
+scenario after the source checks. The CI workflows use the same entry point.
+
+`python scripts/scan_secrets.py --output build/audit-final` scans all available
+Git refs and nonignored source files using the verified Gitleaks 8.24.3 binary
+at `build/tools/gitleaks`. It retains aggregate counts only and fails on findings
+or scanner errors. The Linux CI job installs the checksum-pinned scanner.
+
 On Windows, set the same environment variables and use
 `.\.venv\Scripts\python.exe`. GUI checks require a graphical display;
 a separate Xvfb works on Linux. Browser checks run through separate

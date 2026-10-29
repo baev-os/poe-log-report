@@ -5,7 +5,22 @@ reports covering playtime, characters, maps, a calendar, conversations, and anal
 Reports default to English; Russian can be selected in the interface.
 Each selected report type automatically includes a PDF.
 
-## Run
+![Desktop application with synthetic example input](docs/images/desktop.png)
+
+## Downloads
+
+Windows and Linux portable releases are being prepared. There are no published
+binary downloads yet. Build and release workflows create a **draft** for review;
+they do not publish it automatically.
+
+The proposed targets are Windows 10/11 x64 and Ubuntu 24.04 x86_64. These are
+validation targets, not a compatibility guarantee. Native build and clean-system
+results must be recorded before the first release. See the
+[release process](docs/releasing.md) and [readiness record](docs/public-readiness.md).
+Published downloads will appear on the
+[GitHub Releases page](https://github.com/baev-os/poe-log-report/releases).
+
+## Run from source
 
 Requires Python 3.14 and Tkinter/Tcl/Tk.
 
@@ -29,6 +44,9 @@ Add logs, check the time zone, select report types, and start the analysis.
 Results are saved in `report/`; open `index.html` to view them.
 A successful analysis replaces the previous report. Errors and cancellation preserve it.
 Logs, reports, the environment, and local settings are excluded from Git.
+Reports can contain conversations, character names, network addresses, and local
+paths from the input. Review a report before sharing it; use synthetic logs for
+issues and screenshots. See [security reporting](SECURITY.md).
 
 CLI: `python -m poe_log_analyze --help` and
 `python -m poe_log_analyze.report --help` with `PYTHONPATH=src`.
@@ -37,8 +55,17 @@ CLI: `python -m poe_log_analyze --help` and
 
 Install `requirements-build.txt`, then run `./build.sh` on Linux
 or `.\build.ps1` on Windows with MSVC x64. The distribution is created in `build/`.
+Portable packages must include the complete application directory, including
+`app/`, resources, libraries, and licenses. Copying only the executable will not work.
 To check the source, install `requirements-dev.txt`:
 [check commands](tests/README.md).
+
+For a Linux release from a clean version tag, run
+`./scripts/build_linux.sh --release-tag v0.1.0` with Docker installed.
+The [release process](docs/releasing.md) explains the pinned build environment,
+archive verification, and clean-system checks.
+
+See [desktop usage and packaging](docs/desktop.md) and the [changelog](CHANGELOG.md).
 
 The code is licensed under [MIT](LICENSE). Library licenses and game resource terms
 are listed in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).

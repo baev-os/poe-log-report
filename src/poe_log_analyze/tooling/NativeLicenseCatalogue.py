@@ -13,8 +13,13 @@ class NativeLicenseCatalogue:
     """Never apply old licenses to unknown native library versions."""
 
     @staticmethod
-    def append(root: Path, report: Path, archive: LicenseTextArchive) -> None:
-        native = LicenseTextArchive.read(root / "licenses/Native.txt", root / "licenses/Native.json")
+    def append(root: Path, report: Path, archive: LicenseTextArchive, catalogue: Path | None = None) -> None:
+        manifest = root / "licenses/Native.json" if catalogue is None else catalogue
+
+        if manifest.suffix != ".json":
+            raise ValueError('A native catalogue must have a .json manifest')
+
+        native = LicenseTextArchive.read(manifest.with_suffix(".txt"), manifest)
         libraries = native.metadata["libraries"]
         selected = {}
 
@@ -39,7 +44,18 @@ class NativeLicenseCatalogue:
 
             selected[name] = libraries[name]
 
-        wanted = {entry["notice"] for entry in selected.values()}
+        wanted = set()
+
+        for entry in selected.values():
+            notices = entry.get("notices", [entry["notice"]])
+
+            if not isinstance(notices, list) or not notices or not all(isinstance(name, str) for name in notices):
+                raise ValueError('Invalid native library notice references')
+
+            wanted.update(notices)
+
+        if not wanted.issubset({entry["name"] for entry in native.entries}):
+            raise ValueError('A native library notice is missing from the catalogue')
 
         for entry in native.entries:
             if entry["name"] in wanted or entry["name"].startswith("native/common-licenses/"):

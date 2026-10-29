@@ -20,7 +20,8 @@ class LicenseBundleWriter:
 
     @staticmethod
     def stage(root: Path, destination: Path, dependencies: tuple[str, ...],
-              python_license: Path, *, system: str, native_report: Path | None = None) -> dict:
+              python_license: Path, *, system: str, native_report: Path | None = None,
+              native_catalogue: Path | None = None) -> dict:
 
         archive = LicenseTextArchive(metadata = {"gui": "tkinter", "target": system})
         versions = {name: metadata.version(name) for name in dependencies}
@@ -68,7 +69,7 @@ class LicenseBundleWriter:
                                             if name not in LicenseBundleWriter.BUILD_ONLY}
 
         if system == "Linux" and native_report is not None:
-            NativeLicenseCatalogue.append(root, native_report, archive)
+            NativeLicenseCatalogue.append(root, native_report, archive, native_catalogue)
         elif system == "Windows":
             LicenseBundleWriter.add_windows_toolkit(archive, python_license.parent, root)
 

@@ -1,0 +1,184 @@
+name: Draft release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing version tag to build (for example v0.1.0)
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: draft-release-${{ inputs.tag || github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  revision:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      commit: ${{ steps.source.outputs.commit }}
+    env:
+      RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: ${{ env.RELEASE_TAG }}
+          fetch-depth: 0
+          persist-credentials: false
+      - id: source
+        name: Resolve the immutable source commit
+        shell: bash
+        run: |
+          [[ "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+((a|b|rc)[0-9]+)?$ ]]
+          test "$(git rev-parse HEAD)" = "$(git rev-parse "refs/tags/$RELEASE_TAG^{commit}")"
+          printf 'commit=%s\n' "$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+  checks:
+    needs: revision
+    uses: ./.github/workflows/checks.yml
+    with:
+      ref: ${{ needs.revision.outputs.commit }}
+
+  build:
+    needs: [revision, checks]
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        os: [ubuntu-24.04, windows-2022]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 120
+    env:
+      RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
+      RELEASE_SHA: ${{ needs.revision.outputs.commit }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: ${{ env.RELEASE_SHA }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Validate release revision
+        shell: bash
+        run: |
+          test "$(git rev-parse HEAD)" = "$(git rev-parse "refs/tags/$RELEASE_TAG^{commit}")"
+          test "$(git rev-parse HEAD)" = "$RELEASE_SHA"
+          test -z "$(git status --porcelain --untracked-files=all)"
+          mkdir -p build/tmp
+      - name: Build Linux toolchain
+        if: runner.os == 'Linux'
+        shell: bash
+        run: docker build -f scripts/linux/Dockerfile -t poe-log-report-builder:3.14.4 .
+      - name: Build, package, and verify Linux
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          export POE_BUILD_IMAGE="$(docker image inspect poe-log-report-builder:3.14.4 --format '{{.Id}}')"
+          docker run --rm --init --memory=7g --memory-swap=7g --cpus=2 --network=none \
+            --user "$(id -u):$(id -g)" -v "$PWD:/workspace:ro" -v "$PWD/build:/workspace/build" \
+            -e RELEASE_TAG -e RELEASE_SHA -e POE_BUILD_IMAGE \
+            -e TMPDIR=/workspace/build/tmp -e TEMP=/workspace/build/tmp -e TMP=/workspace/build/tmp \
+            poe-log-report-builder:3.14.4 sh -eu -c '
+              python -B scripts/build_desktop.py --output build/native --jobs 2 --release-tag "$RELEASE_TAG" --collect-native-licenses
+              xvfb-run -a python -B scripts/package_release.py --distribution build/native/poe_desktop.dist --output build/release --tag "$RELEASE_TAG" --commit "$RELEASE_SHA" --verify
+              cp build/release/verification/verification.json build/release/verification-Linux.json
+            '
+      - name: Verify on clean Ubuntu without Python
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          docker build -f scripts/linux/Runtime.Dockerfile -t poe-log-report-runtime:24.04 .
+          mkdir -p build/clean-runtime
+          docker run --rm --init --memory=7g --memory-swap=7g --network=none --user "$(id -u):$(id -g)" \
+            -v "$PWD/build/release:/assets:ro" -v "$PWD/build/clean-runtime:/release" -e RELEASE_TAG \
+            -e TMPDIR=/release/tmp -e TEMP=/release/tmp -e TMP=/release/tmp \
+            poe-log-report-runtime:24.04 sh -eu -c '
+              ! command -v python
+              ! command -v python3
+              mkdir -p /release/tmp
+              name="poe-log-report-${RELEASE_TAG#v}-linux-x86_64"
+              tar -xzf "/assets/$name.tar.gz" -C /release
+              xvfb-run -a "/release/$name/poe-log-analyze" --self-test "/release/$name/build/clean-en" --report-language en
+              xvfb-run -a "/release/$name/poe-log-analyze" --self-test "/release/$name/build/clean-ru" --report-language ru
+            '
+          cp build/clean-runtime/poe-log-report-*/build/clean-en/self-test.json build/release/verification-clean-Linux-en.json
+          cp build/clean-runtime/poe-log-report-*/build/clean-ru/self-test.json build/release/verification-clean-Linux-ru.json
+          python3 -c 'import json,pathlib; p=pathlib.Path("build/release"); r=json.loads((p/"verification-Linux.json").read_text()); assert all(json.loads((p/("verification-clean-Linux-"+lang+".json")).read_text())["passed"] for lang in ("en","ru")); r.update(clean_runtime=True,python_available=False); (p/"verification-clean-Linux.json").write_text(json.dumps(r,indent=2)+"\n"); [(p/("verification-clean-Linux-"+lang+".json")).unlink() for lang in ("en","ru")]'
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
+        if: runner.os == 'Windows'
+        with:
+          python-version-file: .python-version
+          architecture: x64
+      - name: Build, package, and verify Windows
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          python -m venv .venv
+          & ./.venv/Scripts/python.exe -m pip install -r requirements-build.txt
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          ./build.ps1 -Output build/native -Jobs 2 -ReleaseTag $env:RELEASE_TAG
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          & ./.venv/Scripts/python.exe -B scripts/package_release.py --distribution build/native/poe_desktop.dist --output build/release --tag $env:RELEASE_TAG --commit $env:RELEASE_SHA --verify
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          Copy-Item build/release/verification/verification.json build/release/verification-Windows.json
+      - name: Retain release assets
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: release-${{ runner.os }}
+          if-no-files-found: error
+          retention-days: 30
+          path: |
+            build/release/*.zip
+            build/release/*.tar.gz
+            build/release/*.json
+            build/release/*.sha256
+      - name: Retain build and verification evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: build-evidence-${{ runner.os }}
+          retention-days: 14
+          path: |
+            build/native/build-command.json
+            build/native/compilation-report.xml
+            build/native/package-check.json
+            build/native/license-check.json
+            build/native/distribution-sha256.json
+            build/native/native-licenses/
+            build/release/verification/verification.json
+            build/release/verification/*.log
+
+  draft:
+    needs: [revision, build]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    env:
+      RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
+      RELEASE_SHA: ${{ needs.revision.outputs.commit }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: ${{ env.RELEASE_SHA }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
+        with:
+          python-version-file: .python-version
+      - uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
+        with:
+          pattern: release-*
+          path: build/release-assets
+          merge-multiple: true
+      - name: Create private draft with both verified archives
+        shell: bash
+        run: |
+          test "$(git rev-parse HEAD)" = "$RELEASE_SHA"
+          python -B scripts/draft_release.py --assets build/release-assets --tag "$RELEASE_TAG" --commit "$RELEASE_SHA" --repo "$GITHUB_REPOSITORY"
