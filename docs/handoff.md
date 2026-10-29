@@ -1,74 +1,66 @@
 # Handoff
 
-Release preparation now has source checks, secret scans, and draft-only GitHub
-Actions workflows. Both target builds use one resolved source SHA; ordinary
-pull requests have read-only repository access. No workflow publishes a release
-or changes repository visibility.
+Private release preparation uses tag `v0.1.4` at
+`e58fad5ca46bb58e726b72dfde13a7be6e4c07f6`. Both native archive jobs passed in
+[workflow 40838577731](https://github.com/baev-os/poe-log-report/actions/runs/40838577731),
+which completed successfully, including both source jobs and draft creation.
+The [private draft](https://github.com/baev-os/poe-log-report/releases/tag/untagged-487ac730e2bf6ce0d203)
+contains both archives, manifests, checksums, provenance, and verification receipts.
+The downloaded draft assets pass `SHA256SUMS`. Repository visibility remains
+private; no release has been published.
 
-Release builds require a clean checkout, an exact version tag, and matching
-provenance before and after compilation and packaging. Build metadata records
-the application version and optional container image identity. Python notice
-discovery supports upstream and Debian layouts; Linux can collect a separate
-native notice catalogue from actual package ownership and library hashes while
-preserving the original pinned catalogue and strict verification.
+The workflows resolve one immutable SHA for source checks and both builds.
+Ordinary checks have read-only repository access. Only the final draft job has
+release-write permission, and it cannot publish or overwrite a release.
+Builds require a clean checkout and matching version/tag before and after
+compilation and packaging. Embedded metadata and archive manifests retain that
+identity. Full native build evidence stays separate from release assets.
 
-Portable packaging keeps the complete application directory and validates
-paths, resources, licenses, identity, and file hashes. Archived applications are
-checked after relocation to a Unicode path in English and Russian. Windows
-child checks use the system command interpreter and exclude developer tools
-from PATH. The draft helper requires both verified targets and never overwrites
-an existing release. The pinned Ubuntu 24.04 runtime check contains no Python.
+Portable packages contain the outer launcher and complete application directory,
+including resources, libraries, and original license notices. Packaging rejects
+unsafe paths, external symlinks, development inputs, and mismatched hashes.
+Both archives passed relocated compiled English/Russian self-tests from an
+unrelated working directory. The Windows child checks remove developer tools
+from PATH. The Ubuntu 24.04 archive also passed in a separate desktop runtime
+without Python or development tools. Windows runner evidence is for Server 2022;
+clean Windows 10/11 client desktop acceptance remains outstanding.
 
-Local preparation checks: 60 targeted tests passed, mypy passed for 42 source
-files, workflow lint passed with verified actionlint 1.7.12, and pinned Gitleaks
-8.24.3 reported no findings across available history and nonignored sources.
-The local full run passed 615 tests (three GUI display skips). The first Linux
-CI run passed 687 unit tests with a display and mypy for 42 files. Browser checks
-then exposed Chromium's Unix socket path limit on the hosted checkout; all
-browser launch paths now share build/tmp and reject overly deep paths clearly.
-The complete browser matrix and remote workflow acceptance remain in progress.
+Linux source CI completed 692 unit tests with two platform/display skips, mypy
+for 42 files, and all 19 browser harnesses (546 scenarios, 38,246 assertions).
+Windows source CI completed 692 tests with seven explicit POSIX/input/display
+skips and mypy for 42 files. The readiness record lists the skipped coverage.
+Local final preparation also passed 65 focused release/architecture tests,
+both mypy platform profiles, and workflow lint with verified actionlint 1.7.12.
+All 19 browser harnesses passed locally under a shared 3 GiB limit. Gitleaks
+8.24.3 reported zero findings across the tagged history and nonignored source
+snapshot and was repeated after the final documentation update; detailed
+redacted scope and hashes are in
+[public-readiness.md](public-readiness.md).
 
-The native Linux v0.1.0 build succeeded, collected notices for 42 libraries,
-and its relocated 57 MiB archive passed both localized self-tests. The minimal
-runtime image required Fontconfig and system fonts, now included to represent
-a desktop environment while keeping Python and development tools absent.
-All 19 local browser scripts passed after the socket fix under a shared 3 GiB
-limit. The first Windows source run found one fixture error among 687 tests:
-the source-copy check deleted read-only Git objects. It now creates a nested
-source copy, preserving the ancestor-Git isolation assertion without deleting
-the repository. Windows also required closing the Chrome environment fixture's
-log before its temporary directory exits. The native Windows v0.1.1 archive
-passed both compiled localized self-tests without skips after relocation.
+Native notice collection validates actual Debian package ownership or exact
+wheel RECORD hashes and stages original notices. Anonymous Linux compiler
+paths using `~/lib` share one validated home-expanding resolver with catalogue
+verification. Actual CI-report replay as an anonymous UID verified all 42
+libraries without recompilation. The final archives preserve the reviewed
+Windows nine-DLL and Linux 42-library inventories and all notice hashes.
+Windows OpenSSL/zlib source-to-notice mappings and exact Visual C runtime
+provenance remain a manual publication review item.
 
-The Linux CI compiler anonymizes system library paths as ~/lib under an
-anonymous container UID. Native notice collection and verification now share a
-validated resolver that expands the home prefix and still rejects unreadable
-or relative files and changed hashes. Replaying the actual failed CI compiler
-report as anonymous UID 12345 collected all 42 libraries and staged the complete
-license bundle successfully without recompiling. Evidence is in
-build/license-replay-v0.1.3/. Corrections move forward to v0.1.3; earlier private
-tags are preserved and no release has been published. Local evidence remains
-ignored under build/.
+Cross-platform fixture fixes keep Chrome sockets in short temporary paths,
+close browser logs before Windows cleanup, and isolate no-Git source copies
+without deleting read-only Git objects. The clean Linux display includes
+Fontconfig and system fonts while explicitly rejecting installed Python.
 
-Both v0.1.3 native targets passed archived EN/RU self-tests; clean Ubuntu without
-Python also passed. Windows source validation passed 692 tests (7 documented
-platform/input/display skips) and mypy for 42 files. Linux unit/type checks
-passed, then browser validation exposed an existing focused-tooltip defect:
-scroll/resize callbacks hid a tooltip while its point remained focused.
+Chart point tooltips retain their actual focused owner across scroll/resize,
+refresh only an already-visible focused tooltip, and preserve Escape and
+explicit-change dismissal. A WeakMap avoids retaining replaced comparison
+charts. Deterministic regressions fail the old code and pass the fix, including
+separate native mouse-input evidence. Seven focused browser harnesses passed
+76 scenarios and 2,296 assertions before the complete local and CI matrix.
 
-Point tooltips now keep an actual focused owner, refresh only a visible focused
-tooltip after geometry changes, and preserve Escape/explicit-change dismissal.
-A WeakMap avoids retaining replaced comparison charts. Deterministic regressions
-fail the old code and pass the fix, including native mouse input. Seven relevant
-browser harnesses passed 76 scenarios/2296 assertions under 3 GiB. The other
-12 browser harnesses also passed sequentially on the same unchanged code,
-completing all 19 before the v0.1.4 release attempt.
-
-Draft metadata explicitly retains Windows native dependency provenance review:
-the bytes/notices are preserved, but OpenSSL/zlib DLL mappings and Visual C
-runtime provenance require maintainer review before public distribution.
-
-Clean client Windows 10/11 acceptance and the game-material distribution review
-remain separate from compiler-runner checks. See [releasing.md](releasing.md)
-and [public-readiness.md](public-readiness.md). Keep the repository private and
-any prepared release in draft until publication is separately requested.
+The game-material distribution scope, Windows native provenance review, and
+clean client Windows 10/11 acceptance remain explicit manual checks. See
+[releasing.md](releasing.md) and [public-readiness.md](public-readiness.md).
+The repository must stay private and the release must stay in draft until
+publication is separately requested. Earlier private tags were preserved;
+no shared tag or history was rewritten. Local evidence stays ignored in `build/`.

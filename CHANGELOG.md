@@ -1,7 +1,10 @@
 # Changelog
 
-## 0.1.4 (draft preparation)
+## 0.1.4 (private draft)
 
+- Prepare complete Windows x64 and Linux x86_64 archives with manifests,
+  checksums, and English/Russian relocated acceptance receipts. Both source
+  pipelines pass; Linux also passes in a clean runtime without Python.
 - Use a shared temporary directory for Chrome checks so Unix socket paths fit
   the hosted runner's checkout path.
 - Include normal desktop font configuration in the clean Linux acceptance image.

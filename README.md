@@ -9,13 +9,13 @@ Each selected report type automatically includes a PDF.
 
 ## Downloads
 
-Windows and Linux portable releases are being prepared. There are no published
-binary downloads yet. Build and release workflows create a **draft** for review;
-they do not publish it automatically.
+Portable v0.1.4 archives have passed native build and relocated English/Russian
+self-tests on Windows Server 2022 x64 and Ubuntu 24.04 x86_64. Linux also passed
+in a clean desktop runtime without a separately installed Python. Windows 10/11
+manual acceptance remains outstanding.
 
-The proposed targets are Windows 10/11 x64 and Ubuntu 24.04 x86_64. These are
-validation targets, not a compatibility guarantee. Native build and clean-system
-results must be recorded before the first release. See the
+There are no published binary downloads yet. Build and release workflows create
+a **draft** for review; they do not publish it automatically. See the
 [release process](docs/releasing.md) and [readiness record](docs/public-readiness.md).
 Published downloads will appear on the
 [GitHub Releases page](https://github.com/baev-os/poe-log-report/releases).
@@ -61,7 +61,7 @@ To check the source, install `requirements-dev.txt`:
 [check commands](tests/README.md).
 
 For a Linux release from a clean version tag, run
-`./scripts/build_linux.sh --release-tag v0.1.0` with Docker installed.
+`./scripts/build_linux.sh --release-tag v0.1.4` with Docker installed.
 The [release process](docs/releasing.md) explains the pinned build environment,
 archive verification, and clean-system checks.
 

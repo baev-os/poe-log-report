@@ -37,14 +37,17 @@ outstanding rights review.
    especially game-material distribution scope and private-data review.
 2. Choose a version, update `pyproject.toml` and `CHANGELOG.md`, and finish the
    release notes. Describe known limitations and the platforms actually tested.
-3. Run the source checks from [tests/README.md](../tests/README.md). Run native
-   builds and package checks for both targets. Save diagnostics only in `build/`.
+3. Run the source checks from [tests/README.md](../tests/README.md) and development
+   native builds for both targets. Save diagnostics only in `build/`.
 4. Scan all available Git refs and the final working tree for secrets. Review
    personal data and commit author identities before changing repository
    visibility. Re-scan after any fixes or newly fetched history.
 5. Commit the reviewed changes and tag the clean commit as `v<version>` only
    when release preparation is authorized. The tag must match the project
    version. A release build must record that commit SHA and a clean Git state.
+6. Build and verify the release archives from that clean tag for both targets.
+   The draft workflow repeats the source checks and requires all results before
+   creating a draft. This step does not publish it.
 
 Do not build distributable binaries from an unknown SHA or a dirty checkout.
 Do not rewrite public or shared history as a routine release step; coordinate
@@ -120,8 +123,10 @@ After a native build, the packaging command on Linux is:
 ```
 
 On Windows, use `.\.venv\Scripts\python.exe` and PowerShell line continuation,
-or put the arguments on one line. Replace the example tag and SHA with the
-reviewed version and full commit. Use a fresh output directory.
+or put the arguments on one line. Replace `build/standalone/poe_desktop.dist`
+with the actual native build output; the build wrappers use timestamped output
+directories by default. Replace the example tag and SHA with the reviewed
+version and full commit. Use a fresh output directory.
 
 The naming convention is `poe-log-report-<version>-linux-x86_64.tar.gz` and
 `poe-log-report-<version>-windows-x64.zip`. Each archive has a corresponding
@@ -129,8 +134,9 @@ The naming convention is `poe-log-report-<version>-linux-x86_64.tar.gz` and
 `--verify` extracts and runs the packaged application in both report languages;
 its logs and `verification.json` are retained under `build/release/verification/`.
 To recheck a downloaded archive on its target OS, run
-`scripts/verify_release.py --archive PATH --manifest PATH --output build/verify`
-with the source tooling environment. Keep all verification evidence in `build/`.
+`.venv/bin/python scripts/verify_release.py --archive PATH --manifest PATH --output build/verify`
+with the source tooling environment. On Windows, use
+`.\.venv\Scripts\python.exe`. Keep all verification evidence in `build/`.
 
 Do not package the repository, `.git`, local inputs, generated reports, virtual
 environments, caches, compiler reports, or the rest of `build/`. Inspect archive

@@ -15,9 +15,11 @@ sharing. Bug reports and screenshots should use synthetic inputs.
 
 ## Portable application
 
-Binary releases are in preparation. The planned targets are Windows 10/11 x64
-and Ubuntu 24.04 x86_64. Compatibility is verified only after the packaged
-application passes the target-system checks in [releasing.md](releasing.md).
+The private v0.1.4 packages passed native builds and relocated English/Russian
+self-tests on Windows Server 2022 x64 and Ubuntu 24.04 x86_64. Linux also passed
+in a clean desktop runtime without Python. Windows 10/11 manual desktop
+acceptance remains outstanding; no binary release has been published.
+See the [validation record](public-readiness.md) and [release process](releasing.md).
 
 Extract the entire Windows ZIP or Linux tar archive into a writable directory.
 Keep the launcher beside `app/`; the executable depends on the libraries and
@@ -41,9 +43,10 @@ or `build.ps1` on Windows with MSVC x64. Move the entire
 `poe_desktop.dist` directory, including `app/` and the license notices.
 Check the finished distribution on its target OS; source tests do not replace this check.
 
-The Linux release baseline is being prepared around Ubuntu 24.04 x86_64 with
+The Linux release baseline is Ubuntu 24.04 x86_64 with
 a pinned container image, package snapshot, and Python 3.14.4. The Windows build
-uses Python 3.14 and MSVC x64. The workflows contain the exact build inputs.
+uses Python 3.14 and MSVC x64. The workflows contain the configured build inputs;
+compiler evidence records the actual toolchain versions selected on each runner.
 Building on another Linux distribution can require a reviewed native-library
 license catalogue and can change the minimum runtime requirements.
 

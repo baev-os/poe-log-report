@@ -2,7 +2,7 @@
 
 Tools for Nuitka, resource preparation, licenses, and RePoE comparison. Preserve distribution content checks and third-party notices.
 
-`build_desktop.py --release-tag v0.1.0` requires the matching application version,
+`build_desktop.py --release-tag v0.1.4` requires the matching application version,
 a clean worktree, and a local tag at the current commit. The source identity is
 checked again after compilation. Development builds omit this option.
 
