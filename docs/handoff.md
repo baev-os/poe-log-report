@@ -1,14 +1,22 @@
 # Handoff
 
-Private v0.1.5 uses tag `v0.1.5` at
+The maintainer confirmed on 2026-10-30 that v0.1.5 has been published. The
+repository remains private, and changing its visibility is not authorized.
+README now links to the versioned release, both portable archives, and
+`SHA256SUMS`, and explains extraction and startup without installing Python.
+Publication status is recorded from maintainer confirmation; release attachments
+were not downloaded again for this documentation update.
+Documentation validation passed for 16 local link targets and four versioned
+release URLs matching the project version. Whitespace checks passed; local
+evidence is in the ignored build/check-readme-links.json file.
+
+Version v0.1.5 uses tag `v0.1.5` at
 `495194643e901af310ab1c3a05a6c09fa6bbece1`. Both native archive jobs passed in
 [workflow 40849045733](https://github.com/baev-os/poe-log-report/actions/runs/40849045733).
 The complete workflow passed, including both source jobs and creation of the
-[private draft](https://github.com/baev-os/poe-log-report/releases/tag/untagged-bf0a5f4a1bf2889ca7df).
-The draft's downloaded attachments pass the combined `SHA256SUMS`; metadata and
-verification receipts identify the same source and archive bytes. The repository
-remains private, and no release has been published. Earlier private tags and
-archives remain unchanged.
+initial draft for [v0.1.5](https://github.com/baev-os/poe-log-report/releases/tag/v0.1.5).
+The draft's downloaded attachments passed the combined `SHA256SUMS`; metadata
+and verification receipts identified the same source and archive bytes.
 
 All nine copied Windows DLLs match official CPython 3.14.4 x64 binary packages.
 The checked catalogue is `licenses/WindowsNative.json` and its original-notice
@@ -65,6 +73,6 @@ was repeated after the final documentation-only acceptance update.
 The workflows resolve one immutable source SHA. Ordinary checks have read-only
 repository access. Only the final draft job has release-write permission, with
 no overwrite or publish path. Build provenance is checked before and after
-compilation and packaging. Keep the repository private and releases in draft
-until publication is separately requested. See [releasing.md](releasing.md).
+compilation and packaging. Keep the repository private. Future releases remain
+in draft until publication is separately requested. See [releasing.md](releasing.md).
 Local evidence stays ignored under `build/`.
