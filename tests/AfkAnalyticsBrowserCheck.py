@@ -14,6 +14,8 @@ from tempfile import TemporaryDirectory
 
 from AfkAnalyticsTests import AfkAnalyticsTests
 
+from ChromePipe import ChromePipe
+
 from poe_log_analyze.core.ReportGenerator import ReportGenerator
 from poe_log_analyze.core.request.ReportPeriod import ReportPeriod
 from poe_log_analyze.core.request.ReportRequest import ReportRequest
@@ -75,7 +77,7 @@ class AfkAnalyticsBrowserCheck:
                             '--user-data-dir=' + str(root / 'profile'), '--dump-dom',
                             '--screenshot=' + str(output / (key + '.png')),
                             harness.as_uri() + '?theme=' + theme + '&capture=' + name]
-                        completed = subprocess.run(command, env = env, capture_output = True, text = True, timeout = 45, check = True)
+                        completed = subprocess.run(command, env = ChromePipe.environment(env), capture_output = True, text = True, timeout = 45, check = True)
                         match = re.search(r'<pre id="browser-checks" hidden="">(.*?)</pre>', completed.stdout, re.S)
                         value = unescape(match[1]) if match else ''
                         result = json.loads(value) if value.startswith('{') else {'passed': False, 'error': "No browser response"}

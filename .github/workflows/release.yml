@@ -46,7 +46,8 @@ jobs:
       ref: ${{ needs.revision.outputs.commit }}
 
   build:
-    needs: [revision, checks]
+    # Separate VMs compile while source validation runs; the draft requires both.
+    needs: revision
     strategy:
       fail-fast: false
       max-parallel: 2
@@ -154,7 +155,7 @@ jobs:
             build/release/verification/*.log
 
   draft:
-    needs: [revision, build]
+    needs: [revision, checks, build]
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     permissions:

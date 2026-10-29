@@ -22,9 +22,18 @@ an existing release. The pinned Ubuntu 24.04 runtime check contains no Python.
 Local preparation checks: 60 targeted tests passed, mypy passed for 42 source
 files, workflow lint passed with verified actionlint 1.7.12, and pinned Gitleaks
 8.24.3 reported no findings across available history and nonignored sources.
-The complete unit run, native builds, and remote workflow acceptance are still
-in progress at this commit; record their actual results before treating the
-archives as verified. Local evidence remains ignored under build/.
+The local full run passed 615 tests (three GUI display skips). The first Linux
+CI run passed 687 unit tests with a display and mypy for 42 files. Browser checks
+then exposed Chromium's Unix socket path limit on the hosted checkout; all
+browser launch paths now share build/tmp and reject overly deep paths clearly.
+The complete browser matrix and remote workflow acceptance remain in progress.
+
+The native Linux v0.1.0 build succeeded, collected notices for 42 libraries,
+and its relocated 57 MiB archive passed both localized self-tests. The minimal
+runtime image required Fontconfig and system fonts, now included to represent
+a desktop environment while keeping Python and development tools absent.
+Corrections move forward to v0.1.1; the private v0.1.0 tag is preserved and no
+release has been published. Local evidence remains ignored under build/.
 
 Clean client Windows 10/11 acceptance and the game-material distribution review
 remain separate from compiler-runner checks. See [releasing.md](releasing.md)

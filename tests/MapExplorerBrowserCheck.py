@@ -14,6 +14,8 @@ from pathlib import Path
 
 from tempfile import TemporaryDirectory
 
+from ChromePipe import ChromePipe
+
 from poe_log_analyze.core.ReportGenerator import ReportGenerator
 from poe_log_analyze.core.request.ReportRequest import ReportRequest
 
@@ -86,7 +88,7 @@ class MapExplorerBrowserCheck:
                                '--host-resolver-rules=MAP * ~NOTFOUND', '--window-size=1500,4500',
                                '--virtual-time-budget=15000', '--user-data-dir=' + str(root / 'profile'),
                                '--dump-dom', '--screenshot=' + str(output / (key + '.png')), harness.as_uri() + '?theme=' + theme]
-                    completed = subprocess.run(command, env = env, capture_output = True, text = True, timeout = 45, check = True)
+                    completed = subprocess.run(command, env = ChromePipe.environment(env), capture_output = True, text = True, timeout = 45, check = True)
                     match = re.search(r'<pre id="browser-checks">(.*?)</pre>', completed.stdout, re.S)
                     value = unescape(match[1]) if match else ''
 
@@ -109,7 +111,7 @@ class MapExplorerBrowserCheck:
                        '--host-resolver-rules=MAP * ~NOTFOUND', '--window-size=1500,1600',
                        '--virtual-time-budget=1000', '--user-data-dir=' + str(root / 'profile'),
                        '--screenshot=' + str(output / 'day.png'), page.as_uri()]
-            subprocess.run(command, env = env, capture_output = True, text = True, timeout = 45, check = True)
+            subprocess.run(command, env = ChromePipe.environment(env), capture_output = True, text = True, timeout = 45, check = True)
 
         print(json.dumps(results, ensure_ascii = False))
 

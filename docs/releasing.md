@@ -12,6 +12,8 @@ are recorded in [public-readiness.md](public-readiness.md).
 | Linux x86_64 | Ubuntu 24.04, pinned container and package snapshot, Python 3.14.4 | Native build and analysis on a clean Ubuntu 24.04 runtime without a separately installed Python |
 | Windows x64 | Python 3.14 and MSVC x64 | Native build and analysis on Windows; verify Windows 10/11 support before claiming it |
 
+The clean Linux runtime includes Xvfb, Fontconfig, and DejaVu system fonts to
+represent a desktop display; it includes neither Python nor development tools.
 The Linux baseline does not imply support for older glibc versions or other
 distributions. Record any additional tested platforms in the release notes.
 
@@ -55,7 +57,7 @@ builds the Ubuntu 24.04 toolchain image, compiles the application, packages it,
 and runs the extracted archive in English and Russian:
 
 ```bash
-./scripts/build_linux.sh --release-tag v0.1.0 --output build/linux-v0.1.0
+./scripts/build_linux.sh --release-tag v0.1.1 --output build/linux-v0.1.1
 ```
 
 Replace the example with the actual tag. The output directory must be new and
@@ -81,7 +83,7 @@ docker build -f scripts/linux/Runtime.Dockerfile -t poe-log-report-runtime:24.04
 mkdir -p build/clean-runtime
 docker run --rm --init --memory=7g --memory-swap=7g --network=none \
   --user "$(id -u):$(id -g)" \
-  -v "$PWD/build/linux-v0.1.0/release:/assets:ro" \
+  -v "$PWD/build/linux-v0.1.1/release:/assets:ro" \
   -v "$PWD/build/clean-runtime:/release" \
   -e TMPDIR=/release/tmp -e TEMP=/release/tmp -e TMP=/release/tmp \
   poe-log-report-runtime:24.04 sh -eu -c '
@@ -112,7 +114,7 @@ After a native build, the packaging command on Linux is:
 ```bash
 .venv/bin/python scripts/package_release.py \
   --distribution build/standalone/poe_desktop.dist \
-  --output build/release --tag v0.1.0 --commit FULL_COMMIT_SHA --verify
+  --output build/release --tag v0.1.1 --commit FULL_COMMIT_SHA --verify
 ```
 
 On Windows, use `.\.venv\Scripts\python.exe` and PowerShell line continuation,

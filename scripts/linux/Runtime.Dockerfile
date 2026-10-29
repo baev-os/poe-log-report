@@ -5,6 +5,6 @@ RUN apt-get update -o APT::Update::Error-Mode=any \
     && apt-get install -y --no-install-recommends ca-certificates \
     && printf 'APT::Snapshot "20261029T000000Z";\n' > /etc/apt/apt.conf.d/50snapshot \
     && apt-get update -o APT::Update::Error-Mode=any \
-    && apt-get install -y --no-install-recommends xvfb xauth \
+    && apt-get install -y --no-install-recommends xvfb xauth fontconfig fonts-dejavu-core \
     && rm -rf /var/lib/apt/lists/*
 WORKDIR /release

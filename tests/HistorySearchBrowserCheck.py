@@ -13,6 +13,8 @@ from tempfile import TemporaryDirectory
 
 from SearchIndexTests import SearchIndexTests
 
+from ChromePipe import ChromePipe
+
 from poe_log_analyze.core.ReportGenerator import ReportGenerator
 from poe_log_analyze.core.request.ReportRequest import ReportRequest
 
@@ -67,7 +69,7 @@ class HistorySearchBrowserCheck:
                            '--window-size=1500,1100', '--hide-scrollbars', '--virtual-time-budget=60000',
                            '--user-data-dir=' + str(root / 'profile'), '--dump-dom',
                            '--screenshot=' + str(output / (language + '.png')), harness.as_uri()]
-                completed = subprocess.run(command, env = env, capture_output = True, text = True, timeout = 60, check = True)
+                completed = subprocess.run(command, env = ChromePipe.environment(env), capture_output = True, text = True, timeout = 60, check = True)
                 match = re.search(r'<pre id="browser-checks">(.*?)</pre>', completed.stdout, re.S)
                 value = unescape(match[1]) if match else ''
 

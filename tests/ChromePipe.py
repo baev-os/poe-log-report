@@ -11,7 +11,27 @@ from pathlib import Path
 class ChromePipe:
     """Local Linux Chrome over a pipe with explicit window size and real check timing."""
 
+    SOCKET_SUFFIX = "/.org.chromium.Chromium.XXXXXX/SingletonSocket"
+
+    @staticmethod
+    def environment(environment: dict) -> dict:
+        """Keep Chromium's Unix socket below its byte limit inside build/tmp."""
+
+        temporary = Path(__file__).resolve().parents[1] / "build/tmp"
+
+        if len(os.fsencode(str(temporary) + ChromePipe.SOCKET_SUFFIX)) > 107:
+            raise ValueError('Chrome temporary socket paths exceed 107 bytes; use a shorter project checkout path')
+
+        temporary.mkdir(parents = True, exist_ok = True)
+        result = dict(environment)
+
+        for variable in ("TMPDIR", "TEMP", "TMP"):
+            result[variable] = str(temporary)
+
+        return result
+
     def __init__(self, chrome: str, profile: Path, environment: dict, log: Path):
+        child_environment = ChromePipe.environment(environment)
         self.log = log.open('w')
         # FDs 3/4 are the Chrome interface; pass argv without shell-code interpolation.
         self.process = subprocess.Popen(['bash', '-c', 'exec 3<&0 4>&1; exec "$@"', 'browser', chrome,
@@ -19,7 +39,7 @@ class ChromePipe:
             '--no-first-run', '--disable-background-networking', '--disable-component-update',
             '--disable-extensions', '--disable-sync', '--host-resolver-rules=MAP * ~NOTFOUND',
             '--remote-debugging-pipe', '--user-data-dir=' + str(profile)],
-            stdin = subprocess.PIPE, stdout = subprocess.PIPE, stderr = self.log, env = environment)
+            stdin = subprocess.PIPE, stdout = subprocess.PIPE, stderr = self.log, env = child_environment)
         self.number = 0
         self.buffer = b''
 

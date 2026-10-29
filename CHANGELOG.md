@@ -1,6 +1,12 @@
 # Changelog
 
-## Unreleased
+## 0.1.1 (draft preparation)
+
+- Use a shared temporary directory for Chrome checks so Unix socket paths fit
+  the hosted runner's checkout path.
+- Include normal desktop font configuration in the clean Linux acceptance image.
+
+## Initial preparation
 
 ### Initial release preparation
 
