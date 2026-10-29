@@ -72,7 +72,7 @@ class NativeLicenseCollector:
 
     @staticmethod
     def source_path(value: str) -> Path:
-        path = Path(value.replace("${sys.real_prefix}", sys.base_prefix).replace("${sys.prefix}", sys.prefix))
+        path = Path(value.replace("${sys.real_prefix}", sys.base_prefix).replace("${sys.prefix}", sys.prefix)).expanduser()
 
         if not path.is_absolute() or not path.is_file():
             raise ValueError('The compiler report has no readable original native library: ' + value)

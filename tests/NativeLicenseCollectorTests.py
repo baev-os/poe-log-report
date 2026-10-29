@@ -2,6 +2,7 @@
 
 import base64
 import hashlib
+import os
 import unittest
 import xml.etree.ElementTree as ET
 
@@ -103,6 +104,31 @@ class NativeLicenseCollectorTests(unittest.TestCase):
                 NativeLicenseCollector.wheel_notices(self.library, LicenseTextArchive())
 
         self.assertFalse(self.destination.exists())
+
+    def test_home_relative_compiler_paths_collect_and_verify_the_original_bytes(self):
+        distribution = self.wheel()
+        tree = ET.parse(self.report)
+        tree.getroot()[0].set("source_path", "~/" + self.library.name)
+        tree.write(self.report)
+
+        with patch.dict(os.environ, {"HOME": str(self.root), "USERPROFILE": str(self.root)}), \
+                patch.object(NativeLicenseCollector, "debian_package", return_value = None), \
+                patch("importlib.metadata.distributions", return_value = [distribution]):
+            NativeLicenseCollector.collect(self.report, self.destination)
+            staged = LicenseTextArchive()
+            NativeLicenseCatalogue.append(self.root, self.report, staged, self.destination)
+
+            self.assertEqual(staged.metadata["native_libraries"][self.library.name]["original_sha256"],
+                             hashlib.sha256(self.library.read_bytes()).hexdigest())
+            self.library.write_bytes(b"Changed native library")
+
+            with self.assertRaisesRegex(ValueError, "changed"):
+                NativeLicenseCatalogue.append(self.root, self.report, LicenseTextArchive(), self.destination)
+
+    def test_relative_and_missing_report_sources_still_fail(self):
+        for source in (self.library.name, str(self.root / "missing.so")):
+            with self.assertRaisesRegex(ValueError, "readable original native library"):
+                NativeLicenseCollector.source_path(source)
 
     def test_installed_debian_package_identity_is_required(self):
         self.package_status = "installed"

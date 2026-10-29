@@ -47,9 +47,9 @@ class ChromePipeTests(unittest.TestCase):
             with patch("subprocess.Popen") as launch:
                 browser = ChromePipe("synthetic-chrome", root / "profile", caller, root / "browser.log")
 
-            self.addCleanup(browser.log.close)
-            environment = launch.call_args.kwargs["env"]
-            expected = str(Path(__file__).resolve().parents[1] / "build/tmp")
+            with browser.log:
+                environment = launch.call_args.kwargs["env"]
+                expected = str(Path(__file__).resolve().parents[1] / "build/tmp")
 
-            self.assertTrue(all(environment[variable] == expected for variable in ("TMPDIR", "TEMP", "TMP")))
-            self.assertEqual(caller["TMPDIR"], str(root / "nested"))
+                self.assertTrue(all(environment[variable] == expected for variable in ("TMPDIR", "TEMP", "TMP")))
+                self.assertEqual(caller["TMPDIR"], str(root / "nested"))

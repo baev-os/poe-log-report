@@ -36,9 +36,19 @@ All 19 local browser scripts passed after the socket fix under a shared 3 GiB
 limit. The first Windows source run found one fixture error among 687 tests:
 the source-copy check deleted read-only Git objects. It now creates a nested
 source copy, preserving the ancestor-Git isolation assertion without deleting
-the repository. Corrections move forward to v0.1.2; earlier private tags are
-preserved and no release has been published. Local evidence remains ignored
-under build/.
+the repository. Windows also required closing the Chrome environment fixture's
+log before its temporary directory exits. The native Windows v0.1.1 archive
+passed both compiled localized self-tests without skips after relocation.
+
+The Linux CI compiler anonymizes system library paths as ~/lib under an
+anonymous container UID. Native notice collection and verification now share a
+validated resolver that expands the home prefix and still rejects unreadable
+or relative files and changed hashes. Replaying the actual failed CI compiler
+report as anonymous UID 12345 collected all 42 libraries and staged the complete
+license bundle successfully without recompiling. Evidence is in
+build/license-replay-v0.1.3/. Corrections move forward to v0.1.3; earlier private
+tags are preserved and no release has been published. Local evidence remains
+ignored under build/.
 
 Clean client Windows 10/11 acceptance and the game-material distribution review
 remain separate from compiler-runner checks. See [releasing.md](releasing.md)

@@ -1,12 +1,14 @@
 # Changelog
 
-## 0.1.2 (draft preparation)
+## 0.1.3 (draft preparation)
 
 - Use a shared temporary directory for Chrome checks so Unix socket paths fit
   the hosted runner's checkout path.
 - Include normal desktop font configuration in the clean Linux acceptance image.
 - Keep the no-Git source-copy regression portable on Windows without deleting
   read-only Git objects, and fail if the clean Linux runtime contains Python.
+- Resolve anonymized native-library paths from Nuitka reports before verifying
+  their hashes and notices; close browser fixture logs before Windows cleanup.
 
 ## Initial preparation
 

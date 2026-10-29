@@ -1,12 +1,12 @@
 """Additional shared-library notices from the actual Linux build report."""
 
 import hashlib
-import sys
 import xml.etree.ElementTree as ET
 
 from pathlib import Path
 
 from poe_log_analyze.tooling.LicenseTextArchive import LicenseTextArchive
+from poe_log_analyze.tooling.NativeLicenseCollector import NativeLicenseCollector
 
 
 class NativeLicenseCatalogue:
@@ -35,8 +35,7 @@ class NativeLicenseCatalogue:
             if name not in libraries:
                 raise ValueError('No validated notices for native library: ' + name)
 
-            source = Path(node.attrib["source_path"].replace("${sys.real_prefix}", sys.base_prefix)
-                          .replace("${sys.prefix}", sys.prefix))
+            source = NativeLicenseCollector.source_path(node.attrib["source_path"])
             digest = hashlib.sha256(source.read_bytes()).hexdigest()
 
             if digest != libraries[name]["original_sha256"]:
