@@ -99,8 +99,10 @@ jobs:
             -v "$PWD/build/release:/assets:ro" -v "$PWD/build/clean-runtime:/release" -e RELEASE_TAG \
             -e TMPDIR=/release/tmp -e TEMP=/release/tmp -e TMP=/release/tmp \
             poe-log-report-runtime:24.04 sh -eu -c '
-              ! command -v python
-              ! command -v python3
+              if command -v python || command -v python3; then
+                printf "%s\n" "The clean runtime must not contain Python" >&2
+                exit 1
+              fi
               mkdir -p /release/tmp
               name="poe-log-report-${RELEASE_TAG#v}-linux-x86_64"
               tar -xzf "/assets/$name.tar.gz" -C /release

@@ -76,7 +76,9 @@ class BuildVersionTests(unittest.TestCase):
             release.verify(self.root)
 
     def test_source_copy_cannot_claim_a_release(self):
-        shutil.rmtree(self.root / ".git")
+        source = self.root / "source-copy"
+        source.mkdir()
+        shutil.copyfile(self.root / "pyproject.toml", source / "pyproject.toml")
 
         with self.assertRaisesRegex(ValueError, "known commit"):
-            BuildVersion.read(self.root, "v1.2.3")
+            BuildVersion.read(source, "v1.2.3")

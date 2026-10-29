@@ -32,8 +32,13 @@ The native Linux v0.1.0 build succeeded, collected notices for 42 libraries,
 and its relocated 57 MiB archive passed both localized self-tests. The minimal
 runtime image required Fontconfig and system fonts, now included to represent
 a desktop environment while keeping Python and development tools absent.
-Corrections move forward to v0.1.1; the private v0.1.0 tag is preserved and no
-release has been published. Local evidence remains ignored under build/.
+All 19 local browser scripts passed after the socket fix under a shared 3 GiB
+limit. The first Windows source run found one fixture error among 687 tests:
+the source-copy check deleted read-only Git objects. It now creates a nested
+source copy, preserving the ancestor-Git isolation assertion without deleting
+the repository. Corrections move forward to v0.1.2; earlier private tags are
+preserved and no release has been published. Local evidence remains ignored
+under build/.
 
 Clean client Windows 10/11 acceptance and the game-material distribution review
 remain separate from compiler-runner checks. See [releasing.md](releasing.md)

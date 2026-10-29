@@ -1,6 +1,6 @@
 [project]
 name = "poe-log-analyze"
-version = "0.1.1"
+version = "0.1.2"
 description = "Reproducible line-by-line analysis of Path of Exile 1 logs"
 requires-python = ">=3.14,<3.15"
 license = "MIT"
