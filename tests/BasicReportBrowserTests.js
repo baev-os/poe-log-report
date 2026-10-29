@@ -1,6 +1,43 @@
 "use strict";
 
 class BasicReportBrowserTests {
+    static largeConversations(assert) {
+        const total = 150000;
+        const panel = document.createElement("section");
+        panel.innerHTML = '<div data-chat-controls hidden><select data-chat-sort><option value="utc">UTC</option><option value="character">Character</option></select><input data-chat-search></div><p data-chat-count></p><div data-chat-list><ol></ol></div>';
+        const list = panel.querySelector("[data-chat-list]");
+        const content = list.querySelector("ol");
+        const original = [];
+
+        for (let index = total - 1; index >= 0; index--) {
+            const row = document.createElement("li");
+            row.dataset.message = "";
+            row.dataset.day = "2026-09-02";
+            row.dataset.utc = `2026-09-02T12:00:00.${String(index).padStart(6, "0")}Z`;
+            row.dataset.character = "Synthetic character";
+            row.textContent = index === total / 2 ? "Synthetic unique match" : `Synthetic message ${index}`;
+            content.append(row);
+            original.push(row);
+        }
+
+        const preserved = () => {
+            const rows = list.querySelectorAll("[data-message]");
+            return rows.length === total && Array.from(rows).every((row, index) => row === original[total - index - 1]);
+        };
+        BasicReport.conversations(panel);
+        assert(preserved(), "A 150000-message group preserves every message in chronological order");
+        assert(list.children.length === 1 && panel.querySelector("[data-chat-count]").textContent === `${total} / ${total}`, "Large conversation initial count and grouping");
+        const sort = panel.querySelector("[data-chat-sort]");
+        sort.value = "character"; sort.dispatchEvent(new Event("change"));
+        assert(list.children.length === 1 && list.firstElementChild.dataset.groupKey === "character:Synthetic character" && preserved(), "Sorting a large conversation keeps every message in one ordered group");
+        const search = panel.querySelector("[data-chat-search]");
+        search.value = "unique match"; search.dispatchEvent(new Event("input"));
+        assert(panel.querySelector("[data-chat-count]").textContent === `1 / ${total}` && list.querySelectorAll("[data-message]:not([hidden])").length === 1, "Large conversation search reports the exact matching count");
+        assert(list.firstElementChild.open && !list.firstElementChild.hidden && preserved(), "Large conversation search expands the match without losing messages");
+        search.value = ""; search.dispatchEvent(new Event("input"));
+        assert(panel.querySelector("[data-chat-count]").textContent === `${total} / ${total}` && list.querySelectorAll("[data-message][hidden]").length === 0 && preserved(), "Clearing large conversation search restores every message");
+    }
+
     static tooltip(node, assert, expected) {
         node.scrollIntoView({block: "center"});
         const box = node.getBoundingClientRect();
@@ -134,6 +171,8 @@ class BasicReportBrowserTests {
                 assert(document.querySelector(".message-text").textContent.length > 0 && !document.querySelector(".message-text script"), "Messages remain plain text");
                 search.value = ""; search.dispatchEvent(new Event("input"));
                 assert(document.querySelector(".chat-message .character") && document.querySelector(".channel"), "Character and conversation highlighting");
+
+                if (params.get("large-conversations") === "1") BasicReportBrowserTests.largeConversations(assert);
             }
 
             document.getElementById("browser-checks").textContent = JSON.stringify({passed: true, checks: checks.length});

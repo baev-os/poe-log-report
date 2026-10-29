@@ -81,7 +81,12 @@ class BasicReportBrowserCheck:
 
                             for theme, width in settings:
                                 key = '-'.join((language, profile, kind, theme, str(width)))
-                                checked = browser.check(harness.as_uri() + '?kind=' + kind + '&theme=' + theme, width, output, key)
+                                query = '?kind=' + kind + '&theme=' + theme
+
+                                if (language, profile, kind, theme, width) == ('en', 'basic', 'conversations', 'light', 1500):
+                                    query += '&large-conversations=1'
+
+                                checked = browser.check(harness.as_uri() + query, width, output, key)
                                 results[key] = checked
                                 (output / 'results.json').write_text(json.dumps(results, ensure_ascii = False, indent = 2), encoding = 'utf-8')
 

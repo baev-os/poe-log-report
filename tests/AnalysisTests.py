@@ -12,10 +12,14 @@ from io import StringIO
 
 from pathlib import Path
 from tempfile import TemporaryDirectory
+from threading import Event
 
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 from poe_log_analyze.cli.AnalysisCli import AnalysisCli
+
+from poe_log_analyze.core.execution.ExecutionContext import ExecutionContext
+from poe_log_analyze.core.execution.GenerationCancelled import GenerationCancelled
 
 from poe_log_analyze.stages.parsing.LogAnalysisService import LogAnalysisService
 from poe_log_analyze.stages.parsing.LogParser import LogParser
@@ -72,6 +76,35 @@ class AnalysisTests(unittest.TestCase):
             self.assertEqual((first / filename).read_bytes(), (second / filename).read_bytes())
 
         self.assertEqual(len((first / "diagnostics.jsonl").read_text().splitlines()), 2)
+
+    def test_artifact_hash_preserves_sha256_for_empty_and_multiple_blocks(self):
+        artifact = self.root / "artifact.bin"
+
+        for raw in (b"", bytes(range(256)) * 8192 + b"tail"):
+            with self.subTest(size = len(raw)):
+                artifact.write_bytes(raw)
+
+                digest = LogAnalysisService._file_hash(artifact, ExecutionContext())
+
+                self.assertEqual(digest, hashlib.sha256(raw).hexdigest())
+
+    def test_cancel_during_artifact_hash_does_not_publish_results(self):
+        for raw in (b"", self.input.read_bytes()):
+            with self.subTest(size = len(raw)):
+                output = self.root / "cancelled-hash"
+                self.input.write_bytes(raw)
+                self._hash_cancelled = Event()
+                self._original_open = Path.open
+                control = ExecutionContext(cancelled = self._hash_cancelled.is_set)
+
+                with patch.object(Path, "open", autospec = True, side_effect = self._open_hash_artifact):
+                    with self.assertRaises(GenerationCancelled):
+                        LogAnalysisService.analyze(self.input, output, control = control)
+
+                self._hash_artifact.read.assert_called_once_with(1024 * 1024)
+                self.assertFalse(output.exists())
+                self.assertEqual(list(self.root.glob(".analysis-*")), [])
+                self.assertEqual(self.input.read_bytes(), raw)
 
     def test_cli_strict_mode_preserves_diagnostics(self):
         output = self.root / "strict"
@@ -153,6 +186,26 @@ class AnalysisTests(unittest.TestCase):
         for row in self._original_operation(source, zone):
             row["byte_start"] += 1
             yield row
+
+    def _open_hash_artifact(self, path, mode = "r", *args, **kwargs):
+        stream = self._original_open(path, mode, *args, **kwargs)
+
+        if path.name != "lines.jsonl" or mode != "rb":
+            return stream
+
+        self._hash_read = stream.read
+        self._hash_artifact = MagicMock(wraps = stream)
+        self._hash_artifact.__enter__.return_value = self._hash_artifact
+        self._hash_artifact.__exit__.side_effect = stream.__exit__
+        self._hash_artifact.read.side_effect = self._read_hash_artifact
+
+        return self._hash_artifact
+
+    def _read_hash_artifact(self, size):
+        block = self._hash_read(size)
+        self._hash_cancelled.set()
+
+        return block
 
     @classmethod
     def setUpClass(cls):

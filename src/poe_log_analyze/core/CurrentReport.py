@@ -2,6 +2,7 @@
 
 import json
 import filecmp
+import logging
 import shutil
 
 from pathlib import Path
@@ -37,6 +38,7 @@ class CurrentReport:
         self.root = output.parent / "build/tmp/report-generation"
         self.lock = ReportLock(self.root.with_suffix(".lock"))
         self._preserve = False
+        self._published = False
 
     def __enter__(self) -> Self:
         Workspace.current_report_output(self.output)
@@ -47,6 +49,8 @@ class CurrentReport:
 
         self.root.parent.mkdir(parents = True, exist_ok = True)
         self.lock.acquire()
+        self._preserve = False
+        self._published = False
 
         try:
             self._recover()
@@ -116,6 +120,7 @@ class CurrentReport:
                 self.pdf.unlink(missing_ok = True)
 
             (self.root / "published").touch()
+            self._published = True
         except BaseException:
             try:
                 self._recover()
@@ -183,8 +188,21 @@ class CurrentReport:
 
         try:
             if not self._preserve:
-                self._recover()
-                shutil.rmtree(self.root)
+                try:
+                    self._recover()
+                    shutil.rmtree(self.root)
+                except OSError:
+                    if not self._published:
+                        raise
+
+                    logging.getLogger(__name__).exception('The report was saved but the temporary workspace was not removed')
         finally:
-            self.lock.release()
-            self._remove_empty_parents()
+            try:
+                self.lock.release()
+            except OSError:
+                if not self._published:
+                    raise
+
+                logging.getLogger(__name__).exception('The report was saved but releasing the workspace lock failed')
+            finally:
+                self._remove_empty_parents()

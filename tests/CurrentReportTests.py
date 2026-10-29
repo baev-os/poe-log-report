@@ -1,5 +1,6 @@
 """Report replacement, recovery, cleanup, and protection of neighboring files."""
 
+import shutil
 import subprocess
 import sys
 import unittest
@@ -16,6 +17,7 @@ from poe_log_analyze.Bootstrap import Bootstrap
 from poe_log_analyze.core.CurrentReport import CurrentReport
 from poe_log_analyze.core.execution.ExecutionContext import ExecutionContext
 from poe_log_analyze.core.execution.GenerationCancelled import GenerationCancelled
+from poe_log_analyze.core.process.GenerationStatus import GenerationStatus
 from poe_log_analyze.core.request.ReportRequest import ReportRequest
 
 from poe_log_analyze.runtime.ReportLock import ReportLock
@@ -32,6 +34,7 @@ class CurrentReportTests(unittest.TestCase):
         self.source = self.root / "source.log"
         self.source.write_bytes(b"unknown\n")
         self.output = self.root / "report"
+        self.work = self.root / "build/tmp/report-generation"
         self.request = ReportRequest((self.source,), self.output, report_language = "ru", replace_report = True)
         self.generator = Bootstrap.report_generator()
 
@@ -282,6 +285,113 @@ class CurrentReportTests(unittest.TestCase):
             self.assertTrue((self.output / "public/index.html").is_file())
 
         self.assertEqual(before, self.snapshot())
+
+    def test_partial_cleanup_failure_keeps_success_and_new_report_on_restart(self):
+        self.write_synthetic_report(self.output, 'previous report')
+        self.original_rmtree = shutil.rmtree
+        snapshots = []
+
+        with self.assertLogs('poe_log_analyze.core.CurrentReport', level = 'ERROR'), \
+                patch('poe_log_analyze.core.CurrentReport.shutil.rmtree', side_effect = self.fail_partial_cleanup):
+            result = self.generator.generate(replace(self.request, report_language = 'en'),
+                ExecutionContext(state_changed = snapshots.append))
+
+        self.assertEqual(snapshots[-1].status, GenerationStatus.SUCCEEDED)
+        self.assertIn('lang="en"', result.report_path.read_text(encoding = 'utf-8'))
+        self.assertFalse((self.work / 'publication.json').exists())
+        self.assertFalse((self.work / 'published').exists())
+        self.assertFalse((self.work / 'previous-report').exists())
+        self.assertFalse(self.work.with_suffix('.lock').exists())
+        before = result.report_path.read_bytes()
+
+        with CurrentReport(self.output):
+            self.assertEqual(result.report_path.read_bytes(), before)
+
+        self.assertEqual(result.report_path.read_bytes(), before)
+        self.assertFalse((self.root / 'build').exists())
+
+    def fail_partial_cleanup(self, path, *args, **kwargs):
+        if Path(path) == self.work:
+            self.assertFalse((self.work / 'publication.json').exists())
+            (self.work / 'published').unlink()
+            self.original_rmtree(self.work / 'previous-report')
+            raise OSError('synthetic partial cleanup failure')
+
+        return self.original_rmtree(path, *args, **kwargs)
+
+    def test_journal_cleanup_failure_preserves_marker_and_skips_tree_removal(self):
+        self.write_synthetic_report(self.output, 'previous report')
+        self.original_unlink = Path.unlink
+
+        with self.assertLogs('poe_log_analyze.core.CurrentReport', level = 'ERROR'), \
+                patch.object(Path, 'unlink', autospec = True, side_effect = self.fail_journal_removal), \
+                patch('poe_log_analyze.core.CurrentReport.shutil.rmtree', wraps = shutil.rmtree) as cleanup:
+            self.publish_synthetic(CurrentReport(self.output))
+
+        cleanup.assert_not_called()
+        self.assertTrue((self.work / 'publication.json').is_file())
+        self.assertTrue((self.work / 'published').is_file())
+        self.assertFalse(self.work.with_suffix('.lock').exists())
+
+        with CurrentReport(self.output):
+            self.assertEqual((self.output / 'public/index.html').read_text(encoding = 'utf-8'), 'new report')
+
+        self.assertFalse((self.root / 'build').exists())
+
+    def fail_journal_removal(self, path, *args, **kwargs):
+        if path == self.work / 'publication.json':
+            raise OSError('synthetic journal cleanup failure')
+
+        return self.original_unlink(path, *args, **kwargs)
+
+    def test_lock_release_error_after_publication_preserves_success_and_body_error(self):
+        for fail_body in (False, True):
+            with self.subTest(fail_body = fail_body):
+                current = CurrentReport(self.output)
+                self.original_release = current.lock.release
+
+                with self.assertLogs('poe_log_analyze.core.CurrentReport', level = 'ERROR'), \
+                        patch.object(current.lock, 'release', side_effect = self.release_then_fail) as release:
+                    if fail_body:
+                        with self.assertRaisesRegex(RuntimeError, 'synthetic body failure'):
+                            self.publish_synthetic(current, fail_body = True)
+                    else:
+                        self.publish_synthetic(current)
+
+                release.assert_called_once()
+                self.assertIsNone(current.lock.descriptor)
+                self.assertEqual((self.output / 'public/index.html').read_text(encoding = 'utf-8'), 'new report')
+                self.assertFalse((self.root / 'build').exists())
+
+    def release_then_fail(self):
+        self.original_release()
+        raise OSError('synthetic lock release failure')
+
+    def test_cleanup_error_before_publication_is_propagated(self):
+        current = CurrentReport(self.output)
+
+        with patch('poe_log_analyze.core.CurrentReport.shutil.rmtree', side_effect = OSError('synthetic cleanup failure')):
+            with self.assertRaisesRegex(OSError, 'synthetic cleanup failure'):
+                with current:
+                    pass
+
+        self.assertIsNone(current.lock.descriptor)
+        self.assertTrue(self.work.is_dir())
+
+    def publish_synthetic(self, current, *, fail_body = False):
+        with current:
+            report = current.root / 'result'
+            self.write_synthetic_report(report, 'new report')
+            current.publish(report)
+
+            if fail_body:
+                raise RuntimeError('synthetic body failure')
+
+    @staticmethod
+    def write_synthetic_report(directory, text):
+        (directory / 'public').mkdir(parents = True, exist_ok = True)
+        (directory / 'report-manifest.json').write_text('{}', encoding = 'utf-8')
+        (directory / 'public/index.html').write_text(text, encoding = 'utf-8')
 
     def test_root_report_is_allowed_without_relaxing_archive_boundaries(self):
         with patch.object(Workspace, "project_root", return_value = self.root):

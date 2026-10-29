@@ -36,6 +36,26 @@ class LogAnalysisService:
         return stat.st_dev, stat.st_ino, stat.st_size, stat.st_mtime_ns, stat.st_ctime_ns
 
     @staticmethod
+    def _file_hash(path: Path, control: ExecutionContext) -> str:
+        """Hash artifacts with cancellation checks between bounded reads."""
+
+        digest = hashlib.sha256()
+
+        with path.open("rb") as artifact:
+            while True:
+                control.check()
+                block = artifact.read(1024 * 1024)
+
+                if not block:
+                    break
+
+                digest.update(block)
+
+        control.check()
+
+        return digest.hexdigest()
+
+    @staticmethod
     def analyze(input_path: Path, output_path: Path, timezone_name: str = "Asia/Almaty",
                 require_complete: bool = False, *,
                 control: ExecutionContext | None = None, source_label: str = "") -> dict:
@@ -165,8 +185,7 @@ class LogAnalysisService:
             for path in sorted(target.iterdir()):
                 control.report('Save reports', force = True)
 
-                with path.open("rb") as artifact:
-                    manifest["artifacts_sha256"][path.name] = hashlib.file_digest(artifact, "sha256").hexdigest()
+                manifest["artifacts_sha256"][path.name] = LogAnalysisService._file_hash(path, control)
 
             JsonFiles.write_json(target / "manifest.json", manifest)
             control.check()

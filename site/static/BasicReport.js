@@ -143,7 +143,7 @@ class BasicReport {
                 summary.textContent = `${name} · ${count}`;
                 const content = document.createElement("ol");
                 content.className = "chat-list";
-                content.append(...messages);
+                for (const message of messages) content.append(message);
                 group.append(summary, content);
                 list.append(group);
             }
