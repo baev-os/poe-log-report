@@ -1,0 +1,6 @@
+{% from 'partials/analytics-extended.html' import groups, proofs with context %}
+{% from 'partials/analytics-observations.html' import events with context %}
+{% set model = data['acquisition_history'] %}<p>{{ translate('acquisitions.method') }}</p><p>{{ translate('extended.records', count=model['rows']|length) }}</p>{{ groups(model['groups']) }}
+<h2>{{ translate('measure.evidence') }}</h2>{{ events(model['rows'], 'acquisition') }}
+
+<h2>{{ translate('cards.title') }}</h2><p>{{ translate('cards.method') }}</p><div class="counts">{% for key, field in [('count', 'card_count'), ('unique', 'unique_cards'), ('repeated', 'repeated_cards')] %}<div><strong>{{ model[field] }}</strong><span>{{ translate('cards.' + key) }}</span></div>{% endfor %}</div><div class="table-scroll"><table><thead><tr><th scope="col">{{ translate('cards.name') }}</th><th scope="col">{{ translate('pool.quantity') }}</th><th scope="col">{{ translate('pool.share') }}</th><th scope="col">{{ translate('measure.evidence') }}</th></tr></thead><tbody>{% for row in model['cards'] %}<tr data-drawn-card><th scope="row">{{ row['name'] }}</th><td>{{ row['count'] }}</td><td>{{ row['share_label'] }}</td><td>{{ proofs(row['evidence']) }}</td></tr>{% else %}<tr><td colspan="4">{{ translate('measure.empty') }}</td></tr>{% endfor %}</tbody></table></div>

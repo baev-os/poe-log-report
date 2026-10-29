@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="{{ language }}" data-bs-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ ctx['title'] }}</title>{% include "partials/assets.html" %}</head>
+<body><div class="report-shell">{% include "partials/menu.html" %}<main class="history-search">
+<header><p class="eyebrow">{{ translate("ui.player_history") }} · {{ ctx['search']['timezone'] }}</p><h1>{{ ctx['title'] }}</h1></header>
+{% include "partials/statistics-status.html" %}
+<p>{{ translate("search.scope", count=ctx['search']['count']) }}</p>
+<p class="table-note">{{ translate("search.hint") }}</p>
+{% set labels = {} %}{% for key in ['ready', 'progress', 'cancelled', 'invalid', 'loading', 'error', 'results', 'none', 'page', 'values', 'open'] %}{% set _ = labels.update({key: translate('search.' + key)}) %}{% endfor %}
+{% set _ = labels.update({'unknown': translate('history.unknown'), 'error_status': translate('history.error'), 'undecodable': translate('message.undecodable'), 'empty_line': translate('history.empty_line')}) %}
+<div data-history-search="{{ ctx['search']|tojson|forceescape }}" data-labels="{{ labels|tojson|forceescape }}">
+<form><fieldset disabled><legend class="visually-hidden">{{ translate("search.filters") }}</legend>
+<div class="row g-3">
+<div class="col-12"><label for="history-query" class="form-label">{{ translate("search.query") }}</label><input class="form-control" id="history-query" name="q" type="search"></div>
+<div class="col-md-3"><label for="history-from" class="form-label">{{ translate("search.from") }}</label><input class="form-control" id="history-from" name="from" type="date"></div>
+<div class="col-md-3"><label for="history-to" class="form-label">{{ translate("search.to") }}</label><input class="form-control" id="history-to" name="to" type="date"></div>
+<div class="col-md-3"><label for="history-type" class="form-label">{{ translate("ui.event_type") }}</label><select class="form-select" id="history-type" name="type">
+<option value="">{{ translate("ui.all_events") }}</option>
+<optgroup label="{{ translate('search.frequent') }}">{% for code in ['levels', 'deaths', 'loading', 'chat', 'issues'] %}<option value="${{ code }}">{{ translate('search.loading_events' if code == 'loading' else 'search.' + code) }}</option>{% endfor %}</optgroup>
+<optgroup label="{{ translate('search.families') }}">{% for kind in ctx['search']['families'] %}<option value="{{ kind }}.*">{{ kind }}.*</option>{% endfor %}</optgroup>
+<optgroup label="{{ translate('search.rules') }}">{% for kind in ctx['search']['types'] %}<option value="{{ kind }}">{{ kind }}</option>{% endfor %}</optgroup>
+</select></div>
+<div class="col-md-3"><label for="history-status" class="form-label">{{ translate("history.status") }}</label><select class="form-select" id="history-status" name="status"><option value="">{{ translate("search.all_statuses") }}</option>{% for status in ['recognized', 'unknown', 'error'] %}<option value="{{ status }}">{{ translate('history.' + status) }}</option>{% endfor %}</select></div>
+</div>
+<div class="search-actions"><button class="btn btn-primary" type="submit">{{ translate("search.find") }}</button><button class="btn btn-outline-secondary" type="button" data-search-cancel disabled>{{ translate("search.cancel") }}</button></div>
+</fieldset></form>
+<p data-search-status role="status" aria-live="polite">{{ translate("search.needs_js") }}</p>
+<div data-search-results aria-busy="false" class="table-scroll"><table class="timeline-rows search-results"><caption class="visually-hidden">{{ translate("search.title") }}</caption><thead><tr><th scope="col">{{ translate("characters.date_time") }}</th><th scope="col">{{ translate("ui.message_type") }}</th><th scope="col">{{ translate("timeline.event") }}</th><th scope="col">{{ translate("ui.line_2") }}</th></tr></thead><tbody data-search-rows></tbody></table></div>
+<nav data-search-pager hidden aria-label="{{ translate('search.pages') }}"><button class="btn btn-outline-secondary" data-search-previous type="button">{{ translate("search.previous") }}</button><span data-search-page-label></span><button class="btn btn-outline-secondary" data-search-next type="button">{{ translate("search.next") }}</button><label for="search-page-number" class="visually-hidden">{{ translate("search.pages") }}</label><input id="search-page-number" data-search-page class="form-control" type="number" min="1" value="1"><button class="btn btn-outline-secondary" type="button" data-search-go>{{ translate("search.go") }}</button></nav>
+</div>
+<p><a href="../events/index.html">{{ translate("search.history") }}</a></p>
+</main></div><script src="../ReportSearch.js" defer></script>{% include "partials/scripts.html" %}</body></html>

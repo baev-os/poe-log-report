@@ -1,0 +1,11 @@
+<section class="afk-summary">
+<h2>{{ translate('afk.title') }}</h2>
+<div class="counts afk-counts">
+{% for key in ['duration', 'afk_duration', 'remaining_duration'] %}<div><strong>{{ afk_summary[key] }}</strong><span>{{ translate('afk.' + key) }}</span></div>{% endfor %}
+</div>
+<p class="table-note">{{ translate('afk.note') }}</p>
+<div class="table-scroll"><table class="afk-table"><thead><tr><th>{{ translate('afk.category') }}</th><th>{{ translate('afk.duration') }}</th><th>{{ translate('afk.marked') }}</th><th>{{ translate('afk.remaining_duration') }}</th></tr></thead><tbody>
+{% for row in afk_summary['categories'] %}<tr><th scope="row">{{ translate('afk.' + row['code']) }}</th><td>{{ row['duration'] }}</td><td><span>{{ row['afk_duration'] }}</span><span class="afk-share" aria-label="{{ translate('afk.share', value='%.1f'|format(row['afk_share'])) }}"><span style="width: {{ row['afk_share'] }}%"></span></span></td><td>{{ row['remaining_duration'] }}</td></tr>{% endfor %}
+</tbody></table></div>
+<p class="table-note">{{ translate('afk.zone_note') }} {{ translate('afk.share_note') }}</p>
+</section>

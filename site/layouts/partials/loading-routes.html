@@ -1,0 +1,31 @@
+{% set routes = data['loading_routes'] %}
+{% macro route_label(row) %}{{ row['from_area'] if row['from_area'] is not none else translate('loading_routes.unknown') }} → {{ row['to_area'] }}{% endmacro %}
+{% macro route_headings() %}{% for key in ['count', 'total', 'median', 'p95', 'max'] %}<th>{{ translate('loading.p95' if key == 'p95' else 'loading.' + key) }}</th>{% endfor %}{% endmacro %}
+{% macro route_cells(row) %}{% for key in ['count', 'total', 'median', 'p95', 'max'] %}<td>{{ row[key] }}</td>{% endfor %}{% endmacro %}
+<section id="routes" data-loading-routes>
+<h2>{{ translate('loading.routes') }}</h2>
+<p>{{ translate('loading_routes.summary', count=routes['count'], known=routes['known'], unknown=routes['unknown']) }}</p>
+<details class="explanation"><summary>{{ translate('ui.method_and_limitations') }}</summary><p>{{ translate('loading_routes.method') }}</p><p>{{ translate('loading_routes.p95_note') }}</p></details>
+{% if routes['routes'] %}
+<div class="table-scroll"><table class="loading-table"><thead><tr><th>{{ translate('loading_routes.route') }}</th>{{ route_headings() }}</tr></thead><tbody>
+{% for row in routes['routes'] %}<tr><th scope="row"><a href="#{{ row['anchor'] }}">{{ route_label(row) }}</a>{% if row['small_sample'] %}<small>{{ translate('loading_routes.small') }}</small>{% endif %}</th>{{ route_cells(row) }}</tr>{% endfor %}
+</tbody></table></div>
+<p data-loading-route-controls hidden><label>{{ translate('loading_routes.choose') }} <select data-loading-route-select><option value="">{{ translate('loading_routes.all') }}</option>{% for row in routes['routes'] %}<option value="{{ row['anchor'] }}">{{ route_label(row) }}</option>{% endfor %}</select></label></p>
+{% for route in routes['routes'] %}
+<details id="{{ route['anchor'] }}" class="loading-route" data-loading-route>
+<summary>{{ route_label(route) }} · {{ translate('loading_routes.count', count=route['count']) }}</summary>
+<p><a href="../{{ route['slowest_href'] }}">{{ translate('loading_routes.slowest') }}: {{ translate('loading.seconds_value', value=route['max']) }}</a></p>
+<h3>{{ translate('loading_routes.daily') }}</h3><p class="table-note">{{ translate('loading_routes.chart_note') }}</p>
+{% if route['chart']['bars'] %}<div class="loading-chart-scroll"><svg class="loading-route-chart" viewBox="0 0 1000 325" role="group" aria-label="{{ route_label(route) }}">
+<text x="8" y="20">{{ translate('loading.seconds') }}</text>
+{% for tick in route['chart']['ticks'] %}<line class="chart-grid" x1="70" x2="930" y1="{{ tick['y'] }}" y2="{{ tick['y'] }}"/><text x="60" y="{{ tick['y'] }}" text-anchor="end">{{ tick['value'] }}</text>{% endfor %}
+{% for tick in route['chart']['dates'] %}<text x="{{ tick['x'] }}" y="290" text-anchor="{{ 'start' if loop.first else 'end' if loop.last else 'middle' }}">{{ tick['label'] }}</text>{% endfor %}
+{% for day in route['chart']['bars'] %}{% for code in ['median', 'p95'] %}{% set height = day[code + '_height'] %}{% set label %}{{ day['date'] }} · {{ route_label(route) }} · {{ translate('loading.p95' if code == 'p95' else 'loading.median') }}: {{ day[code] }} · {{ translate('loading_routes.count', count=day['count']) }}{% endset %}<a href="#{{ day['anchor'] }}" tabindex="0" aria-label="{{ label }}"><title>{{ label }}</title><rect class="route-bar-{{ code }}" x="{{ day['x'] - day['width'] if code == 'median' else day['x'] + 1 }}" y="{{ 260 - ([height, 1]|max) }}" width="{{ day['width'] }}" height="{{ [height, 1]|max }}"/></a>{% endfor %}{% endfor %}
+</svg></div><p class="loading-route-legend"><span class="route-key-median">{{ translate('loading.median') }}</span><span class="route-key-p95">{{ translate('loading.p95') }}</span></p>{% else %}<p>{{ translate('loading.no_dates') }}</p>{% endif %}
+<div class="table-scroll"><table class="loading-table"><thead><tr><th>{{ translate('pdf.day') }}</th>{{ route_headings() }}</tr></thead><tbody>{% for day in route['days'] %}<tr id="{{ day['anchor'] }}"><th scope="row">{% if day['date'] == 'undated' %}{{ translate('date.time_unknown') }}{% else %}<a href="../maps/{{ day['date'] }}/index.html">{{ day['date'] }}</a>{% endif %}{% if day['small_sample'] %}<small>{{ translate('loading_routes.small') }}</small>{% endif %}</th>{{ route_cells(day) }}</tr>{% endfor %}</tbody></table></div>
+<h3>{{ translate('loading_routes.records') }}</h3>
+<div class="table-scroll"><table class="loading-table loading-route-records"><thead><tr><th>{{ translate('characters.date_time') }}</th><th>{{ translate('loading_routes.evidence') }}</th><th>{{ translate('loading.seconds') }}</th><th>{{ translate('sessions.detail') }}</th><th>{{ translate('ui.line_2') }}</th></tr></thead><tbody>
+{% for row in route['rows'] %}<tr id="{{ row['anchor'] }}"><td>{{ row['time'] or translate('date.time_unknown') }}</td><td>{% if row['from_href'] %}<a href="../{{ row['from_href'] }}">{{ row['from_area'] }}</a>{% else %}{{ translate('loading_routes.unknown') }}{% endif %} → {% if row['to_href'] %}<a href="../{{ row['to_href'] }}">{{ row['to_area'] }}</a>{% else %}{{ row['to_area'] }}{% endif %}{% if row['reason'] != 'matched' %}<small>{{ translate('loading_routes.reason.' + row['reason']) }}</small>{% endif %}</td><td>{{ row['seconds'] }}</td><td>{% if row['session_href'] %}<a href="../{{ row['session_href'] }}">{{ row['session_start'] }}</a>{% else %}{{ translate('loading.unassigned') }}{% endif %}</td><td><a href="../{{ row['href'] }}">#{{ row['line'] }}</a></td></tr>{% endfor %}
+</tbody></table></div></details>{% endfor %}
+{% else %}<p>{{ translate('loading.empty') }}</p>{% endif %}
+</section>

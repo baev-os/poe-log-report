@@ -1,0 +1,21 @@
+{
+  "version": "1",
+  "repository": "https://github.com/Lailloken/Exile-UI",
+  "commit": "3152d169dbbc3dc19308b42ac4b3f45538713070",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2022 Lailloken",
+  "files": [
+    {
+      "path": "site/data/mercenary-greetings.json",
+      "source_path": "data/english/mercenaries.json",
+      "source_url": "https://github.com/Lailloken/Exile-UI/blob/3152d169dbbc3dc19308b42ac4b3f45538713070/data/english/mercenaries.json",
+      "sha256": "40063e867729b97694e9d72d11d3c7d1d6ae5c9f804cea28cf8e91e086e919e2"
+    },
+    {
+      "path": "licenses/Exile-UI.txt",
+      "source_path": "LICENSE.md",
+      "source_url": "https://github.com/Lailloken/Exile-UI/blob/3152d169dbbc3dc19308b42ac4b3f45538713070/LICENSE.md",
+      "sha256": "2ac84b10b1777dc8bd96074569320e8bb85e08a77d45afb75c72060843a1293e"
+    }
+  ]
+}

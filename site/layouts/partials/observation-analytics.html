@@ -1,0 +1,46 @@
+{% set analytics = data['map_observation_analytics'] %}
+{% set stats = analytics['by_code'][group['code']] %}
+<section id="observation-analytics">
+<h2>{{ translate('observation_analytics.title') }}</h2>
+<div class="counts">
+<div><strong>{{ stats['share_label'] }}</strong><span>{{ translate('observation_analytics.fraction', count=stats['count'], total=stats['total']) }}</span></div>
+<div><strong>{{ stats['modes']['all']['summary']['returns'] }}</strong><span>{{ translate('pace.returns') }}</span></div>
+<div><strong>{{ stats['death_messages'] }}</strong><span>{{ translate('flow.deaths') }}</span></div>
+<div><strong>{{ stats['maps_with_death_messages'] }}</strong><span>{{ translate('observation_analytics.maps_with_deaths') }}</span></div>
+</div>
+<p class="table-note">{{ translate('observation_analytics.note') }}</p>
+<details class="explanation" data-observation-method><summary>{{ translate('ui.method_and_limitations') }}</summary>
+<p>{{ translate('observation_analytics.method', minimum=analytics['minimum_sample']) }}</p>
+<p>{{ translate('observation_analytics.unmatched', count=stats['unmatched_maps']) }}</p>
+</details>
+<details data-observation-trend><summary>{{ translate('observation_analytics.trend') }}</summary>
+<p class="table-note">{{ translate('observation_analytics.trend_note') }}</p>
+<div class="table-scroll"><table class="observation-trend"><thead><tr><th scope="col">{{ translate('pdf.day') }}</th><th scope="col">{{ translate('observation_analytics.fraction_heading') }}</th><th scope="col">{{ translate('observation_analytics.share') }}</th></tr></thead><tbody>
+{% for day in stats['days'] %}<tr data-observation-day="{{ day['date'] }}"><th scope="row">{% if day['count'] %}<a href="#day-{{ day['date'] }}">{{ day['date'] }}</a>{% else %}{{ day['date'] }}{% endif %}</th><td>{{ day['count'] }} / {{ day['total'] }}</td><td><span>{{ day['share_label'] }}</span><div class="observation-share-track" aria-hidden="true"><span style="width:{{ day['share'] }}%"></span></div></td></tr>{% endfor %}
+{% if stats['undated']['total'] %}<tr><th scope="row">{% if stats['undated']['count'] %}<a href="#undated">{{ translate('flow.undated') }}</a>{% else %}{{ translate('flow.undated') }}{% endif %}</th><td>{{ stats['undated']['count'] }} / {{ stats['undated']['total'] }}</td><td>{{ stats['undated']['share_label'] }}</td></tr>{% endif %}
+</tbody></table></div></details>
+<label class="time-mode-controls" data-map-duration-controls hidden>{{ translate('map_duration.label') }} <select data-map-duration-mode><option value="all">{{ translate('time_mode.all') }}</option><option value="without_afk">{{ translate('time_mode.without_afk') }}</option></select></label>
+{% for mode, result in stats['modes'].items() %}
+<div data-map-duration-panel="{{ mode }}" data-observation-mode="{{ mode }}">
+<h3>{{ translate('time_mode.' + mode) }}</h3>
+<p>{{ translate('pace.eligible', complete=result['summary']['complete'], excluded=result['summary']['excluded']) }}</p>
+<div class="counts">{% for key in ['mean', 'median'] %}<div><strong>{{ result['summary'][key] }}</strong><span>{{ translate('pace.' + key) }}</span></div>{% endfor %}</div>
+<h3>{{ translate('observation_analytics.comparison') }}</h3>
+<p class="table-note">{{ translate('observation_analytics.sample_note', minimum=analytics['minimum_sample']) }}</p>
+{% if result['groups'] %}
+<div class="table-scroll"><table class="observation-cohorts"><thead><tr><th scope="col">{{ translate('stats.map_type') }}</th><th scope="col">{{ translate('observation_analytics.observed') }}</th><th scope="col">{{ translate('pace.median') }}</th><th scope="col">{{ translate('observation_analytics.unobserved') }}</th><th scope="col">{{ translate('pace.median') }}</th><th scope="col">{{ translate('observation_analytics.difference') }}</th><th scope="col">{{ translate('field.status') }}</th></tr></thead><tbody>
+{% for pair in result['groups'] %}
+<tr id="observation-cohort-{{ mode }}-{{ loop.index }}" data-observation-cohort>
+<th scope="row"><a href="{{ ctx['root'] }}{{ pair['href'] }}">{{ pair['name'] }}</a><small>{{ pair['area_id'] }} · {{ translate('explorer.level') }} {{ pair['level'] }}</small></th>
+<td>{{ pair['observed']['complete'] }} / {{ pair['observed']['count'] }}</td><td>{{ pair['observed']['median'] }}</td>
+<td>{{ pair['unobserved']['complete'] }} / {{ pair['unobserved']['count'] }}</td><td>{{ pair['unobserved']['median'] }}</td>
+<td>{{ pair['difference'] }}<small>{{ pair['change'] }}</small></td><td>{{ translate('outliers.ready' if pair['ready'] else 'outliers.insufficient') }}</td>
+</tr>
+<tr><td colspan="7"><details data-observation-samples><summary>{{ translate('observation_analytics.samples') }}</summary>
+{% for side in ['observed', 'unobserved'] %}<h4>{{ translate('observation_analytics.' + side) }}</h4>
+{% if pair[side + '_lines'] %}<ul>{% for line in pair[side + '_lines'] %}{% set item = analytics['records'][line|string] %}<li><a href="{{ ctx['root'] }}{{ item['path'] }}">{{ item['name'] }} · {{ item['entry'] or translate('date.time_unknown') }}</a> · {{ item['duration'] if mode == 'all' else item['remaining_duration'] }}{% for reason in item['excluded'] %} · {{ translate('pace.reason.' + reason) }}{% endfor %}{% if mode == 'without_afk' and item['remaining_seconds'] is none %} · {{ translate('observation_analytics.unknown_afk') }}{% endif %}</li>{% endfor %}</ul>{% else %}<p>{{ translate('observation_analytics.no_maps') }}</p>{% endif %}
+{% endfor %}</details></td></tr>
+{% endfor %}</tbody></table></div>
+{% else %}<p>{{ translate('observation_analytics.no_groups') }}</p>{% endif %}
+</div>{% endfor %}
+</section>

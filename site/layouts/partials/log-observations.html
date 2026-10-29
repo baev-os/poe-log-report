@@ -1,0 +1,12 @@
+{% set observations = data['log_observations'] if ctx['menu'] == 'coverage' else data['period_log_observations'] %}
+<section class="log-observations"><h2>{{ translate('observations.title') }}</h2>
+<div class="counts">
+<div><strong data-loading-duration>{{ observations['loading_duration'] }}</strong><span><a href="{{ ctx['root'] }}loading/index.html">{{ translate('observations.loading') }}</a></span><small>{{ translate('observations.loading_count', count=observations['loading_count']) }}</small></div>
+<div><strong data-items-identified>{{ observations['items_identified'] }}</strong><span>{{ translate('observations.identified') }}</span><small>{{ translate('observations.identification_count', count=observations['identification_count']) }}</small></div>
+</div><p class="table-note">{{ translate('observations.note') }}</p>
+{% set counters = data['counter_history'] if ctx['menu'] == 'coverage' else data['period_counter_history'] %}
+{% if counters['rows'] %}<details class="counter-history"><summary>{{ translate('counters.title') }} · {{ counters['count'] }}</summary>
+<p class="table-note">{{ translate('counters.note') }}</p>
+<div class="table-scroll"><table class="activity-visits"><thead><tr><th>{{ translate('counters.time') }}</th><th>{{ translate('counters.kind') }}</th><th>{{ translate('counters.value') }}</th><th>{{ translate('counters.source') }}</th></tr></thead>
+<tbody>{% for sample in counters['rows'] %}<tr><td>{{ sample['time'] }}</td><td>{{ translate('counters.' + sample['kind']) }}</td><td>{{ sample['count'] }}</td><td><a href="{{ ctx['root'] }}{{ sample['href'] }}">#{{ sample['line'] }}</a></td></tr>{% endfor %}</tbody></table></div>
+</details>{% endif %}</section>

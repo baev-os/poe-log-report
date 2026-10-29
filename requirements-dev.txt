@@ -1,0 +1,10 @@
+# Static application-boundary checks; excluded from application dependencies.
+mypy==2.3.1
+ast-serialize==0.11.2
+librt==0.15.0
+mypy_extensions==1.1.0
+pathspec==1.1.1
+typing_extensions==4.16.0
+
+# Check PDF structure, Unicode, and embedded fonts; excluded from the application.
+pypdf==6.19.0

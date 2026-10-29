@@ -1,0 +1,8 @@
+# Keep project text and script checkouts identical on Linux and Windows.
+* text=auto eol=lf
+
+# These third-party files have pinned byte hashes, including line endings.
+licenses/Native.txt -text -whitespace
+licenses/Exile-UI.txt -text -whitespace
+site/data/mercenary-greetings.json -text -whitespace
+site/static/vendor/** -text

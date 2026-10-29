@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="{{ language }}" data-bs-theme="dark">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ ctx['title'] }}</title>{% with ctx=ctx %}{% include "partials/assets.html" %}{% endwith %}</head>
+<body><div class="report-shell">{% with ctx=ctx %}{% include "partials/menu.html" %}{% endwith %}<main>
+{% set a = data['analysis'] %}{% set t = data['timeline'] %}
+
+<header><p class="eyebrow">{{ translate("ui.path_of_exile_timeline") }}</p><h1>{{ ctx['title'] }}</h1>
+<p class="source">{{ a['source_label'] }} · {{ t['timezone'] }}</p></header>
+<section class="state {% if a['recognition_complete'] %}complete{% else %}incomplete{% endif %}">
+<h2>{{ a['state'] }}</h2><p>{{ translate("ui.unknown_lines") }} {{ a['unknown_lines'] }} {{ translate("ui.errors_2") }} {{ a['error_lines'] }}{{ translate("ui.all_lines_are_accounted_for") }}</p></section>
+<section class="counts"><div><strong>{{ t['event_count'] }}</strong><span>{{ translate("ui.timeline_events") }}</span></div>
+<div><strong>{{ (t['days']|length) }}</strong><span>{{ translate("ui.days_with_records") }}</span></div>
+<div><strong>{{ t['undated_lines'] }}</strong><span>{{ translate("ui.lines_without_timestamps") }}</span></div>
+<div><strong>{{ t['clock_regressions'] }}</strong><span>{{ translate("ui.clock_regressions_2") }}</span></div></section>
+<section><h2>{{ translate("ui.by_day") }}</h2>
+{% set c = data['timeline_calendar'] %}
+{% if c['months'] %}
+<p class="table-note">{{ translate("timeline.calendar_hint") }}</p>
+<nav class="month-index" aria-label="{{ translate("ui.months") }}">{% for month in c['months'] %}<a class="btn btn-outline-secondary btn-sm" href="#month-{{ month['id'] }}">{{ month['label'] }}</a>{% endfor %}</nav>
+{% for month in c['months'] %}
+<section class="card calendar-month" id="month-{{ month['id'] }}">
+<div class="card-header"><h2>{{ month['label'] }}</h2></div>
+<div class="table-responsive"><table class="calendar timeline-calendar">
+<caption class="visually-hidden">{{ ctx['title'] }} · {{ month['label'] }}</caption>
+<thead><tr>{% for weekday in [translate("ui.mon"), translate("ui.tue"), translate("ui.wed"), translate("ui.thu"), translate("ui.fri"), translate("ui.sat"), translate("ui.sun")] %}<th scope="col">{{ weekday }}</th>{% endfor %}</tr></thead>
+<tbody>{% for week in month['weeks'] %}<tr>{% for day in week %}
+<td {% if day['current'] %}id="day-{{ day['date'] }}" tabindex="-1"{% endif %} class="{% if not day['current'] %}calendar-outside{% elif day['summary'] %}calendar-active{% endif %}">
+{% if day['current'] %}{% if day['summary'] %}{% set summary = day['summary'] %}
+<a href="./{{ day['date'] }}/index.html" aria-label="{{ summary['label'] }} · {{ translate('timeline.event_count', count=summary['event_count']) }}">
+<strong>{{ day['number'] }}</strong><span>{{ translate('timeline.event_count', count=summary['event_count']) }}</span>
+<small>{{ translate('timeline.line_count', count=summary['lines']) }}</small>
+{% if summary['unknown'] or summary['error'] %}<small class="timeline-warning">{{ translate('timeline.issues_count', unknown=summary['unknown'], errors=summary['error']) }}</small>{% endif %}
+</a>{% else %}<span class="calendar-number">{{ day['number'] }}</span>{% endif %}{% endif %}
+</td>{% endfor %}</tr>{% endfor %}</tbody>
+</table></div></section>{% endfor %}
+{% else %}<p>{{ translate("ui.no_days_to_display_undated_lines_remain_in_the_analysis_ledger") }}</p>{% endif %}</section>
+<details class="timeline-notes"><summary>{{ translate("ui.how_to_read_the_timeline_and_what_it_includes") }}</summary>
+<section class="explanation">{{ ctx['content'] }}</section>
+<section><h2>{{ translate("ui.observation_range") }}</h2>
+{% if t['first'] %}<p><time>{{ t['first'] }}</time> — <time>{{ t['last'] }}</time></p>{% else %}<p>{{ translate("ui.no_valid_timestamps") }}</p>{% endif %}
+<p>{{ translate("ui.dated_lines_outside_selected_events") }} {{ t['other_dated_lines'] }}.
+{{ translate("ui.without_a_timestamp_recognized") }} {{ t['undated_statuses']['recognized'] }}{{ translate("ui.unknown") }} {{ t['undated_statuses']['unknown'] }}{{ translate("ui.errors") }} {{ t['undated_statuses']['error'] }}.</p>
+<p>{{ translate("ui.selected_messages_without_their_own_date") }} {{ t['selected_without_time'] }}{{ translate("ui.a_clock_regression_means_a_timestamp_decreased_between_adjacent_dated_log_lines_the_c") }}</p></section>
+<section><h2>{{ translate("ui.timeline_contents") }}</h2><ul class="kind-list">{% for item5 in t['kinds'] %}<li>{{ item5['label'] }}: <strong>{{ item5['count'] }}</strong></li>{% endfor %}</ul></section>
+</details>
+<footer><p>{{ translate("ui.timeline_version") }} {{ t['version'] }} {{ translate("ui.rules") }} {{ a['rules_version'] }}</p></footer>
+</main></div>{% with ctx=ctx %}{% include "partials/scripts.html" %}{% endwith %}</body></html>

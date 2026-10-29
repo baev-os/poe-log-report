@@ -1,0 +1,5 @@
+{% set a = data['activity'] %}
+<section class="playtime"><h2>{{ translate("ui.total_observed_playtime") }} {{ a['duration'] }}</h2>
+<p>{{ translate("ui.includes_maps_hideouts_towns_transitions_and_afk") }} {% if data['analysis']['collection'] %}{{ translate("ui.confirmed_copied_history_is_counted_once") }}{% endif %}</p>
+<p class="table-note">{{ translate("ui.from_area_entry_to_disconnection_at_end_of_file_or_a_gap_over_30_minutes_time_is_coun") }}
+{% if a['incomplete'] %}{{ translate("ui.incomplete_intervals") }} {{ a['incomplete'] }}{{ translate("ui.the_total_may_be_incomplete") }}{% endif %}</p></section>

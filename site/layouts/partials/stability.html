@@ -1,0 +1,37 @@
+{% set stability = data['stability'] %}
+<section id="stability" data-stability>
+<h2>{{ translate('stability.title') }}</h2>
+<p>{{ translate('stability.scope') }}</p>
+<div class="counts"><div><strong>{{ stability['summary']['count'] }}</strong><span>{{ translate('stability.messages') }}</span></div><div><strong>{{ stability['series_count'] }}</strong><span>{{ translate('stability.series') }}</span></div><div><strong>{{ stability['affected_sessions'] }}</strong><span>{{ translate('stability.sessions') }}</span></div><div><strong>{{ stability['summary']['unassigned'] }}</strong><span>{{ translate('stability.unassigned') }}</span></div></div>
+<details class="explanation"><summary>{{ translate('ui.method_and_limitations') }}</summary><p>{{ translate('stability.method') }}</p><p>{{ translate('stability.context_note') }}</p><p>{{ translate('stability.series_note') }}</p></details>
+{% if stability['summary']['count'] %}
+<h3>{{ translate('stability.days') }}</h3>
+<p class="table-note">{{ translate('stability.chart_note') }}</p>
+<div class="stability-legend">{% for family in stability['families'] %}<span><i class="stability-color-{{ family }}"></i>{{ translate('stability.family.' + family) }}: {{ stability['summary']['counts'][family] }}</span>{% endfor %}</div>
+{% if stability['chart']['bars'] %}<div class="loading-chart-scroll"><svg class="stability-chart" viewBox="0 0 1000 325" role="group" aria-label="{{ translate('stability.days') }}">
+{% for tick in stability['chart']['ticks'] %}<line class="chart-grid" x1="70" x2="930" y1="{{ tick['y'] }}" y2="{{ tick['y'] }}"/><text x="60" y="{{ tick['y'] }}" text-anchor="end">{{ tick['value'] }}</text>{% endfor %}
+{% for tick in stability['chart']['dates'] %}<text x="{{ tick['x'] }}" y="290" text-anchor="{{ 'start' if loop.first else 'end' if loop.last else 'middle' }}">{{ tick['label'] }}</text>{% endfor %}
+{% for day in stability['chart']['bars'] %}{% for segment in day['segments'] %}{% if segment['count'] %}{% set label %}{{ day['date'] }} · {{ translate('stability.family.' + segment['family']) }}: {{ segment['count'] }} · {{ translate('stability.messages') }}: {{ day['count'] }}{% endset %}<a href="#{{ day['anchor'] }}" tabindex="0" aria-label="{{ label }}"><title>{{ label }}</title><rect class="stability-color-{{ segment['family'] }}" x="{{ day['x'] - day['width']/2 }}" y="{{ segment['y'] }}" height="{{ segment['height'] }}" width="{{ day['width'] }}"/></a>{% endif %}{% endfor %}{% endfor %}
+</svg></div>{% endif %}
+{% if stability['summary']['undated'] %}<p>{{ translate('stability.undated', count=stability['summary']['undated']) }}</p>{% endif %}
+<h3>{{ translate('stability.sessions') }}</h3>
+<div class="table-scroll"><table class="stability-sessions"><thead><tr><th>{{ translate('sessions.detail') }}</th><th>{{ translate('stability.messages') }}</th><th>{{ translate('stability.series') }}</th><th>{{ translate('stability.areas') }}</th><th>{{ translate('stability.loads') }}</th></tr></thead><tbody>
+{% for key, session in stability['by_session'].items() %}<tr id="{{ session['anchor'] }}"><td>{% if session['href'] %}<a href="{{ ctx['root'] }}{{ session['href'] }}">{{ session['start'] }}</a>{% else %}{{ translate('loading.unassigned') }}{% endif %}</td><td>{{ session['count'] }}</td><td><details><summary>{{ session['series_count'] }}</summary>{% for anchor in session['series'] %}<a class="stability-series-link" href="#{{ anchor }}">{{ stability['series'][anchor]['start'] or translate('date.time_unknown') }} · {{ translate('stability.family.' + stability['series'][anchor]['family']) }}</a>{% endfor %}</details></td><td>{% for area in session['areas'] %}<span class="stability-area">{{ area['name'] if area['name'] is not none else translate('loading_routes.unknown') }}: {{ area['count'] }}</span>{% endfor %}</td><td>{{ session['loading_count'] }}</td></tr>{% endfor %}
+</tbody></table></div>
+<h3>{{ translate('stability.series') }}</h3>
+<div class="stability-controls"><label>{{ translate('stability.search') }} <input type="search" data-search="stability"></label><label>{{ translate('stability.category') }} <select data-category="stability"><option value="">{{ translate('stability.all') }}</option>{% for family in stability['families'] %}<option value="{{ family }}">{{ translate('stability.family.' + family) }}</option>{% endfor %}</select></label></div>
+<div data-results="stability">
+{% for key, day in stability['by_date'].items() %}<section id="{{ day['anchor'] }}" class="stability-day" data-group>
+<h4>{% if key != 'undated' %}<a href="{{ ctx['root'] }}maps/{{ key }}/index.html">{{ key }}</a>{% else %}{{ translate('date.time_unknown') }}{% endif %} · {{ translate('stability.messages') }}: {{ day['count'] }}</h4>
+{% for anchor in day['series'] %}{% set series = stability['series'][anchor] %}<details id="{{ anchor }}" class="stability-series" data-item data-kind="{{ series['family'] }}">
+<summary><time>{{ series['start'] or translate('date.time_unknown') }}{% if series['count'] > 1 %} → {{ series['end'] }}{% endif %}</time> · <span class="stability-badge stability-color-{{ series['family'] }}">{{ translate('stability.family.' + series['family']) }}</span> · ×{{ series['count'] }} · {{ series['rows'][0]['event']['presentation']['text'] }}</summary>
+{% for row in series['rows'] %}<article id="stability-record-{{ row['line'] }}" class="stability-record">
+<p><strong>{{ row['time'] or translate('date.time_unknown') }}</strong> · <code>{{ row['code'] }}</code> · <a href="{{ ctx['root'] }}{{ row['href'] }}">#{{ row['line'] }}</a></p>
+{% with ctx=row['event']['presentation'] %}{% include 'partials/message.html' %}{% endwith %}
+{% if row['event']['details'] %}<pre class="message-text">{{ row['event']['details']|join('\n') }}</pre>{% endif %}
+<p>{{ translate('stability.area') }}: {% if row['area'] %}<a href="{{ ctx['root'] }}{{ row['area']['href'] }}">{{ row['area']['name'] }}</a>{% else %}{{ translate('loading_routes.unknown') }}{% endif %}. {% if row['session_href'] %}<a href="{{ ctx['root'] }}{{ row['session_href'] }}">{{ translate('stability.timeline') }} · {{ row['session_start'] }}</a>{% else %}{{ translate('loading.unassigned') }}{% endif %}</p>
+{% if row['loading'] %}<p>{{ translate('stability.nearest') }}</p><ul>{% for load in row['loading'] %}<li><a href="{{ ctx['root'] }}{{ load['href'] }}">{{ load['area'] }} · {{ load['seconds'] }} {{ translate('ui.s') }} · #{{ load['line'] }}</a> · {{ translate('stability.before' if load['delta_seconds'] < 0 else 'stability.after', seconds=load['delta_seconds']|abs) }}</li>{% endfor %}</ul>{% else %}<p class="table-note">{{ translate('stability.no_loading') }}</p>{% endif %}
+</article>{% endfor %}</details>{% endfor %}
+</section>{% endfor %}</div><p class="empty-filter" hidden>{{ translate('ui.no_matches') }}</p>
+{% else %}<p>{{ translate('stability.empty') }}</p>{% endif %}
+</section>

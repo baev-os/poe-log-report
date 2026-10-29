@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="{{ language }}" data-bs-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ ctx['title'] }}</title>{% include 'partials/assets.html' %}<script src="{{ ctx['root'] }}ComparisonDisplay.js" defer></script><script src="{{ ctx['root'] }}SessionComparison.js" defer></script></head>
+<body><div class="report-shell">{% include 'partials/menu.html' %}<main class="session-comparison" data-session-comparison>
+<header><p class="eyebrow">{{ data['sessions']['timezone'] }}</p><h1>{{ ctx['title'] }}</h1><p>{{ translate('session_compare.intro') }}</p></header>
+{% include 'partials/statistics-status.html' %}
+<p><a href="../index.html">{{ translate('sessions.back') }}</a></p>
+{% if data['sessions']['count'] < 2 %}<p>{{ translate('session_compare.empty') }}</p>{% else %}
+<div class="session-comparison-controls" data-comparison-controls hidden>
+{% for side in ['a', 'b'] %}<label>{{ translate('session_compare.' + side) }}<select data-session-select="{{ side }}">{% for session in data['sessions']['rows'] %}<option value="{{ session['id'] }}">{{ session['start'] }} → {{ session['end'] }} · #{{ session['id'] }}</option>{% endfor %}</select></label>{% endfor %}
+<button type="button" data-session-swap>{{ translate('session_compare.swap') }}</button>
+<label>{{ translate('session_compare.mode') }}<select data-comparison-mode><option value="all">{{ translate('time_mode.all') }}</option><option value="without_afk">{{ translate('time_mode.without_afk') }}</option></select></label>
+</div>
+<p data-same-session role="status" hidden>{{ translate('session_compare.same') }}</p>
+<div data-comparison-result hidden>
+<div class="session-comparison-cards">{% for side in ['a', 'b'] %}<section><h2>{{ translate('session_compare.' + side) }}</h2><div data-comparison-card="{{ side }}"></div></section>{% endfor %}</div>
+<section><h2>{{ translate('comparison.metrics') }}</h2><p>{{ translate('comparison.intro') }}</p><div class="table-scroll"><table class="table session-comparison-metrics"><thead><tr><th>{{ translate('comparison.metric') }}</th><th>A</th><th>B</th><th>{{ translate('comparison.delta') }}</th><th>{{ translate('comparison.change') }}</th></tr></thead><tbody data-comparison-metrics></tbody></table></div></section>
+<section><h2>{{ translate('session_compare.types') }}</h2><p>{{ translate('session_compare.types_note') }}</p><div class="table-scroll"><table class="table session-comparison-types"><thead><tr><th>{{ translate('stats.map_type') }}</th><th>A</th><th>B</th><th>{{ translate('comparison.delta') }}</th><th>{{ translate('comparison.change') }}</th></tr></thead><tbody data-comparison-types></tbody></table></div><p data-comparison-types-empty hidden>{{ translate('pace.no_complete') }}</p></section>
+<section><h2>{{ translate('session_compare.timeline') }}</h2><p>{{ translate('session_compare.timeline_note') }}</p><label>{{ translate('session_chart.zoom') }} <select data-comparison-zoom>{% for zoom in [1, 2, 4, 8, 16, 32, 64] %}<option value="{{ zoom }}">×{{ zoom }}</option>{% endfor %}</select></label>
+{% for side in ['a', 'b'] %}<h3>{{ translate('session_compare.' + side) }} <span data-chart-heading="{{ side }}"></span></h3><div data-comparison-chart="{{ side }}"></div>{% endfor %}</section>
+</div>
+<details class="explanation"><summary>{{ translate('ui.method_and_limitations') }}</summary><p>{{ translate('session_compare.method') }}</p><p>{{ translate('session_compare.evidence_note') }}</p><p>{{ translate('comparison.missing') }}</p></details>
+<noscript><p>{{ translate('session_compare.no_js') }}</p></noscript>
+{% endif %}
+<details><summary>{{ translate('sessions.title') }}</summary><ul>{% for session in data['sessions']['rows'] %}<li><a href="{{ ctx['root'] }}{{ session['path'] }}">{{ session['start'] }} → {{ session['end'] }}</a> · {{ session['ending_label'] }}</li>{% endfor %}</ul></details>
+{% for session in data['sessions']['rows'] %}{% set comparison = data['session_comparison']['by_session'][session['id']] %}
+<template data-comparison-source="{{ session['id'] }}">
+<div data-card><p><a href="{{ ctx['root'] }}{{ session['path'] }}">{{ session['start'] }} → {{ session['end'] }}</a> · #{{ session['id'] }}</p>
+<p>{{ session['ending_label'] }}{% if session['clipped'] %} · {{ translate('sessions.clipped') }}{% endif %}{% if session['branched'] %} · {{ translate('sessions.branched') }}{% endif %}</p>
+<details><summary>{{ translate('session_compare.context') }}</summary>
+<h3>{{ translate('map_observations.title') }}</h3><ul>{% for item in session['mechanics'] %}<li>{{ translate(item['label_key']) }}: {{ item['count'] }}</li>{% else %}<li>{{ translate('session_compare.none') }}</li>{% endfor %}</ul>
+<h3>{{ translate('session_compare.deaths') }}</h3><ul>{% for item in comparison['deaths'] %}<li><a href="{{ ctx['root'] }}{{ item['href'] }}">{{ item['time'] }} · {{ item['event']['presentation']['text'] }}</a></li>{% else %}<li>{{ translate('session_compare.none') }}</li>{% endfor %}</ul>
+<h3>{{ translate('pace.gaps') }}</h3><ul>{% for gap in comparison['gaps'] %}<li><a href="{{ ctx['root'] }}{{ gap['from_href'] }}">{{ gap['start'] }}</a> → <a href="{{ ctx['root'] }}{{ gap['to_href'] }}">{{ gap['end'] }}</a> · {{ gap['duration'] }} · {{ translate('afk.remaining_duration') }}: {{ gap['remaining_duration'] }}{% if gap['clipped'] %} · {{ translate('sessions.clipped') }}{% endif %}</li>{% else %}<li>{{ translate('session_compare.none') }}</li>{% endfor %}</ul>
+{% for mode, model in comparison['modes'].items() %}<div data-context-mode="{{ mode }}"><h3>{{ translate('pace.outliers') }} · {{ translate('time_mode.' + mode) }}</h3><ul>{% for row in model['outliers'] %}<li><a href="{{ ctx['root'] }}{{ row['href'] }}">{{ row['name'] }}</a></li>{% else %}<li>{{ translate('session_compare.none') }}</li>{% endfor %}</ul><p>{{ translate('session_compare.ungrouped', count=model['ungrouped']) }}</p></div>{% endfor %}
+</details></div>
+{% for mode, model in comparison['modes'].items() %}<div data-source-mode="{{ mode }}"><table><tbody>{% for metric in model['metrics'] %}<tr data-session-metric="{{ metric['code'] }}" data-kind="{{ metric['kind'] }}" data-value="{{ metric['value'] if metric['value'] is not none else '' }}"><th>{% if metric['code'].startswith('mechanic:') %}{{ translate('session_compare.maps_with') }} · {% endif %}{{ translate(metric['label_key']) }}</th><td>{{ metric['text'] }}</td></tr>{% endfor %}</tbody></table>
+<table><tbody>{% for row in model['types'] %}<tr data-session-type data-area="{{ row['area_id'] }}" data-level="{{ row['level'] }}" data-value="{{ row['median_seconds'] if row['median_seconds'] is not none else '' }}"><th><a href="{{ ctx['root'] }}{{ row['href'] }}">{{ row['name'] }}</a><small>{{ translate('explorer.level') }}: {{ row['level'] }} · {{ row['area_id'] }}</small></th><td><strong>{{ row['median'] }}</strong><small>{{ translate('pace.complete') }}: {{ row['complete'] }} · {{ translate('pace.excluded') }}: {{ row['excluded'] }}</small>{% if row['complete'] == 1 %}<small>{{ translate('session_compare.small') }}</small>{% endif %}<details><summary>{{ translate('session_compare.samples') }}</summary><ul>{% for visit in row['visits'] %}<li><a href="{{ ctx['root'] }}{{ visit['href'] }}">#{{ visit['line'] }}</a></li>{% endfor %}</ul></details></td></tr>{% endfor %}</tbody></table></div>{% endfor %}
+<div data-chart>{% include 'partials/session-comparison-timeline.html' %}</div>
+</template>{% endfor %}
+</main></div>{% include 'partials/scripts.html' %}</body></html>

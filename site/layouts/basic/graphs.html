@@ -1,0 +1,54 @@
+{% extends 'basic/base.html' %}
+{% block body %}{% set model = data['basic'] %}
+<section class="panel"><h2>{{ translate('basic.total_time') }}</h2><p class="big-number">{{ model['duration'] }}</p>
+<p class="note">{{ translate('basic.time_note') }}</p>
+{% set balance = model['time_balance'] %}<div class="overview-heading"><p>{{ translate('overview.distribution') }}</p><p>{{ translate('afk.marked') }}: <strong>{{ balance['afk_duration'] }}</strong> · {{ balance['afk_percentage'] }}</p></div>
+{% if balance['seconds'] %}<svg class="basic-time-balance" viewBox="0 0 1000 24" role="group" aria-label="{{ translate('overview.distribution') }}">
+{% for row in balance['categories'] %}{% if row['seconds'] %}<rect x="{{ row['offset'] * 10 }}" y="0" width="{{ row['share'] * 10 }}" height="24" fill="{{ row['color'] }}" tabindex="0"><title>{{ translate('afk.' + row['code']) }} · {{ translate('basic.time') }}: {{ row['duration'] }} · {{ translate('basic.share') }}: {{ row['percentage'] }}</title></rect>{% endif %}{% endfor %}</svg>{% endif %}
+<ul class="overview-zones">{% for row in balance['categories'] %}<li><i class="overview-color-{{ row['code'] }}" aria-hidden="true"></i>{{ translate('afk.' + row['code']) }} <strong>{{ row['duration'] }}</strong> · {{ row['percentage'] }}</li>{% endfor %}</ul>
+{% if model['daily'] %}<div class="chart-scroll"><svg class="cumulative-chart" viewBox="0 0 1000 280" role="group" aria-label="{{ translate('basic.cumulative') }}">
+<text x="12" y="20">{{ translate('basic.cumulative') }}</text>
+{% set total = [1, model['seconds']]|max %}
+{% for tick in range(5) %}<line class="grid" x1="65" x2="980" y1="{{ 235 - tick * 50 }}" y2="{{ 235 - tick * 50 }}"/><text x="5" y="{{ 239 - tick * 50 }}">{{ (total * tick / 4 / 3600)|round(1) }}</text>{% endfor %}
+<polyline data-chart-line class="cumulative-line" points="{% for day in model['daily'] %}{{ 65 + loop.index0 * 915 / ([1, model['daily']|length - 1]|max) }},{{ 235 - day['cumulative_seconds'] * 200 / total }} {% endfor %}"/>
+{% for day in model['daily'] %}<circle cx="{{ 65 + loop.index0 * 915 / ([1, model['daily']|length - 1]|max) }}" cy="{{ 235 - day['cumulative_seconds'] * 200 / total }}" r="3" tabindex="0"><title>{{ day['date'] }} · {{ translate('basic.time') }}: {{ day['cumulative_duration'] }}</title></circle>{% endfor %}
+<text x="65" y="268">{{ model['daily'][0]['date'] }}</text><text x="980" y="268" text-anchor="end">{{ model['daily'][-1]['date'] }}</text>
+</svg></div><p class="note">{{ translate('basic.hours_axis') }}</p>{% endif %}</section>
+<section class="panel" data-daily-chart data-days="{{ model['daily']|tojson|forceescape }}" data-weeks="{{ model['weekly']|tojson|forceescape }}" data-hours="{{ translate('pdf.hours') }}">
+<h2>{{ translate('basic.daily_time') }}</h2><p class="note">{{ translate('basic.daily_hint') }}</p>
+{% if model['daily'] %}<h3>{{ translate('basic.full_period') }}</h3><div class="chart-scroll"><svg class="daily-overview" viewBox="0 0 1000 380" role="group" aria-label="{{ translate('basic.daily_time') }} · {{ translate('basic.full_period') }}">
+<text x="8" y="18">{{ translate('pdf.hours') }}</text>
+{% for tick in model['daily_ticks'] %}<line class="grid" x1="65" x2="980" y1="{{ tick['y'] }}" y2="{{ tick['y'] }}"/><text x="8" y="{{ tick['y'] }}">{{ tick['hours'] }}</text>{% endfor %}
+{% for day in model['daily'] %}<rect class="bar" x="{{ day['x'] }}" y="{{ day['y'] if day['seconds'] else 318 }}" width="{{ day['width'] }}" height="{{ day['height'] if day['seconds'] else 2 }}" tabindex="0"><title>{{ day['date'] }} · {{ translate('basic.time') }}: {{ day['duration'] }}</title></rect>{% if day['tick'] %}<text x="{{ day['x'] }}" y="348" text-anchor="{{ 'end' if loop.last else 'start' if loop.first else 'middle' }}">{{ day['label'] }}</text>{% endif %}{% endfor %}<text x="980" y="375" text-anchor="end">{{ translate('basic.days') }}</text>
+</svg></div><h3>{{ translate('basic.interactive') }}</h3>{% endif %}
+{% if model['daily'] %}<div class="controls" data-daily-controls hidden>
+<label>{{ translate('basic.grouping') }} <select class="form-select form-select-sm" data-daily-group><option value="days">{{ translate('basic.days') }}</option><option value="weeks">{{ translate('basic.weeks') }}</option></select></label>
+<label>{{ translate('basic.from') }} <input class="form-control form-control-sm" type="date" data-daily-from value="{{ model['daily'][0]['date'] }}"></label>
+<label>{{ translate('basic.to') }} <input class="form-control form-control-sm" type="date" data-daily-to value="{{ model['daily'][-1]['date'] }}"></label>
+<label>{{ translate('basic.zoom') }} <input class="form-range" type="range" data-daily-zoom min="1" max="4" step="0.5" value="1"></label>
+<button type="button" class="btn btn-outline-secondary btn-sm" data-daily-reset>{{ translate('basic.reset') }}</button></div>
+<p data-daily-error role="status"></p><div class="chart-scroll"><svg data-daily-svg class="daily-chart" viewBox="0 0 {{ [1000, model['daily']|length * 80 + 80]|max }} 340" role="group" aria-label="{{ translate('basic.daily_time') }}">
+{% set maximum = [3600, model['daily']|map(attribute='seconds')|max]|max %}
+{% for day in model['daily'] %}{% set x = 80 + loop.index0 * 80 %}<rect class="bar" x="{{ x }}" y="{{ 270 - day['seconds'] / maximum * 215 }}" width="52" height="{{ day['seconds'] / maximum * 215 }}"><title>{{ day['date'] }} · {{ day['duration'] }}</title></rect><text x="{{ x + 26 }}" y="{{ 260 - day['seconds'] / maximum * 215 }}" text-anchor="middle">{{ day['duration'] }}</text><text x="{{ x + 26 }}" y="295" text-anchor="middle">{{ day['date'] }}</text>{% endfor %}
+</svg></div>{% else %}<p>{{ translate('basic.empty') }}</p>{% endif %}</section>
+{% with intensity=model['weekly_intensity'] %}{% include 'basic/weekly-intensity.html' %}{% endwith %}
+<section class="panel"><h2>{{ translate('basic.special_areas') }}</h2>
+<a href="images/activity-overview.png" target="_blank" rel="noopener" aria-label="{{ translate('basic.large_image') }}"><img class="activity-overview" src="images/activity-overview.png" width="4800" height="{{ [640, data['basic']['activities']['height'] * 4]|max }}" alt="{{ translate('basic.full_period') }}"></a>
+<h3>{{ translate('basic.interactive') }}</h3>
+{% set activity = data['basic']['activities'] %}{% if activity['periods'] %}
+<div data-activity-chart><label data-activity-controls hidden>{{ translate('activities.period') }} <select class="form-select form-select-sm" data-activity-period>{% for period in activity['periods'] %}<option value="{{ period['id'] }}" data-start="{{ period['start'] }}" data-end="{{ period['end'] }}" data-ticks="{{ period['ticks']|tojson|forceescape }}">{{ translate('basic.full_period') if period['id'] == 'all' else period['id'] }}</option>{% endfor %}</select></label>
+<div class="chart-scroll"><svg class="activity-chart" viewBox="0 0 1200 {{ activity['height'] }}" role="group" aria-label="{{ translate('activities.timeline') }}">
+<g data-activity-ticks>{% for tick in activity['periods'][0]['ticks'] %}<line class="grid" x1="{{ tick['x'] }}" x2="{{ tick['x'] }}" y1="24" y2="{{ activity['height'] - 55 }}"/><text x="{{ tick['x'] }}" y="{{ activity['height'] - 20 }}" text-anchor="{{ 'end' if loop.last else 'start' }}">{{ tick['label'] }}</text>{% endfor %}</g>
+{% for group in activity['groups'] %}<g id="activity-{{ group['code'] }}">{% if group['children']|length > 1 %}<text x="10" y="{{ group['heading_y'] }}" class="lane-heading">{{ translate('activities.' + group['code']) }}</text>{% endif %}
+{% for child in group['children'] %}<g id="activity-{{ group['code'] }}-{{ child['code'] }}"><text x="{{ 22 if group['children']|length > 1 else 10 }}" y="{{ child['y'] + 5 }}">{{ translate('activities.' + child['code']) }}</text><line class="grid" x1="220" x2="1180" y1="{{ child['y'] + 20 }}" y2="{{ child['y'] + 20 }}"/>
+{% for visit in child['visits'] %}{% if visit['start'] is not none %}<rect data-activity-visit data-start="{{ visit['start'] }}" data-end="{{ visit['end'] }}" x="{{ visit['x'] }}" y="{{ child['y'] - 8 }}" width="{{ visit['width'] }}" height="18" fill="{{ group['color'] }}" opacity="{{ 1 if visit['measured'] else 0.4 }}" tabindex="0"><title>{{ visit['name'] }} · {{ visit['entry'] }} — {{ visit['exit'] }} · {{ visit['duration'] }}</title></rect>{% endif %}{% endfor %}
+ </g>{% endfor %}</g>{% endfor %}</svg></div></div>{% else %}<p>{{ translate('basic.empty') }}</p>{% endif %}
+<div class="table-scroll"><table class="activity-totals"><thead><tr><th scope="col">{{ translate('activities.group') }}</th><th scope="col">{{ translate('stats.visits') }}</th><th scope="col">{{ translate('activities.duration') }}</th></tr></thead>
+{% for group in activity['summary'] %}<tbody class="activity-summary-group" style="--activity-color: {{ group['color'] }}"><tr class="activity-group-total"><th scope="row">{% if group['linked'] %}<a href="#activity-{{ group['code'] }}">{{ translate('activities.' + group['code']) }}</a>{% else %}{{ translate('activities.' + group['code']) }}{% endif %}</th><td>{{ group['totals']['visits'] }}</td><td>{{ group['totals']['duration'] }}</td></tr>
+{% if group['children']|length > 1 %}{% for child in group['children'] %}<tr class="activity-subtotal"><th scope="row">{% if child['linked'] %}<a href="#activity-{{ group['code'] }}-{{ child['code'] }}">{{ translate('activities.' + child['code']) }}</a>{% else %}{{ translate('activities.' + child['code']) }}{% endif %}</th><td>{{ child['totals']['visits'] }}</td><td>{{ child['totals']['duration'] }}</td></tr>{% endfor %}{% endif %}</tbody>{% endfor %}
+</table></div>
+<h3>{{ translate('activities.zones') }}</h3><div class="table-scroll"><table><thead><tr><th>{{ translate('activities.zone') }}</th><th>{{ translate('stats.visits') }}</th><th>{{ translate('basic.time') }}</th></tr></thead><tbody>
+{% for zone in activity['zones'] %}<tr><th>{{ zone['name'] }}</th><td>{{ zone['visits'] }}</td><td>{{ zone['duration'] }}</td></tr>{% endfor %}
+</tbody></table></div><p class="note">{{ translate('basic.area_note') }}</p></section>
+<section class="panel"><h2>{{ translate('basic.combinations') }}</h2><p class="note">{{ translate('basic.mechanics_note') }}</p><ul class="percentage-list">{% for row in model['mechanics'] %}<li><span>{{ row['label'] }}</span><strong>{{ row['percentage'] }}</strong></li>{% else %}<li>{{ translate('basic.empty') }}</li>{% endfor %}</ul></section>
+{% endblock %}

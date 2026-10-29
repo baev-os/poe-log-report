@@ -1,0 +1,3 @@
+# Tkinter/ttk ships with Python; Linux needs the system Tcl/Tk package for Python 3.14.
+-r requirements-rendering.txt
+tzdata==2026.4

@@ -1,0 +1,17 @@
+<!doctype html><html lang="{{ language }}" data-bs-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{{ ctx['title'] }}</title>{% with ctx=ctx %}{% include "partials/assets.html" %}{% endwith %}</head><body><div class="report-shell">{% with ctx=ctx %}{% include "partials/menu.html" %}{% endwith %}<main>
+<header><p class="eyebrow">{{ translate("ui.player_history") }} {{ data['analysis']['timezone'] }}</p><h1>{{ ctx['title'] }}</h1></header>{% with ctx=ctx %}{% include "partials/statistics-status.html" %}{% endwith %}
+{% include 'partials/period-overview.html' %}
+{% with ctx=ctx %}{% include "partials/playtime.html" %}{% endwith %}{% set p = data['daily_playtime'] %}
+<p>{{ translate("ui.days_are_on_the_horizontal_axis_daily_hours_played_are_on_the_vertical_axis_sessions_") }}</p>
+{% if p['days'] %}
+<label class="time-mode-controls" data-time-mode-controls hidden>{{ translate('time_mode.label') }} <select data-time-mode><option value="all">{{ translate('time_mode.all') }}</option><option value="without_afk">{{ translate('time_mode.without_afk') }}</option></select></label>
+<p class="table-note">{{ translate('time_mode.note') }}</p>
+{% for time_mode in ['all', 'without_afk'] %}{% set chart = data['daily_playtime'] if time_mode == 'all' else data['daily_playtime_without_afk'] %}
+<section data-playtime-panel="{{ time_mode }}" aria-labelledby="time-mode-{{ time_mode }}"><h2 id="time-mode-{{ time_mode }}">{{ translate('time_mode.' + time_mode) }}</h2>
+{% with p=chart %}{% include 'partials/playtime-chart.html' %}{% endwith %}
+</section>{% endfor %}
+<details class="mt-4"><summary>{{ translate("ui.daily_values") }}</summary><table class="table"><thead><tr><th>{{ translate("ui.day") }}</th><th>{{ translate("ui.playtime") }}</th><th>{{ translate("afk.marked") }}</th><th>{{ translate("afk.remaining_duration") }}</th></tr></thead><tbody>{% for item5 in p['days'] %}<tr><td><a href="{{ ctx['root'] }}maps/index.html#day-{{ item5['date'] }}">{{ item5['date'] }}</a></td><td>{{ item5['duration'] }}</td><td>{{ data['afk']['by_date'][item5['date']]['afk_duration'] }}</td><td>{{ data['afk']['by_date'][item5['date']]['remaining_duration'] }}</td></tr>{% endfor %}</tbody></table></details>{% else %}<p>{{ translate("ui.there_are_no_measured_play_intervals_for_the_chart_yet") }}</p>{% endif %}
+<div id="overview-afk">{% with afk_summary=data["afk"]["summary"] %}{% include "partials/afk-summary.html" %}{% endwith %}</div>
+{% with intensity=data['weekly_intensity'] %}{% include 'basic/weekly-intensity.html' %}{% endwith %}
+{% include "partials/playtime-heatmap.html" %}
+</main></div>{% with ctx=ctx %}{% include "partials/scripts.html" %}{% endwith %}</body></html>

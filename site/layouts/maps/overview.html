@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="{{ language }}" data-bs-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ ctx['title'] }}</title>{% with ctx=ctx %}{% include "partials/assets.html" %}{% endwith %}</head><body><div class="report-shell">{% with ctx=ctx %}{% include "partials/menu.html" %}{% endwith %}<main>
+{% set a = data['analysis'] %}{% set m = data['maps'] %}
+
+<header><p class="eyebrow">{{ translate("ui.path_of_exile_mapping") }}</p><h1>{{ ctx['title'] }}</h1><p>{{ a['source_label'] }} · {{ m['timezone'] }}</p></header>
+<section class="state {% if a['recognition_complete'] %}complete{% else %}incomplete{% endif %}"><h2>{{ a['state'] }}</h2><p>{{ translate("ui.unknown_lines") }} {{ a['unknown_lines'] }} {{ translate("ui.errors_2") }} {{ a['error_lines'] }}{{ translate("ui.all_lines_are_accounted_for") }}</p></section>
+<section class="counts"><div><strong>{{ m['map_count'] }}</strong><span>{{ translate("ui.map_runs") }}</span></div><div><strong>{{ m['arena_count'] }}</strong><span>{{ translate("ui.arena_runs") }}</span></div><div><strong>{{ m['entrances'] }}</strong><span>{{ translate("ui.entries_including_returns") }}</span></div><div><strong>{{ m['unbounded_visits'] }}</strong><span>{{ translate("ui.intervals_with_unknown_boundaries") }}</span></div></section>
+<p>{{ translate("ui.time_with_observed_boundaries") }} <strong>{{ m['seconds'] }} {{ translate("ui.s") }}</strong>{{ translate("ui.including_explicitly_marked_afk") }} {{ m['afk_seconds'] }} {{ translate("ui.s_2") }}</p>
+<section><h2>{{ translate("ui.by_starting_day") }}</h2>
+{% set c = data['map_details_calendar'] %}
+{% if c['months'] %}
+<nav class="month-index" aria-label="{{ translate('ui.months') }}">{% for month in c['months'] %}<a class="btn btn-outline-secondary btn-sm" href="#month-{{ month['id'] }}">{{ month['label'] }}</a>{% endfor %}</nav>
+{% for month in c['months'] %}<section class="card calendar-month" id="month-{{ month['id'] }}">
+<div class="card-header"><h2>{{ month['label'] }}</h2></div>
+<div class="table-responsive"><table class="calendar">
+<caption class="visually-hidden">{{ ctx['title'] }} · {{ month['label'] }}</caption>
+<thead><tr>{% for weekday in [translate('ui.mon'), translate('ui.tue'), translate('ui.wed'), translate('ui.thu'), translate('ui.fri'), translate('ui.sat'), translate('ui.sun')] %}<th scope="col">{{ weekday }}</th>{% endfor %}</tr></thead>
+<tbody>{% for week in month['weeks'] %}<tr>{% for day in week %}
+<td {% if day['current'] %}id="day-{{ day['date'] }}" tabindex="-1"{% endif %} class="{% if not day['current'] %}calendar-outside{% elif day['maps'] %}calendar-active{% endif %}">
+{% if day['current'] %}{% if day['maps'] %}<a href="./{{ day['date'] }}/index.html"><strong>{{ day['number'] }}</strong><span>{{ day['maps']['count'] }} {{ translate('ui.runs') }}</span><small>{{ day['maps']['duration'] }}</small></a>{% else %}<span class="calendar-number">{{ day['number'] }}</span>{% endif %}{% endif %}
+</td>{% endfor %}</tr>{% endfor %}</tbody></table></div></section>{% endfor %}
+{% elif not c['undated'] %}<p>{{ translate('ui.no_confirmed_entries_into_supported_maps_an_entry_requires_area_generation_followed_b') }}</p>{% endif %}
+{% if c['undated'] %}<a id="day-undated" href="./undated/index.html">{{ translate('ui.entry_date_unknown') }} · {{ c['undated']['count'] }} {{ translate('ui.runs') }}</a>{% endif %}
+</section>
+<details><summary>{{ translate("ui.method_and_limitations") }}</summary><section class="explanation">{{ ctx['content'] }}</section>
+<p>{{ translate("ui.generations_without_entry") }} {{ m['diagnostics']['generation_without_entry']|default(0, true) }}{{ translate("ui.entries_without_generation") }} {{ m['diagnostics']['entry_without_generation']|default(0, true) }}{{ translate("ui.gaps_above_the_threshold") }} {{ m['diagnostics']['gap']|default(0, true) }}{{ translate("ui.clock_regressions") }} {{ m['diagnostics']['clock']|default(0, true) }}.</p></details>
+<footer><p>{{ translate("ui.map_model") }} {{ m['version'] }} {{ translate("ui.rules") }} {{ a['rules_version'] }}</p></footer>
+</main></div>{% with ctx=ctx %}{% include "partials/scripts.html" %}{% endwith %}</body></html>

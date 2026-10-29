@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="{{ language }}" data-bs-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ ctx['title'] }}</title>{% include "partials/assets.html" %}</head>
+<body><div class="report-shell">{% include "partials/menu.html" %}<main class="observation-details">
+{% set group = ctx['observation'] %}
+<header><p class="eyebrow">{{ translate('map_observations.title') }} · {{ data['analysis']['timezone'] }}</p><h1>{{ ctx['title'] }}</h1></header>
+{% include "partials/statistics-status.html" %}
+<p><a href="{{ ctx['root'] }}statistics/index.html#map-observations">{{ translate('map_observations.back') }}</a></p>
+<p>{{ translate('map_observations.map_count') }}: {{ group['count'] }}</p>
+<p class="table-note">{{ translate('map_observations.note') }}</p>
+{% include 'partials/observation-analytics.html' %}
+{% macro maps(rows) %}<div class="table-responsive"><table class="table observation-maps">
+<thead><tr><th scope="col">{{ translate('ui.map') }}</th><th scope="col">{{ translate('map_observations.first_entry') }}</th><th scope="col">{{ translate('pace.measured') }}</th><th scope="col">{{ translate('afk.remaining_duration') }}</th><th scope="col">{{ translate('pace.returns') }}</th><th scope="col">{{ translate('map_observations.evidence') }}</th></tr></thead>
+<tbody>{% for row in rows %}<tr><td>{% with ctx={'root': ctx['root'], 'row': row} %}{% include 'partials/map-name.html' %}{% endwith %}<br><a href="{{ ctx['root'] }}{{ row['map_href'] }}">{{ translate('map_observations.map_details') }}</a>{% if not row['identity_complete'] %}<br><small>{{ translate('map_observations.uncertain_identity') }}</small>{% endif %}</td>
+{% set measurement = data['map_observation_analytics']['records'][row['line']|string] %}
+<td>{{ row['entry'] }}</td><td>{{ measurement['duration'] }}<small>{{ translate('afk.marked') }}: {{ measurement['afk_duration'] }}</small></td><td>{{ measurement['remaining_duration'] }}</td><td>{{ measurement['returns'] }}</td>
+<td><ul class="observation-evidence">{% for event in row['evidence'] %}<li><a href="{{ ctx['root'] }}{{ event['href'] }}">{{ event['time'] }} · #{{ event['line'] }}</a>{% if event.get('speaker') %}<br>{{ event['speaker'] }}{% endif %}{% if event.get('hideout') %}<br>{{ event['hideout'] }}{% endif %}</li>{% endfor %}</ul>
+{% if measurement['deaths'] %}<details><summary>{{ translate('flow.deaths') }}: {{ measurement['deaths']|length }}</summary><ul>{% for event in measurement['deaths'] %}<li><a href="{{ ctx['root'] }}{{ event['href'] }}">{{ event['time'] }} · {{ event['character'] }}</a></li>{% endfor %}</ul></details>{% endif %}
+{% if measurement['excluded'] %}<details><summary>{{ translate('pace.excluded') }}</summary>{% for reason in measurement['excluded'] %}<div>{{ translate('pace.reason.' + reason) }}</div>{% endfor %}</details>{% endif %}</td></tr>{% endfor %}</tbody>
+</table></div>{% endmacro %}
+<nav class="flow-month-index" aria-label="{{ translate('flow.months') }}">{% for month in group['months'] %}<a href="#month-{{ month['id'] }}">{{ month['label'] }}</a>{% endfor %}{% if group['undated'] %}<a href="#undated">{{ translate('flow.undated') }}</a>{% endif %}</nav>
+{% for month in group['months'] %}<section id="month-{{ month['id'] }}"><h2>{{ month['label'] }} · {{ month['count'] }}</h2>
+{% for day in month['days'] %}<section id="day-{{ day['date'] }}"><h3>{{ day['label'] }} · {{ day['rows']|length }}</h3>{{ maps(day['rows']) }}</section>{% endfor %}</section>{% endfor %}
+{% if group['undated'] %}<section id="undated"><h2>{{ translate('flow.undated') }}</h2>{{ maps(group['undated']) }}</section>{% endif %}
+</main></div>{% include "partials/scripts.html" %}</body></html>

@@ -1,0 +1,4 @@
+{% set a = data['analysis'] %}
+<p class="data-status">{{ a['state'] }}{% if (not a['recognition_complete']) %} {{ translate("ui.some_events_may_be_missing") }}{% endif %}.
+<a href="{{ ctx['root'] }}technical/index.html">{{ translate("ui.about_the_data") }}</a></p>
+{% if data['report_period']['active'] and ctx['menu'] not in ['events', 'conversations', 'coverage', 'timeline', 'maps', 'issues', 'specification', 'comparison'] %}<p class="table-note">{{ translate('period.summary') }}</p>{% endif %}

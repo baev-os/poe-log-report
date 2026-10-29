@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="{{ language }}" data-bs-theme="dark">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ ctx['title'] }}</title>{% include "partials/assets.html" %}</head>
+<body><div class="report-shell">{% include "partials/menu.html" %}<main>
+{% set summary = data['statistics_summary'] %}
+{% set totals = summary['maps'] %}
+<header><p class="eyebrow">{{ data['report_period']['label'] }} · {{ data['analysis']['timezone'] }}</p><h1>{{ ctx['title'] }}</h1></header>
+{% include "partials/statistics-status.html" %}
+<section class="counts" aria-label="{{ translate('page.statistics') }}">
+  <div><strong>{{ totals['count'] }}</strong><span>{{ translate("stats.map_count") }}</span></div>
+  <div><strong>{{ totals['duration'] }}</strong><span>{{ translate("stats.measured_time") }}</span></div>
+  <div><strong>{{ summary['map_types']|length }}</strong><span>{{ translate("stats.map_types") }}</span></div>
+  <div><strong>{{ totals['incomplete_visits'] }}</strong><span>{{ translate("stats.unmeasured_visits") }}</span></div>
+</section>
+<p class="explanation">{{ translate("stats.map_note") }}</p>
+<p class="table-note">{{ translate("stats.time_note") }}</p>
+<details class="explanation"><summary>{{ translate("stats.calendar_difference") }}</summary><p>{{ translate("stats.calendar_note") }}</p></details>
+{% include "partials/log-observations.html" %}
+{% include "partials/map-observations.html" %}
+<section><h2>{{ translate("stats.by_map_type") }}</h2>
+{% if summary['map_types'] %}
+<label for="map-type-search" class="form-label">{{ translate("stats.find_map") }}</label>
+<input id="map-type-search" type="search" class="form-control mb-3" data-search="map-types">
+<div class="table-responsive" data-results="map-types"><table class="table map-statistics">
+<thead><tr><th scope="col">{{ translate("stats.map_type") }}</th><th scope="col">{{ translate("stats.map_count") }}</th><th scope="col">{{ translate("stats.visits") }}</th><th scope="col">{{ translate("stats.measured_time") }}</th><th scope="col">{{ translate("stats.unmeasured_visits") }}</th></tr></thead>
+<tbody>{% for row in summary['map_types'] %}<tr data-item>
+<td>{% with ctx={'root': ctx['root'], 'row': row} %}{% include "partials/map-name.html" %}{% endwith %}</td>
+<td>{{ row['count'] }}</td><td>{{ row['visits'] }}</td><td>{{ row['duration'] }}</td><td>{{ row['incomplete_visits'] }}</td>
+</tr>{% endfor %}</tbody></table></div>
+<p class="empty-filter" hidden>{{ translate("stats.no_matches") }}</p>
+{% else %}<p>{{ translate("stats.no_maps") }}</p>{% endif %}
+</section>
+<a href="{{ ctx['root'] }}areas/index.html#zone-totals">{{ translate("stats.all_zones") }}</a>
+</main></div>{% include "partials/scripts.html" %}</body></html>

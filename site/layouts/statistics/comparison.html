@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="{{ language }}" data-bs-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ ctx['title'] }}</title>{% include 'partials/assets.html' %}</head>
+<body><div class="report-shell">{% include 'partials/menu.html' %}<main>
+{% set model = data['period_comparison'] %}
+<header><p class="eyebrow">{{ model['timezone'] }}</p><h1>{{ ctx['title'] }}</h1></header>
+{% include 'partials/statistics-status.html' %}
+<div class="comparison-periods">{% for side in ['a', 'b'] %}<section class="card p-3"><h2>{{ translate('comparison.' + side) }}</h2><p>{{ model[side]['period']['label'] }}</p><small>{{ translate('comparison.day_count', count=model[side]['days']) }}</small></section>{% endfor %}</div>
+<p>{{ translate('comparison.intro') }}</p>
+{% if model['overlap'] %}<p class="comparison-notice">{{ translate('comparison.overlap') }}</p>{% endif %}
+<p class="table-note">{{ translate('comparison.missing') }}</p>
+<details class="explanation"><summary>{{ translate('ui.method_and_limitations') }}</summary><p>{{ translate('comparison.method') }}</p><p>{{ translate('period.note') }}</p></details>
+{% for section in model['sections'] %}<section id="comparison-{{ section['code'] }}"><h2>{{ section['title'] }}</h2>
+<p>{{ translate('comparison.' + section['code'] + '_note') }}</p>
+{% if section['code'] == 'mechanics' %}<p class="table-note">{{ translate('comparison.denominators', a=model['a']['observation_maps'], b=model['b']['observation_maps']) }}</p>{% endif %}
+<div class="table-responsive"><table class="table comparison-table"><thead><tr><th scope="col">{{ translate('comparison.metric') }}</th><th scope="col">A</th><th scope="col">B</th><th scope="col">{{ translate('comparison.delta') }}</th><th scope="col">{{ translate('comparison.change') }}</th></tr></thead>
+<tbody>{% for row in section['rows'] %}<tr data-comparison-row="{{ row['code'] }}"><th scope="row">{{ row['label'] }}</th><td>{{ row['a_text'] }}{% if section['code'] == 'mechanics' %}<small>{{ row['a_count'] }} / {{ model['a']['observation_maps'] }}</small>{% endif %}</td><td>{{ row['b_text'] }}{% if section['code'] == 'mechanics' %}<small>{{ row['b_count'] }} / {{ model['b']['observation_maps'] }}</small>{% endif %}</td><td>{{ row['delta_text'] }}</td><td>{{ row['change_text'] }}</td></tr>{% endfor %}</tbody>
+</table></div></section>{% endfor %}
+<p class="table-note">{{ translate('comparison.incomplete', a=model['a']['incomplete_play_intervals'], b=model['b']['incomplete_play_intervals'], za=model['a']['incomplete_zone_visits'], zb=model['b']['incomplete_zone_visits']) }}</p>
+</main></div>{% include 'partials/scripts.html' %}</body></html>

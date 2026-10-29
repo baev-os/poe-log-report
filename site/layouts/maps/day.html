@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="{{ language }}" data-bs-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ ctx['title'] }}</title>{% with ctx=ctx %}{% include "partials/assets.html" %}{% endwith %}</head><body><div class="report-shell">{% with ctx=ctx %}{% include "partials/menu.html" %}{% endwith %}<main class="timeline-day">
+{% set a = data['analysis'] %}{% set d = data['maps']['by_date'][ctx['day']] %}
+
+<header><p class="eyebrow">{{ translate("ui.path_of_exile_map_runs") }}</p><h1>{{ ctx['title'] }}</h1><p>{{ a['source_label'] }} · {{ a['timezone'] }}</p></header>
+<section class="state {% if a['recognition_complete'] %}complete{% else %}incomplete{% endif %}"><h2>{{ a['state'] }}</h2><p>{{ translate("ui.unknown_lines_in_the_full_history") }} {{ a['unknown_lines'] }} {{ translate("ui.errors_2") }} {{ a['error_lines'] }}.</p></section>
+<nav class="day-navigation" aria-label="{{ translate("ui.adjacent_days") }}">
+{% if ctx['previous_day'] %}<a href="../{{ ctx['previous_day'] }}/index.html">← {{ translate("date.entry_unknown") if ctx['previous_day'] == 'undated' else ctx['previous_day'] }}</a>{% endif %}
+<a href="../index.html#day-{{ d['date'] }}">{{ translate("timeline.back_to_calendar") }}</a>
+{% if ctx['next_day'] %}<a href="../{{ ctx['next_day'] }}/index.html">{{ translate("date.entry_unknown") if ctx['next_day'] == 'undated' else ctx['next_day'] }} →</a>{% endif %}
+</nav>
+<div class="table-scroll"><table class="timeline-rows map-detail-rows">
+<caption class="visually-hidden">{{ ctx['title'] }}</caption>
+<thead><tr><th scope="col">{{ translate("timeline.time") }}</th><th scope="col">{{ translate("ui.map") }}</th><th scope="col">{{ translate("ui.duration") }}</th><th scope="col">{{ translate("ui.line_2") }}</th></tr></thead><tbody>
+{% for item2 in d['runs'] %}<tr id="run-{{ item2['id'] }}">
+<td><a href="#run-{{ item2['id'] }}">{% if item2['started_at'] %}<time datetime="{{ item2['started_at'] }}">{{ item2['started_at'][11:19] }}</time>{% else %}—{% endif %}</a></td>
+<td><details class="timeline-record"><summary class="timeline-message" title="{{ item2['name'] }}">{{ item2['name'] }} · {{ item2['kind'] }} {{ translate("ui.level_2") }} {{ item2['level'] }}</summary>
+<div class="timeline-record-body"><h2 class="h6">{{ item2['name'] }}</h2>
+<p><time>{{ item2['started_at']|default(translate("ui.entry_time_unknown"), true) }}</time> · {{ item2['entrances'] }} {{ translate("ui.entries") }} {{ item2['returns'] }} {{ translate("ui.returns") }}</p>
+<p><strong>{{ item2['seconds'] }} {{ translate("ui.s") }}</strong> {{ translate("ui.in_area_afk") }} {{ item2['afk_seconds'] }} {{ translate("ui.s_between_visits") }} {% if (item2['between_visits_seconds'] != none) %}{{ item2['between_visits_seconds'] }} {{ translate("ui.s") }}{% else %}{{ translate("ui.unknown_4") }}{% endif %}</p>
+{% if item2['unbounded_visits'] %}<p class="map-warning">{{ translate("ui.intervals_with_unknown_boundaries_2") }} {{ item2['unbounded_visits'] }}{{ translate("ui.their_duration_is_excluded_from_the_total") }}</p>{% endif %}
+<p>{{ translate("ui.visits_and_evidence_line") }} {{ item2['first_line'] }}</p>
+{% if item2.get('branched') %}<p>{{ translate('history.branch_note') }}</p>{% endif %}
+<dl><dt>{{ translate("ui.area_id") }}</dt><dd><code>{{ item2['area_id'] }}</code></dd><dt>Seed / Instance ID</dt><dd>{{ item2['seed'] }} / {{ item2['instance_id']|default(translate("ui.none"), true) }}</dd><dt>{{ translate("ui.run_record_boundary") }}</dt><dd>{{ item2['end_reason'] }}{% if not item2.get('branched') %} {{ translate("ui.line") }} {{ item2['boundary_line'] }}{% endif %}</dd><dt>{{ translate("ui.unknown_error_lines_within_the_run") }}</dt><dd>{{ item2['uncertain_lines'] }}</dd></dl>
+{% if (not item2['identity_complete']) %}<p>{{ translate("ui.insufficient_identifiers_repeated_entries_are_not_merged") }}</p>{% endif %}
+<ol>{% for item6 in item2['visits'] %}<li><p><time>{{ item6['entered_at']|default(translate("ui.entry_time_unknown"), true) }}</time> → {{ item6['ended_at']|default(translate('reason.branches') if item6.get('branches') else translate("ui.end_unknown"), true) }}<br>
+{{ translate("ui.generation_line") }} {{ item6['generation_line'] }}{{ translate("ui.entry") }} {{ item6['entry_line'] }}{% if not item6.get('branches') %}{{ translate("ui.boundary") }} {{ item6['end_line'] }}{% endif %} ({{ item6['end_reason'] }}){{ translate("ui.level") }} {{ item6['level'] }}.
+{% if item6['bounded'] %} {{ translate("ui.time_in_area") }} {{ item6['seconds'] }} {{ translate("ui.s_afk") }} {{ item6['afk_seconds'] }} {{ translate("ui.s_2") }}{% endif %}</p>
+{% if item6.get('branches') %}<details><summary>{{ translate('history.branch_count', count=item6['branches']|length) }}</summary><ul>{% for branch in item6['branches'] %}<li>{{ branch['entered_at']|default('—', true) }} → {{ branch['ended_at']|default('—', true) }} · {{ translate('ui.line') }} {{ branch['end_line'] }} · {{ translate('reason.' + branch['end_reason_code']) }}{% if branch['bounded'] %} · {{ branch['seconds'] }} {{ translate('ui.s') }}{% endif %}</li>{% endfor %}</ul></details>{% endif %}</li>{% endfor %}</ol>
+<p>{{ translate("ui.death_messages_within_the_map") }} {{ (item2['death_messages']|length) }}{{ translate("ui.character_ownership_is_unknown") }}</p>
+{% if item2['death_messages'] %}<ul>{% for item9 in item2['death_messages'] %}<li>{{ item9['timestamp'] }} {{ translate("ui.line") }} {{ item9['line'] }}</li>{% endfor %}</ul>{% endif %}
+</div></details></td>
+<td class="map-detail-duration">{{ item2['seconds'] }} {{ translate("ui.s") }}{% if item2['unbounded_visits'] %} <span class="map-warning" title="{{ translate('ui.intervals_with_unknown_boundaries_2') }} {{ item2['unbounded_visits'] }}" aria-label="{{ translate('ui.intervals_with_unknown_boundaries_2') }} {{ item2['unbounded_visits'] }}">⚠</span>{% endif %}</td>
+<td><a href="#run-{{ item2['id'] }}">#{{ item2['first_line'] }}</a></td>
+</tr>{% endfor %}</tbody></table></div>
+<details class="timeline-notes"><summary>{{ translate("ui.method_and_limitations") }}</summary><div class="explanation">{{ ctx['content'] }}</div></details>
+</main></div>{% with ctx=ctx %}{% include "partials/scripts.html" %}{% endwith %}</body></html>

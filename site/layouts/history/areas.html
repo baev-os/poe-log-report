@@ -1,0 +1,10 @@
+<!doctype html><html lang="{{ language }}" data-bs-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{{ ctx['title'] }}</title>{% with ctx=ctx %}{% include "partials/assets.html" %}{% endwith %}</head><body><div class="report-shell">{% with ctx=ctx %}{% include "partials/menu.html" %}{% endwith %}<main>
+<header><p class="eyebrow">{{ translate("ui.player_history") }} {{ data['analysis']['timezone'] }}</p><h1>{{ ctx['title'] }}</h1></header>{% with ctx=ctx %}{% include "partials/statistics-status.html" %}{% endwith %}
+{% include "partials/zone-summary.html" %}
+<h2>{{ translate("stats.area_visits") }}</h2>
+<p>{{ translate("ui.campaign_and_endgame_areas_towns_and_hideouts_maps_and_boss_arenas_are_counted_separa") }}</p>
+<label for="area-search" class="form-label">{{ translate("ui.find_an_area") }}</label><input id="area-search" type="search" class="form-control mb-4" data-search="areas">
+<label for="area-kind" class="form-label">{{ translate("ui.area_type") }}</label><select id="area-kind" class="form-select mb-4" data-category="areas"><option value="">{{ translate("ui.all_areas") }}</option>{% for item1 in data['area_history']['kinds'] %}<option>{{ item1 }}</option>{% endfor %}</select>
+<p>{{ translate("ui.visits") }} {{ data['area_history']['count'] }}</p>
+<div class="table-responsive" data-results="areas"><table class="table map-statistics"><thead><tr><th>{{ translate("ui.area") }}</th><th>{{ translate("ui.type") }}</th><th>{{ translate("ui.entry_2") }}</th><th>{{ translate("ui.exit") }}</th><th>{{ translate("ui.duration") }}</th></tr></thead><tbody>{% for item2 in data['area_history']['rows'] %}<tr data-item data-kind="{{ item2['kind'] }}"><td>{{ item2['name'] }}{% with item3=item2['position_note']|default(none) %}{% if item3 %}<br><small>{{ item3 }}</small>{% endif %}{% endwith %}</td><td>{{ item2['kind'] }}</td><td>{{ item2['entry'] }}</td><td>{{ item2['exit'] }}</td><td>{{ item2['duration'] }}</td></tr>{% endfor %}</tbody></table></div>
+</main></div>{% with ctx=ctx %}{% include "partials/scripts.html" %}{% endwith %}</body></html>

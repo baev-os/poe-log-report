@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="{{ language }}" data-bs-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ ctx['title'] }}</title>{% with ctx=ctx %}{% include "partials/assets.html" %}{% endwith %}</head>
+<body><div class="report-shell">{% with ctx=ctx %}{% include "partials/menu.html" %}{% endwith %}<main>
+{% set a = data['analysis'] %}{% set s = data['map_statistics'] %}
+<header><p class="eyebrow">{{ translate("ui.game_statistics") }}</p><h1>{{ ctx['title'] }}</h1>
+<p class="source">{{ a['source_label'] }} · {{ s['timezone'] }}</p></header>
+{% with ctx=ctx %}{% include "partials/statistics-status.html" %}{% endwith %}
+{% with ctx=ctx %}{% include "partials/playtime.html" %}{% endwith %}
+<section class="explanation">{{ ctx['content'] }}</section>
+{% set c = data['calendar'] %}
+{% if c['months'] %}<nav class="month-index" aria-label="{{ translate("ui.months") }}">{% for item2 in c['months'] %}<a class="btn btn-outline-secondary btn-sm" href="#month-{{ item2['id'] }}">{{ item2['label'] }}</a>{% endfor %}</nav>
+{% for item3 in c['months'] %}<section class="card calendar-month" id="month-{{ item3['id'] }}"><div class="card-header"><h2>{{ item3['label'] }}</h2></div><div class="table-responsive"><table class="calendar"><caption class="visually-hidden">{{ translate("ui.maps_2") }} {{ item3['label'] }}</caption><thead><tr>{% for item4 in [translate("ui.mon"), translate("ui.tue"), translate("ui.wed"), translate("ui.thu"), translate("ui.fri"), translate("ui.sat"), translate("ui.sun")] %}<th scope="col">{{ item4 }}</th>{% endfor %}</tr></thead><tbody>
+{% for item5 in item3['weeks'] %}<tr>{% for item6 in item5 %}<td {% if item6['current'] %}id="day-{{ item6['date'] }}" tabindex="-1"{% endif %} class="{% if (not item6['current']) %}calendar-outside{% elif item6['maps'] %}calendar-active{% endif %}">{% if item6['current'] %}{% if item6['maps'] or item6['areas'] %}<a href="{{ ctx['root'] }}maps/{{ item6['date'] }}/index.html"><strong>{{ item6['number'] }}</strong>{% if item6['maps'] %}<span>{{ item6['maps']['count'] }} {{ translate("ui.maps_3") }}</span><small>{{ item6['maps']['duration'] }}</small>{% else %}<span>{{ translate('stats.visits') }}: {{ item6['areas']['visits'] }}</span><small>{{ item6['areas']['duration'] }}</small>{% endif %}</a>{% else %}<span class="calendar-number">{{ item6['number'] }}</span>{% endif %}{% set issue_day = data["stability"]["by_date"].get(item6["date"]) %}{% if issue_day %}<a class="calendar-issue" href="{{ ctx['root'] }}technical/issues/index.html#{{ issue_day['anchor'] }}">{{ translate("stability.calendar", count=issue_day["count"]) }}</a>{% endif %}{% endif %}</td>{% endfor %}</tr>{% endfor %}
+</tbody></table></div></section>{% endfor %}{% else %}<p>{{ translate("ui.no_maps_with_a_known_date_yet") }}</p>{% endif %}
+{% with item10=c['undated']|default(none) %}{% if item10 %}<a href="{{ ctx['root'] }}maps/undated/index.html">{{ translate("ui.unknown_date") }} {{ item10['count'] }} {{ translate("ui.maps_3") }}</a>{% endif %}{% endwith %}
+{% if c['undated_areas'] and not c['undated'] %}<a href="{{ ctx['root'] }}maps/undated/index.html">{{ translate("date.entry_unknown") }} · {{ c['undated_areas']['zone_totals']['visits'] }}</a>{% endif %}
+</main></div>{% with ctx=ctx %}{% include "partials/scripts.html" %}{% endwith %}</body></html>

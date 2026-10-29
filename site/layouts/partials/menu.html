@@ -1,0 +1,40 @@
+{% set root = ctx['root'] %}
+<aside class="report-menu">
+<a class="report-brand" href="{{ root }}index.html">Path of Exile<span>{{ translate("ui.game_history") }}</span></a>
+<button type="button" class="btn btn-outline-light theme-toggle" data-theme-toggle aria-pressed="true" hidden>{{ translate("ui.dark_theme") }}</button>
+{% set period = data['report_period'] %}
+<div class="report-period"><span>{{ translate('period.title') }}</span><strong>{{ period['label'] }}</strong>{% if period['active'] %}<small>{{ period['timezone'] }}</small><details><summary>{{ translate('ui.method_and_limitations') }}</summary><p>{{ translate('period.note') }}</p><p>{{ translate('period.change') }}</p></details>{% endif %}</div>
+{% if period['active'] and ctx['menu'] in ['search', 'events', 'conversations', 'coverage', 'timeline', 'maps', 'issues', 'specification'] %}<p class="period-context">{{ translate('period.context') }}</p>{% endif %}
+<nav aria-label="{{ translate("ui.report_menu") }}">
+{% if data.get('basic_block', false) %}<section><h2>{{ translate('basic.basic') }}</h2>
+{% for path, key in [('index.html', 'graphs'), ('characters/index.html', 'characters'), ('maps/index.html', 'maps'), ('calendar/index.html', 'calendar'), ('conversations/index.html', 'conversations')] %}
+<a href="{{ root }}basic/{{ path }}">{{ translate('basic.' + key) }}</a>{% endfor %}</section>{% endif %}
+<section><h2>{{ translate('basic.extended') if data.get('basic_block', false) else translate("ui.game_statistics_2") }}</h2>
+{% for item in [
+{"path": "playtime", "menu": "playtime", "title": translate("ui.playtime")},
+{"path": "maps", "menu": "statistics", "title": translate("ui.map_calendar")},
+{"path": "characters", "menu": "characters", "title": translate("page.characters")},
+{"path": "activities", "menu": "activities", "title": translate("page.activities")},
+{"path": "statistics", "menu": "summary", "title": translate("nav.maps")},
+{"path": "areas", "menu": "areas", "title": translate("ui.game_areas")},
+{"path": "sessions", "menu": "sessions", "title": translate("sessions.title")},
+{"path": "loading", "menu": "loading", "title": translate("page.loading")},
+{"path": "pace", "menu": "pace", "title": translate("page.pace")},
+{"path": "explore", "menu": "explore", "title": translate("explorer.title")},
+{"path": "analytics/rhythm", "menu": "analytics", "title": translate("analytics.title")},
+{"path": "flow", "menu": "flow", "title": translate("ui.map_stream")},
+{"path": "search", "menu": "search", "title": translate("search.title")},
+{"path": "events", "menu": "events", "title": translate("ui.event_history")},
+{"path": "conversations", "menu": "conversations", "title": translate("ui.conversations")}
+] %}<a href="{{ root }}{{ item['path'] }}/index.html" {% if ctx['menu'] == item['menu'] %}aria-current="page"{% endif %}>{{ item['title'] }}</a>{% endfor %}
+{% if data['period_comparison']['enabled'] %}<a href="{{ root }}comparison/index.html" {% if ctx['menu'] == 'comparison' %}aria-current="page"{% endif %}>{{ translate('comparison.title') }}</a>{% endif %}</section>
+<section><h2>{{ translate("ui.technical_data_2") }}</h2>
+<a href="{{ root }}technical/index.html" {% if (ctx['menu'] == "coverage") %}aria-current="true"{% endif %}>{{ translate("ui.coverage") }}</a>
+<a href="{{ root }}technical/timeline/index.html" {% if (ctx['menu'] == "timeline") %}aria-current="true"{% endif %}>{{ translate("ui.event_accounting") }}</a>
+<a href="{{ root }}technical/maps/index.html" {% if (ctx['menu'] == "maps") %}aria-current="true"{% endif %}>{{ translate("ui.maps_details") }}</a>
+<a href="{{ root }}technical/issues/index.html" {% if (ctx['menu'] == "issues") %}aria-current="true"{% endif %}>{{ translate("ui.technical_issues") }}</a>
+<a href="{{ root }}technical/specification/index.html" {% if (ctx['menu'] == "specification") %}aria-current="true"{% endif %}>{{ translate("ui.log_specification") }}</a>
+</section></nav>
+{% if data.get('pdf_href') %}<a class="report-pdf" href="{{ root }}{{ data['pdf_href'] }}" download="report.pdf"><span class="report-pdf-icon" aria-hidden="true">PDF</span><span>{{ translate("pdf.download") }}</span></a>{% endif %}
+<p class="project-notice">{{ translate("ui.independent_project_notice") }}</p>
+</aside>

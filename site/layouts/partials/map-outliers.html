@@ -1,0 +1,42 @@
+{% set outliers = data['map_outliers'] %}
+<section id="outliers">
+<h2>{{ translate('pace.outliers') }}</h2>
+<p>{{ translate('outliers.intro') }}</p>
+<details class="outlier-method"><summary>{{ translate('ui.method_and_limitations') }}</summary>
+<p>{{ translate('outliers.method', peers=outliers['minimum_peers'], factor=outliers['factor'], seconds=outliers['minimum_excess_seconds']) }}</p>
+<p>{{ translate('outliers.context_note') }}</p></details>
+{% for mode, result in outliers['modes'].items() %}
+<div data-map-duration-panel="{{ mode }}" data-outlier-mode="{{ mode }}">
+<h3>{{ translate('time_mode.' + mode) }}</h3>
+<p>{{ translate('outliers.summary', found=result['count'], compared=result['compared'], insufficient=result['insufficient'], excluded=result['excluded']) }}</p>
+{% if result['rows'] %}
+<div class="table-scroll"><table class="outlier-table"><thead><tr>
+<th>{{ translate('stats.map_type') }}</th><th>{{ translate('characters.date_time') }}</th><th>{{ translate('map_duration.selected') }}</th><th>{{ translate('outliers.median') }}</th><th>{{ translate('outliers.excess') }}</th><th>{{ translate('outliers.peers') }}</th>
+</tr></thead><tbody>
+{% for row in result['rows'] %}
+<tr id="outlier-{{ mode }}-{{ row['line'] }}" data-outlier-row>
+<th scope="row">{{ map_name(row) }}<small>{{ translate('explorer.level') }}: {{ row['level'] }}</small></th>
+<td><a href="../{{ row['href'] }}">{{ row['entry'] }}</a></td><td>{{ row['selected_duration'] }}</td><td>{{ row['median_duration'] }}</td><td>+{{ row['excess_duration'] }}<small>{{ row['percent_label'] }}</small></td><td>{{ row['peers'] }}</td>
+</tr>
+<tr class="outlier-context"><td colspan="6"><details><summary>{{ translate('outliers.context', returns=row['returns'], deaths=row['context']['deaths']|length, mechanics=row['context']['mechanics']|length) }}</summary>
+<p>{{ translate('time_mode.all') }}: {{ row['duration'] }} · {{ translate('afk.marked') }}: {{ row['afk_duration'] }} · {{ translate('afk.remaining_duration') }}: {{ row['remaining_duration'] }}{% if row['session_href'] %} · <a href="../{{ row['session_href'] }}">{{ translate('sessions.detail') }}</a>{% endif %}</p>
+<h4>{{ translate('explorer.visits') }}</h4>
+<ul>{% for visit in row['context']['visits'] %}<li><a href="../{{ visit['visit_href'] }}">{{ visit['day_label'] }} {{ visit['entry'] }}</a> · {{ visit['duration'] }} · {{ translate('afk.marked') }}: {{ visit['afk_duration'] }} · {{ translate('afk.remaining_duration') }}: {{ visit['remaining_duration'] }} · <a href="../{{ visit['href'] }}">#{{ visit['line'] }}</a></li>{% endfor %}</ul>
+<h4>{{ translate('flow.deaths') }}</h4>
+{% if row['context']['deaths'] %}<ul>{% for event in row['context']['deaths'] %}<li><a href="../{{ event['href'] }}">{{ event['time'] }} · {{ event['character'] }} · {{ translate('event_title.' + event['code']) }}</a></li>{% endfor %}</ul>{% else %}<p>{{ translate('outliers.no_events') }}</p>{% endif %}
+<h4>{{ translate('explorer.mechanic') }}</h4>
+{% if row['context']['mechanics'] %}<ul>{% for event in row['context']['mechanics'] %}<li><a href="../{{ event['href'] }}">{{ translate('mechanic.' + event['code']) }} · #{{ event['line'] }}</a></li>{% endfor %}</ul>{% else %}<p>{{ translate('outliers.no_events') }}</p>{% endif %}
+<h4>{{ translate('outliers.return_gaps') }}</h4><p class="table-note">{{ translate('outliers.gap_note') }}</p>
+{% if row['context']['gaps'] %}<ul>{% for gap in row['context']['gaps'] %}<li><a href="../{{ gap['from_href'] }}">{{ gap['start'] }}</a> → <a href="../{{ gap['to_href'] }}">{{ gap['end'] }}</a> · {{ gap['duration'] }} · {{ translate('afk.marked') }}: {{ gap['afk_duration'] }} · {{ translate('afk.remaining_duration') }}: {{ gap['remaining_duration'] }}</li>{% endfor %}</ul>{% else %}<p>{{ translate('outliers.no_gaps') }}</p>{% endif %}
+</details></td></tr>
+{% endfor %}
+</tbody></table></div>
+{% elif result['compared'] %}<p class="empty">{{ translate('outliers.none') }}</p>{% else %}<p class="empty">{{ translate('outliers.insufficient') }}</p>{% endif %}
+<details class="outlier-samples"><summary>{{ translate('outliers.samples') }}</summary>
+<p>{{ translate('outliers.sample_note', peers=outliers['minimum_peers']) }}</p>
+{% if result['groups'] %}<div class="table-scroll"><table><thead><tr><th>{{ translate('stats.map_type') }}</th><th>{{ translate('explorer.level') }}</th><th>{{ translate('pace.count') }}</th><th>{{ translate('field.status') }}</th></tr></thead><tbody>
+{% for group in result['groups'] %}<tr><th scope="row"><a href="../{{ group['href'] }}">{{ group['name'] }}</a><small>{{ group['area_id'] }}</small></th><td>{{ group['level'] }}</td><td>{{ group['count'] }}</td><td>{{ translate('outliers.ready' if group['ready'] else 'outliers.insufficient') }}</td></tr>{% endfor %}
+</tbody></table></div>{% else %}<p>{{ translate('outliers.no_groups') }}</p>{% endif %}
+</details></div>
+{% endfor %}
+</section>

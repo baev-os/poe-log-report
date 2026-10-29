@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="{{ language }}" data-bs-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ ctx['title'] }}</title>{% with ctx=ctx %}{% include "partials/assets.html" %}{% endwith %}</head>
+<body><div class="report-shell">{% with ctx=ctx %}{% include "partials/menu.html" %}{% endwith %}<main>
+{% set a = data['analysis'] %}{% set f = data['map_flow'] %}
+<header><p class="eyebrow">{{ translate("ui.game_statistics") }}</p><h1>{{ ctx['title'] }}</h1>
+<p class="source">{{ a['source_label'] }} · {{ a['timezone'] }}</p></header>
+{% with ctx=ctx %}{% include "partials/statistics-status.html" %}{% endwith %}{% with ctx=ctx %}{% include "partials/playtime.html" %}{% endwith %}
+<details class="explanation"><summary>{{ translate('ui.method_and_limitations') }}</summary>{{ ctx['content'] }}</details>
+<p>{{ translate("ui.visits") }} {{ f['count'] }} {{ translate("ui.time_in_maps") }} {{ f['duration'] }}{% if f['incomplete'] %} {{ translate("ui.partially_measured") }}{% endif %} · {{ translate('flow.deaths') }}: {{ f['death_count'] }}</p>
+<p class="muted">{{ translate('flow.observations_note') }}</p>
+{% macro totals(group) %}<span class="flow-totals">{{ translate('stats.visits') }}: {{ group['count'] }} · {{ translate('stats.measured_time') }}: {{ group['duration'] }}{% if group['incomplete'] %} · {{ translate('stats.unmeasured_visits') }}: {{ group['incomplete'] }}{% endif %}</span>{% endmacro %}
+{% macro visits(rows) %}<div class="table-scroll"><table class="map-statistics">
+<thead><tr><th scope="col">{{ translate("ui.map") }}</th><th scope="col">{{ translate("ui.entry_time") }}</th><th scope="col">{{ translate("ui.exit_time") }}</th><th scope="col">{{ translate("ui.duration") }}</th><th scope="col">{{ translate('flow.observations') }}</th></tr></thead>
+<tbody>{% for item3 in rows %}<tr><td>{% with ctx={"row": item3, "root": ctx['root']} %}{% include "partials/map-name.html" %}{% endwith %}{% if item3['position_note'] %}<br><small>{{ item3['position_note'] }}</small>{% endif %}</td><td>{% if item3['entered_at'] %}<time datetime="{{ item3['entered_at'] }}">{{ item3['entry'] }}</time>{% else %}—{% endif %}</td>
+<td>{% if item3['exited_at'] %}<time datetime="{{ item3['exited_at'] }}">{{ item3['exit'] }}</time>{% else %}{{ item3['exit'] }}{% endif %}
+{% if item3['branches'] %}<details class="flow-deaths"><summary>{{ translate('history.branch_count', count=item3['branches']|length) }}</summary><p>{{ translate('history.branch_note') }}</p><ol>{% for branch in item3['branches'] %}<li>{{ branch['entry'] }} → {{ branch['exit'] }} · <a href="{{ ctx['root'] }}{{ branch['end_href'] }}">#{{ branch['end_line'] }}</a>{% if branch['evidence'] %}<ul>{% for event in branch['evidence'] %}<li><a href="{{ ctx['root'] }}{{ event['href'] }}">#{{ event['line'] }}</a> · {{ event['time'] }} · {{ event.get('code', event.get('speaker', event.get('character', ''))) }}</li>{% endfor %}</ul>{% endif %}</li>{% endfor %}</ol></details>{% endif %}
+</td><td>{{ item3['duration'] }}{% if item3['incomplete'] %}<br><small>{{ translate('ui.partially_measured') }}</small>{% endif %}</td><td class="flow-observations">
+{% if item3['mechanics'] %}<ul class="flow-mechanics" aria-label="{{ translate('flow.mechanics') }}">{% for mechanic in item3['mechanics'] %}<li><a class="flow-mechanic" href="{{ ctx['root'] }}{{ mechanic['href'] }}" title="{{ mechanic['time'] }} · #{{ mechanic['line'] }}">{{ translate('mechanic.' + mechanic['code']) }}</a></li>{% endfor %}</ul>{% endif %}
+{% if item3['discoveries'] %}<ul class="flow-mechanics" aria-label="{{ translate('flow.discoveries') }}">{% for event in item3['discoveries'] %}<li><a class="flow-mechanic" href="{{ ctx['root'] }}{{ event['href'] }}" title="{{ event['time'] }} · #{{ event['line'] }}{% if event['hideout'] %} · {{ event['hideout'] }}{% endif %}">{{ translate('discovery.' + event['code']) }}</a></li>{% endfor %}</ul>{% endif %}
+{% if item3['death_messages'] %}<details class="flow-deaths"><summary>{{ translate('flow.deaths') }}: {{ item3['death_messages']|length }}</summary><ul>{% for death in item3['death_messages'] %}<li><a href="{{ ctx['root'] }}{{ death['href'] }}">{{ death['character'] }}</a> · {{ death['time'] }}{% if death['code'] == 'screen.suicide' %} · {{ translate('event_title.screen.suicide') }}{% endif %}</li>{% endfor %}</ul></details>{% endif %}
+{% if item3['mercenaries'] %}<details class="flow-deaths flow-mercenaries"><summary>{{ translate('flow.mercenaries') }}: {{ item3['mercenaries']|length }}</summary><ul>{% for mercenary in item3['mercenaries'] %}<li><a href="{{ ctx['root'] }}{{ mercenary['href'] }}">{{ mercenary['speaker'] }}</a><span class="muted">{{ mercenary['time'] }}</span><q>{{ mercenary['utterance'] }}</q></li>{% endfor %}</ul></details>{% endif %}
+{% if not item3['mechanics'] and not item3['death_messages'] and not item3['discoveries'] and not item3['mercenaries'] %}<span class="muted">—</span>{% endif %}
+</td></tr>{% endfor %}</tbody>
+</table></div>{% endmacro %}
+{% if f['rows'] %}
+<nav class="flow-month-index" aria-label="{{ translate('flow.months') }}">{% for month in f['months'] %}<a href="#month-{{ month['id'] }}">{{ month['label'] }}</a>{% endfor %}{% if f['undated']['count'] %}<a href="#flow-undated">{{ translate('flow.undated') }}</a>{% endif %}</nav>
+{% for month in f['months'] %}<section class="flow-month" id="month-{{ month['id'] }}">
+<h2>{{ month['label'] }}</h2><p>{{ totals(month) }}</p>
+{% for day in month['days'] %}<details class="flow-day" id="flow-day-{{ day['date'] }}" open>
+<summary><time datetime="{{ day['date'] }}">{{ day['label'] }}</time> {{ totals(day) }}</summary>
+{{ visits(day['rows']) }}
+</details>{% endfor %}</section>{% endfor %}
+{% if f['undated']['count'] %}<section class="flow-month" id="flow-undated"><h2>{{ translate('flow.undated') }}</h2><p>{{ totals(f['undated']) }}</p>{{ visits(f['undated']['rows']) }}</section>{% endif %}
+{% else %}<p class="empty">{{ translate("ui.no_map_visits_found") }}</p>{% endif %}
+</main></div>{% with ctx=ctx %}{% include "partials/scripts.html" %}{% endwith %}</body></html>

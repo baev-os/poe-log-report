@@ -1,0 +1,8 @@
+{% extends 'basic/base.html' %}{% block body %}<section class="panel" data-chat>
+<div class="controls" data-chat-controls hidden><label>{{ translate('basic.sort') }} <select class="form-select form-select-sm" data-chat-sort><option value="utc">{{ translate('basic.by_date') }}</option><option value="character">{{ translate('basic.by_character') }}</option><option value="channel">{{ translate('basic.by_channel') }}</option></select></label>
+<label>{{ translate('basic.search') }} <input class="form-control form-control-sm" type="search" data-chat-search></label></div>
+<p data-chat-count role="status">{{ data['basic']['messages']|length }} {{ translate('ui.messages_2') }}</p>
+<div data-chat-list>{% for day, messages in data['basic']['messages']|groupby('day') %}<details class="chat-group" data-chat-group><summary>{{ day }} · {{ messages|length }}</summary><ol class="chat-list">{% for row in messages %}<li class="chat-message color-{{ row['color'] }}" data-message data-day="{{ row['day'] }}" data-utc="{{ row['utc'] }}" data-character="{{ row['character'] }}" data-channel="{{ row['channel'] }}" data-conversation="{{ row['conversation'] }}">
+<div class="chat-meta"><time datetime="{{ row['timestamp'] or '' }}">{{ row['time'] }}</time><span class="channel">{{ row['channel'] }} · {{ row['conversation'] }}</span></div>
+<p><strong class="character">{{ row['direction'] }} {{ row['character'] }}</strong><span class="message-text">{{ row['text'] }}</span></p></li>{% endfor %}</ol></details>{% else %}<p>{{ translate('basic.empty') }}</p>{% endfor %}</div>
+</section>{% endblock %}

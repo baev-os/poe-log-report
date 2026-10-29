@@ -1,0 +1,23 @@
+{% set observations = data['map_observations'] %}
+{% macro totals(group) %}<p class="table-note">{{ translate('map_observations.totals', maps=group['map_count'], observed=group['observed_maps']) }}{% if group['unconfirmed_maps'] %} · {{ translate('map_observations.unconfirmed', count=group['unconfirmed_maps']) }}{% endif %}</p>{% endmacro %}
+{% macro counts(group, anchor='', show_zero=false) %}
+{{ totals(group) }}
+{% if group['observed_maps'] or show_zero %}<div class="table-responsive"><table class="table observation-counts">
+<thead><tr><th scope="col">{{ translate('map_observations.kind') }}</th><th scope="col">{{ translate('map_observations.map_count') }}</th>{% if not anchor %}<th scope="col">{{ translate('observation_analytics.share') }}</th>{% endif %}</tr></thead>
+<tbody>{% for row in group['rows'] %}{% if row['count'] or show_zero %}<tr><td>{{ translate(row['label_key']) }}</td><td>{% if row['count'] %}<a href="{{ ctx['root'] }}{{ row['href'] }}{% if anchor %}#{{ anchor }}{% endif %}" aria-label="{{ translate('map_observations.open_maps', kind=translate(row['label_key']), count=row['count']) }}">{{ row['count'] }}</a>{% else %}0{% endif %}</td>{% if not anchor %}<td>{{ data['map_observation_analytics']['by_code'][row['code']]['share_label'] }}</td>{% endif %}</tr>{% endif %}{% endfor %}</tbody>
+</table></div>{% else %}<p class="muted">{{ translate('map_observations.empty') }}</p>{% endif %}
+{% endmacro %}
+<section id="map-observations">
+<h2>{{ translate('map_observations.title') }}</h2>
+<p>{{ translate('map_observations.note') }}</p>
+<p class="table-note">{{ translate('map_observations.open_hint') }}</p>
+<details class="explanation"><summary>{{ translate('ui.method_and_limitations') }}</summary><p>{{ translate('period.mechanics' if data['report_period']['active'] else 'map_observations.method') }}</p></details>
+<h3>{{ data['report_period']['label'] }}</h3>
+{{ counts(observations, show_zero=true) }}
+{% if observations['months'] %}<details class="observation-periods"><summary>{{ translate('map_observations.by_period') }}</summary>
+{% for month in observations['months'] %}<details class="observation-month" id="observations-month-{{ month['id'] }}"><summary>{{ month['label'] }} · {{ month['map_count'] }}</summary>
+{{ counts(month, 'month-' + month['id']) }}
+{% for day in month['days'] %}<details class="observation-day"><summary>{{ day['label'] }} · {{ day['map_count'] }}</summary>{{ counts(day, 'day-' + day['date']) }}</details>{% endfor %}
+</details>{% endfor %}</details>{% endif %}
+{% if observations['undated']['map_count'] %}<details><summary>{{ translate('flow.undated') }}</summary>{{ counts(observations['undated'], 'undated') }}</details>{% endif %}
+</section>

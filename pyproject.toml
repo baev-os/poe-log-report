@@ -1,0 +1,38 @@
+[project]
+name = "poe-log-analyze"
+version = "0.1.0"
+description = "Reproducible line-by-line analysis of Path of Exile 1 logs"
+requires-python = ">=3.14,<3.15"
+license = "MIT"
+dependencies = ["Jinja2==3.1.6", "MarkupSafe==3.0.3", "Markdown==3.10.3", "reportlab==5.0.1", "pillow==12.3.0", "charset-normalizer==3.5.1", "tzdata==2026.4; sys_platform == 'win32'"]
+
+[project.optional-dependencies]
+desktop = ["tzdata==2026.4"]
+
+[tool.mypy]
+python_version = "3.14"
+mypy_path = "src"
+cache_dir = "build/mypy-cache"
+strict = true
+follow_imports = "silent"
+files = [
+    "src/poe_log_analyze/core",
+    "src/poe_log_analyze/Bootstrap.py",
+    "src/poe_log_analyze/cli/AnalysisCli.py",
+    "src/poe_log_analyze/cli/ReportCli.py",
+    "src/poe_log_analyze/desktop/GenerateReportAction.py",
+    "src/poe_log_analyze/stages/preparation/PrepareInputs.py",
+    "src/poe_log_analyze/stages/preparation/PreparedInputs.py",
+    "src/poe_log_analyze/stages/preparation/AnalysisSummaryReader.py",
+    "src/poe_log_analyze/stages/parsing/ParseLogs.py",
+    "src/poe_log_analyze/stages/parsing/ParsedLogs.py",
+    "src/poe_log_analyze/stages/reconstruction/SourceHistory.py",
+    "src/poe_log_analyze/stages/reconstruction/ReconstructHistory.py",
+    "src/poe_log_analyze/stages/merging/UnifiedHistory.py",
+    "src/poe_log_analyze/stages/merging/MergeHistory.py",
+    "src/poe_log_analyze/stages/composition/ComposeReport.py",
+    "src/poe_log_analyze/stages/composition/ReportContent.py",
+    "src/poe_log_analyze/stages/rendering/RenderReport.py",
+    "src/poe_log_analyze/stages/rendering/RenderedReport.py",
+    "src/poe_log_analyze/stages/verification/VerifyReport.py",
+]

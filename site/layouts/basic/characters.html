@@ -1,0 +1,16 @@
+{% extends 'basic/base.html' %}{% block body %}
+<p class="note">{{ translate('basic.character_note') }}</p>
+{% if data['basic']['characters']['characters'] %}<section class="panel"><div class="table-scroll"><table class="character-list">
+<thead><tr>{% for key in ['field.character', 'field.class', 'characters.first', 'characters.last', 'characters.level_count', 'characters.deaths'] %}<th scope="col">{{ translate(key) }}</th>{% endfor %}</tr></thead>
+<tbody>{% for character in data['basic']['characters']['characters'] %}<tr><th scope="row"><a href="#character-{{ character['id'] }}">{{ character['name'] }}</a></th><td>{{ character['classes']|join(' / ') or '—' }}</td><td>{{ character['first']['level'] if character['first'] else '—' }}</td><td>{{ character['last']['level'] if character['last'] else '—' }}</td><td>{{ character['count'] }}</td><td>{{ character['deaths']['count'] }}</td></tr>{% endfor %}</tbody>
+</table></div></section>{% endif %}
+{% for character in data['basic']['characters']['characters'] %}<section class="panel" id="character-{{ character['id'] }}"><h2>{{ character['name'] }}</h2><p>{{ character['classes']|join(' / ') or '—' }}</p>
+{% for chart in character['charts'] %}{% if chart['kind'] != 'all' %}<h3>{{ translate('characters.' + chart['kind']) }}</h3>{% endif %}
+{% if chart['events'] %}<div class="chart-scroll"><svg class="character-chart" viewBox="0 0 1000 270" role="group" aria-label="{{ translate('characters.chart_title', name=character['name']) }}">
+<text x="8" y="18">{{ translate('field.level') }}</text>
+{% for tick in chart['ticks'] %}<line class="grid" x1="60" x2="940" y1="{{ tick['y'] }}" y2="{{ tick['y'] }}"/><text x="8" y="{{ tick['y'] }}">{{ tick['level'] }}</text>{% endfor %}
+{% for segment in chart['segments'] %}<line data-chart-line class="character-line" x1="{{ segment['start']['x'] }}" y1="{{ segment['start']['y'] }}" x2="{{ segment['end']['x'] }}" y2="{{ segment['end']['y'] }}"/>{% endfor %}
+{% for event in chart['events'] %}<circle cx="{{ event['x'] }}" cy="{{ event['y'] }}" r="4" tabindex="0"><title>{{ event['label'] }} · {{ translate('characters.level_value', level=event['level']) }} · {{ event['class'] }}</title></circle>{% endfor %}
+{% for death in chart['deaths'] %}<path class="death-marker" d="M {{ death['x'] - 5 }} 216 l 10 10 m -10 0 l 10 -10" tabindex="0"><title>{{ translate('characters.death_marker', time=death['time'], count=death['count']) }}</title></path>{% endfor %}
+{% for tick in chart['time_ticks'] %}<text x="{{ tick['x'] }}" y="240" text-anchor="{{ 'start' if loop.first else 'end' if loop.last else 'middle' }}">{{ tick['date'] }}<tspan x="{{ tick['x'] }}" dy="16">{{ tick['time'] }}</tspan></text>{% endfor %}
+</svg></div>{% else %}<p>{{ translate('characters.range_empty') }}</p>{% endif %}{% endfor %}</section>{% else %}<p>{{ translate('basic.empty') }}</p>{% endfor %}{% endblock %}

@@ -1,0 +1,659 @@
+{
+  "version": "1",
+  "metadata": {
+    "target": "Linux",
+    "libraries": {
+      "libbz2.so.1.0": {
+        "package": "libbz2-1.0",
+        "version": "1.0.8-6ubuntu0.1",
+        "notice": "native/libbz2-1.0/copyright",
+        "original_sha256": "7138aeb748f73c150b1d34d67de69139a441910cd7b269076ba3c8b986dea9a7"
+      },
+      "libcrypto.so.3": {
+        "package": "libssl3t64",
+        "version": "3.5.5-1ubuntu3.7",
+        "notice": "native/libssl3t64/copyright",
+        "original_sha256": "5385f0436ac2e284ba8c5fb1488874057c29c04be72dea32add832694f381e28"
+      },
+      "libexpat.so.1": {
+        "package": "libexpat1",
+        "version": "2.7.4-1ubuntu0.2",
+        "notice": "native/libexpat1/copyright",
+        "original_sha256": "2e5f66e2784c2746775567ff9916f6e7503182a8f1f2deb8ca729dfc1463849f"
+      },
+      "liblzma.so.5": {
+        "package": "liblzma5",
+        "version": "5.8.3-1ubuntu0.1",
+        "notice": "native/liblzma5/copyright",
+        "original_sha256": "515749273a91ca5e3b273b4025dc2c1f8827f90005baea0ab85ffb594e74f72f"
+      },
+      "libssl.so.3": {
+        "package": "libssl3t64",
+        "version": "3.5.5-1ubuntu3.7",
+        "notice": "native/libssl3t64/copyright",
+        "original_sha256": "63b47f444efa588e291e9b650a5ba2ab02f856356f2d50f13a2e477db9119e09"
+      },
+      "libuuid.so.1": {
+        "package": "libuuid1",
+        "version": "2.41.3-3ubuntu2.2",
+        "notice": "native/libuuid1/copyright",
+        "original_sha256": "aef01d22b409ace7db97357b8b47332cd3e10c262ffa3c4014f3eeb44b968620"
+      },
+      "libzstd.so.1": {
+        "package": "libzstd1",
+        "version": "1.5.7+dfsg-3",
+        "notice": "native/libzstd1/copyright",
+        "original_sha256": "060eeb79531d435306665fd78329d8a9dd579f95876c5960bb67937825362a80"
+      },
+      "libffi.so.8": {
+        "package": "libffi8",
+        "version": "3.5.2-4",
+        "notice": "native/libffi8/copyright",
+        "original_sha256": "1a0dc86f787f73e025a6e521056360afcbe70f2a82cd808132fefc2b4ee95daa"
+      },
+      "libXau-154567c4.so.6.0.0": {
+        "package": "pillow",
+        "version": "12.3.0",
+        "notice": "native/Pillow/LICENSE",
+        "original_sha256": "05484d24bf78cb8ed03169f1cb067204d829cb7af21de8820400d29d115e4320"
+      },
+      "libavif-8a7f9d56.so.16.4.2": {
+        "package": "pillow",
+        "version": "12.3.0",
+        "notice": "native/Pillow/LICENSE",
+        "original_sha256": "3a8819e60f0fd7c716ef14776085a81c941db354002a9f9a679da38447e5507f"
+      },
+      "libbrotlicommon-53534446.so.1.2.0": {
+        "package": "pillow",
+        "version": "12.3.0",
+        "notice": "native/Pillow/LICENSE",
+        "original_sha256": "d0034d3c0dc0dc698266f9ce61ef1701402960eb0f18c0defadc61b91f793d88"
+      },
+      "libbrotlidec-7e5462ba.so.1.2.0": {
+        "package": "pillow",
+        "version": "12.3.0",
+        "notice": "native/Pillow/LICENSE",
+        "original_sha256": "301d8f1b7365c0204485f7bdc89165936fa8212b36c4f78563fe4229df53863c"
+      },
+      "libfreetype-9fc94c80.so.6.20.6": {
+        "package": "pillow",
+        "version": "12.3.0",
+        "notice": "native/Pillow/LICENSE",
+        "original_sha256": "994d650f4fe686013580524dd868d7001325fa3bbf408800eaa4778138a7e690"
+      },
+      "libharfbuzz-172d1f63.so.0.61421.0": {
+        "package": "pillow",
+        "version": "12.3.0",
+        "notice": "native/Pillow/LICENSE",
+        "original_sha256": "7ff87422406706600619c8467a2daa42a8122207dcb95337273ae18419f7a220"
+      },
+      "libjpeg-31e2ca52.so.62.4.0": {
+        "package": "pillow",
+        "version": "12.3.0",
+        "notice": "native/Pillow/LICENSE",
+        "original_sha256": "6d7c754529b30aff22efaaf88ba02061714591702c03f297f00ccb32ee6d9d9a"
+      },
+      "liblcms2-dade1fbf.so.2.0.19": {
+        "package": "pillow",
+        "version": "12.3.0",
+        "notice": "native/Pillow/LICENSE",
+        "original_sha256": "2549d6886e7de9960792e10ac87acfb9895e2afae85b7aac02108080cc7d3a71"
+      },
+      "liblzma-2be87c3e.so.5.8.3": {
+        "package": "pillow",
+        "version": "12.3.0",
+        "notice": "native/Pillow/LICENSE",
+        "original_sha256": "535737fa00b49f62d14d6d9bce76482440df700b33d2666d636894f751dd25f1"
+      },
+      "libopenjp2-b07f72ad.so.2.5.4": {
+        "package": "pillow",
+        "version": "12.3.0",
+        "notice": "native/Pillow/LICENSE",
+        "original_sha256": "185cb358047fd8b351c1d05b84a7e906c59d68d7f41222805f7042895ae266d8"
+      },
+      "libpng16-abb096d5.so.16.58.0": {
+        "package": "pillow",
+        "version": "12.3.0",
+        "notice": "native/Pillow/LICENSE",
+        "original_sha256": "44f1d1d821c9b57cda2b32d4a278eeaa03bc9930ae9da0ec0f384c3daf165e12"
+      },
+      "libsharpyuv-0066295b.so.0.1.2": {
+        "package": "pillow",
+        "version": "12.3.0",
+        "notice": "native/Pillow/LICENSE",
+        "original_sha256": "c2c5e89368b3bf9276a3cfea7e52ceb624db1c0c986c127169616219d5325807"
+      },
+      "libtiff-fc87e79d.so.6.2.0": {
+        "package": "pillow",
+        "version": "12.3.0",
+        "notice": "native/Pillow/LICENSE",
+        "original_sha256": "522bafb6812978fc53db6c32e5c57786186b551fc5fd6a7c61b857ca01261d16"
+      },
+      "libwebp-51b0b3f7.so.7.2.0": {
+        "package": "pillow",
+        "version": "12.3.0",
+        "notice": "native/Pillow/LICENSE",
+        "original_sha256": "7df9ad3680dd09d756511334791c8c896207863816eb2910840e5fc4ae10028a"
+      },
+      "libwebpdemux-9fe2abcc.so.2.0.17": {
+        "package": "pillow",
+        "version": "12.3.0",
+        "notice": "native/Pillow/LICENSE",
+        "original_sha256": "a7ccaaf4388d8ec212ca85be17907e8e021b7da113f7f48c47722c1ebe602f8e"
+      },
+      "libwebpmux-8fb1c9f6.so.3.1.2": {
+        "package": "pillow",
+        "version": "12.3.0",
+        "notice": "native/Pillow/LICENSE",
+        "original_sha256": "48ebf91c4d208901a48f851fb4c851d380fededd2a272104e3ca24c17499deba"
+      },
+      "libxcb-ad31f5a3.so.1.1.0": {
+        "package": "pillow",
+        "version": "12.3.0",
+        "notice": "native/Pillow/LICENSE",
+        "original_sha256": "633fe8df9f1bfc0ef60de6a3495a599ec56e56216491b90b79604cfecfb88000"
+      },
+      "libzstd-44be1190.so.1.5.7": {
+        "package": "pillow",
+        "version": "12.3.0",
+        "notice": "native/Pillow/LICENSE",
+        "original_sha256": "9501ab40e92a57491cadd2d02df46b596f24e74e6c0476b8500793f822fa0072"
+      },
+      "libtk8.6.so": {
+        "package": "libtk8.6",
+        "version": "8.6.17-1build1",
+        "notice": "native/libtk8.6/copyright",
+        "original_sha256": "bbb446cf2f299fe4e5f6debf89b6a1a2a08959a60941260d1bb64578c82cc8d3"
+      },
+      "libtcl8.6.so": {
+        "package": "libtcl8.6",
+        "version": "8.6.17+dfsg-1build1",
+        "notice": "native/libtcl8.6/copyright",
+        "original_sha256": "6dfbe2faf2a776485be94cb87bed369337bcf9236ee4c955e45004f8253ade8a"
+      },
+      "libXft.so.2": {
+        "package": "libxft2",
+        "version": "2.3.6-1build2",
+        "notice": "native/libxft2/copyright",
+        "original_sha256": "6bea200ccc0cdc29aa7f76d6cba942454503b5e8f45c6d722633df39412fc27b"
+      },
+      "libfontconfig.so.1": {
+        "package": "libfontconfig1",
+        "version": "2.17.1-3ubuntu1",
+        "notice": "native/libfontconfig1/copyright",
+        "original_sha256": "cabcdfea3d61540e8aa7f93a29642da1d1e35c8f5fd13549f4b8ee2ee0ab28f0"
+      },
+      "libX11.so.6": {
+        "package": "libx11-6",
+        "version": "2:1.8.13-1ubuntu0.1",
+        "notice": "native/libx11-6/copyright",
+        "original_sha256": "badd43566333da97d916ab365c61227751d49cd5c0df5d49dabdbd67b8c6fd19"
+      },
+      "libXss.so.1": {
+        "package": "libxss1",
+        "version": "1:1.2.3-1build4",
+        "notice": "native/libxss1/copyright",
+        "original_sha256": "04e9f6b5706ffc0397fecce4aed3c23875346b9f770a029ecac575254219b312"
+      },
+      "libz.so.1": {
+        "package": "zlib1g",
+        "version": "1:1.3.dfsg+really1.3.1-1ubuntu3.1",
+        "notice": "native/zlib1g/copyright",
+        "original_sha256": "47b61967895b30e8c0c6818dd633ffeb87711cf637c688f981896f0dd84ce23b"
+      },
+      "libfreetype.so.6": {
+        "package": "libfreetype6",
+        "version": "2.14.2+dfsg-1ubuntu0.2",
+        "notice": "native/libfreetype6/copyright",
+        "original_sha256": "36be278a8138d3e5773eb3f8491ff3fe73122a3051a9b36d1f86457ce0fad22d"
+      },
+      "libXrender.so.1": {
+        "package": "libxrender1",
+        "version": "1:0.9.12-1build1",
+        "notice": "native/libxrender1/copyright",
+        "original_sha256": "708d1c6a5d8aa5169d61e5b79973bf012047de0fb881d2836d44b3167a1a51a5"
+      },
+      "libxcb.so.1": {
+        "package": "libxcb1",
+        "version": "1.17.0-2ubuntu1",
+        "notice": "native/libxcb1/copyright",
+        "original_sha256": "6af94be329e17e57f1cc0f5e4afb5bdfe669a5168accdc31b03274110b937b41"
+      },
+      "libXext.so.6": {
+        "package": "libxext6",
+        "version": "2:1.3.4-1build3",
+        "notice": "native/libxext6/copyright",
+        "original_sha256": "9e358938dc783704b75a8a27f07b9a2cc7dfb7ff73fd05cbcfe634b8c2afc74a"
+      },
+      "libpng16.so.16": {
+        "package": "libpng16-16t64",
+        "version": "1.6.57-1ubuntu0.1",
+        "notice": "native/libpng16-16t64/copyright",
+        "original_sha256": "2a570998f08a406b4083b06888e528fa0c5d6cc3bef77b40026d661c91cbfb90"
+      },
+      "libbrotlidec.so.1": {
+        "package": "libbrotli1",
+        "version": "1.2.0-3ubuntu0.1",
+        "notice": "native/libbrotli1/copyright",
+        "original_sha256": "470ed7f6b9053163b65b83efebc53bb98ca0d7a5a30ead2b545a4e5574da9c91"
+      },
+      "libXau.so.6": {
+        "package": "libxau6",
+        "version": "1:1.0.11-1build2",
+        "notice": "native/libxau6/copyright",
+        "original_sha256": "2b742de65acd00f154ed156720af66c0c0af9a58360ba041f25a41e2f775fab5"
+      },
+      "libXdmcp.so.6": {
+        "package": "libxdmcp6",
+        "version": "1:1.1.5-2",
+        "notice": "native/libxdmcp6/copyright",
+        "original_sha256": "24beecbb0faf600d1a646b5edfc8c144da6f2965cb427598f4e17edc1285a733"
+      },
+      "libbrotlicommon.so.1": {
+        "package": "libbrotli1",
+        "version": "1.2.0-3ubuntu0.1",
+        "notice": "native/libbrotli1/copyright",
+        "original_sha256": "7f3acc17bffda6f12f7b022e9386514cfd83e77de67e71218bcbf19ec3577a99"
+      }
+    }
+  },
+  "entries": [
+    {
+      "name": "native/Pillow/LICENSE",
+      "sha256": "dda12a98c1979cf3d94df1cff45d27a4cb3f04a60c76f76902ac54cac03ec0ce",
+      "details": {
+        "package": "pillow",
+        "version": "12.3.0",
+        "source": "https://pypi.org/project/pillow/12.3.0/"
+      }
+    },
+    {
+      "name": "native/common-licenses/Apache-2.0",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "details": {
+        "source": "distribution_common_license"
+      }
+    },
+    {
+      "name": "native/common-licenses/Artistic",
+      "sha256": "b7fd9b73ea99602016a326e0b62e6646060d18febdd065ceca8bb482208c3d88",
+      "details": {
+        "source": "distribution_common_license"
+      }
+    },
+    {
+      "name": "native/common-licenses/GPL-1",
+      "sha256": "49c007bafb5ad6dd9f9d4dae4d3ac0461975498150c05d684c551f0914ab486c",
+      "details": {
+        "source": "distribution_common_license"
+      }
+    },
+    {
+      "name": "native/common-licenses/GPL-2",
+      "sha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6",
+      "details": {
+        "source": "distribution_common_license"
+      }
+    },
+    {
+      "name": "native/common-licenses/GPL-3",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "details": {
+        "source": "distribution_common_license"
+      }
+    },
+    {
+      "name": "native/common-licenses/LGPL",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118",
+      "details": {
+        "source": "distribution_common_license"
+      }
+    },
+    {
+      "name": "native/common-licenses/LGPL-2",
+      "sha256": "cc535c21133c895b56b374c8a1dc1eb948d99003ed2b47372069456b62f42b24",
+      "details": {
+        "source": "distribution_common_license"
+      }
+    },
+    {
+      "name": "native/common-licenses/LGPL-2.1",
+      "sha256": "20e50fe7aae3e56378ebf0417d9de904f55a0e61e4df315333e632a4d3555d95",
+      "details": {
+        "source": "distribution_common_license"
+      }
+    },
+    {
+      "name": "native/common-licenses/LGPL-3",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118",
+      "details": {
+        "source": "distribution_common_license"
+      }
+    },
+    {
+      "name": "native/libbrotli1/copyright",
+      "sha256": "24a64e5bb83d0960d1835696a1e23c0896ad6055b0ca47c66ab0eb9a766324b1",
+      "details": {
+        "package": "libbrotli1",
+        "version": "1.2.0-3ubuntu0.1",
+        "source": "Ubuntu package copyright"
+      }
+    },
+    {
+      "name": "native/libbz2-1.0/copyright",
+      "sha256": "832ed535ff3c3d025a8d2348eb1b697b89addcf2eaadbc17650262040b9145e2",
+      "details": {
+        "package": "libbz2-1.0",
+        "version": "1.0.8-6ubuntu0.1",
+        "source": "installed_package_copyright"
+      }
+    },
+    {
+      "name": "native/libexpat1/copyright",
+      "sha256": "60919fe1a156395ff14511bb6ff79756c50ade2fff59ac60c9bae1d8a7fe6292",
+      "details": {
+        "package": "libexpat1",
+        "version": "2.7.4-1ubuntu0.2",
+        "source": "installed_package_copyright"
+      }
+    },
+    {
+      "name": "native/libffi8/copyright",
+      "sha256": "25ee86cfccc2b7eb9a156a127f1e1b38c46c231f516ff201912223eaf62ee186",
+      "details": {
+        "package": "libffi8",
+        "version": "3.5.2-4",
+        "source": "https://github.com/libffi/libffi"
+      }
+    },
+    {
+      "name": "native/libfontconfig1/copyright",
+      "sha256": "b215a61cdd3e62b5b17cc28b1852c78acb3dd38be0fb30706f7efc050dba91db",
+      "details": {
+        "package": "libfontconfig1",
+        "version": "2.17.1-3ubuntu1",
+        "source": "Ubuntu package copyright"
+      }
+    },
+    {
+      "name": "native/libfreetype6/copyright",
+      "sha256": "8951319d2cbc54c13f091eaedff603f717026e5bf7788902ccd635a094d7a561",
+      "details": {
+        "package": "libfreetype6",
+        "version": "2.14.2+dfsg-1ubuntu0.2",
+        "source": "Ubuntu package copyright"
+      }
+    },
+    {
+      "name": "native/liblzma5/copyright",
+      "sha256": "a9c3f6e1bf373b54e29704e31afd99f5405a32cbc7897608b0f15e9d544882d4",
+      "details": {
+        "package": "liblzma5",
+        "version": "5.8.3-1ubuntu0.1",
+        "source": "installed_package_copyright"
+      }
+    },
+    {
+      "name": "native/libpng16-16t64/copyright",
+      "sha256": "55c6fc6ffe83143f360b83f26b3064fff499120eff31e4f14ebba6d667308352",
+      "details": {
+        "package": "libpng16-16t64",
+        "version": "1.6.57-1ubuntu0.1",
+        "source": "Ubuntu package copyright"
+      }
+    },
+    {
+      "name": "native/libssl3t64/copyright",
+      "sha256": "6a7da622fe0637a334d2a8fc470852d2ffb77d9a2b2f930f854e32a41ad6ef35",
+      "details": {
+        "package": "libssl3t64",
+        "version": "3.5.5-1ubuntu3.7",
+        "source": "installed_package_copyright"
+      }
+    },
+    {
+      "name": "native/libtcl8.6/copyright",
+      "sha256": "e925aa8863f0c9eda3625ce2cb16c0d5017fca248c5bd6af97006df5d9c6199c",
+      "details": {
+        "package": "libtcl8.6",
+        "version": "8.6.17+dfsg-1build1",
+        "source": "Ubuntu package copyright"
+      }
+    },
+    {
+      "name": "native/libtk8.6/copyright",
+      "sha256": "55756939bc322e1ddb187794a0deb8bdf72349ecba34b429446782cd04ea4cef",
+      "details": {
+        "package": "libtk8.6",
+        "version": "8.6.17-1build1",
+        "source": "Ubuntu package copyright"
+      }
+    },
+    {
+      "name": "native/libuuid1/copyright",
+      "sha256": "35a014187eb5d264405a91bda9ec782afdef9df148b657e67b38d07fabba2acf",
+      "details": {
+        "package": "libuuid1",
+        "version": "2.41.3-3ubuntu2.2",
+        "source": "installed_package_copyright"
+      }
+    },
+    {
+      "name": "native/libx11-6/copyright",
+      "sha256": "0b380a7fd5b2228f26e9585e56f14812efd3350f3df307507d2bc055dfd8de3e",
+      "details": {
+        "package": "libx11-6",
+        "version": "2:1.8.13-1ubuntu0.1",
+        "source": "Ubuntu package copyright"
+      }
+    },
+    {
+      "name": "native/libxau6/copyright",
+      "sha256": "118dd263a7b91c8f21c489f949bf13281dff9e766deea92b829dac4dce66601a",
+      "details": {
+        "package": "libxau6",
+        "version": "1:1.0.11-1build2",
+        "source": "Ubuntu package copyright"
+      }
+    },
+    {
+      "name": "native/libxcb1/copyright",
+      "sha256": "4f7cb9db6bf6542f5417e3d674c780d3a5fd12291a54d63054fb576ee0cfae80",
+      "details": {
+        "package": "libxcb1",
+        "version": "1.17.0-2ubuntu1",
+        "source": "Ubuntu package copyright"
+      }
+    },
+    {
+      "name": "native/libxdmcp6/copyright",
+      "sha256": "aceaa93ea2bb08890d7f91987ecf6a03814309470c819c56fe79f7698e45ef53",
+      "details": {
+        "package": "libxdmcp6",
+        "version": "1:1.1.5-2",
+        "source": "Ubuntu package copyright"
+      }
+    },
+    {
+      "name": "native/libxext6/copyright",
+      "sha256": "bc57e445ca1d9fe082c8d54189dd411ff26caa8552c9c63d44ea06a982f32124",
+      "details": {
+        "package": "libxext6",
+        "version": "2:1.3.4-1build3",
+        "source": "Ubuntu package copyright"
+      }
+    },
+    {
+      "name": "native/libxft2/copyright",
+      "sha256": "5960983c962c864d7d73eae6bb9b3b06c1940a23fc6d22ce10ef0f0cde8fd48d",
+      "details": {
+        "package": "libxft2",
+        "version": "2.3.6-1build2",
+        "source": "Ubuntu package copyright"
+      }
+    },
+    {
+      "name": "native/libxrender1/copyright",
+      "sha256": "ed2a78123a5076b4f11da38cb1ffb85b5cb9fdc26b5746c517b1d7e7a9029704",
+      "details": {
+        "package": "libxrender1",
+        "version": "1:0.9.12-1build1",
+        "source": "Ubuntu package copyright"
+      }
+    },
+    {
+      "name": "native/libxss1/copyright",
+      "sha256": "3ebbe713ac6980aefc18dcf407c94f51bbf02852463294bbb6dc1ee1f9fad9c3",
+      "details": {
+        "package": "libxss1",
+        "version": "1:1.2.3-1build4",
+        "source": "Ubuntu package copyright"
+      }
+    },
+    {
+      "name": "native/libzstd1/copyright",
+      "sha256": "2efe51c80ddc473bc2c91faec49dae645bf7f5a04824528fec816320432da2ae",
+      "details": {
+        "package": "libzstd1",
+        "version": "1.5.7+dfsg-3",
+        "source": "installed_package_copyright"
+      }
+    },
+    {
+      "name": "native/zlib1g/copyright",
+      "sha256": "9e5b96d63773a5d177ba264254390f792be07e41748ebd94730981c6cac31cc6",
+      "details": {
+        "package": "zlib1g",
+        "version": "1:1.3.dfsg+really1.3.1-1ubuntu3.1",
+        "source": "Ubuntu package copyright"
+      }
+    }
+  ],
+  "texts": {
+    "dda12a98c1979cf3d94df1cff45d27a4cb3f04a60c76f76902ac54cac03ec0ce": {
+      "offset": 419,
+      "bytes": 70307
+    },
+    "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30": {
+      "offset": 70908,
+      "bytes": 11358
+    },
+    "b7fd9b73ea99602016a326e0b62e6646060d18febdd065ceca8bb482208c3d88": {
+      "offset": 82446,
+      "bytes": 6111
+    },
+    "49c007bafb5ad6dd9f9d4dae4d3ac0461975498150c05d684c551f0914ab486c": {
+      "offset": 88734,
+      "bytes": 12527
+    },
+    "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6": {
+      "offset": 101438,
+      "bytes": 17984
+    },
+    "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986": {
+      "offset": 119599,
+      "bytes": 35149
+    },
+    "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118": {
+      "offset": 154954,
+      "bytes": 7652
+    },
+    "cc535c21133c895b56b374c8a1dc1eb948d99003ed2b47372069456b62f42b24": {
+      "offset": 162784,
+      "bytes": 25270
+    },
+    "20e50fe7aae3e56378ebf0417d9de904f55a0e61e4df315333e632a4d3555d95": {
+      "offset": 188234,
+      "bytes": 26419
+    },
+    "24a64e5bb83d0960d1835696a1e23c0896ad6055b0ca47c66ab0eb9a766324b1": {
+      "offset": 214829,
+      "bytes": 1354
+    },
+    "832ed535ff3c3d025a8d2348eb1b697b89addcf2eaadbc17650262040b9145e2": {
+      "offset": 216359,
+      "bytes": 2228
+    },
+    "60919fe1a156395ff14511bb6ff79756c50ade2fff59ac60c9bae1d8a7fe6292": {
+      "offset": 218762,
+      "bytes": 1756
+    },
+    "25ee86cfccc2b7eb9a156a127f1e1b38c46c231f516ff201912223eaf62ee186": {
+      "offset": 220691,
+      "bytes": 10164
+    },
+    "b215a61cdd3e62b5b17cc28b1852c78acb3dd38be0fb30706f7efc050dba91db": {
+      "offset": 231035,
+      "bytes": 1301
+    },
+    "8951319d2cbc54c13f091eaedff603f717026e5bf7788902ccd635a094d7a561": {
+      "offset": 232514,
+      "bytes": 31151
+    },
+    "a9c3f6e1bf373b54e29704e31afd99f5405a32cbc7897608b0f15e9d544882d4": {
+      "offset": 263839,
+      "bytes": 11559
+    },
+    "55c6fc6ffe83143f360b83f26b3064fff499120eff31e4f14ebba6d667308352": {
+      "offset": 275578,
+      "bytes": 13276
+    },
+    "6a7da622fe0637a334d2a8fc470852d2ffb77d9a2b2f930f854e32a41ad6ef35": {
+      "offset": 289030,
+      "bytes": 2543
+    },
+    "e925aa8863f0c9eda3625ce2cb16c0d5017fca248c5bd6af97006df5d9c6199c": {
+      "offset": 291748,
+      "bytes": 7062
+    },
+    "55756939bc322e1ddb187794a0deb8bdf72349ecba34b429446782cd04ea4cef": {
+      "offset": 298984,
+      "bytes": 3657
+    },
+    "35a014187eb5d264405a91bda9ec782afdef9df148b657e67b38d07fabba2acf": {
+      "offset": 302815,
+      "bytes": 29703
+    },
+    "0b380a7fd5b2228f26e9585e56f14812efd3350f3df307507d2bc055dfd8de3e": {
+      "offset": 332692,
+      "bytes": 47102
+    },
+    "118dd263a7b91c8f21c489f949bf13281dff9e766deea92b829dac4dce66601a": {
+      "offset": 379967,
+      "bytes": 1224
+    },
+    "4f7cb9db6bf6542f5417e3d674c780d3a5fd12291a54d63054fb576ee0cfae80": {
+      "offset": 381364,
+      "bytes": 1781
+    },
+    "aceaa93ea2bb08890d7f91987ecf6a03814309470c819c56fe79f7698e45ef53": {
+      "offset": 383320,
+      "bytes": 1892
+    },
+    "bc57e445ca1d9fe082c8d54189dd411ff26caa8552c9c63d44ea06a982f32124": {
+      "offset": 385386,
+      "bytes": 10421
+    },
+    "5960983c962c864d7d73eae6bb9b3b06c1940a23fc6d22ce10ef0f0cde8fd48d": {
+      "offset": 395980,
+      "bytes": 1438
+    },
+    "ed2a78123a5076b4f11da38cb1ffb85b5cb9fdc26b5746c517b1d7e7a9029704": {
+      "offset": 397595,
+      "bytes": 2252
+    },
+    "3ebbe713ac6980aefc18dcf407c94f51bbf02852463294bbb6dc1ee1f9fad9c3": {
+      "offset": 400020,
+      "bytes": 2679
+    },
+    "2efe51c80ddc473bc2c91faec49dae645bf7f5a04824528fec816320432da2ae": {
+      "offset": 402873,
+      "bytes": 5332
+    },
+    "9e5b96d63773a5d177ba264254390f792be07e41748ebd94730981c6cac31cc6": {
+      "offset": 408377,
+      "bytes": 2927
+    }
+  },
+  "text_sha256": "7ac376289c6003e9316d87e87b828e1335912f65315892c23f343eda30abe467"
+}

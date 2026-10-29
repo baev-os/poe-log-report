@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="{{ language }}" data-bs-theme="dark">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ ctx['title'] }} · Path of Exile</title>
+<script src="{{ ctx['root'] }}ReportTheme.js"></script>
+<link rel="stylesheet" href="{{ ctx['root'] }}vendor/bootstrap.min.css">
+<link rel="stylesheet" href="{{ ctx['root'] }}style.css">
+<link rel="stylesheet" href="{{ ctx['root'] }}BasicReport.css">
+<script src="{{ ctx['root'] }}BasicReport.js" defer></script>
+<link rel="stylesheet" href="{{ ctx['root'] }}ChartTooltip.css">
+<script src="{{ ctx['root'] }}ChartTooltip.js" defer></script></head>
+<body class="basic-report"><div class="report-shell basic-shell">
+<aside class="report-menu basic-menu"><a class="report-brand" href="{{ ctx['basic_root'] }}index.html">Path of Exile<span>{{ translate('basic.basic') }}</span></a>
+<button type="button" class="btn btn-outline-light theme-toggle" data-theme-toggle aria-pressed="true" hidden>{{ translate('ui.dark_theme') }}</button>
+<div class="report-period period"><span>{{ translate('period.title') }}</span><strong>{{ data['basic']['period']['label'] }}</strong><small>{{ data['basic']['timezone'] }}</small></div>
+<nav aria-label="{{ translate('ui.report_menu') }}">
+{% for path, key in [('index.html', 'graphs'), ('characters/index.html', 'characters'), ('maps/index.html', 'maps'), ('calendar/index.html', 'calendar'), ('conversations/index.html', 'conversations')] %}
+<a href="{{ ctx['basic_root'] }}{{ path }}" {% if ctx['kind'] == key %}aria-current="page"{% endif %}>{{ translate('basic.' + key) }}</a>{% endfor %}</nav>
+{% if data['basic_block'] %}<a class="secondary-link" href="{{ ctx['root'] }}index.html">{{ translate('basic.extended') }}</a>{% endif %}
+{% if data['pdf_href'] %}<a class="report-pdf" href="{{ ctx['root'] }}{{ data['pdf_href'] }}" download="report.pdf"><span class="report-pdf-icon" aria-hidden="true">PDF</span><span>{{ translate('pdf.download') }}</span></a>{% endif %}
+</aside><main><header><p class="eyebrow">{{ data['basic']['period']['label'] }}</p><h1>{{ ctx['title'] }}</h1></header>
+{% block body %}{% endblock %}
+<footer>{{ translate('ui.independent_project_notice') }}</footer></main></div></body></html>

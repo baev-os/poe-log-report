@@ -1,0 +1,7 @@
+{% from 'partials/analytics-measurement.html' import measurement, statistics, zones with context %}
+{% set model = data['session_edges'] %}
+<p>{{ translate('edges.method') }}</p><p>{{ translate('edges.counts', empty=model['no_map_sessions'], branched=model['branched_sessions']) }}</p>
+{% for key in ['leading', 'trailing', 'without_maps'] %}<section><h2>{{ translate('edges.' + key) }}</h2>{{ statistics(model[key]) }}</section>{% endfor %}
+{% for row in model['rows'] %}<section id="edges-{{ row['id'] }}"><h2><a href="{{ ctx['root'] }}{{ row['href'] }}">{{ row['start'] }}</a></h2><p>{{ translate('edges.state.' + row['state']) }}</p>
+{% for key in ['leading', 'trailing', 'without_maps'] %}{% if row[key] or (key != 'without_maps' and row['state'] == 'measured') %}<details><summary>{{ translate('edges.' + key) }} · {{ row[key]['duration'] if row[key] else '—' }}</summary>{{ measurement(row[key]) }}{{ zones(row[key]) }}</details>{% endif %}{% endfor %}
+<p>{% if row['first_map_href'] %}<a href="{{ ctx['root'] }}{{ row['first_map_href'] }}">{{ translate('edges.first') }}</a> · <a href="{{ ctx['root'] }}{{ row['last_map_href'] }}">{{ translate('edges.last') }}</a>{% endif %}</p></section>{% else %}<p>{{ translate('measure.empty') }}</p>{% endfor %}

@@ -1,0 +1,2187 @@
+{
+  "bootstrap": "5.3.8",
+  "repoe_commit": "a77305840b4cc8555eeeea144eac3eeddeff134b",
+  "files": [
+    {
+      "path": "site/static/images/maps/0139e667ade8e6d8.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map1.png",
+      "sha256": "dc4a2007561038508997c858f0a216c5f269d1bb5fe29717c6cab90bc4a54f89"
+    },
+    {
+      "path": "site/static/images/maps/0201ee0d4a7ac544.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Chateau.png",
+      "sha256": "91248ac98c63ee188c895a9555e4dfb27a7c3e6fd35fdcc650122f65d6d2833f"
+    },
+    {
+      "path": "site/static/images/maps/03fad961535d4338.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Pier2.png",
+      "sha256": "c03bdca37921148129f5c752b8b190d21da15d14bdcaa2195bbeb04d14559d7e"
+    },
+    {
+      "path": "site/static/images/maps/0407d31df55bfb30.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map42.png",
+      "sha256": "6274347ecb889f654b8fce72a5333536ed6d693ab11a46a1e6f6b1abe8e3d4a5"
+    },
+    {
+      "path": "site/static/images/maps/0463ddfc7d835782.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/ColdRiver.png",
+      "sha256": "e80072afb1b85ec3c40fca683c885e3abf899daf5f6adf0bd4f036ea2365c2d6"
+    },
+    {
+      "path": "site/static/images/maps/046d68d219edbcf8.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/HarbingerRed.png",
+      "sha256": "3c6351e64ee8affab04a7dcc25b4bc09465e9ed3deec1a3f2b2810d5310a4120"
+    },
+    {
+      "path": "site/static/images/maps/06243068b1d922ad.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map60.png",
+      "sha256": "0532aa83a1fd38ca9f30e466af8a7e22278d47d09bba3c8a964b0c6dbed3211b"
+    },
+    {
+      "path": "site/static/images/maps/0670bbd8ec192db0.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Strand.png",
+      "sha256": "3d577368c53a68dd800bd7c9fe74e54f7987ce83e6221a79c4931fc2ff4365c2"
+    },
+    {
+      "path": "site/static/images/maps/06b12321874985fc.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map38.png",
+      "sha256": "acf2a71d320bc6d35fb97c0aea84bcb3552878c6a73c44aa829254c02c34ef07"
+    },
+    {
+      "path": "site/static/images/maps/076a7b9f0f2e5e36.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Dunes.png",
+      "sha256": "8e992010228eadc165eacc79fa7c638914806972688862ef0ec0ebf3190328b2"
+    },
+    {
+      "path": "site/static/images/maps/07cfd94420538f60.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Quay2.png",
+      "sha256": "f5d42eae3e58d95c7c1a6f04a42552ea286e0c854b4b38d8d39a6dfc91df49d8"
+    },
+    {
+      "path": "site/static/images/maps/07e7c0c2bcf4d3ec.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map24.png",
+      "sha256": "430ae529a44295cb0ad79583fb212cb8b6f18e96f5bc24f5d46ecc3c9e57aa9a"
+    },
+    {
+      "path": "site/static/images/maps/08e9d2c1e1ac52f8.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Park.png",
+      "sha256": "d2bedf688b8fff7a8049b43e3573be270d882764ed32421f6fa016e716d02b18"
+    },
+    {
+      "path": "site/static/images/maps/09ee7c5db811712a.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Cells2.png",
+      "sha256": "e8274844334c92390da32a334c0672116764cf4fdefdbf4ef271e5d2f111540d"
+    },
+    {
+      "path": "site/static/images/maps/0b2e25694e946a35.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/VaalTemple3.png",
+      "sha256": "88ac04f5489587e2f1b15cf194af86efa6862e619f8bb27ff54b75726d3d76bb"
+    },
+    {
+      "path": "site/static/images/maps/0beb621b85cea5d8.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Shore.png",
+      "sha256": "5796b6d56bbdaaaca8e3ec5d302b153c1cbda86bface59b27d2b03c5f3103c8c"
+    },
+    {
+      "path": "site/static/images/maps/0bf3446c49fceb13.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Alleyways.png",
+      "sha256": "0ac6b4b321f9f33782797c2becef6a4a0767a4cfc0de748c71f5aad102e56933"
+    },
+    {
+      "path": "site/static/images/maps/0cc727db7feaeea6.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Courthouse.png",
+      "sha256": "d19aa9df9c985987cab24153ca8543b37383d66721d07583c4a4f78a45155f4c"
+    },
+    {
+      "path": "site/static/images/maps/0ec82d4a98797cab.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map10.png",
+      "sha256": "6c76a2dec7b9947d2b53cdf15c2c28746ebe81eb617bb5ce8cc9f84259691900"
+    },
+    {
+      "path": "site/static/images/maps/10131377a7b9ab9c.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Scriptorium.png",
+      "sha256": "62e7644ab296db6d184a4329bc87027b99300a40727200dc7de0e7b94d22d034"
+    },
+    {
+      "path": "site/static/images/maps/1013c90204e85f38.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/OvergrownShrine.png",
+      "sha256": "f4cd7b0aeae9ed2e1769145b311628260706a359987c6524e1ecb24bfdd8e4b1"
+    },
+    {
+      "path": "site/static/images/maps/10edab80edd06e79.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Malformation2.png",
+      "sha256": "36534f9260dcc13e08601857f53a8d7ca19dcfd3ea32e195a06141c88e08aa31"
+    },
+    {
+      "path": "site/static/images/maps/117e949f1558bec9.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map68.png",
+      "sha256": "696d1bdeaf07116e34309dccae2b9155287cd50b998dc71d3264ad447f31bf75"
+    },
+    {
+      "path": "site/static/images/maps/11e117eac55f356e.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Necropolis3.png",
+      "sha256": "828721d12ebe86c26faac029a6fe4651a4585fd648a95670dcf71d0862cb1c47"
+    },
+    {
+      "path": "site/static/images/maps/1342f39670d80504.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map71.png",
+      "sha256": "e5379c928d9e431ef0d0487607f37b44ae4c6df5cb8b1a1db14ec546e89ba657"
+    },
+    {
+      "path": "site/static/images/maps/13b346fbfe7e6765.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/FairgravesMap01.png",
+      "sha256": "c8704ea6b9a98cf807a967087f5e734cf10b59a6c52a1e7f1d67989f2488a5f9"
+    },
+    {
+      "path": "site/static/images/maps/144c4a501f33babe.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map54.png",
+      "sha256": "d318adbe309e4b229f6750c72ac966da88cc54badb4908a483aeb2f2bcc7d2b1"
+    },
+    {
+      "path": "site/static/images/maps/145b357833b999d4.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map15.png",
+      "sha256": "c0032a0d30294568718c8a4d964b5e723609a97611c66d43e19f337a469b5904"
+    },
+    {
+      "path": "site/static/images/maps/14c40ed23124d8dd.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/CorpseTrench.png",
+      "sha256": "f854fad8edb4f08879b1ed224ffe1dc7de9c9e55bfc3024496a3219bb064e441"
+    },
+    {
+      "path": "site/static/images/maps/154c3fd61f19cf20.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map32.png",
+      "sha256": "3a17a867e47a2d47e9b7bfe425ac3eac2a2ac7434152a6c63fc1c80139fa1941"
+    },
+    {
+      "path": "site/static/images/maps/15d09593c52951ea.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Promenade2.png",
+      "sha256": "bc2c94a8acd09dd58f6e5d2c927c9558ce907758d52109debbf1e06083baf490"
+    },
+    {
+      "path": "site/static/images/maps/15e3b44037b38a7c.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map26.png",
+      "sha256": "ad46c482a90b55b38b4871cd130c115a9797da5f3cce58ad7d836f15171d21b1"
+    },
+    {
+      "path": "site/static/images/maps/174dd7c2c2de160f.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Chimera.png",
+      "sha256": "84d5174251e3b9a358f66259441fd1a4c87ea138b4688607fe3fd3da67b9dbe8"
+    },
+    {
+      "path": "site/static/images/maps/17658bb4e1b9c1f1.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Academy.png",
+      "sha256": "accefda430c08e591b1ad7dac033217eb97139e8331b8ddd0b7178412c1cd16d"
+    },
+    {
+      "path": "site/static/images/maps/176ba7e701430f4b.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map48.png",
+      "sha256": "14f0c7973623ebfaa4ba4b18543d8d8b00173f77c761fe9567295e32a33368dc"
+    },
+    {
+      "path": "site/static/images/maps/17d4d408e43d4ad5.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Quay.png",
+      "sha256": "7288f4e36ca8cdcb3f61d0f6d70b41c47701efc2c0865bd8e7cebbb03bc43009"
+    },
+    {
+      "path": "site/static/images/maps/1807cbb56e6cf3b8.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map7.png",
+      "sha256": "d9047616d9477a99d27b00a88bde5acc573755607bcca4ccceb58fc8bf3c5a89"
+    },
+    {
+      "path": "site/static/images/maps/1853d522efffa72a.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map13.png",
+      "sha256": "cef65ab8997e111f9307eebefc092ba25c23a90901b88789d4b7c809fa860f1b"
+    },
+    {
+      "path": "site/static/images/maps/18b2c2fe36d5198a.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map45.png",
+      "sha256": "621b9d21c48983d6ec046925f5766ec4311ee99ee32c92427e367b668bcbddfd"
+    },
+    {
+      "path": "site/static/images/maps/18cbb392a237f688.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map7.png",
+      "sha256": "adb829711f9e312a869f37d5ac846f98f9cf7990c9853268c2de309bda13409a"
+    },
+    {
+      "path": "site/static/images/maps/18e10c11d01a83ae.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Lair3.png",
+      "sha256": "6aecbd01e6d747644f3c51470e6d37e74d0dde17f5e7eb6537eb2996ddfb56e9"
+    },
+    {
+      "path": "site/static/images/maps/19127bdf81c7d9c2.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Villa1.png",
+      "sha256": "2735538b005530fb30febccb5b36d0e8d928b814f0b3a521120b0727fcf50bde"
+    },
+    {
+      "path": "site/static/images/maps/1a99d871b472f8c1.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Maze3.png",
+      "sha256": "105aa7dff7fbf0af223ad33083a2f643b4d56624844f5082df236680f1434058"
+    },
+    {
+      "path": "site/static/images/maps/1ab1e93cdb9c678f.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/FrozenCabins.png",
+      "sha256": "33819a8d6880a5cc9b4c5df55880b6dc1636a16728e19a22405348638adfad36"
+    },
+    {
+      "path": "site/static/images/maps/1acfee405f126411.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map6.png",
+      "sha256": "4af171181a5efade271067450ad405c6c84faf5cf24317e06f33bd5c099662e6"
+    },
+    {
+      "path": "site/static/images/maps/1b7f76aadb4650af.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Graveyard.png",
+      "sha256": "53bbb3c0c8a13689fd6e045795466bf4b09ee6c503446ac51dffab0d6f04b3da"
+    },
+    {
+      "path": "site/static/images/maps/1b8e102aeb6c08c3.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/UberRelicChambers.png",
+      "sha256": "4d97a79c9cc9614ca9f5725ea568f12ee9ef21f8a72ef4b62b85e64f0e12006e"
+    },
+    {
+      "path": "site/static/images/maps/1c6448fc42c98625.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map15.png",
+      "sha256": "442c59eb57061de67047c5f038eee133297fcf2f8bc6c54f256ab75e7da07dba"
+    },
+    {
+      "path": "site/static/images/maps/1e14cc5dc5100e05.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/SulphurWastes.png",
+      "sha256": "faba8862159edfa45f020c12738b17355ab9168451e54a6442b7065be455e31b"
+    },
+    {
+      "path": "site/static/images/maps/1f16204b4a7845be.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Waterways.png",
+      "sha256": "97ed86a0a10e2dd51aa91a9606c6081c9709681fdecdd305177566711b92cd49"
+    },
+    {
+      "path": "site/static/images/maps/1fa8806e24642852.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map33.png",
+      "sha256": "b9b1448376d4de8f1c6a956396c34dbbc86cbf1aeb6b5485f159baa946b61011"
+    },
+    {
+      "path": "site/static/images/maps/1fac555c5c11d8d7.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Summit.png",
+      "sha256": "08cb04fce677b5cbbb90a47cbf130cb089db6297c8754537cc842eeb13258358"
+    },
+    {
+      "path": "site/static/images/maps/1ff5e99b1fdf9d4a.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/VaalPyramid.png",
+      "sha256": "2d1b54a027bf5b6d28ed238dcff4ced3aa2cf6c245466cf352ea58772f395fa2"
+    },
+    {
+      "path": "site/static/images/maps/211521853a38aa7d.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/MaelstromofChaos.png",
+      "sha256": "cccb72ab398d2a8cc95e871a842ff0dc6830e6622171210dd76f192785cfe4db"
+    },
+    {
+      "path": "site/static/images/maps/21269f2b053358d4.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map34.png",
+      "sha256": "5ade2ca228abed4fb26eb11b328503c821f98101eac786aa441c300d6c70ba28"
+    },
+    {
+      "path": "site/static/images/maps/225745ef9676687f.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map37.png",
+      "sha256": "0c33c9337a2745c4f14199a8ef667b6ca18554fb782667dd2ffee18f61591568"
+    },
+    {
+      "path": "site/static/images/maps/231d5b7881cdfb15.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Abyss3.png",
+      "sha256": "ed0c4069eb90f1f34951edb1cbdd8325687e34db914701d4060e205b9f565d21"
+    },
+    {
+      "path": "site/static/images/maps/25cd4763f9013bab.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Antiquary.png",
+      "sha256": "35518b1cc775b979b1d7b943d90ef3991818e70c8265e5924798e83561e5063a"
+    },
+    {
+      "path": "site/static/images/maps/26941f0aa56d4d97.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map61.png",
+      "sha256": "85d04e368714a4fdc7b96b04dbcc16b1fd39a1f5f69b02e9ed765df68d773b25"
+    },
+    {
+      "path": "site/static/images/maps/269a55dab0bff7fa.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Volcano.png",
+      "sha256": "8c79baba5942102d8203b165b88cee931a553715a2388f6ca1190e92e3b46162"
+    },
+    {
+      "path": "site/static/images/maps/26b0d105a1e6dc92.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Fields.png",
+      "sha256": "33e00d84663b7434872903fb1bb3726e68be7bfa6c89651f2bfa2fac6aaf205d"
+    },
+    {
+      "path": "site/static/images/maps/2751751516274297.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/UberMausoleum.png",
+      "sha256": "8171d49594ea0574836090f0477c6c598bd22f2c7426aa99cea4eb7ed07565f8"
+    },
+    {
+      "path": "site/static/images/maps/27700be806066615.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Bazaar.png",
+      "sha256": "80c80d859d789cb733b4fdd010f6eb5c0ebd284a58199e6f656f754508adc9e3"
+    },
+    {
+      "path": "site/static/images/maps/27cf7d440536e801.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map41.png",
+      "sha256": "768889be302362801987ed08e3e6d937eb859cff671686bd83a8af1270e8888c"
+    },
+    {
+      "path": "site/static/images/maps/28042e4ff8405630.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Marshes.png",
+      "sha256": "8f5f8bcb18bd63687f6bb043047b28bd9a9ba43b7e237539b6173ef32857738c"
+    },
+    {
+      "path": "site/static/images/maps/29b5f97670fef962.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Ghetto.png",
+      "sha256": "3f4a390a3b86e452c7e7c0c3b2c06316feb820be1780296d3e238b68b6846d16"
+    },
+    {
+      "path": "site/static/images/maps/29dda68f7cfff2aa.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/UndergroundRiver.png",
+      "sha256": "02da225a715af2f7df494df15c2778c267526eade62d3c43c4b1a2c2e4658a11"
+    },
+    {
+      "path": "site/static/images/maps/2a2bd601b7a93757.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Malformation.png",
+      "sha256": "c69c9b4a978a48a902d266d5f03821650e548e53f9d8d3c5446f399b7da8a0bf"
+    },
+    {
+      "path": "site/static/images/maps/2a6ca8a301e301c8.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map1.png",
+      "sha256": "cd0021339b2f803fa4806d3776d48acc90944a9b2cf0b9ce6cabbf27cb5825a0"
+    },
+    {
+      "path": "site/static/images/maps/2b5d0b8b9cc40da8.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map73.png",
+      "sha256": "22cd1a1a22f8f0d5e8dfe1785eb0d4825eeffa1514d02a4c217fb522abcca833"
+    },
+    {
+      "path": "site/static/images/maps/2c195e7cb1de4aaf.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map37.png",
+      "sha256": "e833ac726496420c46877a1513533f152e6bffe9093dbefcf106249c1a727f34"
+    },
+    {
+      "path": "site/static/images/maps/2c4242c8374ff081.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Strand2.png",
+      "sha256": "8124ee6b78447763bf0be24053ab41e3866422be4ed12dced9de964f57df4343"
+    },
+    {
+      "path": "site/static/images/maps/2cf371ef9fe50da4.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Dungeon1.png",
+      "sha256": "7c356267af5eb346ff1384b22242808e069f3c305238dfebf3fcf35a83f8d13a"
+    },
+    {
+      "path": "site/static/images/maps/2d6f7198c730440e.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/ArachnidNest.png",
+      "sha256": "072432145d1cfce308693315d7f69ce03cb256423c5fd0b3d9cdc6504db49efd"
+    },
+    {
+      "path": "site/static/images/maps/2e5069c546255856.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map36.png",
+      "sha256": "871b757cc51473155016bff3369aadbd64bc17e8d86684f45bd5fc0b3bd7e3d9"
+    },
+    {
+      "path": "site/static/images/maps/2eb3cd74d652676d.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Temple.png",
+      "sha256": "00bb99a53b47960eddfc65c005107528f9ad26a275431d683682993b86ebce70"
+    },
+    {
+      "path": "site/static/images/maps/2ef4c3215ec39a17.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map35.png",
+      "sha256": "2e4d736b37e90f315bfb42faa118b3487968bc2f2f8fbd64c293ec16f4228004"
+    },
+    {
+      "path": "site/static/images/maps/2f3e611065aa2285.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map40.png",
+      "sha256": "7a17740e49a455045a2ff6eafb5a6fbc9591d991d68a7df877fa35ab4529c85d"
+    },
+    {
+      "path": "site/static/images/maps/2fa25bf7b26b5427.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Factory.png",
+      "sha256": "c316fad549898cdd80ddfff442521db64daca8ae0a3274086b586468bd2f7a76"
+    },
+    {
+      "path": "site/static/images/maps/2fd19c2649d954ee.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map54.png",
+      "sha256": "bbfceb759cd6c8a1b4bb8d7ca670f901f8013456e70b409ffee972ee386f8dfd"
+    },
+    {
+      "path": "site/static/images/maps/307ff6df049f4411.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map64.png",
+      "sha256": "62fd1984387c228fb20f0d1e1821cba1b3a6fcf071be3f0abcf1bf53214340cd"
+    },
+    {
+      "path": "site/static/images/maps/3206e9fbc1e356c0.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/CrystalOre1.png",
+      "sha256": "c7d5abd15799cede2eb5cc8550995dc5592bcecc3719cbf758c3d063382a82d2"
+    },
+    {
+      "path": "site/static/images/maps/327e260826b735af.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/CastleRuins.png",
+      "sha256": "1a95802ff3df29d3511f6af2fb8ecd672b0e3b963aacf265bd26e7d8e28f872f"
+    },
+    {
+      "path": "site/static/images/maps/32d5a021ff016b35.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map44.png",
+      "sha256": "4126a4931e693fbdf13b623bafae0b274aa8928f21f0e4461933b8362b3cadf1"
+    },
+    {
+      "path": "site/static/images/maps/331b4bc3a4345659.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/TropicalIsland.png",
+      "sha256": "03e1ee21c90aac00d3ba90b9ab5a62bc9a776cfbee6044c920c256bb136198e1"
+    },
+    {
+      "path": "site/static/images/maps/33494be0541299c4.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Oasis1.png",
+      "sha256": "1974108cba317593ed0d5228c4f953c1474e59ca4098bea9fcdf170c7c193757"
+    },
+    {
+      "path": "site/static/images/maps/33561a3e6a849ee6.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/MineralPools.png",
+      "sha256": "5cee215b6b9d652047c44d198a57c058277123df5cd6cc628c665339037987d2"
+    },
+    {
+      "path": "site/static/images/maps/347f9b0b32e34a44.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/TheatreofLies.png",
+      "sha256": "76aa246fbb5866b180888a9faa4e019841dec3dc417494c9f0beb841fda66274"
+    },
+    {
+      "path": "site/static/images/maps/34875cc4573d24ca.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/SynthesisColdGuardianMap.png",
+      "sha256": "f69d19380885c67c4a9a54fc321391ee5be88676fa924edbede854213192f643"
+    },
+    {
+      "path": "site/static/images/maps/34be996ccdcb13e9.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Excavation3.png",
+      "sha256": "111cfec0bbe49b59e7c0d3ac89bf492700567cc79525038dc55c881dd3264d3b"
+    },
+    {
+      "path": "site/static/images/maps/3629bc098a6a4151.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/DesertShipGraveyard.png",
+      "sha256": "35f63be7a0c079a435e00371d0faa2337b8fe11b1f4111cb6a53d01ddea19892"
+    },
+    {
+      "path": "site/static/images/maps/36a5773e8f8db871.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Museum.png",
+      "sha256": "e9e4985b11732910e2a1742262eacf5e3400f97a84691d9d3e4c09c02bb71d00"
+    },
+    {
+      "path": "site/static/images/maps/36c8649b60deabe7.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Terrace.png",
+      "sha256": "e53c1d68517771dedd87b821f97e398bd98666479634b4f07929805ad2c2638a"
+    },
+    {
+      "path": "site/static/images/maps/37a11b57c385bb5e.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map79.png",
+      "sha256": "82724f8c5863b2e96a02c6224696016589d6b085f6b12a609a4a9f5e35ad1330"
+    },
+    {
+      "path": "site/static/images/maps/37c8feac9f2699e9.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Sewer.png",
+      "sha256": "edb189db2dcfe084b8c1aacf76ddee6ea6256d2cd84cee122c79e50bb7f22050"
+    },
+    {
+      "path": "site/static/images/maps/37edc4c909e5a62f.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Springs3.png",
+      "sha256": "f836d71eaf9e40f7e17c027d65c78027b99694d3d07eb54c136ca637fc232784"
+    },
+    {
+      "path": "site/static/images/maps/381926ccd52fe61b.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map58.png",
+      "sha256": "72436c864921ab53fc48a05a9608d659be8efad69e986b8c9d7e0430751fb5dd"
+    },
+    {
+      "path": "site/static/images/maps/38ad3aab1defd0be.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/WastePool1.png",
+      "sha256": "28ae4bf39995c30988cad97accc354ce04dceef99156a7d544df5da688005916"
+    },
+    {
+      "path": "site/static/images/maps/396e58b6496a6b2f.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Shrine.png",
+      "sha256": "3e7337a98906a5fe8d13e42d98b37b6d90de4ffe6e109d9c499c8c48a0765689"
+    },
+    {
+      "path": "site/static/images/maps/3997605540ba3229.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Mesa.png",
+      "sha256": "f9315a939cc77b7c768ed47b16fe5451bae8d283e2f344e565523d45af260b5b"
+    },
+    {
+      "path": "site/static/images/maps/3a30ec521b408fbb.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map52.png",
+      "sha256": "05184050f451b1fd7ddda781c129f9841c58e26c2b95331a1190634962166757"
+    },
+    {
+      "path": "site/static/images/maps/3b8721f4c2796b99.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map53.png",
+      "sha256": "e7bb74ad4723a4b33483269daf63f12a86f11dc963751cb79cc6251d9810a326"
+    },
+    {
+      "path": "site/static/images/maps/3b97d722dbf126f8.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map30.png",
+      "sha256": "9cbf6f25c2a9e09b0ec35a61c3c8137daeb13a27c0e8fc26503d97a9b5b27cf5"
+    },
+    {
+      "path": "site/static/images/maps/3c1177fdfdea15e6.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Channel.png",
+      "sha256": "31059d088c72672e7487edc0e600e6da5c9d1a2d1a3a032e7ffd8e8702d427be"
+    },
+    {
+      "path": "site/static/images/maps/3c2d2a3596f3ebb8.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Thicket.png",
+      "sha256": "8962db99224821ffe7013f7579cd259e708856a9145b90b20cbbf3f8749b0e8c"
+    },
+    {
+      "path": "site/static/images/maps/3c515cec6eb739d0.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/AcidLakes1.png",
+      "sha256": "5408e2cde003933f035bc2f46d134e50f1b2698ddead8541cb949aad87a16179"
+    },
+    {
+      "path": "site/static/images/maps/3d1342d00b3d998d.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map28.png",
+      "sha256": "8d76c2ff5f063fc010d2d1b442363e778e46c64a29c0b7d827190f31cf9753fc"
+    },
+    {
+      "path": "site/static/images/maps/3e3f3d53791f0a0d.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map43.png",
+      "sha256": "3711f96127234a64064650136d6411f50e59fde3846a28099af814974d1486fd"
+    },
+    {
+      "path": "site/static/images/maps/3e63ad69f62c0415.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Crematorium3.png",
+      "sha256": "d1fcdd8ce22c6675d5c47e726f8be3195d95fac7280e61afb6671519c18f800f"
+    },
+    {
+      "path": "site/static/images/maps/3e8fed3716345acd.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map77.png",
+      "sha256": "8b3c0fc5f9fd37b80795625b0706140556c4e11a35a1a786d34b69f1e22e99e0"
+    },
+    {
+      "path": "site/static/images/maps/3ea0c3684f159410.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Laboratory.png",
+      "sha256": "dcb04b01e76b394034d0f63e0acc0bc4ac55eff98193a82b8cbd4346251b9495"
+    },
+    {
+      "path": "site/static/images/maps/3eff22839369b730.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map4.png",
+      "sha256": "ad5572ce67b2a3faf19e8262df69ff63337a490fb70771b30ff66568ece53efd"
+    },
+    {
+      "path": "site/static/images/maps/41cfac54207606cf.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Mesa1.png",
+      "sha256": "02f37df9494db0cad7ee8ca6961cb99204e98f744d3dbd617d7301013757ebdf"
+    },
+    {
+      "path": "site/static/images/maps/4253c38b887b80c3.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/SynthesisLightningGuardianMap.png",
+      "sha256": "02ab7abcf81d37158f0cdd1349fd8c026684d09b13125d6564f5bce303d47c71"
+    },
+    {
+      "path": "site/static/images/maps/425b3f33464cf510.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/ArachnidNest2.png",
+      "sha256": "06605bebce677f7f96beedec2c48eb241ef49f8b36d15aa5758b329c9189526b"
+    },
+    {
+      "path": "site/static/images/maps/427f400a3d5b023e.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Sepulchre.png",
+      "sha256": "7d97d5040cd6e1958173d58f189a8280821f1b1168a6f13fecae77bcb2a1ed77"
+    },
+    {
+      "path": "site/static/images/maps/4332beef34ce9771.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map39.png",
+      "sha256": "1ffaa76ae4c05425548bee143064d8c5142ea8edecfd09cdc9759346f43a91f0"
+    },
+    {
+      "path": "site/static/images/maps/441033076ebf7ac5.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Ghetto1.png",
+      "sha256": "03f9edfaf8eb38ed43941c101238f3b4cda24dae33eebf27dfe941db4af046de"
+    },
+    {
+      "path": "site/static/images/maps/44aa6a577f1dff98.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Colonnade2.png",
+      "sha256": "776ddaa1d67cfcc74d518f1cc13beec7b9e89f68146cc065e62a0d114447581f"
+    },
+    {
+      "path": "site/static/images/maps/45948e74f14d3ab8.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Atoll.png",
+      "sha256": "0f0cd49dbebde4b49b2e2fec1ac23148c6e3e13a73a2fa4775f449e16e5d879c"
+    },
+    {
+      "path": "site/static/images/maps/4646248cd93e7b09.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/UndergroundSea.png",
+      "sha256": "953865c8f861e99030ab839c3099283ce44bb159db956135051a316b6a35b9d5"
+    },
+    {
+      "path": "site/static/images/maps/4744810fc68fbb7f.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Dunes1.png",
+      "sha256": "ea226729a89cba17b93c6e3dbe39802cde4046009c2420f21b828d5d7276f530"
+    },
+    {
+      "path": "site/static/images/maps/475d6eef5e4be524.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/IvoryTemple3.png",
+      "sha256": "3f89ea33ddae54d0b04cb864e3bc78e649f7f7b81331281d6ec80a58c1aedc56"
+    },
+    {
+      "path": "site/static/images/maps/47e0c632fc991a60.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/TheVinktarSquare.png",
+      "sha256": "ea8912209ac4ab2e31cffe85514e167aed62a8e016aa56eabcb00c7083803233"
+    },
+    {
+      "path": "site/static/images/maps/48ba6e3f11e01b73.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/FungalCaverns.png",
+      "sha256": "218b60a6707eca5c2dcf21a39ad14e628fa7505098c74175d0b3a74455c64625"
+    },
+    {
+      "path": "site/static/images/maps/49376698008f62e8.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Core.png",
+      "sha256": "e050ecb6d7c4b9f98038b57949cabfcea48c831f079a9048cec5d86bc3dd5fae"
+    },
+    {
+      "path": "site/static/images/maps/49746f4f21560266.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/MineralPools3.png",
+      "sha256": "71ea8963607bfad30e35558c4f97139a04cddfbbd1f0714f288b7b1b2fceb147"
+    },
+    {
+      "path": "site/static/images/maps/49aeabfe43b5fa98.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map23.png",
+      "sha256": "ed5db0c83649326878adf37efe2c7ec76998400896e124aaeed1191118a91d57"
+    },
+    {
+      "path": "site/static/images/maps/4a42d9a7022cc0e7.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map13.png",
+      "sha256": "e3704cbccae2588592c5b5288c32839cd7c0b29ce607e93c3687bb380ea14f14"
+    },
+    {
+      "path": "site/static/images/maps/4a9e7991fc7d0414.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Atoll2.png",
+      "sha256": "7a04ef37b82dab88be30a5be84cf3f8dce2a89742aa00808280469caccb14c22"
+    },
+    {
+      "path": "site/static/images/maps/4abcea649944876a.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Channel1.png",
+      "sha256": "e15e52b8255ae1f7fa5a6bbde01c377c684b90e8227fc1325c42a85cbd57b522"
+    },
+    {
+      "path": "site/static/images/maps/4b1837304d33fb05.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Courtyard2.png",
+      "sha256": "e0f632f6bd5bc1a702c68dfd6b2be57d0a91cb5403b5386145d0fda87777c149"
+    },
+    {
+      "path": "site/static/images/maps/4b8fc380ee0aa9c8.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map48.png",
+      "sha256": "e86fba147c2329cfdacaafc05f58b045aac2028e0a86dfcea48ededc525b1508"
+    },
+    {
+      "path": "site/static/images/maps/4be7c4e61eaa38ce.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map62.png",
+      "sha256": "48c091fc98204ffd5cc3e491f0159726cd95e96d6eecd240659201ff2d119482"
+    },
+    {
+      "path": "site/static/images/maps/4d486ee62c0a95f7.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map47.png",
+      "sha256": "4c12c62ede9f7f1ac6807919038829e60fa979136862d2dd7de6980af86abd2f"
+    },
+    {
+      "path": "site/static/images/maps/4d55eaf27391866b.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Desert1.png",
+      "sha256": "bf9e9655d2ae09dcf40f7feb129406ca657b3cae3dee6730c7d6d9be2a7574f1"
+    },
+    {
+      "path": "site/static/images/maps/4e62f21340927bcc.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/JungleValley1.png",
+      "sha256": "fe1bc9af4e9533acc5669019b5b0713da1d02bdaf810a994697b468fb8fd3daf"
+    },
+    {
+      "path": "site/static/images/maps/4e957e8dfe4b7236.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Boulevard.png",
+      "sha256": "04878ed62bc025551586391cf101c2dd13bb1546688b5fd13a0b33e359054e79"
+    },
+    {
+      "path": "site/static/images/maps/4ee869b7c4f9ba87.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map4.png",
+      "sha256": "27b5115d64cbabacd13f0254a85d3f12654755482e8c01c7f96fb40eca39e0b8"
+    },
+    {
+      "path": "site/static/images/maps/50af1ce5eed97b6e.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Orchard2.png",
+      "sha256": "fa36d04c320453e591c93bab00d3904e1bff8e99d61b4a71d382905e5e1d4a40"
+    },
+    {
+      "path": "site/static/images/maps/514290a00c00994b.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map62.png",
+      "sha256": "d344a0c02f090a124a17241f925f575072a4eeffa52ed5e402b8e650539ac575"
+    },
+    {
+      "path": "site/static/images/maps/516ed674140de452.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map39.png",
+      "sha256": "af989d199c864fa05f4346b637b08ca5bde7c44015db8a8e971f853eb1ca8f2e"
+    },
+    {
+      "path": "site/static/images/maps/51a2738744812c3d.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/OvergrownShrine2.png",
+      "sha256": "3c8110db787b4e34947fca2c62bfed772fc56c43f8c232cac4619786b6a48733"
+    },
+    {
+      "path": "site/static/images/maps/523162ce2c7c03cd.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Cells.png",
+      "sha256": "e2e84a95cd28843d34a9d25cf3ea986559a0e27a5aeaf0029ef162dfbbc20c42"
+    },
+    {
+      "path": "site/static/images/maps/5272f697e7bbcbce.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/ArachnidTomb2.png",
+      "sha256": "27018db3a5251f0aac900fb9ae32bb1c1f03f38dce864d3113e96588b3414a11"
+    },
+    {
+      "path": "site/static/images/maps/53806c46c5ad1705.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/DryWoods.png",
+      "sha256": "73928c449e833d6c554862e0b25445cb487aafd11e38a1c8f52c2efc102afcfe"
+    },
+    {
+      "path": "site/static/images/maps/53f628970a919d10.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Colonnade.png",
+      "sha256": "b7fa3f2027d0b27fb527ed2d765b63ed61258358f18e1f49894c0c7c90a86152"
+    },
+    {
+      "path": "site/static/images/maps/55256c65b3cb933c.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Basilica.png",
+      "sha256": "e06e570d48fd5e62e97d054f29e6c3738732bf031674ce5d370166a91e7a8a9a"
+    },
+    {
+      "path": "site/static/images/maps/552f85902d55c6a9.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/SpiderForest.png",
+      "sha256": "acad1fa7767d2d43d516fec7534688d77ccd4a8cd6422a7029d3fadf5ae8e661"
+    },
+    {
+      "path": "site/static/images/maps/558555ccb4d9eba1.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map74.png",
+      "sha256": "ec8b790df76348ce8e918f53add23c3cd32d6030ccd635d4aec87b7835fa3ab1"
+    },
+    {
+      "path": "site/static/images/maps/5585e73cca36f70c.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Estuary.png",
+      "sha256": "59034c5dc3292ce54dccfba7aef03f73080a1ee1b2c10e81f80a66e9e88761d5"
+    },
+    {
+      "path": "site/static/images/maps/55ae5a163d506a51.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/AridLake.png",
+      "sha256": "89fab9afb23c68193038a7c380ea28a7d0d94db2e25b00b35f41b47419ced657"
+    },
+    {
+      "path": "site/static/images/maps/55c871370c27985b.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/HarbingerUber.png",
+      "sha256": "cfaf77a8025c8891c3906c1f50722cc45641b39d3e021dda6edb7b7e7e371e7c"
+    },
+    {
+      "path": "site/static/images/maps/575887f9589d0ae0.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Grotto.png",
+      "sha256": "6bd39b39048924f9138add735e16487907cd2e7ef137c0daac89e503116acf78"
+    },
+    {
+      "path": "site/static/images/maps/57c873ad29f59d62.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/musicbox.png",
+      "sha256": "0b974327f11de10a6ce3713cfde1c7dfe0ff80199f96075a5a58e278adaddb20"
+    },
+    {
+      "path": "site/static/images/maps/58b025e30c1a2edb.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map25Yellow.png",
+      "sha256": "6760039c4331327ba9c5581ec691a0dda425790c20cc247f0025d7006b99bf1a"
+    },
+    {
+      "path": "site/static/images/maps/58c901c16371b647.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map75.png",
+      "sha256": "7a60faf4c6999e3914d0707526c04d6bca7febb06d8ff4e978deee2c7769d985"
+    },
+    {
+      "path": "site/static/images/maps/59520cca0e385f04.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/VaalTempleBase.png",
+      "sha256": "53a09c7b193aab88973f8dc3189639c533ee9ecb69595735e7bef37847888f1b"
+    },
+    {
+      "path": "site/static/images/maps/596621ee419773a5.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/UberSilo.png",
+      "sha256": "233140ccf3175d228374bfc6dfa80d476242b50c5a0b0f803f561dc4ac8030cc"
+    },
+    {
+      "path": "site/static/images/maps/599abfe4b198453c.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/SulphurWastes3.png",
+      "sha256": "e428f7375f84178cabd1dd2cb78d054610ceb91e2f1b3781eca277185b3a73ef"
+    },
+    {
+      "path": "site/static/images/maps/5a47b1a07751df3f.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Terrace2.png",
+      "sha256": "5f7f22b8a54c74e02997ef0667f5f2ed2dab4cc97e2003d08d3a0ddfce976023"
+    },
+    {
+      "path": "site/static/images/maps/5a78850ac2efd140.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Chimera.png",
+      "sha256": "7bd5e4557fa5f35d576e524611d4d88e37e04224687664e9b0fe6bf3bacae622"
+    },
+    {
+      "path": "site/static/images/maps/5a83aae11e0af55f.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/TrialmasterMap.png",
+      "sha256": "b902de31d5969a5434a5a5f38e4c2e60f99ed520a1c37afc721703d178dee771"
+    },
+    {
+      "path": "site/static/images/maps/5b96f01a644fdc89.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/JungleValley.png",
+      "sha256": "8a25e368e1044d9311ccb3c00944956a980bbb6a6dcda806d0aed1fff5b8a4ee"
+    },
+    {
+      "path": "site/static/images/maps/5c451ef225de4cf6.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Bramblefall.png",
+      "sha256": "e9011218cf572e9b632b4983ebcc3a84524548c02244d538e39043bc0b55b65c"
+    },
+    {
+      "path": "site/static/images/maps/5d1bccf8e09363bd.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Racecourse2.png",
+      "sha256": "9e2371401e9a6f26f4ce964a4395756b58c68a9cb8b44486b3f1a5bbe0ddca3c"
+    },
+    {
+      "path": "site/static/images/maps/5ea45bc8cc740614.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map60.png",
+      "sha256": "af231dfded28f90e8b2f7795567e81d1532376bd6f7476ff2d66562783d941e5"
+    },
+    {
+      "path": "site/static/images/maps/5efd7df7c2fcc47d.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Museum2.png",
+      "sha256": "e98d2ef74cf5fdb95712479dc64b5c4782ec8050879df3d4b004d565d90f924c"
+    },
+    {
+      "path": "site/static/images/maps/5fe51163acaca48d.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Shore2.png",
+      "sha256": "eb2e47ebef0a17445d86158823646b1b89f3a0c5e918474929ab61edc5ea3d76"
+    },
+    {
+      "path": "site/static/images/maps/605ad6396f058878.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Chateau3.png",
+      "sha256": "d5d1c855f63507e6bc3264d65e0446d5528e99621aa7a45b3bf72a5b6384b58e"
+    },
+    {
+      "path": "site/static/images/maps/60862136aa01d216.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map47.png",
+      "sha256": "5690ebe536c5baf55026babb946322b947fd38983f31cfb8f5c4f8494556456e"
+    },
+    {
+      "path": "site/static/images/maps/6102f6a43d7b9c6c.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Burn.png",
+      "sha256": "51fd748f2c444ffed33b874658367c18bd7441ad9d62c10aae206466385c4d7b"
+    },
+    {
+      "path": "site/static/images/maps/6195faa9f89ad205.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map50.png",
+      "sha256": "debbd3bbb44eff3f9b4e90381c96860724df7da596790186e60a0b0d3357d1cb"
+    },
+    {
+      "path": "site/static/images/maps/62e287da2292b720.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Colosseum3.png",
+      "sha256": "9d401a0957d608b120cc9f96d18d5dc603f3f69711b85fb09895066c717b0781"
+    },
+    {
+      "path": "site/static/images/maps/63fc1e58ee013bbf.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/CrimsonTownship.png",
+      "sha256": "4ace6adc894c0625fb96ca2f8e10074ca2354c293bb2e8aed0b540c08cbbc1d2"
+    },
+    {
+      "path": "site/static/images/maps/6499814a59f039cf.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Arcade.png",
+      "sha256": "21fcfde8a07025fc0f0107f03243748df040dc2621f8b24d1ad6c3f765d80e05"
+    },
+    {
+      "path": "site/static/images/maps/66b27fffac7a36c1.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Minotaur.png",
+      "sha256": "2ecd76a7b458cd16c53847a470692e6809c60c852152590b04dc710b1e3c4e79"
+    },
+    {
+      "path": "site/static/images/maps/670758e326be2f27.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Bazaar3.png",
+      "sha256": "4900a100436d5fb5a7f74ec822812ea2ecad3e4b79ce9f3221142608c19fb024"
+    },
+    {
+      "path": "site/static/images/maps/67114cd3bfd09176.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map25.png",
+      "sha256": "2a45d6595a5e5b1ea7a17b9985e429e2ba3d5e8960e238b9de3d205d0cb6a6bd"
+    },
+    {
+      "path": "site/static/images/maps/67796e79573c7b15.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/WastePool.png",
+      "sha256": "99b94a50b6ba4eba78f1d1dba1f7069190b5741eaddfd804a2a323821d361230"
+    },
+    {
+      "path": "site/static/images/maps/688f83d3ca9fc40f.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map51.png",
+      "sha256": "568b7ebf158b98ac1ea23dd0c883bbbc2c38c8fea8ab2b4d9222df9ff53479f6"
+    },
+    {
+      "path": "site/static/images/maps/68cbb4410c50191a.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map20.png",
+      "sha256": "f4d3df61dafc7ea14b86bf751be9cb1701168b17025c14699c692505514b0127"
+    },
+    {
+      "path": "site/static/images/maps/6a7457e378025a9a.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map3.png",
+      "sha256": "ef9ed88deded1cef398067d42d43cca6341be1c3ef05d371cdc7adcebe5378cf"
+    },
+    {
+      "path": "site/static/images/maps/6ad27091bc9354b3.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Phoenix.png",
+      "sha256": "3995e0160d081802892ec00c8d082b1121f76e4b81a2b3e5078ae355f3396e88"
+    },
+    {
+      "path": "site/static/images/maps/6adc6b4e4ddcfa96.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map55.png",
+      "sha256": "45f73783233beef9e31a5e2e17fb733c48a227799f3dbb564c9ad319ecc22b02"
+    },
+    {
+      "path": "site/static/images/maps/6b05774561bfea56.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Arena.png",
+      "sha256": "c33459dab90c08a9c90914d16109509a6e1d904af93ae82570777be4029595b2"
+    },
+    {
+      "path": "site/static/images/maps/6bcfc3b64d1de20b.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Catacomb.png",
+      "sha256": "55662e6acf347f884791e2dbb74752e67ebc5a384531c2e7b272409de6c2477f"
+    },
+    {
+      "path": "site/static/images/maps/6c59e4cd50f97206.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map19.png",
+      "sha256": "41b2aeee7e52be5ac6521be7fe7bb6d79f03ab44fcedb4fba66969486dac8cd1"
+    },
+    {
+      "path": "site/static/images/maps/6c96d965b38197a2.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Volcano3.png",
+      "sha256": "585b6fbbb39b0ed04a9c1b1fa867b2720a5684a6a1addfc1a2a1aea05e594e69"
+    },
+    {
+      "path": "site/static/images/maps/6cfa21e7e5c1c94b.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map52.png",
+      "sha256": "c786fa4e7b6320ecddbe53ad3085dacaa18d880d723aacd3aa8458f8671742ce"
+    },
+    {
+      "path": "site/static/images/maps/6da9e77f89283293.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Plateau3.png",
+      "sha256": "45b50204aee1ed58ebc5dae7ed62df6bbf3e16169a18e9620544047c90f2255d"
+    },
+    {
+      "path": "site/static/images/maps/6eaf39c930f751e1.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/ForkingRiver.png",
+      "sha256": "ec165a725c112fc68b9efd2d7ce493f454390ef62f21db668dfe0c8e586725e8"
+    },
+    {
+      "path": "site/static/images/maps/6f8a077c44cca472.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map76.png",
+      "sha256": "e1cbb3da139c1f1847b4699f340a12da67058a5e1b0448a594433b73478ce10e"
+    },
+    {
+      "path": "site/static/images/maps/6fe56d16fca8086b.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map56.png",
+      "sha256": "65b6ff51737a64508a44143d863a4b9fe8703db6e927b6a3149f7a2587fada86"
+    },
+    {
+      "path": "site/static/images/maps/71564614ba494f73.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/HallowedGround.png",
+      "sha256": "3f7ab218498e12c4603e98f9afeaaf26e17f1a7acc989b7e96914568dc3d8912"
+    },
+    {
+      "path": "site/static/images/maps/7167113cf80b5c4e.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/SpiderForest2.png",
+      "sha256": "2f7f3d999b734a503988af99e71468b18001039552cf9ecd9300de0be4f0fd4b"
+    },
+    {
+      "path": "site/static/images/maps/724330cad8fdfc70.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Arena2.png",
+      "sha256": "e52d3a2ae354a84a7e9862e90e3875f0fff6d66a6ea2305ede653ea6dd89cd2c"
+    },
+    {
+      "path": "site/static/images/maps/74288af474fb3ae4.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Academy1.png",
+      "sha256": "38222847366ef9b0b56f8209ea1b3a707f6d9d147787bf84478695dd7fc6d691"
+    },
+    {
+      "path": "site/static/images/maps/7470bb5af31aa7ff.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/oba.png",
+      "sha256": "b2f186351d47c9b194853ee1ef18a6871a6bf58c06fbd8c6917b0a9c04c3202b"
+    },
+    {
+      "path": "site/static/images/maps/74da76d6ad8c77e7.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map78.png",
+      "sha256": "42674fa13ceb01bc69f7c0e469e488bf3c69e060fca417ff158f72222a13fcab"
+    },
+    {
+      "path": "site/static/images/maps/74e5e1cf285022b3.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/UndeadSiege.png",
+      "sha256": "aca22bfc2267d2032005613ff9f2ec6461837351abd383b8a15e9df5b1abde95"
+    },
+    {
+      "path": "site/static/images/maps/75a4ccaf101257ff.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map14.png",
+      "sha256": "9eb562444e38ecefcc446eda652209ce1b35e51727a98991b695f6c10afa0d29"
+    },
+    {
+      "path": "site/static/images/maps/75c00fc1007a7811.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Beach1.png",
+      "sha256": "0da1b6bffbc844e30df77d9e2cad4edf8f6e2162fdf053cd02968c81d3f8493e"
+    },
+    {
+      "path": "site/static/images/maps/7635d07f739f2231.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map6.png",
+      "sha256": "ee541492d511c7a6c4b811ac9e38d0c2a681a940ff043ed2e05734594da8f83d"
+    },
+    {
+      "path": "site/static/images/maps/76abf8210f21e892.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map18.png",
+      "sha256": "8b81c3daad1aa2df20045c71c5bca1b245b07397fdde5784f036178f0d68f552"
+    },
+    {
+      "path": "site/static/images/maps/773c9c6921b64578.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Iceberg.png",
+      "sha256": "f6b5ae4cc646fee587cc2ff053a40bd9a47352307c99b3e08866f2e36fd485ab"
+    },
+    {
+      "path": "site/static/images/maps/78947d65ab1bccd1.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map22.png",
+      "sha256": "cf3c11ce6bbfb3c49769dea88846f20cd131617c07f5c76d7ef4c8f0d31a925d"
+    },
+    {
+      "path": "site/static/images/maps/78ce9bd05adc9971.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Shipyard.png",
+      "sha256": "723e1a110d33ded9520ef81f04a081ff9301c95707e049d51fc1fd632f58e14e"
+    },
+    {
+      "path": "site/static/images/maps/7939c4d2688df8db.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map12.png",
+      "sha256": "17d5e3a8d7c2e5797e0da7ded41eb5a2b5330d1ce72a1aa1bcf26652d46e7901"
+    },
+    {
+      "path": "site/static/images/maps/7a655037a3e362d8.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map34.png",
+      "sha256": "c519a82ffd3ca39fa37c0575a9502d44cb8b1fbc9492af183aa79f8ac48a0cd6"
+    },
+    {
+      "path": "site/static/images/maps/7aefb488eed9d6b8.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Racecourse.png",
+      "sha256": "36b8433b78f16006273355288e60aa79d0b0ea6159a6271d79ec9066baaaa50a"
+    },
+    {
+      "path": "site/static/images/maps/7bd488edcdb0a3ae.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Chambers.png",
+      "sha256": "03f887a1ffdea1ba91ed2ef13447c94e8e63132f6db6b35efc2ad1995d48e7d7"
+    },
+    {
+      "path": "site/static/images/maps/7cf30c6a0de27e13.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Wharf.png",
+      "sha256": "c3ce19167220810c45a54b6c786e5a0cd9862316b31b00f1c053dd303962bce9"
+    },
+    {
+      "path": "site/static/images/maps/7d1d03ffed84703c.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Quarry2.png",
+      "sha256": "a99d7a52ee4eff53d198f3e12128e841a85123550f4b466b8e1d6bccf8ef8cb5"
+    },
+    {
+      "path": "site/static/images/maps/7d78b35dc083f893.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Desert.png",
+      "sha256": "720be264149a86d8f3b9e84d3f2358fae75f53caa6098c6645bee24c113bd5fa"
+    },
+    {
+      "path": "site/static/images/maps/7deba3874c891f80.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Cemetery.png",
+      "sha256": "d45f37542f35d6da10f5727e2fb707804005b9193e91202dbb901f73320c8dec"
+    },
+    {
+      "path": "site/static/images/maps/7e1faed0a63081f1.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/UniqueMap1.png",
+      "sha256": "48361146fa715d37b0ab678a01535cfda6939e29371a625f92a57e1a0e4a237a"
+    },
+    {
+      "path": "site/static/images/maps/7e3ace32c063fc21.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map35.png",
+      "sha256": "650c9c4b79abba4792260369cf1cc11343d7ff5e09c36a5ead6556f1a3d352b6"
+    },
+    {
+      "path": "site/static/images/maps/7ebf2a7fd5ec747d.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Shipyard3.png",
+      "sha256": "0b2c80746610d3b0d3ee63e5bac32e8d0369db6f81220dfccc862b79837e996f"
+    },
+    {
+      "path": "site/static/images/maps/7f51abb9dea8146b.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Scriptorium3.png",
+      "sha256": "b1a5ab4c1e6a1b11db581ee2a7b96e5d106232bb14c2a10257906b0e4d4628cc"
+    },
+    {
+      "path": "site/static/images/maps/7fec2695fda52634.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/RobotTunnelSilo.png",
+      "sha256": "ef78725bfca8312edecd68f9e96378126e757386b2fec05f0a8690650093b08e"
+    },
+    {
+      "path": "site/static/images/maps/8022f91f9358e3f8.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Pier.png",
+      "sha256": "18fdec0ad40448318d06a3abf7ecda9100c0f38def7655acafe1d6186e8ac8f0"
+    },
+    {
+      "path": "site/static/images/maps/817a723cf066deb9.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Cavern.png",
+      "sha256": "63cbc4ea29b059f1be0e55658da8433e0ed349c9cf4ef8caff872d46c98365da"
+    },
+    {
+      "path": "site/static/images/maps/81d91b6d7a97570d.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Palace.png",
+      "sha256": "b0243fbef2873be7e822f9ccf03f62934f6460df0969b45456a0cf5cff6724ed"
+    },
+    {
+      "path": "site/static/images/maps/824d7b07e4e75790.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/OvergrownRuin3.png",
+      "sha256": "7dfb990a94c529a81cf3718501f97539e8893f9bc54dc5c19579bb4631919216"
+    },
+    {
+      "path": "site/static/images/maps/826514a696be15d0.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map72.png",
+      "sha256": "a9da483d4d5f532c2a968b2ffc0853a1074f0a4d6dfee027fd12efbc3b14987b"
+    },
+    {
+      "path": "site/static/images/maps/82bfc3252fb210db.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Maze.png",
+      "sha256": "69a6f69a8ef32e1bcb134cb476a726a47401060f5ed1a2dc994031c883516f31"
+    },
+    {
+      "path": "site/static/images/maps/83180141c0b196a8.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map8.png",
+      "sha256": "e556d098efdaa41e4815a2a1f47a842833412134160a424a1ae76c17eaa0b380"
+    },
+    {
+      "path": "site/static/images/maps/83bd2d0a648244b2.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Coves.png",
+      "sha256": "36122a4ba27752d33547c9c0e8e82844261ced53ffeb591d0339f136ce3c57ca"
+    },
+    {
+      "path": "site/static/images/maps/83faf118094ec364.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Wasteland3.png",
+      "sha256": "028961cd0e251111a797f5d5b53fe0434a2bfa65e7124d1cd15c6bd3877b985a"
+    },
+    {
+      "path": "site/static/images/maps/846e326b9caf9032.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/olmec.png",
+      "sha256": "57a829e261e5b1f881bc2e277515ff48bb389fb1a65d9bcfa4db5bb9214c4b3f"
+    },
+    {
+      "path": "site/static/images/maps/85055df36693feb0.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/UndergroundSea3.png",
+      "sha256": "311c0a2ca6c31f5ae075096b22bd2796f840a4d67e3e67ecfa901583bc9afdeb"
+    },
+    {
+      "path": "site/static/images/maps/857ed0d57aaeed90.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Beach.png",
+      "sha256": "f7a7cf7d389ce4a7e387d465da22868870119ce7287cb5dc1b45d806e289d2ba"
+    },
+    {
+      "path": "site/static/images/maps/867fbb0af455c892.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map50.png",
+      "sha256": "364c3acef06049949b3cf54bc8ecfdc59581873f566c095bded37f73c4225485"
+    },
+    {
+      "path": "site/static/images/maps/8686cb84f81d2504.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map21.png",
+      "sha256": "1f3c6d32152b8abd3b03e95561ca9dc77d269c595bd59d601f8d05d1672f67a7"
+    },
+    {
+      "path": "site/static/images/maps/86c15fa668556127.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Wasteland.png",
+      "sha256": "5483a2dca364f1f4d2aff6034a72ee0a459d6a9b81ee573c42dfc21f6cc20aaf"
+    },
+    {
+      "path": "site/static/images/maps/876130ce0778bf47.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/PrimordialPool.png",
+      "sha256": "427e608df89212c868013149c3c344a121f74a4a0c698c27ee497a4ee39f8b1d"
+    },
+    {
+      "path": "site/static/images/maps/8774916b27782c21.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Barrows.png",
+      "sha256": "d713a4b8ca2207446c8cf405ca6a970181f2125727f311a07fc7f9e9177369a9"
+    },
+    {
+      "path": "site/static/images/maps/8775189114980673.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map9.png",
+      "sha256": "016f1fd0028fdb77b3add207a6aae8b1e6ee428f954ca2ff5f34cd5906e6cabf"
+    },
+    {
+      "path": "site/static/images/maps/880ea58434b6ed42.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Ramparts2.png",
+      "sha256": "9e60fd674fd82dbcf46c9aea486dc54e28b8eb52f48d8e9d9910d89bf054bcc6"
+    },
+    {
+      "path": "site/static/images/maps/885b242370ece5b0.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/DeathandTaxes.png",
+      "sha256": "e085fffa3287a9779144b27d65617431cec89d47a46773a33ed7bb9c6a9a4be7"
+    },
+    {
+      "path": "site/static/images/maps/88dfe90af7c5e0e7.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Pen.png",
+      "sha256": "62bb9814e49b32d70775b51fe6a6f69152a826b1b7ae0e3e7b91bbe03b6b5210"
+    },
+    {
+      "path": "site/static/images/maps/8a562ceacf5759a8.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Cage.png",
+      "sha256": "0527cec7be7072696bf4c25f06e8934e7f7003098dd7e66b154e030192b35a77"
+    },
+    {
+      "path": "site/static/images/maps/8ac0dc164f745781.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Dungeon.png",
+      "sha256": "274601251899d91a138143e1afb4263a0d2c6ae8bc775cd3bebc5e1c4ae4a744"
+    },
+    {
+      "path": "site/static/images/maps/8b90388c1417061c.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map65.png",
+      "sha256": "e947fea76f39665ca0e3d8ffbea1da13a60c1eb9c5084723420c93c808c39f22"
+    },
+    {
+      "path": "site/static/images/maps/8c03caa91240c0c5.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Baths.png",
+      "sha256": "459635a23ed525a3a70237bc1a8c89bca858d83b6ddcb459f58018ddb52d77c1"
+    },
+    {
+      "path": "site/static/images/maps/8ddb3f63f6737515.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map16Vaal.png",
+      "sha256": "6793d8840ec2853101693031b9ca2640029fc5f330d9b5529dd1ea552f47d10e"
+    },
+    {
+      "path": "site/static/images/maps/8ec8e5b636c610ba.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Reef2.png",
+      "sha256": "bd2d881a410b0a061fd65736c75c9f01b9a0d8b4148ad3f54eff2a83cc82ab0c"
+    },
+    {
+      "path": "site/static/images/maps/8eec12bb4009b4ee.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Courtyard.png",
+      "sha256": "3f8990c11056f2639ac3a6cdfc4183b281df9ae49b6632a3552abf4cf7d196a0"
+    },
+    {
+      "path": "site/static/images/maps/8f0a76598738cf64.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map14.png",
+      "sha256": "ff7dbe0edb5aff0b629c82e10589b1da615cba71242b6270d696a729b500d12a"
+    },
+    {
+      "path": "site/static/images/maps/90b11cd9810696b2.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Hydra.png",
+      "sha256": "fb80f738e80c9286b6eb4c164cc9f696705d46429e57f0bd729442dd55a93479"
+    },
+    {
+      "path": "site/static/images/maps/9114641a189ebbd7.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Lair.png",
+      "sha256": "ea947ac3753ff150bd8cefaf564211947f4f82140a35d2081de71c0fa9f2d19a"
+    },
+    {
+      "path": "site/static/images/maps/91524387fb3b2fcc.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Atlas.png",
+      "sha256": "4adf44960e6b132c9a2cb6022cc896caa2573e972a0a70c43d5b2546e7d5b3e2"
+    },
+    {
+      "path": "site/static/images/maps/915e7330af258305.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map3.png",
+      "sha256": "b69c391a93de59be72dce170d5645fe635d77314d149f3c343020bae5fc934a3"
+    },
+    {
+      "path": "site/static/images/maps/917df23e4c5c3603.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map49.png",
+      "sha256": "2421e34034a59cb5a43bb30b2eaef7a27a914cb6707b9ea0bf94062461955221"
+    },
+    {
+      "path": "site/static/images/maps/918adcd8d60eb7ce.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Shrine3.png",
+      "sha256": "577575d35a143c7a1e6349ba92d5d87dddc4b2ea415d8698bef1d6e7f17c6019"
+    },
+    {
+      "path": "site/static/images/maps/918c665ebc2b577c.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Graveyard1.png",
+      "sha256": "6067a3db379e2e726eae82a01ca7d068c639d4dd577a643e6605b2324ba7f4bb"
+    },
+    {
+      "path": "site/static/images/maps/9233bcc5c7b44cb0.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Bog.png",
+      "sha256": "13ec3db591365396fb1bcc6c4639eadaacd2081d831410d4bbf895adcd7b5b07"
+    },
+    {
+      "path": "site/static/images/maps/923b9e6fab253778.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Gorge3.png",
+      "sha256": "6c2222cffac6c30a67dbe13eaa5662fdfd95e81c2a0df349b7d89735531d65bb"
+    },
+    {
+      "path": "site/static/images/maps/9257834416f733be.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/PutridCloister.png",
+      "sha256": "fa81615528f32a9e82cb16511c0eedf0691ff87b1ee3c775bea9d1e4d19526c2"
+    },
+    {
+      "path": "site/static/images/maps/92716b7f42a09eb2.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/DryPeninsula1.png",
+      "sha256": "6edbbe2776b4a514d676e59c4e67f371f25b355b79a90501b8e520781318d100"
+    },
+    {
+      "path": "site/static/images/maps/930e9a36176ffdfc.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map26.png",
+      "sha256": "576db9e2fcc6466574fa97d150cf17031ca4656e6bd69036121fdc5c48a817dd"
+    },
+    {
+      "path": "site/static/images/maps/943d11820e274922.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map11.png",
+      "sha256": "23ca38de70a9a297b9521ff480e0de0a13f4869c6b4a9d6236dcd4e297de5d5f"
+    },
+    {
+      "path": "site/static/images/maps/95a00ed87bb0fb82.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Minotaur.png",
+      "sha256": "b1c9af6d5870b03a738ecef12f790af8413113446666b5550e54f08cffe52dd3"
+    },
+    {
+      "path": "site/static/images/maps/964b337745452904.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/TropicalIsland2.png",
+      "sha256": "8359dbdb25bcdf41a994f237668f269b4d4a814edadf892a06a5fbd8c83bd622"
+    },
+    {
+      "path": "site/static/images/maps/96732fbf888acf2a.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/VaalCity.png",
+      "sha256": "4a5e9c2b3414e44b159baa4f48ef8abcaea7e03e16301906297df97cb765b449"
+    },
+    {
+      "path": "site/static/images/maps/96fc5a03be4d424c.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Arsenal.png",
+      "sha256": "06a8864ad31f4c548ae886c20cde9ffcc100c3fc78efe8442e39f44b748eb95f"
+    },
+    {
+      "path": "site/static/images/maps/97a296387a8830c9.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Cavern1.png",
+      "sha256": "0c0dc9e35c628707507220712be5c468bac7b23671fa49bbebbed6faacbda62f"
+    },
+    {
+      "path": "site/static/images/maps/97c796b329673843.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/UberPrimordialBlocks.png",
+      "sha256": "3c7f6dc469a9681b859c125fe7479b85dd71d0113c5e1feba3c93ebcb3bb1ce1"
+    },
+    {
+      "path": "site/static/images/maps/981322d38a4ca7ae.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/OvergrownRuin.png",
+      "sha256": "d87b2fb76bab84f7f947be616e0da93ccbec7b79260c40e0e60a4ee9ccf854f9"
+    },
+    {
+      "path": "site/static/images/maps/98fcc7edaa516d8d.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map22.png",
+      "sha256": "2148ac2b6202acdd8446cff23095f89686e05fff41f617ef1a6ea520958b193c"
+    },
+    {
+      "path": "site/static/images/maps/9982dcdb94eaa764.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Ramparts.png",
+      "sha256": "1c981c356d48a82b74470845e46bc9c001ba16d5fef92659d02d4496c22b5392"
+    },
+    {
+      "path": "site/static/images/maps/99ff7e3f83852f12.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/UberMalformation.png",
+      "sha256": "22cf05d164e08f24af273f4c8c0ac00e665f3a1fce843f2557e76ba84cd894f6"
+    },
+    {
+      "path": "site/static/images/maps/9a547f63e75681d9.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/CourtyardofWasting.png",
+      "sha256": "5531debb79e74f92dfbb52d95029ee68d01685abafbbf73717d726d266d2e06b"
+    },
+    {
+      "path": "site/static/images/maps/9a9ea68c362bd497.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Sanctuary.png",
+      "sha256": "2349ed16d73b02492a3f6a72423c1deb7e835e846f62907621c94ed680b20e8b"
+    },
+    {
+      "path": "site/static/images/maps/9ab0391aa4b0eade.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Marshes1.png",
+      "sha256": "0aa9ec8e40f18c93238987d18431648dfb19065bb19b6d881c864683a86cd2e2"
+    },
+    {
+      "path": "site/static/images/maps/9abd2c716fea69e5.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Factory1.png",
+      "sha256": "c87340856b76d85d8a907241903de585228dea6bf981b5ddbe04217f8323b242"
+    },
+    {
+      "path": "site/static/images/maps/9b5a98075fa11c72.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Vault.png",
+      "sha256": "9d40b97cf8efa56d45c2371420d12c9dfb25f54e085ec8df332467efa50ba775"
+    },
+    {
+      "path": "site/static/images/maps/9c8cc7be852fc137.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Canyon.png",
+      "sha256": "4df91efbf7e9ca04956988665c33e7b051e2240e0459048d4efd12c6801c1e64"
+    },
+    {
+      "path": "site/static/images/maps/9d3c9b43eaf43248.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map30.png",
+      "sha256": "aa82f9beb5dff7ba21a4f569188a75150e2414bf9914d185b18d432a3cdedd39"
+    },
+    {
+      "path": "site/static/images/maps/9d8ed48b218e7722.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Crematorium.png",
+      "sha256": "07ce1581ee3b38c173704a273ba9a819238d074762ef4e444ee116ec7420a093"
+    },
+    {
+      "path": "site/static/images/maps/9f3ea1d59a85d1f4.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map55.png",
+      "sha256": "816bb8f00e149ef76db346c242d3365a8bdd55faefe5146f70d5e49d0bf1bb4b"
+    },
+    {
+      "path": "site/static/images/maps/a0262d0a79b77ac1.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map16.png",
+      "sha256": "255b02e2fece7352e9aa5c8188b305a009efc30b0810ed38ed86fb92f99d7eef"
+    },
+    {
+      "path": "site/static/images/maps/a0308fce29e2ad84.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Wharf2.png",
+      "sha256": "cacb97ac99dcefaf58f317495aeb3a8afba7750939dc3489d065b5219173b09d"
+    },
+    {
+      "path": "site/static/images/maps/a03d893cfb1daa7b.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/ChambersofImpurity.png",
+      "sha256": "fdca9b0689be4f61e9826db132c5f8b33e05be023c5e4937fb846c8fb25df680"
+    },
+    {
+      "path": "site/static/images/maps/a1515b00e6802cab.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/VaalPyramid1.png",
+      "sha256": "4dbadb0d819ef0d171e5b3250212356f0c0d9db48191d35fce6474f42b354b97"
+    },
+    {
+      "path": "site/static/images/maps/a1d5f408f21d9b30.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map41.png",
+      "sha256": "dbb306dd760f5a58f2d9a90ce8406a41794379a785bb37accc28024231db7739"
+    },
+    {
+      "path": "site/static/images/maps/a22f9197af30f1f9.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map24.png",
+      "sha256": "145b87d64a1f1b42ecc3ce4e3b0fcea73eb18563d344f147945b75396d7068da"
+    },
+    {
+      "path": "site/static/images/maps/a29e9a7b8cd67efb.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/VaalCity2.png",
+      "sha256": "2257cd08b95e47a52951596f1ef050ae36ab854e1a7458bf4f11f93e2a75d149"
+    },
+    {
+      "path": "site/static/images/maps/a2b9cf7955b3999b.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map44.png",
+      "sha256": "1b5d04bd43bcf2fcd8f1f419035e1ceccbac374816872e5ffcd2b50d54828c32"
+    },
+    {
+      "path": "site/static/images/maps/a2c3f8e37faa3709.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/PrimevalRuins.png",
+      "sha256": "8df3fb02ac04b25ca4fd435dba4105413bde86c748a8d97f7df9fe27024e476d"
+    },
+    {
+      "path": "site/static/images/maps/a4af456df7f298ab.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map17.png",
+      "sha256": "27ca4fb8ce0d42b4af572dd5bad5ff12e74ee31f7bc5f3a623ad057d92cfa1e0"
+    },
+    {
+      "path": "site/static/images/maps/a50017cdcf6d63aa.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map19.png",
+      "sha256": "38be5b754d48998fa2512ebf5367298f3c1efaa5b2286442b9983b1a4ed45e38"
+    },
+    {
+      "path": "site/static/images/maps/a57b74d49a9494e7.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map8.png",
+      "sha256": "c17762828e9d0fa7ccfbdebe3458af97202c4ac0364d1785bb0408a2cb950278"
+    },
+    {
+      "path": "site/static/images/maps/a81c93fc22a569ac.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Barrows2.png",
+      "sha256": "5e406f48932294aff23b8df3da0e0f505f4bc26545346bce76b7935a1021b7d2"
+    },
+    {
+      "path": "site/static/images/maps/a8a5e9a4dc0d0a51.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Stagnation.png",
+      "sha256": "69e24c9e5f5e06280f62c93adb705f519174e9e2b16779521534e00a533676b7"
+    },
+    {
+      "path": "site/static/images/maps/a9c8fc7b01e3a254.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map57.png",
+      "sha256": "fa16a3228bb7a8d7ba9a60337d7288ba5d1da358d0efd1a42d2d00776a86b37c"
+    },
+    {
+      "path": "site/static/images/maps/aa7e21b850aa2667.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Phoenix.png",
+      "sha256": "1a2e5612c7b89fbd911e79d6a36ca23d8e2dc73054725e982d45deca04140fd1"
+    },
+    {
+      "path": "site/static/images/maps/aaa1c3fae2ebffb6.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Glacier.png",
+      "sha256": "7e481951a183deb956e91b347bd829a24a833ffb1205d42096041a692080c93b"
+    },
+    {
+      "path": "site/static/images/maps/ad5dec9ee7b2ac67.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Thicket2.png",
+      "sha256": "dfd9c1e94b8a2997aa141806856893510b716dccb7d2658c400f2bb57cb811e2"
+    },
+    {
+      "path": "site/static/images/maps/af3bae95095e14f3.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/SynthesisBossGuardianMap.png",
+      "sha256": "daed687c35625de881680c9f295de78dd0f5ca514b8e831efe54ec6181b72d93"
+    },
+    {
+      "path": "site/static/images/maps/b168ad943b864e49.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map59.png",
+      "sha256": "6abd99d5985915aaa58469bf5f975d3e1c702d6ebda24bfc82e964ee2e5a2333"
+    },
+    {
+      "path": "site/static/images/maps/b2eb7d2ee8b466f9.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Tribunal.png",
+      "sha256": "90b6d2e26ec1c091868fea990335132fa6362a4dc3e73f622bb6d559cfa8c29d"
+    },
+    {
+      "path": "site/static/images/maps/b3421a981c7a65c8.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Corpse.png",
+      "sha256": "4c464e25420381c40982749260c9c475133990f0598f333c08dbff52dec2b108"
+    },
+    {
+      "path": "site/static/images/maps/b3da9a8eb9974b06.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Mausoleum.png",
+      "sha256": "684a999c735b74820143f097966d04ee3c089e4d72e6a8b4a102023eac0b1ede"
+    },
+    {
+      "path": "site/static/images/maps/b4b69f70ab05249c.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Estuary3.png",
+      "sha256": "b427d3dbfb06c398e77a94c87ef8fe4cd7820da81d480e29adb8f9a83305861b"
+    },
+    {
+      "path": "site/static/images/maps/b5a6c515b1230a10.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/BurialChambers.png",
+      "sha256": "af31a0eae4f7084ec378aec37b788563fda35a6cf16241297961f64d1d8ac107"
+    },
+    {
+      "path": "site/static/images/maps/b7258f99e00a64d7.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/UniqueMapEye.png",
+      "sha256": "968dc146f6261f89e409a380c452dab624e1c4d9e4dea484f7f7ab86d53a5ecd"
+    },
+    {
+      "path": "site/static/images/maps/b8427da50542118a.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/SpiderLair.png",
+      "sha256": "df5721f72bc46fb9c0b0ac5ee4f768f356302e2a57924c4d622480e1a038c4e4"
+    },
+    {
+      "path": "site/static/images/maps/b8af433a27dd6d67.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map29.png",
+      "sha256": "7b6f850b3e09b03ddd7d19f6aadc597eb7b6569643d976be2d2a4bfcb9a85164"
+    },
+    {
+      "path": "site/static/images/maps/b93c6b31c8a36936.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map51.png",
+      "sha256": "94b287747fca3acfbe63100c66fe3af73b5aa1de63db7d33fc63eeaaf707c838"
+    },
+    {
+      "path": "site/static/images/maps/bba2562695c1dfd5.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map31.png",
+      "sha256": "60d354abc6ca5100fd0048867777e43f3f51297d51ed79c64d8ba962437a38eb"
+    },
+    {
+      "path": "site/static/images/maps/bc58ff38d177520f.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/SynthesisGolemGuardianMap.png",
+      "sha256": "e8147a1f4b97a9848e5fd0321ae0c8a8032356d60f69530f77cca2c9d89456e6"
+    },
+    {
+      "path": "site/static/images/maps/bcb1ccdf0250a0d1.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Arcade1.png",
+      "sha256": "ebdd9795bcd1c30db3d0fbf7403afea792830cda5c6aa803575ef35144573dcc"
+    },
+    {
+      "path": "site/static/images/maps/bd0b9c0d121f7acf.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/DefiledCathedral.png",
+      "sha256": "0ea5e67cd21daac0a485906853c98955490e52c21ce77dd22861f3f157b0c1df"
+    },
+    {
+      "path": "site/static/images/maps/bdd2ec8fe8045ab1.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Crypt2.png",
+      "sha256": "51cfd673d848a911d38cdaf6f8ca3563b1f6c5c82f14d83a3c58d6f608b730f8"
+    },
+    {
+      "path": "site/static/images/maps/be7cd8b25ce40012.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Precinct.png",
+      "sha256": "fadce036c94aa2c18066782e9e716f33ec373d0cd96b92989f6068893088c99e"
+    },
+    {
+      "path": "site/static/images/maps/beaabee89bd09047.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/CitySquare.png",
+      "sha256": "2684de8494fbe4c16b2da9b58c4e67e896f2be4a9a3c96540dffd5a642a2348e"
+    },
+    {
+      "path": "site/static/images/maps/bec9e14edd8cea88.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Core3.png",
+      "sha256": "1663839986a7b92a19c5e5b171fc3f2ce7542c26a52312e423214f3f803d63e5"
+    },
+    {
+      "path": "site/static/images/maps/bfe8de2758b20a22.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Abyss.png",
+      "sha256": "145547d9805f26065fd35f7e661402f690654315f9c567a0f2b014aa410465ac"
+    },
+    {
+      "path": "site/static/images/maps/bfee33f23959ade7.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/IvoryTemple.png",
+      "sha256": "5fd8e51b108b3a326f0cfd1ddebfad77eb0ee251eaeeb0191d399859d2661adf"
+    },
+    {
+      "path": "site/static/images/maps/c1117f4b9d4566eb.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/TortureChamber3.png",
+      "sha256": "66f8e60bebbec1eeae12720c53a0efdb829e6eff4827c63200a10714c8a44202"
+    },
+    {
+      "path": "site/static/images/maps/c2a5d4ccd982b1d6.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map67.png",
+      "sha256": "bcfbe58d122fc4210af1495339a40bc2e3f0c01615842bbd60dc689aef66bc0a"
+    },
+    {
+      "path": "site/static/images/maps/c4105e32354765d5.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Corrosion.png",
+      "sha256": "3bfa676de807af6c698d9e584747d1128964a4e3218112b14475e1a0d17a2566"
+    },
+    {
+      "path": "site/static/images/maps/c443e562d915cd18.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map20.png",
+      "sha256": "1beb1c05d81f80b39536ffb1d79af9363ae9c5a6d4ea3b5348c422865f47356b"
+    },
+    {
+      "path": "site/static/images/maps/c48c5e5c033ff7e6.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map32.png",
+      "sha256": "1921e8ee752bfbcd47578fbd7541e30a0eb89323d2861c20ffe01f07017eaaaa"
+    },
+    {
+      "path": "site/static/images/maps/c4b6c888036b9534.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map53.png",
+      "sha256": "a7d566e06e7194ab63fe7cf905f4b5a414725001ac0896faffbf0492ad476f59"
+    },
+    {
+      "path": "site/static/images/maps/c55a68530d58b075.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map18.png",
+      "sha256": "115dccf12793885c640327e1b9eb0b3d79c3d1f079b07b43781745c78cd99cdd"
+    },
+    {
+      "path": "site/static/images/maps/c5f89e7dd964642b.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Armory.png",
+      "sha256": "fef8653a305a5c7dfaff819b6b6deba0fc3cde22855d5900087ef505063d59b8"
+    },
+    {
+      "path": "site/static/images/maps/c65e388edeb7bde6.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Belfry.png",
+      "sha256": "5da2e774c7889aebff496a578a953f42db447fbd91db93d561fa5c1e00de245d"
+    },
+    {
+      "path": "site/static/images/maps/c6927bd62cb1c8af.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/PoorjoysAsylum.png",
+      "sha256": "3dab17e80a10df7dc2c0d360bae47420fa40117e109c53d024fb43cd5f8bcda3"
+    },
+    {
+      "path": "site/static/images/maps/c7d432f91c4a1e60.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Grotto1.png",
+      "sha256": "411e81289ec8bbcabeba6ce83034be83cceb60d7360fd5f11d7de95216ece71e"
+    },
+    {
+      "path": "site/static/images/maps/c81f4e9f30ac05b8.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map29.png",
+      "sha256": "df42719a4435ee8fd71b0dc71f5826577252a964f1627acfc0f909d14a4ae418"
+    },
+    {
+      "path": "site/static/images/maps/c8390b2fb01de825.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Phantasmagoria.png",
+      "sha256": "f38614661645859e92186b3157b5bc18cdd69281c1a595e3297327b30b7e37b1"
+    },
+    {
+      "path": "site/static/images/maps/c92ee6471dcb2f35.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map16.png",
+      "sha256": "9567e17d4e72c29b582d49d08013216a8eeed2c3cc94976d438773cfdce9dfc2"
+    },
+    {
+      "path": "site/static/images/maps/c9e8743be82d278d.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map69.png",
+      "sha256": "f1fc22b7b8368ba4c9377bc6cc997548225308a9afa5dfa1146a73ab33023506"
+    },
+    {
+      "path": "site/static/images/maps/ca489d5c967f9140.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/PillarsOfVastiri.png",
+      "sha256": "ebdd5c4334b818d29fb34af74e600ee6349d4f9dd448fc00a429bc8c638108b9"
+    },
+    {
+      "path": "site/static/images/maps/ca93bb63348e80ee.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/PrimordialPool1.png",
+      "sha256": "bd9cd9dbda00ca7800f49e72aed4133c9db76edc519d7f5ff0104fc61d9726b2"
+    },
+    {
+      "path": "site/static/images/maps/cb521eef07c47f04.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Phantasmagoria1.png",
+      "sha256": "b8cd375b03f4c673f668c152063d31ebca8ccab1c164b32bff455f165a183e60"
+    },
+    {
+      "path": "site/static/images/maps/cb971168892e3ea7.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/DarkForest3.png",
+      "sha256": "e5bd4b0814658bcc77db464f44c9b06849da7e4fc43821ca6aab9d4fbf3f06d8"
+    },
+    {
+      "path": "site/static/images/maps/cba67e4e553a80f0.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Waterways3.png",
+      "sha256": "17d94c092bd132f5b403f773251ed829cef3bcd3542ee6a42d4b1841c49896ce"
+    },
+    {
+      "path": "site/static/images/maps/cbfbba22e49156ae.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map45.png",
+      "sha256": "392840985d27ddc9b36ea073b249ac15679e0984678c3cc0b3781b4119489154"
+    },
+    {
+      "path": "site/static/images/maps/cc50d643c898d46a.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/SunkenCity.png",
+      "sha256": "02af6c84b44adbaa47f05f7808e2fc23fdd36c887e018795e74de59e31fd05ac"
+    },
+    {
+      "path": "site/static/images/maps/ccf81f3b8a23eb0e.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/DarkForest.png",
+      "sha256": "fe989ba54e6b6ad06cac122cad7faa168849010e56fa343dcef15fe0cc476fb3"
+    },
+    {
+      "path": "site/static/images/maps/cdae300e2260626a.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map38.png",
+      "sha256": "cf467fa9ca9a5d3a882844bc45890d45d382eb661b588d924f5b9a88a30d3e23"
+    },
+    {
+      "path": "site/static/images/maps/ce06f350440fdb5d.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map57.png",
+      "sha256": "a5a2964b7fc2b36f914aed5ef60ac845de7b76c9266bf7b4079ea09c17c8103d"
+    },
+    {
+      "path": "site/static/images/maps/cfd83632f1f768b1.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Canyon2.png",
+      "sha256": "a8e1b8472ccba8ecc26e62338c5be136ea85d7e625c1ea459a2b990feb01b57f"
+    },
+    {
+      "path": "site/static/images/maps/d0489c82ec5188ca.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Sewer1.png",
+      "sha256": "e1462eda8684d6e83a0654c02cdba175577989c5e65f7917bb6edaff4e8dd921"
+    },
+    {
+      "path": "site/static/images/maps/d1ae146c4f247a7e.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map27.png",
+      "sha256": "16d094f7b1c9abf9e610d0cddeaac125c9b6ec1831668628d653d83f15048914"
+    },
+    {
+      "path": "site/static/images/maps/d2075b803f63f8f4.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Plaza3.png",
+      "sha256": "01ffb72e9c214c91b2482d5d68ccbf8eefcd0d85c5fa5a5897c0b348c74ad91f"
+    },
+    {
+      "path": "site/static/images/maps/d4f44703f3ec8326.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Quarry.png",
+      "sha256": "58f51a6d48a4e734e37cf3509ac487cd8cc6caca50b91befa3eb914b5ff01e4f"
+    },
+    {
+      "path": "site/static/images/maps/d5ab75fc7450962f.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Armory2.png",
+      "sha256": "e1f444bffeec4ddb5cd19e02c0f024274e6ca3a0ca6e327834dbd01cd40e8b7b"
+    },
+    {
+      "path": "site/static/images/maps/d5b46e8278cbad2c.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Palace3.png",
+      "sha256": "a6dcfdc5f134217b9e0b85250942422b915153e62472425bbb697e081c5d71c1"
+    },
+    {
+      "path": "site/static/images/maps/d62fc036dbd21650.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Cemetery2.png",
+      "sha256": "a8845720138f027551d142373e09857a6559b143efda2b41920fed9531b6cc44"
+    },
+    {
+      "path": "site/static/images/maps/d64d2c806b8ffc50.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map2.png",
+      "sha256": "2bb6ab63b37431a96f36855bc8120e4d3b1e15f25339e18aad6ed2457a7cf82f"
+    },
+    {
+      "path": "site/static/images/maps/d66becd4b6b159cf.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Carcass.png",
+      "sha256": "48846d49c611662e23b4df89f13c203214ba1441ac611acb3c4c08c086c4e841"
+    },
+    {
+      "path": "site/static/images/maps/d77ffa99f17ae40b.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/CastleRuins2.png",
+      "sha256": "91f09f5a24f25f36e80c7f275629d389638280c0fb2db2caa68d3ef1d711893b"
+    },
+    {
+      "path": "site/static/images/maps/d7dd0c5168a3e844.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Precinct3.png",
+      "sha256": "b969d910c2920493a4a662616ebfad44507a756e6bd5a4ebde0022ecf305c403"
+    },
+    {
+      "path": "site/static/images/maps/d8d8b11d4a72828f.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Lookout.png",
+      "sha256": "90a4c7625d9e4d65ed90e1cf52a796a184e0db933a05cf8d36e84023d5cbd873"
+    },
+    {
+      "path": "site/static/images/maps/d8db8598b93b47bb.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/WolfMap.png",
+      "sha256": "62ab4302ac9e4dace63e0850c3f716de2731a104ee8791e709319128bb6fcdf9"
+    },
+    {
+      "path": "site/static/images/maps/d93883491ec48e9c.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map56.png",
+      "sha256": "867cf74cb6d0f7b48e0f66188cc794053e816ab31d90dd4a84c9866733d3e9a1"
+    },
+    {
+      "path": "site/static/images/maps/daff800a344aa5ed.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map21.png",
+      "sha256": "68f146adbe0d3b4235fdfae95fed1561fe12ffb68a7db4c827dbf4a79845da30"
+    },
+    {
+      "path": "site/static/images/maps/db38dc2e56856278.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Necropolis.png",
+      "sha256": "9f168f8485f67fbf793f6b6616320a36b2bb16af479abd028bc2a050cfade7eb"
+    },
+    {
+      "path": "site/static/images/maps/db5edb79c594e0f2.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/SulphurVents.png",
+      "sha256": "e1fa13c60013e0b870bf8748f73b8da766561c0cae3130707c3a570e31dbabc6"
+    },
+    {
+      "path": "site/static/images/maps/dba6d42a72814db4.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Pit1.png",
+      "sha256": "4a244337bd2f547f1722dad51bbdf8b53f4768438075f49f62144a05683e8a79"
+    },
+    {
+      "path": "site/static/images/maps/dbb74e9cf4580917.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map9White.png",
+      "sha256": "fbd0deb5dd5cf191dfed6f04b628fb3b5552061daff89627d488150ea69230fc"
+    },
+    {
+      "path": "site/static/images/maps/dc0ffb0d7914adab.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/MudGeyser.png",
+      "sha256": "c14dde7bc47dbe3db02ff1d2121d99a8b3330a737be0c4d9d254ada2b6e2c259"
+    },
+    {
+      "path": "site/static/images/maps/dc5081be72786d36.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map42.png",
+      "sha256": "f61670cad5da2469f3810489270a931dc0ee5b0a9b5140bd07e278344a12b2cb"
+    },
+    {
+      "path": "site/static/images/maps/dd1f210fa86f340c.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Plaza.png",
+      "sha256": "ee5e4383a3d4c23bd59c3d09bf104aaf1cdf33fdff0f50299cafcd0c76e70cd1"
+    },
+    {
+      "path": "site/static/images/maps/dd560357374e165a.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map28.png",
+      "sha256": "965f83b6d4eddf8788a0d1773dfac342e6f2d4491a8b87312f233a66b071b2d2"
+    },
+    {
+      "path": "site/static/images/maps/dd6de54d360e3c4b.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Hydra.png",
+      "sha256": "b5204726dd87b44025361368b6d86d51b93b9061a3a9e14369841f4eca0cfdcc"
+    },
+    {
+      "path": "site/static/images/maps/dd93b66e64bab946.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Reef.png",
+      "sha256": "ce2084e495d439da3d48e9fab5e8c5fb3e42fa5b998be6f719cc2406ea682421"
+    },
+    {
+      "path": "site/static/images/maps/dddbfbc37b661777.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Villa.png",
+      "sha256": "382528cb86ebd535f932258a8aef174799ef84a64a9b4b689a63744d30c683e4"
+    },
+    {
+      "path": "site/static/images/maps/de0e2e973c81cef2.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map66.png",
+      "sha256": "4ed56b23d6f2671ce2db09b8bc3559d1474cd7940616d12844d42efad56d6b29"
+    },
+    {
+      "path": "site/static/images/maps/dec7564a19587e4d.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map70.png",
+      "sha256": "e4f939594ae40f2f8d5f6e6fa774d05fc6011e02165734a8ee5411440484de3f"
+    },
+    {
+      "path": "site/static/images/maps/ded81351215ad049.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/CrystalOre.png",
+      "sha256": "32f56385c8dfebb30b43adb4b864ad1a0793ea7ce9c1a605eef2f28a9d88b60b"
+    },
+    {
+      "path": "site/static/images/maps/defddb13775457ba.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Orchard.png",
+      "sha256": "d4e0e91dc269c0abd02f632e1c90386054c02bfe6d989b77afda47d7a4193ec9"
+    },
+    {
+      "path": "site/static/images/maps/dfd35edc0fc79fa6.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map5.png",
+      "sha256": "d2bb73c1d42eca59e10b4db0548ef78617527ea80b76e3dc6fbc0f05bb5d4a8f"
+    },
+    {
+      "path": "site/static/images/maps/e1b9fbfcedacc65b.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Bog2.png",
+      "sha256": "55e7e9c9934c2d8ed2be9f63d31de5cf67b11859482498fd04c728653f8a8e82"
+    },
+    {
+      "path": "site/static/images/maps/e1d135156b3ed7e0.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map58.png",
+      "sha256": "0e0b596323125f4008499d38731a08c8d552920deb32dd7645de37abb38cfed5"
+    },
+    {
+      "path": "site/static/images/maps/e295c610b5958f20.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map12.png",
+      "sha256": "b2f05ff51988217e19fc1e8feb32f5dbc4cc33ce303207c204ea37c7cfb6329f"
+    },
+    {
+      "path": "site/static/images/maps/e29e22c9bfaf5af1.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Arsenal2.png",
+      "sha256": "601160b48b99b48e9ccc54f5fdf19cf58d71fe0167ebc6c1d9732bae4765598e"
+    },
+    {
+      "path": "site/static/images/maps/e2ac91260fe885b8.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/HighGardens3.png",
+      "sha256": "97b3978f36e9c615b043f8a45bed8172ce8438ed27b22f5ba306254cd131d309"
+    },
+    {
+      "path": "site/static/images/maps/e2ccafacc71c3b94.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Beacon.png",
+      "sha256": "915b33821717c2b37dc444ab3a2b03e0c77fe7253f4852acadbb9087ab55a77d"
+    },
+    {
+      "path": "site/static/images/maps/e313bdc9390b6013.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map36.png",
+      "sha256": "e6d14d8a2c4e6ae97914d8323009661b6f920e6ffe830215c9e86d31f849e30a"
+    },
+    {
+      "path": "site/static/images/maps/e33520f56f14cc2d.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map43.png",
+      "sha256": "e3fb74376521c33e04e42b006e2f619728c04735e3c9803f26f16192d15fd18d"
+    },
+    {
+      "path": "site/static/images/maps/e352d423b2804bd1.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Arachnid.png",
+      "sha256": "53b23b4ca2f87f590cb92f0e3858b1dbce70eded4c1659bcae61a2a1c3c4dda6"
+    },
+    {
+      "path": "site/static/images/maps/e417aec97b11ee35.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/SynthesisFireGuardianMap.png",
+      "sha256": "0028a14b8f77cf22be3400b66364ae0ef86fad2387bc7a114a723bc6b1e713d3"
+    },
+    {
+      "path": "site/static/images/maps/e4fba90ea7f807db.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Pit1.png",
+      "sha256": "b2b71c57ce16896265e2fc9e53e9a00a6e1bd70a7eb18faf8e873cb30ea3b8e8"
+    },
+    {
+      "path": "site/static/images/maps/e50f0bb4eee7182a.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/BurialChambers1.png",
+      "sha256": "6de80085afeb6e387713b2a10f426b0f5ac93aee2afdc988ef8d735124cf2953"
+    },
+    {
+      "path": "site/static/images/maps/e59091a2025c8678.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Colosseum.png",
+      "sha256": "073dc6b8eb92e53055c7f96098b4f9cf9b0eff232a6ac10e88614ecc02f79125"
+    },
+    {
+      "path": "site/static/images/maps/e5f13c6b40310daf.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/UniqueMap2.png",
+      "sha256": "46be23d88dcedbd9a4aeb90be7093ec0b1baf05722025b6e24ce936e89dc5278"
+    },
+    {
+      "path": "site/static/images/maps/e62d0f152f0c77e5.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/UndergroundRiver2.png",
+      "sha256": "6c6d68639383cc7a3a6f54dda0a2b6e9e2764e54e96be713b59423135059adcc"
+    },
+    {
+      "path": "site/static/images/maps/e6bd0e5043c4dcaa.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map17.png",
+      "sha256": "83f4a88c1ea89d6e2fdafd05810aa549b954892c33cd151a4d483a17364b5f17"
+    },
+    {
+      "path": "site/static/images/maps/e6cb54c609dcfe58.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Excavation.png",
+      "sha256": "49a5c255ba19c6e3145455bc1998d66bf5393e9d4ad6c3ec91e52602cd382dd5"
+    },
+    {
+      "path": "site/static/images/maps/e79d12fb9afb6b75.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Dig.png",
+      "sha256": "4daf668b15d1b8dbe792727011f317cec97ad751a710e4217e5db845dad0f650"
+    },
+    {
+      "path": "site/static/images/maps/e7b9b5b2779b40ac.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map2.png",
+      "sha256": "6a27b1fda4922d82abc770ca15bf78bc721bd331ef21210069c6c30260f56d94"
+    },
+    {
+      "path": "site/static/images/maps/e8285c744576dc1b.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map11.png",
+      "sha256": "7a88750f63b2890364d067c7fc503a8ceedca355c894e647f83b3e1a038c34b0"
+    },
+    {
+      "path": "site/static/images/maps/e84c924f8c3c0f62.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Doryanis.png",
+      "sha256": "70d22e5faa760c76bdad195142c6bf65300e897e67b04e7a096bee6132fb263d"
+    },
+    {
+      "path": "site/static/images/maps/e9d1ef91b025dc49.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Celestial.png",
+      "sha256": "d88a40a8b1d8ba26b4d8739b6eb30e3d6aecd2c8b61152ceb732b25d4a2cecac"
+    },
+    {
+      "path": "site/static/images/maps/ea2163654b175fbb.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/LunarisTemple.png",
+      "sha256": "546263a5c7dd44164ac0f0e6bd1b3f1dd55beb41af64815646a378b0a6ed4a9f"
+    },
+    {
+      "path": "site/static/images/maps/eb0f5fd04421b161.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/ThaumaturgyDungeon.png",
+      "sha256": "c9dbc54f6bdff5c8c9a1f57608a8529d49368c902810ba431b8c69b06953cba7"
+    },
+    {
+      "path": "site/static/images/maps/eb3dc9e89d59c4a1.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Tower1.png",
+      "sha256": "d1f4351a76256971b31220553d4abd1100a888139ca3e2cafdb32179f78f1d39"
+    },
+    {
+      "path": "site/static/images/maps/ecde3be0224150ca.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map5.png",
+      "sha256": "d60a87f5d073d2044ee131eebcd4ff658c9e78474a07155475b797c3ee5f4a62"
+    },
+    {
+      "path": "site/static/images/maps/ededeb1e4efd8c0e.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map46.png",
+      "sha256": "e1596f627af39a4170b2c4f8659cd9f1ad15fdcdea411cc8b01f291f772d3545"
+    },
+    {
+      "path": "site/static/images/maps/ee71a5796fbf5d1b.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map61.png",
+      "sha256": "964f344f2371344e75270946c8a8188fb224cb468cb62fc0fb75cd4838c3d27f"
+    },
+    {
+      "path": "site/static/images/maps/ee8a38c6924fbc42.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/AridLake1.png",
+      "sha256": "4edc23c3c49e19774a0227a1316d86fc9b98873c4bbaaf5c9a759c9fba195ab8"
+    },
+    {
+      "path": "site/static/images/maps/eeaaa49f16ed5589.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Promenade.png",
+      "sha256": "eedb3277d0d8b5ff1f9446661b1240d97445322e112f7d9230c64330dde38329"
+    },
+    {
+      "path": "site/static/images/maps/ef278ef3297ef8ff.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/MudGeyser2.png",
+      "sha256": "60ae585dc18e89aa012f8b3e74d3e0f58dcd36d7670263fcbc4d7c11066634d0"
+    },
+    {
+      "path": "site/static/images/maps/f0c68eb780054e58.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Residence.png",
+      "sha256": "a4ef70578d7d2f312b2b5dbdb10216494d23a08fa2f1f10f5a8d10b4f6f1c721"
+    },
+    {
+      "path": "site/static/images/maps/f0e3035d13fa8425.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Residence3.png",
+      "sha256": "2272e99b8cc7436020ef331d8453fcd3a055c2289a3e14a8f6c03beb1e34c2cf"
+    },
+    {
+      "path": "site/static/images/maps/f184929d5e6f6253.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map49.png",
+      "sha256": "db0bfed98c69eadec54cdf09d8449b83c04ecbd1eb093e27091e25a7f980d80b"
+    },
+    {
+      "path": "site/static/images/maps/f274161d600fd277.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map10.png",
+      "sha256": "cc3e7efea33d6fe191f84ea74577264deb614b047d13087fd41db5bcb3f4af87"
+    },
+    {
+      "path": "site/static/images/maps/f367e7d466715fb5.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map40.png",
+      "sha256": "ce9d6aed969c1e28bd44aea85e0ff92ca04a6d6af2b08da0336167f8723f7da0"
+    },
+    {
+      "path": "site/static/images/maps/f36afb9b5d35f4dd.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map59.png",
+      "sha256": "4e23be6abfbc0c1dcc5ba9f54841c374c4324461b792cee779273481572f1677"
+    },
+    {
+      "path": "site/static/images/maps/f490fa075e255253.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/ForbiddenWoods.png",
+      "sha256": "6d7052b78f3399d88faac06cdfb8d8ad1db419a9e3ffaf8e550a94003ddc66a9"
+    },
+    {
+      "path": "site/static/images/maps/f61491bf4c9e7c94.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Plateau.png",
+      "sha256": "150120a20f922a6dc6942e67733f88b4e947729e7e710baaa04ec70682bbf209"
+    },
+    {
+      "path": "site/static/images/maps/f6c60698c7c501e6.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map46.png",
+      "sha256": "1641f9da00fc720a338a2e88ff53e355b5120091b814a5c69c1ee0ff3f8ef350"
+    },
+    {
+      "path": "site/static/images/maps/f76b4f407a7130e3.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map63.png",
+      "sha256": "6e99afbcf961682274a124e674e8ddb37026fe1b20fc06ab3f032c45fead64ed"
+    },
+    {
+      "path": "site/static/images/maps/f7857631974d0c21.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map63.png",
+      "sha256": "7723cfb0ae2d190fd4e05ea6cbc26cbbc3787628a5c540a16c84419c07e18d1e"
+    },
+    {
+      "path": "site/static/images/maps/f791625ac105481f.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Coves2.png",
+      "sha256": "6ca071de9c2d41041deb8954e05b2b7ab0bcd0b53d341c01e78984799d604a8e"
+    },
+    {
+      "path": "site/static/images/maps/f8138036c1c2f947.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Oasis.png",
+      "sha256": "a32dee7beaa8e0266b8dd9c4116fb48944dedd9ef041b86a778aad3c97f9a858"
+    },
+    {
+      "path": "site/static/images/maps/f8c1b36c60c936cd.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Map23.png",
+      "sha256": "0a42dace7cdc6b64702a881b3236a4f628b6b799dddefd8e2711c89c46d88984"
+    },
+    {
+      "path": "site/static/images/maps/f9ef60599af1e710.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Beacon3.png",
+      "sha256": "8cd312c397b6dff889cf2fd8d5720a81824436ec89a653ef7012340ecfd76d86"
+    },
+    {
+      "path": "site/static/images/maps/fa1d824d9859c767.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map27.png",
+      "sha256": "df7f3904042ffdaa7de7ed955695aa4eb439d202fcd5c74645a996d61121a11a"
+    },
+    {
+      "path": "site/static/images/maps/fa3f158e51a9ff92.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/HighGardens.png",
+      "sha256": "d5de953d23ccfb866cd255c4e3c61a7aa7094f17ba77939266c48ecf0fceb09a"
+    },
+    {
+      "path": "site/static/images/maps/fcd8be1e5291f8be.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Infestation.png",
+      "sha256": "99f778636bec1c5fdb0058484ecbc6630e145f94261f8b25ebf2a901702353ff"
+    },
+    {
+      "path": "site/static/images/maps/fcff3c4d2f8954cc.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Crypt.png",
+      "sha256": "8c12b7a091596d72989c860826cd3c3f835c73df46f267ceb0badd324ab25a4f"
+    },
+    {
+      "path": "site/static/images/maps/fd014aa45ec39f78.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Temple2.png",
+      "sha256": "168a73266152349f21955f0bd53f3d06fb51af77e33f8842ce7451176e38c762"
+    },
+    {
+      "path": "site/static/images/maps/fd173d08719512af.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/DryPeninsula.png",
+      "sha256": "214efe1283dab8070f88bf024d92957071bf37e213577348c4db4c2fd8b4be2f"
+    },
+    {
+      "path": "site/static/images/maps/fe67a5e4f462dcad.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/Atlas2Maps/New/Tower.png",
+      "sha256": "2cedc637ee9f5037b88f3b24045e5af0b11c4ed0b9f661a54c6046e47ddc48ba"
+    },
+    {
+      "path": "site/static/images/maps/fe9057804f643e5c.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/AtlasMaps/Vault3.png",
+      "sha256": "b78896e0b73a1078fb156462a2169162e275692ad85655dd3e4208a89ed7f3ec"
+    },
+    {
+      "path": "site/static/images/maps/feb1e22c2a978f62.png",
+      "url": "https://web.poecdn.com/image/Art/2DItems/Maps/act4maps/Map31.png",
+      "sha256": "9d7b48ea98966b353d398502c87f0bbadf413d2ac11fa6d569b5ca1aae91f354"
+    },
+    {
+      "path": "site/static/vendor/bootstrap.min.css",
+      "url": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css",
+      "sha256": "d85327d99c7a3ee1f9b5d0500d1370acea3ad2db39c163c2f51f232baedbdede"
+    },
+    {
+      "path": "site/static/vendor/bootstrap.bundle.min.js",
+      "url": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js",
+      "sha256": "e4fd49181388c48ec5040bd3fe66f57c29c8e67fcd8502b3354b96ec7ab47cc7"
+    },
+    {
+      "path": "site/static/vendor/bootstrap-LICENSE.txt",
+      "url": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/LICENSE",
+      "sha256": "4620c84ad5ce8602ff65640ed6b7c8b78ebb9e036584f0ebc1ccc88206a4bb51"
+    }
+  ],
+  "unavailable": []
+}

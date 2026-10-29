@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="{{ language }}" data-bs-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ ctx['title'] }}</title>
+  {% with ctx=ctx %}{% include "partials/assets.html" %}{% endwith %}
+</head>
+<body><div class="report-shell">{% with ctx=ctx %}{% include "partials/menu.html" %}{% endwith %}
+{% set a = data['analysis'] %}
+<main>
+
+  <header><p class="eyebrow">{{ translate("ui.path_of_exile_local_report") }}</p>
+    <h1>{{ ctx['title'] }}</h1><p class="source">{{ a['source_label'] }}</p></header>
+  <section class="state {% if a['recognition_complete'] %}complete{% else %}incomplete{% endif %}">
+    <h2>{{ a['state'] }}</h2><p>{{ translate("ui.all_lines_and_bytes_are_accounted_for") }} {{ a['percentage'] }} {{ translate("ui.of_lines_recognized") }}</p>
+  </section>
+  <section class="counts" aria-label="{{ translate("ui.coverage") }}">
+    <div><strong>{{ a['total_lines'] }}</strong><span>{{ translate("ui.total_lines") }}</span></div>
+    <div><strong>{{ a['recognized_lines'] }}</strong><span>{{ translate("ui.recognized") }}</span></div>
+    <div><strong>{{ a['unknown_lines'] }}</strong><span>{{ translate("ui.unknown_2") }}</span></div>
+    <div><strong>{{ a['error_lines'] }}</strong><span>{{ translate("ui.errors_3") }}</span></div>
+  </section>
+  {% include "partials/log-observations.html" %}
+  <section><h2>{{ translate("ui.history_and_parameters") }}</h2><dl>
+    <dt>SHA-256</dt><dd class="hash">{{ a['input_sha256'] }}</dd>
+    <dt>{{ translate("ui.bytes_accounted_for") }}</dt><dd>{{ a['input_bytes'] }}</dd>
+    <dt>{{ translate("ui.time_zone") }}</dt><dd>{{ a['timezone'] }}</dd>
+    <dt>{{ translate("ui.rules_schema_version") }}</dt><dd>{{ a['rules_version'] }} / {{ a['schema_version'] }}</dd>
+  </dl></section>
+  <section class="explanation"><h2>{{ translate("ui.how_to_read_this_report") }}</h2>{{ ctx['content'] }}</section>
+  {% if data['log_observations']['diagnostics'] %}
+  <section><h2>{{ translate("ui.needs_investigation") }}</h2>
+  <p class="table-note">{{ translate('diagnostics.hint') }}</p>
+  {% for category in data['log_observations']['diagnostics'] %}
+  <details class="diagnostic-category"><summary>{{ category['label'] }} · {{ category['count'] }}</summary>
+  {% for message in category['messages'] %}<article class="diagnostic-message">
+  <p class="table-note">{{ translate('diagnostics.occurrences', count=message['count'], first=message['first_line'], last=message['last_line']) }} · <code>{{ message['status'] }}</code> · {{ message['reason_label'] }}</p>
+  {% if message['text'] is not none %}<pre>{{ message['text'] }}</pre>{% else %}<p>{{ translate('diagnostics.no_text') }}</p>{% endif %}
+  </article>{% endfor %}</details>{% endfor %}
+  </section>
+  {% endif %}
+  <section><h2>{{ translate("ui.line_types") }}</h2><table>
+    <thead><tr><th scope="col">{{ translate("ui.type") }}</th><th scope="col">{{ translate("ui.lines") }}</th></tr></thead>
+    <tbody>{% for item4 in a['types'] %}<tr><td><code>{{ item4['type'] }}</code></td><td>{{ item4['count'] }}</td></tr>{% endfor %}</tbody>
+  </table></section>
+</main></div>
+{% with ctx=ctx %}{% include "partials/scripts.html" %}{% endwith %}</body>
+</html>

@@ -1,0 +1,5 @@
+<nav class="day-navigation" aria-label="{{ translate('history.pages') }}">
+{% if page['previous'] %}<a href="index.html">{{ translate("history.first") }}</a><a href="{{ page['previous'] }}">← {{ translate("history.previous") }}</a>{% endif %}
+<span>{{ translate("history.page", number=page['number'], total=model['pages']|length, first=page['first'], last=page['last']) }}</span>
+{% if page['next'] %}<a href="{{ page['next'] }}">{{ translate("history.next") }} →</a><a href="{{ model['pages'][-1]['path'] }}">{{ translate("history.last") }}</a>{% endif %}
+</nav>

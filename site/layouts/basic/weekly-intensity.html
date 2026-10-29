@@ -1,0 +1,14 @@
+<section class="weekly-intensity panel" aria-label="{{ translate('intensity.title') }}">
+<h2>{{ translate('intensity.title') }}</h2><p class="note">{{ translate('intensity.note') }}</p>
+<div class="chart-scroll"><svg class="weekly-intensity-chart" viewBox="0 0 1000 360" role="group" aria-label="{{ translate('intensity.title') }}">
+{% for row in intensity['rows'] %}{% set weekday = translate('basic.' + ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'][row['weekday']]) %}{% set y = 10 + loop.index0 * 43 %}
+<defs><linearGradient id="intensity-{{ row['weekday'] }}">{% for point in row['points'] %}<stop offset="{{ point['second'] / 86400 }}" stop-color="{{ point['color'] }}" stop-opacity="{{ point['opacity'] }}"/>{% endfor %}</linearGradient></defs>
+<text x="5" y="{{ y + 24 }}">{{ weekday }}</text><rect class="weekly-intensity-track" x="65" y="{{ y }}" width="790" height="32" rx="4"/>
+<rect x="65" y="{{ y }}" width="790" height="32" rx="4" fill="url(#intensity-{{ row['weekday'] }})"/>
+<text x="995" y="{{ y + 24 }}" text-anchor="end">{{ row['duration'] }}</text>
+<g data-intensity-row>{% for point in row['points'][:-1] %}<rect data-intensity-hit x="{{ 65 + point['second'] / 86400 * 790 }}" y="{{ y }}" width="{{ 790 * intensity['step_seconds'] / 86400 + 0.1 }}" height="32" fill="transparent" tabindex="{{ 0 if loop.first else -1 }}"><title>{{ weekday }} · {{ translate('intensity.time_axis') }}: {{ point['time'] }} · {{ translate('intensity.value') }}: {{ point['duration'] }} · {{ translate('intensity.total') }}: {{ row['duration'] }}</title></rect>{% endfor %}</g>
+{% endfor %}
+{% for hour in [0, 6, 12, 18, 24] %}<text x="{{ 65 + hour / 24 * 790 }}" y="330" text-anchor="middle">{{ '%02d:00'|format(hour) }}</text>{% endfor %}
+<text x="460" y="355" text-anchor="middle">{{ translate('intensity.time_axis') }} · {{ intensity['timezone'] }}</text>
+</svg></div><p class="note">{{ translate('intensity.scale', maximum = intensity['maximum_duration']) }}</p>
+</section>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="{{ language }}" data-bs-theme="dark">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ ctx['title'] }}</title>{% include "partials/assets.html" %}</head>
+<body><div class="report-shell">{% include "partials/menu.html" %}<main class="event-history">
+{% set model = data['events'] %}{% set page = ctx['page'] %}
+<header><p class="eyebrow">{{ translate("ui.player_history") }} · {{ data['analysis']['timezone'] }}</p><h1>{{ ctx['title'] }}</h1></header>
+<p class="table-note">{{ data['analysis']['state'] }} · <a href="../technical/index.html">{{ translate("ui.coverage") }}</a></p>
+<p>{{ translate("history.scope", count=model['count']) }}</p>
+<nav class="date-index" aria-label="{{ translate('ui.go_to_date') }}">{% for day in model['dates'] %}<a href="{{ day['href'] }}">{{ day['label'] }}</a>{% endfor %}</nav>
+<p><a href="../search/index.html">{{ translate("search.title") }}</a></p>
+{% include "partials/history-navigation.html" %}
+<div class="row g-3 mb-3">
+<div class="col-md-8"><label for="event-search" class="form-label">{{ translate("history.search") }}</label><input id="event-search" type="search" class="form-control" data-search="events"></div>
+<div class="col-md-4"><label for="event-category" class="form-label">{{ translate("ui.event_type") }}</label><select id="event-category" class="form-select" data-category="events"><option value="">{{ translate("ui.all_events") }}</option>{% for kind in model['types'] %}<option value="{{ kind }}">{{ kind }}.*</option>{% endfor %}</select></div>
+</div>
+<div class="table-scroll" data-results="events"><table class="timeline-rows history-rows">
+<caption class="visually-hidden">{{ ctx['title'] }}</caption>
+<thead><tr><th scope="col">{{ translate("characters.date_time") }}</th><th scope="col">{{ translate("timeline.event") }}</th><th scope="col">{{ translate("ui.line_2") }}</th></tr></thead>
+<tbody>{% for row in page['rows'] %}<tr id="line-{{ row['line'] }}" data-item data-kind="{{ row['family'] }}" data-status="{{ row['status'] }}">
+<td><a href="#line-{{ row['line'] }}">{% if row['timestamp'] %}<time datetime="{{ row['timestamp'] }}">{{ row['time'] }}</time>{% else %}—{% endif %}</a></td>
+<td><details class="timeline-record"><summary class="timeline-message">{% if row['message'] is none %}{{ translate("message.undecodable") }}{% elif not row['message'] %}{{ translate("history.empty_line") }}{% else %}{{ row['message'] }}{% endif %}</summary>
+<div class="timeline-record-body">
+{% if row['original'] is not none %}<pre class="message-text">{{ row['original'] }}</pre>{% endif %}
+<dl><dt>{{ translate("ui.message_type") }}</dt><dd><code>{{ row['type'] }}</code></dd>
+<dt>{{ translate("history.status") }}</dt><dd>{{ translate('history.' + row['status']) }}</dd>
+{% if row['timestamp_raw'] %}<dt>{{ translate("ui.original_timestamp") }}</dt><dd>{{ row['timestamp_raw'] }}</dd>{% endif %}
+{% if row['timestamp'] %}<dt>{{ translate("ui.time_with_utc_offset") }}</dt><dd>{{ row['timestamp'] }}</dd>{% endif %}
+{% if row['parent'] %}<dt>{{ translate("history.continuation") }}</dt><dd><a href="{{ row['parent'] }}">{{ translate("history.parent") }}</a></dd>{% endif %}
+{% if row['history_boundary'] %}<dt>{{ translate("history.boundary") }}</dt><dd>{{ translate("history.boundary_note") }}</dd>{% endif %}
+{% if row['reason'] %}<dt>{{ translate("history.reason") }}</dt><dd>{{ diagnostic_reason(row['reason']) }}</dd>{% endif %}
+{% if row['raw_base64'] %}<dt>{{ translate("history.raw_bytes") }}</dt><dd><code class="message-text">{{ row['raw_base64'] }}</code></dd>{% endif %}</dl>
+{% if row['fields'] %}<details><summary>{{ translate("message.parameters") }}</summary><dl>{% for key, value in row['fields'].items() %}<dt><code>{{ key }}</code></dt><dd class="message-text">{{ value }}</dd>{% endfor %}</dl></details>{% endif %}
+</div></details></td>
+<td><a href="#line-{{ row['line'] }}">#{{ row['line'] }}</a></td></tr>{% endfor %}</tbody></table></div>
+<p class="empty-filter" hidden>{{ translate("ui.no_matches") }}</p>
+{% if not page['rows'] %}<p>{{ translate("history.empty") }}</p>{% endif %}
+{% include "partials/history-navigation.html" %}
+</main></div>{% include "partials/scripts.html" %}</body></html>

@@ -1,0 +1,56 @@
+# Raw logs remain on the local computer only.
+/data/*
+!/data/README.md
+Client*.txt
+LatestClient*.txt
+*.log
+
+# Local analysis and site-build results.
+/build/
+/report/
+/index.html
+/report.pdf
+/public/
+/resources/
+.hugo_build.lock
+*.duckdb
+*.duckdb.wal
+
+# Python environment and tool caches.
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+/dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Local settings and secrets.
+.env
+.env.*
+!.env.example
+.DS_Store
+*~
+
+# Local keys, certificates, and editor settings.
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+.ssh/
+.vscode/
+.idea/
+
+# Local databases, backups, and dumps.
+*.db
+*.sqlite
+*.sqlite3
+*.bak
+*.dump

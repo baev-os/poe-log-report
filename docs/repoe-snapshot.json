@@ -1,0 +1,374 @@
+{
+  "data_commit": "a77305840b4cc8555eeeea144eac3eeddeff134b",
+  "data_commit_date": "2026-09-15T13:49:18Z",
+  "data_repository": "https://github.com/repoe-fork/repoe-fork.github.io",
+  "files": [
+    {
+      "bytes": 2541,
+      "path": "data/active_skill_types.json",
+      "sha256": "24284694edaf871c5b0f5512fbc992cd98b6e5f5e3a5c7964ed0a4b524197be2",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe-fork.github.io/a77305840b4cc8555eeeea144eac3eeddeff134b/data/active_skill_types.json"
+    },
+    {
+      "bytes": 13920017,
+      "path": "data/audio.json",
+      "sha256": "a12f411f70f41f50089a303323672a4161ae2dadc1c6eac6b33a2e070780ee99",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe-fork.github.io/a77305840b4cc8555eeeea144eac3eeddeff134b/data/audio.json"
+    },
+    {
+      "bytes": 8025343,
+      "path": "data/base_items.json",
+      "sha256": "48afb07a5f40eb51552f90c17d53186469db282a2e759dab7b46e7f9d2a0f58b",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe-fork.github.io/a77305840b4cc8555eeeea144eac3eeddeff134b/data/base_items.json"
+    },
+    {
+      "bytes": 2848,
+      "path": "data/characters.json",
+      "sha256": "6a00dcdf972ae9df285b89aed2686208d46c45cb3a519aa32b6c6848894c45b7",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe-fork.github.io/a77305840b4cc8555eeeea144eac3eeddeff134b/data/characters.json"
+    },
+    {
+      "bytes": 45203,
+      "path": "data/cluster_jewel_notables.json",
+      "sha256": "f5d488483819a9f5854b739db2b25a2a422bd2b228530dc5bbfc734f87694fd8",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe-fork.github.io/a77305840b4cc8555eeeea144eac3eeddeff134b/data/cluster_jewel_notables.json"
+    },
+    {
+      "bytes": 18550,
+      "path": "data/cluster_jewels.json",
+      "sha256": "415d799b733e88454f5c724a64d0f860f43e1d557f0e6e7df874beeb3b83d1ed",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe-fork.github.io/a77305840b4cc8555eeeea144eac3eeddeff134b/data/cluster_jewels.json"
+    },
+    {
+      "bytes": 375833,
+      "path": "data/flavour.json",
+      "sha256": "3554847372f27c016ba73e002ede6922aaa5570a70e04aeb3bad48834296ef7f",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe-fork.github.io/a77305840b4cc8555eeeea144eac3eeddeff134b/data/flavour.json"
+    },
+    {
+      "bytes": 3999365,
+      "path": "data/gems_minimal.json",
+      "sha256": "4411c76bdd037907300c3663652bd377f6938e05315e4ee6437522fe44a73692",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe-fork.github.io/a77305840b4cc8555eeeea144eac3eeddeff134b/data/gems_minimal.json"
+    },
+    {
+      "bytes": 930526,
+      "path": "data/passive_skill_trees/Atlas.json",
+      "sha256": "3f8b296cc7473c7f81639fdfd6550d4be6b7a6adc227b87cb15eaafaed95971a",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe-fork.github.io/a77305840b4cc8555eeeea144eac3eeddeff134b/data/passive_skill_trees/Atlas.json"
+    },
+    {
+      "bytes": 930526,
+      "path": "data/passive_skill_trees/AtlasCurrentLeague.json",
+      "sha256": "3f8b296cc7473c7f81639fdfd6550d4be6b7a6adc227b87cb15eaafaed95971a",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe-fork.github.io/a77305840b4cc8555eeeea144eac3eeddeff134b/data/passive_skill_trees/AtlasCurrentLeague.json"
+    },
+    {
+      "bytes": 2621,
+      "path": "data/passive_skill_trees/AtlasEmpty.json",
+      "sha256": "59e76cb21714dafc6a9d984a9aea8567f62856b636bbbe5b3cf340219320b5df",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe-fork.github.io/a77305840b4cc8555eeeea144eac3eeddeff134b/data/passive_skill_trees/AtlasEmpty.json"
+    },
+    {
+      "bytes": 111871,
+      "path": "data/passive_skill_trees/BrequelTree.json",
+      "sha256": "17801cf1798992ab98c2cf7e6bc33fe550665041e815e93d6d7cff26d7440d0e",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe-fork.github.io/a77305840b4cc8555eeeea144eac3eeddeff134b/data/passive_skill_trees/BrequelTree.json"
+    },
+    {
+      "bytes": 2349455,
+      "path": "data/passive_skill_trees/Default.json",
+      "sha256": "0a0c261cd1b638b9a1fa5fe9949bd73dd453cc71b4722f07ae53054325b58dec",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe-fork.github.io/a77305840b4cc8555eeeea144eac3eeddeff134b/data/passive_skill_trees/Default.json"
+    },
+    {
+      "bytes": 2288624,
+      "path": "data/passive_skill_trees/DefaultAltAscendancies.json",
+      "sha256": "efc974ce8f9b8b66ef1878485289dd47e4d288708dfd8867a04177dd59d0d36d",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe-fork.github.io/a77305840b4cc8555eeeea144eac3eeddeff134b/data/passive_skill_trees/DefaultAltAscendancies.json"
+    },
+    {
+      "bytes": 163886,
+      "path": "data/passive_skill_trees/Royale.json",
+      "sha256": "a46a6a0abc18f516b3207d635f46e307f3cf11f4a0826505ded014e0177c89b9",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe-fork.github.io/a77305840b4cc8555eeeea144eac3eeddeff134b/data/passive_skill_trees/Royale.json"
+    },
+    {
+      "bytes": 591061,
+      "path": "data/uniques.json",
+      "sha256": "0d4b902e7bddab409708d3f42338b0147c481323b0edfea49840d5a8bb37f7fb",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe-fork.github.io/a77305840b4cc8555eeeea144eac3eeddeff134b/data/uniques.json"
+    },
+    {
+      "bytes": 9772305,
+      "path": "data/world_areas.json",
+      "sha256": "5815cb88ab5a9565c5238dca15deab7d62532f2e0606b9feb5b0b15bd3da0078",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe-fork.github.io/a77305840b4cc8555eeeea144eac3eeddeff134b/data/world_areas.json"
+    },
+    {
+      "bytes": 9,
+      "path": "exported-version.txt",
+      "sha256": "b6a60142d7dd3c7e59a9924c6f342654d734558964e07cd211aed157e2e1c9b0",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe-fork.github.io/a77305840b4cc8555eeeea144eac3eeddeff134b/exported-version.txt"
+    },
+    {
+      "bytes": 57,
+      "path": "schema.txt",
+      "sha256": "fd95b1c04f361d040600a249a36517f066efb17dc3ac5cfb48782054cfb2e892",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe-fork.github.io/a77305840b4cc8555eeeea144eac3eeddeff134b/schema.txt"
+    },
+    {
+      "bytes": 4042,
+      "path": "source/README.md",
+      "sha256": "9508740e282a8ec04240dfdd29a49e5bc63f3a76e36ec3f30553bc11ecf332e2",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/README.md"
+    },
+    {
+      "bytes": 835,
+      "path": "source/RePoE/parser/modules/audio.py",
+      "sha256": "1928529f7b854c41f81aa6da1dcca2a21a827f895581fda54fc40d9a5932efa1",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/parser/modules/audio.py"
+    },
+    {
+      "bytes": 1250,
+      "path": "source/RePoE/parser/modules/characters.py",
+      "sha256": "45aa2e41702e37a310301b2c9530b65e157862705854b0617c45ea82028a52b3",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/parser/modules/characters.py"
+    },
+    {
+      "bytes": 1917,
+      "path": "source/RePoE/parser/modules/cluster_jewels.py",
+      "sha256": "cdc0be092dc76469a14ffdd6ee59fad253611008aceda6aa2dcdb2bc1ff9ea05",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/parser/modules/cluster_jewels.py"
+    },
+    {
+      "bytes": 541,
+      "path": "source/RePoE/parser/modules/flavour.py",
+      "sha256": "7b766c980d00a1d621fb4480421e712ae29f719c5937ec45ca32085ff3907392",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/parser/modules/flavour.py"
+    },
+    {
+      "bytes": 24309,
+      "path": "source/RePoE/parser/modules/gems.py",
+      "sha256": "6d15202147e812a762d4ae2102ee2a12a1365dc8e3ca1b628a26eb2edead2ace",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/parser/modules/gems.py"
+    },
+    {
+      "bytes": 4868,
+      "path": "source/RePoE/parser/modules/passives.py",
+      "sha256": "eebfdd70b271b8001f37b4b7fd52f013df74b88651de6282b3116f332f5b6b22",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/parser/modules/passives.py"
+    },
+    {
+      "bytes": 4536,
+      "path": "source/RePoE/parser/modules/uniques.py",
+      "sha256": "20d8ca4e5d1cae811385295901a04103ad7791936f3993149c63169028e13852",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/parser/modules/uniques.py"
+    },
+    {
+      "bytes": 8853,
+      "path": "source/RePoE/parser/modules/world_areas.py",
+      "sha256": "864a2bba029119e2dcc0f5644c8a814e2a2f6c43c1d4bc35b92526bb8cd31f7b",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/parser/modules/world_areas.py"
+    },
+    {
+      "bytes": 152,
+      "path": "source/RePoE/schema/active_skill_types.json",
+      "sha256": "da9be6e1518e1b03d03309b697ac0083b6b276eddcb9e3c9084fab4f93f7bbe9",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/schema/active_skill_types.json"
+    },
+    {
+      "bytes": 2047,
+      "path": "source/RePoE/schema/audio.json",
+      "sha256": "b02497f5bae39a3f5570aa606ece8c641619896580fad0558c4c6421d6a30373",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/schema/audio.json"
+    },
+    {
+      "bytes": 7717,
+      "path": "source/RePoE/schema/base_items.json",
+      "sha256": "3a95ad39fac751bc8dadded745cb1c3f9a7251b8b20cdbd08cf8fac3f8428c3b",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/schema/base_items.json"
+    },
+    {
+      "bytes": 2983,
+      "path": "source/RePoE/schema/buff_visuals.json",
+      "sha256": "ebdad896757271fe876d8806d09942f3824bc541034dbf37a84a30463abec725",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/schema/buff_visuals.json"
+    },
+    {
+      "bytes": 4822,
+      "path": "source/RePoE/schema/buffs.json",
+      "sha256": "59f06fe79856f73a110c88f0765596c0ba3f1454375f2f6f16326c931bac0798",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/schema/buffs.json"
+    },
+    {
+      "bytes": 2728,
+      "path": "source/RePoE/schema/characters.json",
+      "sha256": "73f91f96ebbb749fd7a5b2c18ebf68d7c34fdfdcc55738e6f658cb9d013fc7d7",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/schema/characters.json"
+    },
+    {
+      "bytes": 793,
+      "path": "source/RePoE/schema/cluster_jewel_notables.json",
+      "sha256": "1eeb6c3c7f81b1dbe89cb732afb04acb369fad06a399f43e57a0bcbd09eb0901",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/schema/cluster_jewel_notables.json"
+    },
+    {
+      "bytes": 8395,
+      "path": "source/RePoE/schema/cluster_jewels.json",
+      "sha256": "8d9f8e291497cd740e37f07c749926af6ef92077494fa6eca626ad837e16f570",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/schema/cluster_jewels.json"
+    },
+    {
+      "bytes": 670,
+      "path": "source/RePoE/schema/cost_types.json",
+      "sha256": "ef2308f896f2e8d615dc80bf46ac376843d3c7980d1331647fdc3d7c31f66846",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/schema/cost_types.json"
+    },
+    {
+      "bytes": 2466,
+      "path": "source/RePoE/schema/crafting_bench_options.json",
+      "sha256": "688ac5829a32cec0f3cc8e4c7aa5b976e32dec34821830e7f194ecd3dc5a79ab",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/schema/crafting_bench_options.json"
+    },
+    {
+      "bytes": 1254,
+      "path": "source/RePoE/schema/default_monster_stats.json",
+      "sha256": "8ccab4c7490bf2595a859a4455586d1e3ca6f7fa9c2a53aa121e250b70697db0",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/schema/default_monster_stats.json"
+    },
+    {
+      "bytes": 3763,
+      "path": "source/RePoE/schema/essences.json",
+      "sha256": "13a931cbcdaf212016900733b7602ef9f678a373a93a052d62b00b253527f4e3",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/schema/essences.json"
+    },
+    {
+      "bytes": 168,
+      "path": "source/RePoE/schema/flavour.json",
+      "sha256": "545e5ce7bc5cf6ebd8122812343a966afc05fb829bd48cb699fea02468cb5e15",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/schema/flavour.json"
+    },
+    {
+      "bytes": 4121,
+      "path": "source/RePoE/schema/fossils.json",
+      "sha256": "3e11f6eb8d3c3d7984bd34f391cb94282933a335baf9d97e4d42c7912d288b86",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/schema/fossils.json"
+    },
+    {
+      "bytes": 503,
+      "path": "source/RePoE/schema/gem_tags.json",
+      "sha256": "522e98a3ee6b72e3a4177084906e66c4c4110f2bb901486feb166208a864e5af",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/schema/gem_tags.json"
+    },
+    {
+      "bytes": 16846,
+      "path": "source/RePoE/schema/gems.json",
+      "sha256": "9df11b4c736f8347395baee1579275bd6574e66a848e7df4217bf5074b2c019b",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/schema/gems.json"
+    },
+    {
+      "bytes": 14175,
+      "path": "source/RePoE/schema/gems_minimal.json",
+      "sha256": "b658459e90b3a3abe9ce3dce8105a03c8e5d91c7ef6ab975cfa6772c41512203",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/schema/gems_minimal.json"
+    },
+    {
+      "bytes": 1010,
+      "path": "source/RePoE/schema/item_classes.json",
+      "sha256": "86a7999b8d7ca9c170f43549763ea20d1ee228dd5f86a2a341161437708f07f2",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/schema/item_classes.json"
+    },
+    {
+      "bytes": 3337,
+      "path": "source/RePoE/schema/lab_layout.json",
+      "sha256": "5b02541e992ed75cacd38dbf349784afe8c686420c8ed75d99a3e23fa42ffa04",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/schema/lab_layout.json"
+    },
+    {
+      "bytes": 665,
+      "path": "source/RePoE/schema/mod_types.json",
+      "sha256": "5417dec1e570a67bea332e046def6383fee19a513ba896aba7c05a7b3d2d96be",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/schema/mod_types.json"
+    },
+    {
+      "bytes": 4685,
+      "path": "source/RePoE/schema/mods.json",
+      "sha256": "8671003383a95cabf31903212b7797f65b3896491aaa8e33800a7959cb32b544",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/schema/mods.json"
+    },
+    {
+      "bytes": 2691,
+      "path": "source/RePoE/schema/mods_by_base.json",
+      "sha256": "4e311d9d0ec36828a742cac01cb1cf42da7967d04021b9e9ca7c3c2769c40188",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/schema/mods_by_base.json"
+    },
+    {
+      "bytes": 6485,
+      "path": "source/RePoE/schema/stat_translations.json",
+      "sha256": "2ce96b36a1f80e184780e0c5d03384e0d49d1a4509b556d87834e6d030af3c2f",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/schema/stat_translations.json"
+    },
+    {
+      "bytes": 3692,
+      "path": "source/RePoE/schema/stat_value_handlers.json",
+      "sha256": "3aacf0558c2a37095d4d160fe05b21d7256c787c6b4c13611a207bc318e29e57",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/schema/stat_value_handlers.json"
+    },
+    {
+      "bytes": 1178,
+      "path": "source/RePoE/schema/stats.json",
+      "sha256": "0783072f356c388de821267b0bf44896d78e563cb2c9f186ec200a4783d47d1f",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/schema/stats.json"
+    },
+    {
+      "bytes": 5381,
+      "path": "source/RePoE/schema/stats_by_file.json",
+      "sha256": "c0bdcc7623aee51a538e34e374979c708249d5cb335d0310d2cac7336f974aa0",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/schema/stats_by_file.json"
+    },
+    {
+      "bytes": 152,
+      "path": "source/RePoE/schema/tags.json",
+      "sha256": "da9be6e1518e1b03d03309b697ac0083b6b276eddcb9e3c9084fab4f93f7bbe9",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/schema/tags.json"
+    },
+    {
+      "bytes": 2479,
+      "path": "source/RePoE/schema/uniques.json",
+      "sha256": "dbbf7ed55bb02ccfdf2df8c29dc7a39169f26140092228bc30201b97b49fa170",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/schema/uniques.json"
+    },
+    {
+      "bytes": 4423,
+      "path": "source/RePoE/schema/uniques_poewiki.json",
+      "sha256": "49869140d4ec96bc53135c9a4940a79647ce363c8effb4fab8614245bdc3eed9",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/schema/uniques_poewiki.json"
+    },
+    {
+      "bytes": 13813,
+      "path": "source/RePoE/schema/world_area_graph.json",
+      "sha256": "afcdeaa60622d2bcb47976573fa5c0376cc59304d98f8231d0aaeab47f8a1840",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/schema/world_area_graph.json"
+    },
+    {
+      "bytes": 6119,
+      "path": "source/RePoE/schema/world_areas.json",
+      "sha256": "490987c6ce16b3e7c5c087c24ee9936f52c77438c696175459ba210802ccac19",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe/1c72e40a99aa8c8f70e9a3526155f455d5eedd43/RePoE/schema/world_areas.json"
+    },
+    {
+      "bytes": 8,
+      "path": "version.txt",
+      "sha256": "539dc62d9d540219b759a5cacc8838e16dead9d2c9a93b35ef260a651682ba67",
+      "url": "https://raw.githubusercontent.com/repoe-fork/repoe-fork.github.io/a77305840b4cc8555eeeea144eac3eeddeff134b/version.txt"
+    }
+  ],
+  "game": "poe1",
+  "game_version": "3.29.3.3",
+  "repository": "https://github.com/repoe-fork/repoe",
+  "retrieved_on": "2026-09-16",
+  "snapshot_version": "1",
+  "source_commit": "1c72e40a99aa8c8f70e9a3526155f455d5eedd43",
+  "source_commit_date": "2026-08-27T10:46:22Z"
+}

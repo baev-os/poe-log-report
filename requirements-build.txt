@@ -1,0 +1,5 @@
+# Native-build dependencies for Python 3.14 on Linux/Windows x86_64.
+-r requirements-desktop.txt
+Nuitka==4.2.1
+patchelf==0.19.1.0; sys_platform == "linux"
+tzdata==2026.4

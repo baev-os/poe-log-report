@@ -1,0 +1,21 @@
+{% set heatmap = data['playtime_heatmap'] %}
+<section class="playtime-heatmap" id="playtime-heatmap" data-heatmap>
+<h2>{{ translate('heatmap.title') }}</h2>
+<p>{{ translate('heatmap.hint') }}</p>
+<p class="table-note">{{ data['report_period']['label'] }} · {{ heatmap['timezone'] }}</p>
+<label class="heatmap-controls" data-heatmap-controls hidden>{{ translate('heatmap.filter') }} <select data-heatmap-filter>{% for panel in heatmap['panels'] %}<option value="{{ panel['code'] }}">{{ translate('heatmap.filter.' + panel['filter']) }}</option>{% endfor %}</select></label>
+<details class="explanation"><summary>{{ translate('ui.method_and_limitations') }}</summary><p>{{ translate('heatmap.method') }}</p><p>{{ translate('heatmap.special_note') }}</p><p>{{ translate('heatmap.afk_note') }}</p></details>
+<div class="heatmap-legend"><span>00:00:00</span>{% for level in range(6) %}<span class="heatmap-swatch heatmap-level-{{ level }}" aria-hidden="true"></span>{% endfor %}<span>{{ heatmap['maximum_duration'] }}</span><span>{{ translate('heatmap.scale') }}</span></div>
+{% for panel in heatmap['panels'] + heatmap['without_afk'] %}<section data-heatmap-panel="{{ panel['code'] }}" data-heatmap-kind="{{ panel['filter'] }}" data-heatmap-mode="{{ panel['mode'] }}" aria-labelledby="heatmap-heading-{{ panel['code'] }}">
+<h3 id="heatmap-heading-{{ panel['code'] }}">{{ translate('heatmap.filter.' + panel['filter']) }} <small>{{ translate('time_mode.' + panel['mode']) }} · {{ panel['duration'] }} · {{ translate('heatmap.days', count=panel['active_days']) }}</small></h3>
+<div class="heatmap-scroll"><svg class="heatmap-chart" viewBox="0 0 980 306" role="group" aria-labelledby="heatmap-title-{{ panel['code'] }}"><title id="heatmap-title-{{ panel['code'] }}">{{ translate('heatmap.title') }} · {{ translate('heatmap.filter.' + panel['filter']) }}</title>
+{% for hour in range(24) %}<text x="{{ 82 + hour * 37 }}" y="23" text-anchor="middle">{{ '%02d'|format(hour) }}</text>{% endfor %}
+{% for row in panel['rows'] %}<text x="55" y="{{ 59 + row['weekday'] * 36 }}" text-anchor="end">{{ translate('heatmap.weekday.' + row['weekday']|string) }}</text>
+{% for cell in row['cells'] %}{% set label = translate('heatmap.weekday.' + row['weekday']|string) + ' · ' + cell['range'] + ' · ' + cell['duration'] + ' · ' + translate('heatmap.days', count=cell['active_days']) %}
+{% if cell['seconds'] %}<a href="#{{ cell['id'] }}" tabindex="0" data-heatmap-cell aria-label="{{ label }}"><title>{{ label }}</title>{% endif %}<rect class="heatmap-level-{{ cell['level'] }}" x="{{ 66 + cell['hour'] * 37 }}" y="{{ 39 + row['weekday'] * 36 }}" width="32" height="28" rx="4">{% if not cell['seconds'] %}<title>{{ label }}</title>{% endif %}</rect>{% if cell['seconds'] %}</a>{% endif %}
+{% endfor %}{% endfor %}</svg></div>
+{% if not panel['seconds'] %}<p class="empty">{{ translate('heatmap.empty') }}</p>{% endif %}
+<div class="heatmap-day-lists">{% for row in panel['rows'] %}{% for cell in row['cells'] %}{% if cell['days'] %}<details id="{{ cell['id'] }}" data-heatmap-days><summary>{{ translate('heatmap.weekday.' + row['weekday']|string) }} · {{ cell['range'] }} <span>{{ cell['duration'] }} · {{ translate('heatmap.days', count=cell['active_days']) }}</span></summary>
+<table class="table"><thead><tr><th>{{ translate('ui.day') }}</th><th>{{ translate('ui.playtime') }}</th></tr></thead><tbody>{% for day in cell['days'] %}<tr><td>{% if day['href'] %}<a href="{{ ctx['root'] }}{{ day['href'] }}">{{ day['date'] }}</a>{% else %}{{ day['date'] }}{% endif %}</td><td>{{ day['duration'] }}</td></tr>{% endfor %}</tbody></table></details>{% endif %}{% endfor %}{% endfor %}</div>
+</section>{% endfor %}
+</section>

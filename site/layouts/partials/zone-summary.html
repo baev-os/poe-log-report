@@ -1,0 +1,25 @@
+{% set summary = zone_summary|default(data['statistics_summary']) %}
+<section id="zone-totals">
+<h2>{{ zone_title|default(translate("stats.all_zones")) }}</h2>
+<p>{{ zone_note|default(translate("stats.zone_note")) }}</p>
+<div class="counts">
+  <div><strong>{{ summary['zones']|length }}</strong><span>{{ translate("stats.zones") }}</span></div>
+  <div><strong>{{ summary['zone_totals']['duration'] }}</strong><span>{{ translate("stats.measured_time") }}</span></div>
+  <div><strong>{{ summary['zone_totals']['visits'] }}</strong><span>{{ translate("stats.visits") }}</span></div>
+  <div><strong>{{ summary['zone_totals']['incomplete_visits'] }}</strong><span>{{ translate("stats.unmeasured_visits") }}</span></div>
+</div>
+<p class="table-note mt-3">{{ translate("stats.time_note") }}</p>
+{% if summary['zones'] %}
+<div class="summary-filters">
+<div><label for="zone-search" class="form-label">{{ translate("ui.find_an_area") }}</label><input id="zone-search" type="search" class="form-control" data-search="zone-totals"></div>
+<div><label for="zone-kind" class="form-label">{{ translate("ui.area_type") }}</label><select id="zone-kind" class="form-select" data-category="zone-totals"><option value="">{{ translate("ui.all_areas") }}</option>{% for kind in summary['kinds'] %}<option value="{{ kind }}">{{ translate('area.' + kind) }}</option>{% endfor %}</select></div>
+</div>
+<div class="table-responsive" data-results="zone-totals"><table class="table map-statistics">
+<thead><tr><th scope="col">{{ translate("ui.area") }}</th><th scope="col">{{ translate("ui.type") }}</th><th scope="col">{{ translate("stats.visits") }}</th><th scope="col">{{ translate("stats.measured_time") }}</th><th scope="col">{{ translate("stats.unmeasured_visits") }}</th></tr></thead>
+<tbody>{% for row in summary['zones'] %}<tr data-item data-kind="{{ row['kind_code'] }}">
+<td>{% if row['icon'] %}{% with ctx={'root': ctx['root'], 'row': row} %}{% include "partials/map-name.html" %}{% endwith %}{% else %}{% set area_href = area_detail_href(row) %}{% if area_href %}<a href="{{ ctx['root'] }}{{ area_href }}">{{ row['name'] }}</a>{% else %}{{ row['name'] }}{% endif %}{% endif %}</td>
+<td>{{ translate('area.' + row['kind_code']) }}</td><td>{{ row['visits'] }}</td><td>{{ row['duration'] }}</td><td>{{ row['incomplete_visits'] }}</td>
+</tr>{% endfor %}</tbody></table></div>
+<p class="empty-filter" hidden>{{ translate("stats.no_matches") }}</p>
+{% else %}<p>{{ zone_empty|default(translate("stats.no_zones")) }}</p>{% endif %}
+</section>

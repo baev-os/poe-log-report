@@ -1,0 +1,3 @@
+<p class="message-text">{{ ctx['text'] }}</p>
+{% if ctx['parameters'] %}<details><summary>{{ translate("message.parameters") }}</summary><dl>{% for item2 in ctx['parameters'] %}<dt>{{ item2['label'] }} <code>{{ item2['code'] }}</code></dt><dd>{{ item2['value'] }}</dd>{% endfor %}</dl></details>{% endif %}
+{% with item3=ctx['original']|default(none) %}{% if item3 %}<details><summary>{{ translate("message.original") }}</summary><pre class="message-text">{{ item3 }}</pre></details>{% endif %}{% endwith %}

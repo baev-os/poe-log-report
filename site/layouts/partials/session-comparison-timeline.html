@@ -1,0 +1,12 @@
+{% set chart = session['timeline'] %}{% set span = chart['end'] - chart['start'] %}
+<div class="session-chart-legend">{% for code in ['map', 'hideout', 'town', 'special', 'other'] %}<span><i class="session-color-{{ code }}"></i>{{ translate('session_chart.' + code) }}</span>{% endfor %}</div>
+<div class="session-chart-scroll" tabindex="0" aria-label="{{ translate('session_compare.timeline') }}">
+<svg class="session-comparison-chart" viewBox="0 0 1000 {{ chart['height'] }}" data-duration="{{ span }}" role="group" aria-label="{{ session['start'] }} → {{ session['end'] }}">
+<g data-comparison-ticks></g>
+<text x="10" y="65">{{ translate('session_chart.observed') }}</text>
+{% for item in chart['observed'] %}<rect class="session-observed" data-relative-from="{{ item['from'] * span }}" data-relative-to="{{ item['to'] * span }}" x="{{ item['x'] }}" width="{{ item['width'] }}" y="72" height="5"/>{% endfor %}
+{% for track in chart['tracks'] %}<g><text x="10" y="{{ track['y'] + 16 }}">{{ translate('session_chart.' + track['code']) }}</text>
+{% for item in track['items'] %}<a href="{{ ctx['root'] }}{{ item['href'] }}" tabindex="0"><title>{{ item['label'] }}{% if item['name'] %} {{ item['name'] }}{% endif %} · {{ item['start'] }}{% if item['end'] %} → {{ item['end'] }}{% endif %}{% if item['seconds'] is not none %} · {{ item['duration'] }}{% elif track['code'] == 'areas' %} · {{ translate('session_chart.entry_only') }}{% endif %}</title><rect class="session-color-{{ item['category'] }}{% if track['code'] == 'areas' and item['seconds'] is none %} session-entry-only{% endif %}" data-relative-from="{{ item['from'] * span }}" data-relative-to="{{ item['to'] * span }}" x="{{ item['x'] }}" width="{{ item['width'] }}" y="{{ track['y'] + 25 + item['lane'] * 22 }}" height="16" rx="2"/></a>{% endfor %}</g>{% endfor %}
+</svg></div>
+<p class="table-note">{{ translate('session_chart.loading_note') }} {{ translate('session_chart.unknown_note') }}</p>
+{% if chart['undated'] %}<p>{{ translate('session_chart.undated', count=chart['undated']) }}</p>{% endif %}

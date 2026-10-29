@@ -1,0 +1,9 @@
+# Generate local HTML in Python without an external site generator.
+Jinja2==3.1.6
+MarkupSafe==3.0.3
+Markdown==3.10.3
+
+# Local PDF generation and its dependencies; versions are recorded in the standalone distribution.
+reportlab==5.0.1
+pillow==12.3.0
+charset-normalizer==3.5.1

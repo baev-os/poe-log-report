@@ -1,0 +1,43 @@
+<!doctype html><html lang="{{ language }}" data-bs-theme="dark">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{{ ctx['title'] }}</title>
+{% with ctx=ctx %}{% include "partials/assets.html" %}{% endwith %}</head>
+<body><div class="report-shell">{% with ctx=ctx %}{% include "partials/menu.html" %}{% endwith %}<main>
+{% set model = data['activities'] %}
+<header><p class="eyebrow">{{ translate("ui.player_history") }} · {{ model['timezone'] }}</p><h1>{{ ctx['title'] }}</h1></header>
+{% with ctx=ctx %}{% include "partials/statistics-status.html" %}{% endwith %}
+<p>{{ translate("activities.intro") }}</p>
+<div class="table-scroll"><table class="activity-totals"><thead><tr><th scope="col">{{ translate("activities.group") }}</th><th scope="col">{{ translate("stats.visits") }}</th><th scope="col">{{ translate("activities.duration") }}</th></tr></thead>
+{% for group in model['groups'] %}<tbody class="activity-summary-group" style="--activity-color: {{ group['color'] }}">
+<tr class="activity-group-total"><th scope="row"><a href="#activity-{{ group['code'] }}">{{ translate('activities.' + group['code']) }}</a></th><td>{{ group['totals']['visits'] }}</td><td>{{ group['totals']['duration'] }}</td></tr>
+{% if group['children']|length > 1 %}{% for child in group['children'] %}<tr class="activity-subtotal"><th scope="row"><a href="#activity-{{ group['code'] }}-{{ child['code'] }}">{{ translate('activities.' + child['code']) }}</a></th><td>{{ child['totals']['visits'] }}</td><td>{{ child['totals']['duration'] }}</td></tr>{% endfor %}{% endif %}
+</tbody>{% endfor %}</table></div>
+<section><h2>{{ translate("activities.timeline") }}</h2>
+<p class="table-note">{{ translate("activities.chart_note") }}</p>
+{% if model['periods'] %}
+<h3 data-activity-label>{{ data['report_period']['label'] if data['report_period']['active'] else translate('activities.all_time') }}</h3>
+<div class="activity-period" data-activity-controls hidden><label for="activity-period">{{ translate("activities.period") }}</label>
+<select id="activity-period" class="form-select" data-activity-period>{% for period in model['periods'] %}<option value="{{ period['id'] }}" data-start="{{ period['start'] }}" data-end="{{ period['end'] }}" data-ticks="{{ period['ticks']|tojson|forceescape }}">{% if period['id'] == 'all' %}{{ data['report_period']['label'] if data['report_period']['active'] else translate('activities.all_time') }}{% else %}{{ period['id'] }}{% endif %}</option>{% endfor %}</select></div>
+<div class="table-scroll"><svg class="activity-chart" viewBox="0 0 1200 {{ model['height'] }}" role="group" aria-labelledby="activity-chart-title">
+<title id="activity-chart-title">{{ translate("activities.timeline") }}</title>
+{% for tick in model['periods'][0]['ticks'] %}<line class="chart-grid" x1="{{ tick['x'] }}" x2="{{ tick['x'] }}" y1="24" y2="{{ model['height'] - 56 }}"/><text data-activity-tick x="{{ tick['x'] }}" y="{{ model['height'] - 18 }}" text-anchor="{% if loop.first %}start{% elif loop.last %}end{% else %}middle{% endif %}">{{ tick['label'] }}</text>{% endfor %}
+{% for group in model['groups'] %}<g data-activity-group="{{ group['code'] }}">
+<rect class="activity-group-band" x="4" y="{{ group['top'] }}" width="1182" height="{{ group['bottom'] - group['top'] }}" rx="5" fill="{{ group['color'] }}"/>
+<line x1="5" x2="5" y1="{{ group['top'] }}" y2="{{ group['bottom'] }}" stroke="{{ group['color'] }}" stroke-width="3"/>
+{% if group['children']|length > 1 %}<a href="#activity-{{ group['code'] }}"><text class="activity-group-title" x="12" y="{{ group['heading_y'] }}">{{ translate('activities.' + group['code']) }}</text></a>{% endif %}
+{% for child in group['children'] %}<g data-activity-lane="{{ child['code'] }}">
+<a href="#activity-{{ group['code'] }}-{{ child['code'] }}"><text x="{% if group['children']|length > 1 %}24{% else %}12{% endif %}" y="{{ child['y'] + 7 }}">{{ translate('activities.' + child['code']) }}</text></a>
+<line class="chart-grid" x1="220" x2="1180" y1="{{ child['y'] + 25 }}" y2="{{ child['y'] + 25 }}"/>
+{% for visit in child['visits'] %}{% if visit['start'] is not none %}<a data-activity-interval data-start="{{ visit['start'] }}" data-end="{{ visit['end'] }}" href="../technical/timeline/{{ visit['date'] }}/index.html#line-{{ visit['line'] }}" tabindex="0" aria-label="{{ visit['name'] }} · {{ visit['entry'] }} — {{ visit['exit'] }} · {{ visit['duration'] }}">
+<rect x="{{ visit['x'] }}" y="{{ child['y'] - 8 }}" width="{{ visit['width'] }}" height="20" rx="2" fill="{{ group['color'] }}" {% if not visit['measured'] %}class="activity-entry-only"{% endif %}><title>{{ visit['name'] }} · {{ visit['entry'] }} — {{ visit['exit'] }} · {% if visit['measured'] %}{{ visit['duration'] }}{% else %}{{ translate("activities.unknown_duration") }}{% endif %}</title></rect></a>{% endif %}{% endfor %}
+</g>{% endfor %}</g>{% endfor %}</svg></div>
+{% else %}<p class="empty">{{ translate("activities.empty") }}</p>{% endif %}</section>
+<p class="table-note">{{ translate("activities.scope") }}</p>
+{% for group in model['groups'] %}<section id="activity-{{ group['code'] }}" class="activity-details"><h2>{{ translate('activities.' + group['code']) }}</h2>
+<p class="table-note">{{ translate('activities.group_total') }}: {{ group['totals']['duration'] }} · {{ translate('stats.visits') }}: {{ group['totals']['visits'] }}</p>
+{% for child in group['children'] %}<section id="activity-{{ group['code'] }}-{{ child['code'] }}" class="activity-subzone">
+{% if group['children']|length > 1 %}<h3>{{ translate('activities.' + child['code']) }}</h3>{% endif %}
+{% if child['visits'] %}
+<details><summary>{{ translate("activities.zones") }} · {{ child['zones']|length }}</summary><div class="table-responsive"><table class="activity-totals"><thead><tr><th>{{ translate("activities.zone") }}</th><th>{{ translate("stats.visits") }}</th><th>{{ translate("activities.duration") }}</th></tr></thead><tbody>{% for area in child['zones'] %}<tr><th scope="row">{{ area['name'] }}</th><td>{{ area['visits'] }}</td><td>{{ area['duration'] }}</td></tr>{% endfor %}</tbody></table></div></details>
+<details class="mt-2"><summary>{{ translate("activities.visits") }} · {{ child['totals']['visits'] }}</summary><div class="table-responsive"><table class="activity-visits"><thead><tr><th>{{ translate("activities.zone") }}</th><th>{{ translate("activities.entry") }}</th><th>{{ translate("activities.exit") }}</th><th>{{ translate("activities.duration") }}</th></tr></thead><tbody>{% for visit in child['visits'] %}<tr><td>{{ visit['name'] }}{% if visit['is_segment'] %}<br><small>{{ translate('history.segment') }}</small>{% endif %}</td><td>{% if visit['date'] %}<a href="../technical/timeline/{{ visit['date'] }}/index.html#line-{{ visit['line'] }}">{{ visit['entry'] }}</a>{% else %}—{% endif %}</td><td>{{ visit['exit'] }}</td><td>{{ visit['duration'] }}</td></tr>{% endfor %}</tbody></table></div></details>
+{% else %}<p class="table-note">{{ translate("activities.no_visits") }}</p>{% endif %}</section>{% endfor %}</section>{% endfor %}
+</main></div>{% with ctx=ctx %}{% include "partials/scripts.html" %}{% endwith %}</body></html>

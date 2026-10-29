@@ -1,0 +1,42 @@
+{
+  "version": "1",
+  "metadata": {
+    "versions": {
+      "tcl": "8.6.15",
+      "tk": "8.6.15"
+    },
+    "cpython": "3.14.4",
+    "version_source": "https://github.com/python/cpython/blob/v3.14.4/PCbuild/tcltk.props"
+  },
+  "entries": [
+    {
+      "name": "toolkit/tcl/license.terms",
+      "sha256": "c0a69a2bfd757361ec7e6143973b103c90409316b49e9c88db26ad6388e79f16",
+      "details": {
+        "source": "CPython source-deps",
+        "commit": "275286594fd3e162af29e8c0ba4e365d3d1f7775",
+        "url": "https://github.com/python/cpython-source-deps/blob/275286594fd3e162af29e8c0ba4e365d3d1f7775/license.terms"
+      }
+    },
+    {
+      "name": "toolkit/tk/license.terms",
+      "sha256": "2cde822b93ca16ae535c954b7dfe658b4ad10df2a193628d1b358f1765e8b198",
+      "details": {
+        "source": "CPython source-deps",
+        "commit": "a526badcf885e4986e13e68695398a0bb64d5ea1",
+        "url": "https://github.com/python/cpython-source-deps/blob/a526badcf885e4986e13e68695398a0bb64d5ea1/license.terms"
+      }
+    }
+  ],
+  "texts": {
+    "c0a69a2bfd757361ec7e6143973b103c90409316b49e9c88db26ad6388e79f16": {
+      "offset": 423,
+      "bytes": 2255
+    },
+    "2cde822b93ca16ae535c954b7dfe658b4ad10df2a193628d1b358f1765e8b198": {
+      "offset": 2851,
+      "bytes": 2267
+    }
+  },
+  "text_sha256": "7a2557599122fd4dbf0139eccba9cb4f22cb925069b7d6656c72a097ec1ae445"
+}

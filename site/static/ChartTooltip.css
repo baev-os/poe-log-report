@@ -1,0 +1,22 @@
+.chart-tooltip {
+    position:fixed;
+    z-index:2000;
+    max-width:min(440px,calc(100vw - 16px));
+    max-height:calc(100vh - 16px);
+    overflow:auto;
+    padding:9px 13px;
+    border:1px solid #8296a2;
+    border-radius:7px;
+    background:#173543;
+    color:#f5fbff;
+    box-shadow:0 3px 12px #0003;
+    font:14px/1.5 system-ui,sans-serif;
+    white-space:pre-line;
+    overflow-wrap:anywhere;
+    pointer-events:none;
+}
+
+.chart-tooltip[hidden] {display:none!important;}
+svg .chart-hit {fill:none;stroke:transparent;stroke-width:16;pointer-events:stroke;vector-effect:non-scaling-stroke;}
+svg [data-chart-tip]:focus-visible {outline:3px solid #eaa64a;outline-offset:3px;}
+@media print {.chart-tooltip {display:none!important;}}

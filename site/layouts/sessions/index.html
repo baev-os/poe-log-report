@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="{{ language }}" data-bs-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ ctx['title'] }}</title>{% include "partials/assets.html" %}</head>
+<body><div class="report-shell">{% include "partials/menu.html" %}<main class="session-page">
+{% set sessions = data['sessions'] %}
+<header><p class="eyebrow">{{ translate("ui.player_history") }} {{ sessions['timezone'] }}</p><h1>{{ ctx['title'] }}</h1></header>
+{% include "partials/statistics-status.html" %}
+<div class="counts session-counts">
+<div><strong>{{ sessions['count'] }}</strong><span>{{ translate("sessions.count") }}</span></div>
+<div><strong>{{ sessions['duration'] }}</strong><span>{{ translate("sessions.time") }}</span></div>
+<div><strong>{{ sessions['incomplete'] }}</strong><span>{{ translate("sessions.incomplete_count") }}</span></div>
+</div>
+<details class="explanation"><summary>{{ translate("ui.method_and_limitations") }}</summary><p>{{ translate("sessions.method") }}</p><p>{{ translate("sessions.branches_note") }}</p></details>
+<p><a href="compare/index.html">{{ translate("session_compare.title") }}</a></p>
+{% if sessions['rows'] %}
+<label for="session-search" class="form-label">{{ translate("sessions.search") }}</label>
+<input id="session-search" class="form-control" type="search" data-search="sessions">
+<div class="table-scroll" data-results="sessions"><table class="table session-list">
+<thead><tr><th scope="col">{{ translate("sessions.start") }}</th><th scope="col">{{ translate("sessions.end") }}</th><th scope="col">{{ translate("sessions.time") }}</th><th scope="col">{{ translate("afk.marked") }}</th><th scope="col">{{ translate("nav.maps") }}</th><th scope="col">{{ translate("sessions.loading") }}</th><th scope="col">{{ translate("field.status") }}</th></tr></thead>
+<tbody>{% for session in sessions['rows'] %}<tr data-item id="session-{{ session['id'] }}">
+<td><a href="{{ ctx['root'] }}{{ session['path'] }}"><time datetime="{{ session['started_at'] }}">{{ session['start'] }}</time></a></td>
+<td><time datetime="{{ session['ended_at'] }}">{{ session['end'] }}</time></td>
+<td>{{ session['duration'] }}</td><td>{{ data['afk']['by_session'][session['id']]['afk_duration'] }}</td><td>{{ session['statistics']['maps']['count'] }}</td><td>{{ session['observations']['loading_duration'] }}</td>
+<td>{{ session['ending_label'] }}{% if session['clipped'] %}<br><small>{{ translate("sessions.clipped") }}</small>{% endif %}{% if session['branched'] %}<br><small>{{ translate("sessions.branched") }}</small>{% endif %}</td>
+</tr>{% endfor %}</tbody></table></div><p class="empty-filter" hidden>{{ translate("stats.no_matches") }}</p>
+{% else %}<p class="empty">{{ translate("sessions.empty") }}</p>{% endif %}
+</main></div>{% include "partials/scripts.html" %}</body></html>

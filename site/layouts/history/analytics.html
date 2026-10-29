@@ -1,0 +1,8 @@
+<!doctype html>
+<html lang="{{ language }}" data-bs-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ ctx['title'] }}</title>{% include 'partials/assets.html' %}</head>
+<body><div class="report-shell">{% include 'partials/menu.html' %}<main class="analytics-page">
+<header><h1>{{ ctx['title'] }}</h1></header>{% include 'partials/statistics-status.html' %}
+<nav class="analytics-navigation" aria-label="{{ translate('analytics.title') }}">{% for page in data['analytics_navigation']['pages'] %}<a href="{{ ctx['root'] }}{{ page['path'] }}"{% if page['id'] == ctx['analytics'] %} aria-current="page"{% endif %}>{{ translate(page['label_key']) }}</a>{% endfor %}</nav>
+{% include 'partials/analytics-' + ctx['analytics'] + '.html' %}
+</main></div>{% include 'partials/scripts.html' %}</body></html>

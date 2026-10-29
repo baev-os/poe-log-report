@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="{{ language }}" data-bs-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ ctx['title'] }}</title>{% with ctx=ctx %}{% include "partials/assets.html" %}{% endwith %}</head>
+<body><div class="report-shell">{% with ctx=ctx %}{% include "partials/menu.html" %}{% endwith %}<main>
+{% set a = data['analysis'] %}{% set day = data['daily_areas']['by_date'][ctx['day']] %}{% set d = data['map_statistics']['by_date'].get(ctx['day']) %}
+<header><p class="eyebrow">{{ translate("ui.game_statistics") }}</p><h1>{{ day['label'] }}</h1>
+<p class="source">{{ a['source_label'] }} · {{ a['timezone'] }}</p></header>
+{% with ctx=ctx %}{% include "partials/statistics-status.html" %}{% endwith %}
+<nav aria-label="{{ translate("ui.choose_a_day") }}" class="day-navigation"><a href="../index.html">{{ translate("ui.all_days") }}</a>
+{% if day['newer'] %}<a href="../{{ day['newer'] }}/index.html">{{ translate("ui.later_day") }}</a>{% endif %}
+{% if day['older'] %}<a href="../{{ day['older'] }}/index.html">{{ translate("ui.earlier_day") }}</a>{% endif %}</nav>
+{% include "partials/day-overview.html" %}
+{% with zone_summary=day, zone_title=translate("stats.undated_zones") if ctx['day'] == 'undated' else translate("stats.daily_zones"), zone_note=translate("stats.undated_zone_note") if ctx['day'] == 'undated' else translate("stats.daily_zone_note"), zone_empty=translate("stats.no_daily_zones") %}{% include "partials/zone-summary.html" %}{% endwith %}
+{% if d %}<h2>{{ translate("ui.maps") if ctx['day'] == 'undated' else translate("stats.maps_started_on_day") }}</h2>
+<section class="day-summary"><strong>{{ translate("ui.maps") }} {{ d['count'] }}</strong><span>{{ translate("ui.time_in_maps_2") }} {{ d['duration'] }}{% if d['incomplete'] %} {{ translate("ui.partially_measured") }}{% endif %}</span></section>
+<div class="table-scroll"><table class="map-statistics">
+<caption class="visually-hidden">{{ translate("ui.maps_on") }} {{ day['label'] }}</caption>
+<thead><tr><th scope="col">{{ translate("ui.map") }}</th><th scope="col">{{ translate("ui.duration") }}</th><th scope="col">{{ translate("ui.entry_time") }}</th><th scope="col">{{ translate("ui.exit_time") }}</th></tr></thead>
+<tbody>{% for item4 in d['rows'] %}<tr><td>{% with ctx={"row": item4, "root": ctx['root']} %}{% include "partials/map-name.html" %}{% endwith %}{% if item4['position_note'] %}<br><small>{{ item4['position_note'] }}</small>{% endif %}</td><td>{{ item4['duration'] }}{% if item4['incomplete'] and item4['seconds'] is not none %} <small>{{ translate("ui.partially_measured") }}</small>{% endif %}</td>
+<td>{% if item4['entered_at'] %}<time datetime="{{ item4['entered_at'] }}">{{ item4['entry'] }}</time>{% else %}—{% endif %}</td><td>{% if item4['exited_at'] %}<time datetime="{{ item4['exited_at'] }}">{{ item4['exit'] }}</time>{% else %}{{ item4['exit'] }}{% endif %}</td></tr>{% endfor %}</tbody>
+</table></div>
+<section class="table-note">{{ ctx['content'] }}</section>{% endif %}
+</main></div>{% with ctx=ctx %}{% include "partials/scripts.html" %}{% endwith %}</body></html>

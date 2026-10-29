@@ -1,0 +1,23 @@
+{% set chart = session['timeline'] %}
+<section id="session-timeline" class="session-timeline" data-session-timeline data-zone="{{ data['sessions']['timezone'] }}">
+<h2>{{ translate('session_chart.title') }}</h2>
+<p class="table-note">{{ translate('session_chart.hint') }}</p>
+<div class="session-chart-controls" hidden><label>{{ translate('session_chart.zoom') }} <select data-session-zoom>{% for zoom in [1, 2, 4, 8, 16, 32, 64] %}<option value="{{ zoom }}">×{{ zoom }}</option>{% endfor %}</select></label><button type="button" data-session-reset>{{ translate('session_chart.reset') }}</button></div>
+<div class="session-chart-legend">{% for code in ['map', 'hideout', 'town', 'special', 'other'] %}<span><i class="session-color-{{ code }}"></i>{{ translate('session_chart.' + code) }}</span>{% endfor %}<span><i class="session-color-unknown"></i>{{ translate('session_chart.unknown') }}</span></div>
+<div class="session-chart-scroll" tabindex="0" aria-label="{{ translate('session_chart.title') }}">
+<svg class="session-chart" viewBox="0 0 1000 {{ chart['height'] }}" data-start="{{ chart['start'] }}" data-end="{{ chart['end'] }}" role="group" aria-labelledby="session-chart-title">
+<title id="session-chart-title">{{ translate('session_chart.title') }}</title>
+<g data-session-ticks>{% for tick in chart['ticks'] %}<text x="{{ tick['x'] }}" y="20" text-anchor="middle">{{ tick['label'][:10] }}</text><text x="{{ tick['x'] }}" y="38" text-anchor="middle">{{ tick['label'][11:] }}</text><line x1="{{ tick['x'] }}" x2="{{ tick['x'] }}" y1="48" y2="{{ chart['height'] }}" class="chart-grid"/>{% endfor %}</g>
+<text x="10" y="65">{{ translate('session_chart.observed') }}</text>
+{% for item in chart['observed'] %}<rect class="session-observed" data-span data-from="{{ item['from'] }}" data-to="{{ item['to'] }}" x="{{ item['x'] }}" width="{{ item['width'] }}" y="72" height="5"/>{% endfor %}
+{% for track in chart['tracks'] %}<g><text x="10" y="{{ track['y'] + 16 }}">{{ translate('session_chart.' + track['code']) }}</text>
+{% if track['code'] == 'areas' %}<rect class="session-unknown-band" data-span data-from="0" data-to="1" x="70" width="860" y="{{ track['y'] + 25 }}" height="{{ track['height'] - 35 }}"/>{% endif %}
+{% for item in track['items'] %}<a href="{{ ctx['root'] }}{{ item['href'] }}" tabindex="0"><title>{{ item['label'] }}{% if item['name'] %} {{ item['name'] }}{% endif %} · {{ item['start'] }}{% if item['end'] %} → {{ item['end'] }}{% endif %}{% if item['seconds'] is not none %} · {{ item['duration'] }}{% elif track['code'] == 'areas' %} · {{ translate('session_chart.entry_only') }}{% endif %}</title><rect class="session-color-{{ item['category'] }}{% if track['code'] == 'areas' and item['seconds'] is none %} session-entry-only{% endif %}" data-span data-from="{{ item['from'] }}" data-to="{{ item['to'] }}" x="{{ item['x'] }}" width="{{ item['width'] }}" y="{{ track['y'] + 25 + item['lane'] * 22 }}" height="16" rx="2"/></a>{% endfor %}</g>{% endfor %}
+</svg></div>
+<p class="table-note">{{ translate('session_chart.loading_note') }} {{ translate('session_chart.unknown_note') }}</p>
+{% if chart['undated'] %}<p>{{ translate('session_chart.undated', count=chart['undated']) }}</p>{% endif %}
+<h3>{{ translate('session_chart.breakdown') }}</h3>
+<div class="session-breakdown-bar" aria-hidden="true">{% for row in chart['breakdown'] %}<span class="session-color-{{ row['code'] }}" style="width: {{ row['share'] }}%"></span>{% endfor %}</div>
+<ul class="session-chart-legend">{% for row in chart['breakdown'] %}<li><i class="session-color-{{ row['code'] }}"></i>{{ translate('session_chart.' + row['code']) }}: <strong>{{ row['duration'] }}</strong></li>{% endfor %}</ul>
+<p class="table-note">{{ translate('session_chart.unallocated', duration=chart['unallocated']) }}</p>
+</section>

@@ -1,0 +1,505 @@
+{
+  "version": "1",
+  "descriptions": {
+    "area.tile_hash": "Контрольная сумма тайлов области",
+    "area.doodad_hash": "Контрольная сумма объектов декора области",
+    "area.generate": "Генерация области с уровнем и seed",
+    "area.enter": "Вход в область",
+    "area.unconnected_depth": "Недостижимая глубина области",
+    "area.activation_range_late": "Поздняя установка дальности активации",
+    "instance.details": "Параметры игрового экземпляра",
+    "instance.id": "Безопасный идентификатор экземпляра",
+    "loading.duration": "Продолжительность загрузки",
+    "hideout.discoverable": "Доступность убежища для обнаружения",
+    "passive.allocation": "Распределено пассивное умение",
+    "mastery.allocated": "Выбрано мастерство",
+    "jewel.alternate_tree": "Альтернативное дерево самоцвета",
+    "currency.foresight": "Использование валюты Foresight",
+    "labyrinth.craft_options": "Варианты ремесла Лабиринта",
+    "settlers.gold_respec": "Стоимость перераспределения за золото",
+    "trade.gold": "Золото за приобретённый предмет",
+    "etrade.request": "Служебный запрос торговой системы",
+    "etrade.response": "Ответ торговой системы",
+    "stash.reorder": "Перестановка вкладок тайника",
+    "stash.reorder_subtabs": "Перестановка вложенных вкладок",
+    "tutorial.complete_request": "Запрос завершения всех обучающих подсказок",
+    "screen.point_received": "Получено одно очко",
+    "screen.points_received": "Получено несколько очков",
+    "screen.items_identified": "Предметы опознаны",
+    "screen.chest_locked": "Сундук заперт",
+    "screen.trade": "Результат обмена с игроком",
+    "screen.cursor_item_destroyed": "Предмет на курсоре уничтожен",
+    "screen.apply_failed": "Не удалось применить предмет",
+    "screen.stash_full": "Тайник заполнен",
+    "screen.slain": "Сообщение о гибели персонажа",
+    "screen.level_up": "Повышение уровня персонажа",
+    "screen.afk_on": "Включён режим AFK",
+    "screen.afk_off": "Выключен режим AFK",
+    "screen.area_presence": "Персонаж вошёл в область или вышел",
+    "screen.death_count": "Показан счётчик смертей",
+    "screen.kill_count": "Показан счётчик убийств",
+    "screen.played_time": "Показано время игры персонажем",
+    "screen.character_age": "Показан возраст персонажа",
+    "screen.area_unreachable": "Область недоступна",
+    "screen.portals_disabled": "Порталы отключены",
+    "screen.bestiary_added": "Пополнение бестиария",
+    "screen.hiveblood_warning": "Предупреждение Hiveblood",
+    "screen.phrase.fear_not_elements": "Экранная реплика Fear not the elements",
+    "screen.phrase.eye_of_storm": "Экранная реплика Open the eye of the storm",
+    "screen.phrase.world_to_ice": "Экранная реплика Turn your world to ice",
+    "screen.phrase.none_shall_stop": "Экранная реплика None shall stop you",
+    "screen.phrase.courage": "Экранная реплика Courage stands tall",
+    "screen.phrase.fog_of_war": "Экранная реплика Shroud your path in the fog of war",
+    "screen.phrase.death_wait": "Экранная реплика Death does not wait",
+    "screen.phrase.past_serves_present": "Экранная реплика The past shall serve the present",
+    "screen.phrase.restore_lost": "Экранная реплика Restore that which was lost",
+    "screen.phrase.hit_once": "Экранная реплика Hit hard. Hit once",
+    "screen.phrase.pain_exquisite": "Экранная реплика Pain is exquisite",
+    "screen.phrase.overpower": "Экранная реплика Overpower, overrun, overcome",
+    "screen.phrase.rage": "Экранная реплика о ярости",
+    "screen.phrase.shadows": "Экранная реплика о тенях",
+    "screen.quest_points": "Очки за задания",
+    "screen.quest_contribution": "Вклад в выполнение задания",
+    "screen.ascendancy_points": "Очки восхождения",
+    "screen.resistance_reward": "Награда сопротивлениями",
+    "screen.kitava_affliction": "Проклятие Китавы",
+    "screen.betrayal_busy": "Система Предательства занята",
+    "screen.hideout_trade_expired": "Истёк срок торговли в убежище",
+    "screen.locked": "Действие или объект заблокирован",
+    "screen.bug_submitted": "Отчёт об ошибке отправлен",
+    "screen.phrase.become_nightmare": "Экранная реплика Become the nightmare",
+    "screen.character_info": "Сведения о персонаже",
+    "screen.played_time_days": "Время игры с указанием дней",
+    "screen.played_time_minutes": "Время игры в минутах",
+    "screen.character_age_hours": "Возраст персонажа в часах",
+    "screen.use_failed": "Не удалось использовать объект",
+    "screen.passive_points": "Счётчик пассивных очков",
+    "screen.level_points": "Счётчик очков за уровни",
+    "screen.monsters_remaining": "Число оставшихся монстров",
+    "screen.bug_reference": "Номер отчёта об ошибке",
+    "screen.card_drawn": "Вытянута карта",
+    "screen.expedition_added": "Пополнение экспедиции",
+    "screen.movement_reward": "Награда скоростью передвижения",
+    "screen.favoured_resources_busy": "Избранные ресурсы заняты",
+    "screen.hideout_quest_required": "Для убежища требуется задание",
+    "screen.recipe_already_unlocked": "Рецепт уже открыт",
+    "screen.passage_item_required": "Для прохода требуется предмет",
+    "screen.join_instances_failed": "Не удалось присоединиться к экземплярам",
+    "screen.corrupted_target": "Нельзя изменить осквернённую цель",
+    "screen.door_locked": "Дверь заперта",
+    "screen.foreign_bench": "Чужой ремесленный верстак",
+    "screen.crafting_no_target": "Не выбрана цель ремесла",
+    "screen.lantern_required": "Требуется фонарь",
+    "screen.achievement_server_failed": "Ошибка сервера достижений",
+    "screen.pvp_list_timeout": "Истекло время получения списка PvP",
+    "screen.recombinator_cost": "Стоимость рекомбинатора",
+    "screen.activation_cancelled": "Активация отменена",
+    "screen.golden_key_required": "Требуется золотой ключ",
+    "screen.item_no_room": "Недостаточно места для предмета",
+    "screen.contract_low_level": "Недостаточный уровень для контракта",
+    "screen.join_maintenance": "Присоединение невозможно из-за обслуживания",
+    "screen.join_disconnected": "Присоединение прервано отключением",
+    "screen.mission_client_required": "Для миссии требуется присутствие клиента",
+    "screen.phrase.goddess_watching": "Экранная реплика о наблюдающей богине",
+    "screen.phrase.heart_desire": "Экранная реплика о желании сердца",
+    "screen.phrase.water_motion": "Экранная реплика о неподвижной воде",
+    "screen.phrase.wah_get_beh": "Экранная реплика Wah get beh",
+    "screen.phrase.thrill_void": "Экранная реплика о пустоте",
+    "screen.phrase.unmake": "Экранная угроза уничтожения",
+    "screen.phrase.sink_stone": "Экранная реплика о погружении",
+    "screen.phrase.conqueror": "Экранная реплика о победителе и побеждённом",
+    "screen.phrase.darkness_looms": "Экранное уведомление о сгущающейся тьме",
+    "screen.phrase.room_quiet": "Экранное уведомление о тишине в комнате",
+    "screen.phrase.drought": "Экранное уведомление о засухе",
+    "screen.phrase.waters_flow": "Экранная реплика о потоке воды",
+    "screen.phrase.atmosphere_dissipates": "Экранное уведомление об исчезновении гнетущей атмосферы",
+    "screen.microtransaction_converted": "Предмет преобразован в привязанную к аккаунту микротранзакцию",
+    "screen.tree_roots_blocked": "Путь перекрыт корнями дерева",
+    "screen.suicide": "Гибель персонажа от собственного урона",
+    "screen.nameless_seer": "Поблизости появился Nameless Seer",
+    "screen.reflecting_mist": "Поблизости появился Reflecting Mist",
+    "reliquary.message": "Сообщение сундука в подтверждённом контексте Reliquary",
+    "chat.channel": "Сообщение общего или группового чата",
+    "chat.whisper": "Входящее или исходящее личное сообщение",
+    "chat.local": "Локальный чат подтверждённого персонажа или INFO-сообщение с тегом гильдии",
+    "dialogue.named": "Игровая реплика с известной подписью",
+    "action.trigger_failed": "Не удалось запустить действие сервера",
+    "action.execute_failed": "Клиент не смог выполнить действие",
+    "action.detach_finished": "Завершено отсоединение действия",
+    "action.update_missing": "Не найдено обновляемое действие",
+    "action.instant_failed": "Ошибка мгновенного действия",
+    "action.animation_missing": "У действия отсутствует анимация",
+    "action.channel_mismatch": "Несовпадение канала действия",
+    "action.contact_bone_invalid": "Некорректная кость контакта",
+    "geal.error": "Ошибка исполнения GEAL",
+    "geal.animation_event_missing": "Отсутствует событие анимации GEAL",
+    "geal.path_error": "Ошибка пути GEAL",
+    "engine.pipeline_cache": "Кэш графических конвейеров движка",
+    "engine.build_revision": "Ревизия сборки клиента",
+    "engine.version": "Версия движка",
+    "engine.directory": "Рабочий каталог движка",
+    "engine.wipe_cache": "Очистка кэша движка",
+    "engine.os": "Сведения об операционной системе",
+    "engine.lifecycle": "Этап жизненного цикла движка",
+    "engine.deleted_pipeline": "Удалён графический конвейер",
+    "engine.old_version": "Обнаружена старая версия движка",
+    "startup.stage_start": "Начало этапа запуска",
+    "startup.stage_duration": "Продолжительность этапа запуска",
+    "game.closing": "Закрытие игры",
+    "setting.engine": "Логический параметр движка",
+    "setting.graph": "Логический параметр графа",
+    "setting.job": "Логический параметр задач",
+    "setting.mat": "Логический параметр материалов",
+    "setting.mesh": "Логический параметр геометрии",
+    "setting.particle": "Логический параметр частиц",
+    "setting.render": "Логический параметр отрисовки",
+    "setting.resource": "Логический параметр ресурсов",
+    "setting.shader": "Логический параметр шейдеров",
+    "setting.sound": "Логический параметр звука",
+    "setting.storage": "Логический параметр хранилища",
+    "setting.texture": "Логический параметр текстур",
+    "setting.trails": "Логический параметр следов",
+    "setting.video": "Логический параметр видео",
+    "job.priority_count": "Число приоритетов фоновых задач",
+    "job.start": "Запуск фоновой задачи",
+    "job.exception_callback": "Обработчик исключений фоновых задач",
+    "job.priority_boost": "Повышение приоритета задачи",
+    "storage.bucket_count": "Число корзин хранилища",
+    "storage.init_cache": "Инициализация кэша пакетов",
+    "runtime.bucket_count": "Число корзин среды выполнения",
+    "bundle.index": "Индекс пакета ресурсов",
+    "bundle.contents": "Содержимое пакета ресурсов",
+    "memory.usage": "Использование памяти",
+    "precalc.table": "Предварительный расчёт таблицы",
+    "entity2.regather": "Повторный сбор данных Entity2",
+    "lmdb.access_denied": "Отказ доступа к базе LMDB",
+    "render.start_device": "Запуск графического устройства",
+    "render.driver_version": "Версия графического драйвера",
+    "render.gpu_scheduling": "Планирование задач GPU",
+    "render.blit_overflow": "Переполнение операции копирования изображения",
+    "render.device_failed": "Ошибка графического устройства",
+    "render.fallback_d3d11": "Переход на Direct3D 11",
+    "render.lifecycle": "Этап работы системы отрисовки",
+    "adapter.enumerated": "Найден графический адаптер",
+    "adapter.device": "Выбранное устройство адаптера",
+    "adapter.output": "Выход графического адаптера",
+    "d3d11.buffer_count": "Число буферов Direct3D 11",
+    "d3d11.runtime_version": "Версия среды Direct3D 11",
+    "d3d11.feature_level": "Уровень возможностей Direct3D 11",
+    "d3d11.driver_capability": "Возможность графического драйвера",
+    "d3d11.vendor": "Производитель графического адаптера",
+    "d3d11.swapchain_fullscreen": "Полноэкранный режим цепочки буферов",
+    "vulkan.extension": "Поддерживаемое или запрошенное расширение Vulkan",
+    "vulkan.present_mode": "Режим представления изображения",
+    "vulkan.invalid_present_mode": "Некорректный режим представления",
+    "vulkan.swapchain": "Создание или параметры цепочки буферов",
+    "vulkan.min_images": "Минимальное число изображений",
+    "vulkan.memory_type": "Тип памяти Vulkan",
+    "vulkan.memory_heap": "Куча памяти Vulkan",
+    "vulkan.queue": "Очередь Vulkan",
+    "vulkan.selected_queue": "Выбрана графическая или передающая очередь",
+    "vulkan.gpu_type": "Тип GPU Vulkan",
+    "vulkan.lifecycle": "Пересоздание графических ресурсов",
+    "vulkan.physical_device": "Найдено физическое графическое устройство",
+    "vulkan.transfer_unsupported": "Отдельная очередь передачи не поддерживается",
+    "shader.load_cache": "Загрузка кэша шейдеров",
+    "shader.pso_cache": "Кэш графических конвейеров PSO",
+    "shader.cache_missing": "Отсутствует кэш шейдеров",
+    "dxc.loaded": "Загружен компилятор шейдеров DXC",
+    "streamline.init": "Инициализация Streamline",
+    "streamline.init_duration": "Продолжительность инициализации Streamline",
+    "streamline.version": "Версия компонента Streamline",
+    "streamline.proxy": "Прокси-компонент Streamline",
+    "streamline.enabled": "Включение компонента Streamline",
+    "streamline.reflex": "Настройка NVIDIA Reflex",
+    "streamline.shutdown": "Завершение Streamline",
+    "streamline.shutdown_duration": "Продолжительность завершения Streamline",
+    "window.focus": "Получение или потеря фокуса окна",
+    "window.device": "Событие графического устройства окна",
+    "window.dpi_scale": "Масштаб DPI окна",
+    "scene.walkability": "Проходимость сцены",
+    "scene.source": "Источник данных сцены",
+    "scene.height_map": "Карта высот сцены",
+    "asset.bone_no_influences": "У кости ресурса отсутствует влияние",
+    "effect.missing_node_type": "У эффекта отсутствует тип узла",
+    "effect.missing_node": "У эффекта отсутствует узел",
+    "mat.table": "Таблица подсистемы материалов",
+    "mat.table_missing": "Отсутствует таблица материалов",
+    "graph.deadlock": "Обнаружена взаимная блокировка графа",
+    "pathfinding.shortest_path": "Поиск кратчайшего пути",
+    "skill.missing_row": "Отсутствует строка умения",
+    "font.empty": "Пустой шрифт",
+    "clientstring.invalid": "Недопустимая строка интерфейса клиента",
+    "network.instance_connect": "Подключение к игровому экземпляру",
+    "network.instance_latency": "Задержка игрового экземпляра",
+    "network.async_connect": "Асинхронное подключение",
+    "network.connected": "Подключение установлено",
+    "network.resync": "Повторная синхронизация",
+    "network.abnormal_disconnect": "Неожиданное отключение",
+    "network.maintenance_disconnect": "Отключение на обслуживание",
+    "network.instance_disconnect": "Отключение от экземпляра",
+    "network.site_settings_ssl_failed": "Ошибка SSL при загрузке настроек сайта; клиент планирует повтор",
+    "http.backend": "Используемая реализация HTTP",
+    "http.user_agent": "Строка User-Agent HTTP",
+    "filter.resolved": "Определён адрес фильтра предметов",
+    "filter.download": "Загрузка фильтра предметов",
+    "filter.status": "HTTP-статус загрузки фильтра",
+    "filter.hash": "Хеш фильтра предметов",
+    "filter.list_download": "Загрузка списка фильтров",
+    "filter.saved": "Сохранение фильтра",
+    "filter.reloaded": "Перезагрузка фильтра",
+    "filter.empty_hash": "Пустой хеш фильтра",
+    "filter.list_status": "HTTP-статус списка фильтров",
+    "filter.list_resolved": "Определён адрес списка фильтров",
+    "filter.list_entry": "Элемент списка фильтров",
+    "steam.stats_stored": "Статистика Steam сохранена",
+    "steam.achievement": "Достижение Steam",
+    "steam.stat_failed": "Не удалось записать статистику Steam",
+    "steam.content_recheck": "Запрошена повторная проверка файлов Steam",
+    "patch.restart_required": "Для обновления требуется перезапуск",
+    "daily_deal.download_failed": "Не удалось загрузить ежедневное предложение",
+    "input.xinput_library": "Библиотека ввода XInput",
+    "ui.rebuild": "Перестроение свойств интерфейса",
+    "ui.virtual_keyboard": "Открытие виртуальной клавиатуры",
+    "ui.input_method_changed": "Изменён способ ввода",
+    "sound.buffer": "Звуковой буфер",
+    "sound.channels": "Звуковые каналы",
+    "sound.sources": "Источники звука",
+    "sound.fmod_init": "Инициализация FMOD",
+    "sound.device": "Звуковое устройство"
+  },
+  "families": {
+    "area": {
+      "section": "Области, персонаж и игровые операции",
+      "description": "Генерация задаёт уровень, идентификатор области в кавычках и seed. Вход — точная форма `: You have entered ….`. Tile/Doodad hash — десятичные числа. Две диагностические фразы проверяются буквально. Генерация сама по себе не доказывает посещение карты."
+    },
+    "instance": {
+      "section": "Области, персонаж и игровые операции",
+      "description": "Получение сведений от login server и десятичный Client-Safe Instance ID. Это отдельные сообщения; связь с посещением устанавливает аналитическая модель."
+    },
+    "loading": {
+      "section": "Области, персонаж и игровые операции",
+      "description": "Название области в скобках и Duration в секундах, формат NUMBER. Время загрузки не объявляется длительностью посещения."
+    },
+    "hideout": {
+      "section": "Области, персонаж и игровые операции",
+      "description": "Точная форма Spawning discoverable Hideout с идентификатором `Hideout…` из букв, цифр и подчёркиваний."
+    },
+    "passive": {
+      "section": "Области, персонаж и игровые операции",
+      "description": "Операция allocated/unallocated, идентификатор skill (буквы, цифры, подчёркивание и апостроф) и непустое имя. Идентификатор не проверяется по внешнему справочнику при разборе."
+    },
+    "mastery": {
+      "section": "Области, персонаж и игровые операции",
+      "description": "Числовой effect id, идентификатор mastery и непустое имя в точной форме Successfully allocated mastery effect id."
+    },
+    "jewel": {
+      "section": "Области, персонаж и игровые операции",
+      "description": "Сообщение ALTERNATE TREE JEWEL с десятичными version, seed и keystone selection; значения сохраняются без интерпретации дерева."
+    },
+    "currency": {
+      "section": "Области, персонаж и игровые операции",
+      "description": "Буквальный маркер CurrencyApplicationForesightResult recieved. Исходная опечатка сохранена; результат применения валюты из маркера не выводится."
+    },
+    "labyrinth": {
+      "section": "Области, персонаж и игровые операции",
+      "description": "Буквальный маркер InstanceClientLabyrinthCraftResultOptionsList recieved с исходной опечаткой."
+    },
+    "settlers": {
+      "section": "Области, персонаж и игровые операции",
+      "description": "GoldRespec с целыми PassivesAllocated и GoldCost, точными вертикальными разделителями. Числа остаются строками."
+    },
+    "trade": {
+      "section": "Области, персонаж и игровые операции",
+      "description": "Точная фраза local player brought an item for … gold. Она не определяет направление перемещения предмета и денег."
+    },
+    "etrade": {
+      "section": "Области, персонаж и игровые операции",
+      "description": "Служебные запросы и ответы: api type, request_id, error, задержка в ms. Распознанный ответ не доказывает успешную сделку с игроком."
+    },
+    "stash": {
+      "section": "Области, персонаж и игровые операции",
+      "description": "Две точные фразы переупорядочения вкладок и подвкладок под данные хранилища."
+    },
+    "tutorial": {
+      "section": "Области, персонаж и игровые операции",
+      "description": "Точная фраза запроса завершения учебных подсказок из-за настройки клиента; парсер сам ничего не завершает."
+    },
+    "screen": {
+      "section": "Экранные уведомления",
+      "description": "Все правила требуют префикса `: ` после заголовка клиента и полного\nсовпадения формата. Имена персонажей не содержат пробелов и двоеточия;\nреестр допустимых имён/классов не проверяется. Числа сохраняются строками.\n\n- Очки: одиночные и множественные Passive/Atlas, Genesis Tree; допускаются\n  только варианты перечислений в шаблонах. Отдельны очки за задания,\n  вклад задания, Ascendancy, пассивные очки за уровень и их итоги.\n- Предметы: identified, сундуки, уничтожение предмета на курсоре, Stash\n  affinity Unique/Map/Currency, награды сопротивлений/Movement Speed,\n  Kitava cruel/merciless. Причины `apply_failed` — 29 точных строк\n  `APPLY_FAILURES`; `use_failed` — две явно заданные причины.\n- Обмен: только Trade accepted/cancelled и точное предупреждение о торговле\n  в устаревшем экземпляре убежища. Предметы, цена и партнёр неизвестны.\n- Уровень, гибель и присутствие: сообщение может относиться к другому\n  персонажу. `/deaths`, `/kills`, `/played` и возраст персонажа — показанные\n  клиентом значения; их нельзя складывать как отдельные события или сессии.\n- Время: варианты с днями, часами или минутами/секундами; singular/plural\n  сохраняются. Количество монстров проверяет отдельную форму `1 monster`.\n  Группировка тысяч запятыми в kills и номере bug report — по три цифры.\n- AFK: точные ON/OFF; автоответ в кавычках может быть пустым.\n- Разметка: Bestiary, Hiveblood warning, карта внутри `<divination>{…}`,\n  Greater/Grand Black Scythe Artifact — только наблюдаемые формы.\n- Фразы `screen.phrase.*`: 27 строк из `SCREEN_PHRASES` и Become the nightmare.\n  Конечный пробел в `Overpower, overrun, overcome. ` обязателен.\n  Говорящий, причина и игровое действие из этих фраз не назначаются.\n- Остальные уведомления (двери, проходы, crafting, задания, стоимость,\n  ошибки подключения и другие) — отдельные точные строки из каталога ниже.\n  Произвольное уведомление с префиксом не становится распознанным.\n\nНеобязательный `screen.chest_locked.key_required` равен null при отсутствии\nфразы о Treasure Key; при наличии сохраняется с исходными разделителями.\n\nПравила screen.suicide, screen.nameless_seer и screen.reflecting_mist\nсопоставляют полное системное сообщение с префиксом `: ` и завершающей точкой.\nУпоминание этой фразы в чате не становится уведомлением. Формы сверены\nс сигналами Exile-UI; проверки используют синтетические строки.\nЭти точные правила выполняются\nдо контекстного reliquary.message. screen.suicide подтверждает имя персонажа\nдля последующего локального чата так же, как screen.slain."
+    },
+    "reliquary": {
+      "section": "Чат и именованные реплики",
+      "description": "Свободный текст сундука распознаётся по контексту, а не списку пользовательских\nфраз. Требуется последовательность area.generate с ID из RELIQUARY_AREAS,\nсовпадающий scene.source, area.enter и loading.duration той же области.\nПеред входом допускается промежуточная сцена (null).\nДопускается одно сообщение `: текст` уровня INFO на такое посещение.\nPID должен сохраняться, tick не должен уменьшаться. Новая генерация,\nнесовпадающие сцена/вход/загрузка, log.open, закрытие игры, новое подключение\nк экземпляру, отключение и ошибки разбора\nсбрасывают контекст. Сюжетные The Reliquary и области Heist не входят в список.\n\nИзвестные системные правила имеют приоритет. Исключение — две подтверждённые\nфразы screen.phrase.thrill_void и screen.phrase.conqueror: внутри готового\nконтекста сундука они относятся к reliquary.message, вне него — к прежним типам.\nПродолжения без заголовка и управляющих символов получают тип\nreliquary.message.field и rule_id reliquary.message.continuation, повторяемый\nдо следующего заголовка, пустой или неподходящей строки. Продолжения сохраняют\nrecord_id первого сообщения и не получают выдуманную временную отметку.\nНазвание или факт подбора предмета из текста не выводятся."
+    },
+    "chat": {
+      "section": "Чат и именованные реплики",
+      "description": "`chat.local` разбирает форму без маркера канала для ранее подтверждённого\nимени: screen.character_info, screen.level_up, screen.slain, screen.suicide,\nscreen.area_presence, chat.whisper или chat.channel. Порядок физический,\nпросмотр вперёд отсутствует. Для полного формата `<TEST> SyntheticGuest: текст`\nв INFO достаточно непустого тега гильдии: имя не обязано встречаться ранее.\nТег из одних пробелов не подтверждает запись. Такая запись не добавляет имя\nв контекст для последующего чата без тега. Остальные неподтверждённые имена\nостаются unknown. Известные подписи dialogue.named имеют\nпрежний приоритет и исключены из шаблона локального чата, как и служебная\nподпись CreateSwapChain. Консервативный формат имени — буквы, цифры и\nподчёркивания, без цифры в начале. Допустим необязательный тег гильдии и ровно один NUL перед\nтекстом сообщения, сохранённый в отдельном поле marker; NUL в середине текста,\nдругие управляющие символы и переносы не допускаются. Нулевой маркер не\nинтерпретируется как команда. В отчёте эти сообщения входят в локальный чат.\n\nКаналы начинаются с `%` или `#`, личные сообщения — с `@To ` или `@From `. Необязательная метка `<…>`, имя без пробелов/двоеточия/угловых скобок и текст (может быть пустым). Маркер, направление и текст сохраняются буквально. Текст не исполняется и не считается игровым событием; предложение обмена не подтверждает сделку. Переписка показывается на отдельной локальной HTML-странице; исходный текст сохраняется и экранируется."
+    },
+    "dialogue": {
+      "section": "Чат и именованные реплики",
+      "description": "Только 557 подписей из `SPEAKERS`, двоеточие с пробелом и непустой\nоднострочный текст. Допускается один конечный CR, сохранённый в исходных\nбайтах. Только после такого CR принимаются отдельная строка из одного CR\nи одна строка следующего абзаца без управляющих символов и начальной временной\nотметки. Эта узкая схема не поглощает следующий заголовок или произвольное\nпродолжение без разделителя. Неизвестные подписи без подтверждения чата\nостаются unknown.\n\nКаталог содержит конечный перечень допустимых подписей. `source`\nне объявлен стабильным идентификатором роли. Список конечный, при запуске не обучается,\nне доказывает принадлежность подписи только NPC. Распознавание формы реплики\nне устанавливает её сюжетный смысл, награду, переход или смерть."
+    },
+    "action": {
+      "section": "Действия и GEAL",
+      "description": "Точные ошибки triggered/instant/update/animation/channelling; исходное `actionwas` сохранено. ContactAttack требует путь `Metadata/…`. Схемы последующих полей перечислены в разделе «Продолжения»; runtime action ID не объявляется ID умения из игрового справочника."
+    },
+    "geal": {
+      "section": "Действия и GEAL",
+      "description": "Ошибка на объекте: шестнадцатеричный object_id, два знаковых целых x/y, путь `Metadata/…` и одна из четырёх `GEAL_REASONS`. Отдельны отсутствие animation event и путь `Metadata/….ao` с конкретной причиной пустого результата."
+    },
+    "engine": {
+      "section": "Движок, запуск и внутренние подсистемы",
+      "description": "Версии имеют 2–4 числовые части; revision — целое. Каталоги —\nSettings/Current/Cache/Download, имена кэшей допускают подчёркивание.\nPipeline cache (найденный или удалённый) допускает `.foz`, `.bin`, `.toc`,\n`/TOUCH`, `/index`, размер NUMBER и B/KB/MB/GB. Стадии — Init, Ready,\nReset static. Windows Version/OS сохраняет текст Windows и Build; это\nне опровергает подтверждённое происхождение логов из Ubuntu/Steam."
+    },
+    "startup": {
+      "section": "Движок, запуск и внутренние подсистемы",
+      "description": "Начало и длительность Registration/Game/Device/Tencent/Loading/DebugGUI. Длительность — NUMBER в секундах."
+    },
+    "game": {
+      "section": "Движок, запуск и внутренние подсистемы",
+      "description": "Точная фраза Closing game gracefully. Маркер открытия лога сам по себе не определяет границу игровой сессии."
+    },
+    "setting": {
+      "section": "Движок, запуск и внутренние подсистемы",
+      "description": "14 подсистем, 64 разрешённые пары «подсистема — параметр» в `BOOLEAN_SETTINGS`, состояние ON/OFF. Параметр одной подсистемы нельзя переносить в другую. Наблюдаемое `MAT: Ingore Temp` сохраняется с опечаткой; исправленная форма без подтверждения не допускается."
+    },
+    "job": {
+      "section": "Движок, запуск и внутренние подсистемы",
+      "description": "Приоритеты HIGH/MEDIUM/LOW/IDLE и count; точные Start, Exception Callback: SET, boost true/false."
+    },
+    "storage": {
+      "section": "Движок, запуск и внутренние подсистемы",
+      "description": "Mapping bucket count и точная инициализация bundle cache."
+    },
+    "runtime": {
+      "section": "Движок, запуск и внутренние подсистемы",
+      "description": "Dynamic Bucket count для MESH/MAT/GRAPH с целым значением."
+    },
+    "bundle": {
+      "section": "Движок, запуск и внутренние подсистемы",
+      "description": "Путь индекса `BundlesN/….bin`, количества entries/slots/directories, размер NUMBER с единицей B/KB/MB/GB."
+    },
+    "memory": {
+      "section": "Движок, запуск и внутренние подсистемы",
+      "description": "Used, OsUsed, Total и отдельная единица B/KB/MB/GB для каждого числа NUMBER. Единицы не пересчитываются."
+    },
+    "precalc": {
+      "section": "Движок, запуск и внутренние подсистемы",
+      "description": "Только девять названий таблиц `PRECALC_TABLES` после Precalc."
+    },
+    "entity2": {
+      "section": "Движок, запуск и внутренние подсистемы",
+      "description": "Regather Pass Types либо Object Types."
+    },
+    "lmdb": {
+      "section": "Движок, запуск и внутренние подсистемы",
+      "description": "Путь среды и точная ошибка Access denied. После удаления LF/CRLF может остаться ровно один дополнительный CR; он сохраняется в `trailing_cr` (иначе пустая строка). Глобального strip нет, raw_base64 включает весь исходный разделитель."
+    },
+    "render": {
+      "section": "Графика, устройства и окно",
+      "description": "Старт без backend (null), с Vulkan или DirectX11; версии драйвера 2–4 части, GPU scheduling Enabled/Disabled. Точные отказ старта, fallback DirectX11, переполнение Blit и семь перечисленных стадий перезапуска. Наличие диагностической строки не означает успешный рендер."
+    },
+    "adapter": {
+      "section": "Графика, устройства и окно",
+      "description": "Имя адаптера, целые Selected/Max feature level и путь устройства DISPLAY с числовым суффиксом."
+    },
+    "d3d11": {
+      "section": "Графика, устройства и окно",
+      "description": "Число буферов, версии runtime/feature level из двух числовых частей, три перечисленные возможности драйвера YES/NO, поставщик Intel/NVidia, fullscreen 0/1."
+    },
+    "vulkan": {
+      "section": "Графика, устройства и окно",
+      "description": "Supported/Requesting extension, instance/device, идентификатор\n`VK_…`; present mode Fifo/Immediate/Mailbox/FifoRelaxed, отдельный invalid\nс шестнадцатеричным значением. SwapChain и размеры, Min Image Count, heap,\nочереди Graphics/Transfer и GPU. Свойства/флаги имеют вид `{}` либо\n`{ Name | OtherName }` с проверкой разделителей; комбинации не оцениваются.\nLUID шестнадцатеричный, описание устройства непустое. Стадии ограничены\nReinitSwapChain/ResizeBuffers/ASTC unsupported; отсутствие отдельной transfer\nqueue — точная фраза. Расширение проверяется синтаксически, без внешнего реестра.\nСлово invalid в сообщении не означает ошибку парсера."
+    },
+    "shader": {
+      "section": "Графика, устройства и окно",
+      "description": "Идентификатор кэша, PSO Enabled/Disabled и точная ошибка отсутствующего `ShaderCacheVulkan.packed/index.dat`."
+    },
+    "dxc": {
+      "section": "Графика, устройства и окно",
+      "description": "Точная загрузка dxcompiler.dll, имя библиотеки сохранено в поле."
+    },
+    "streamline": {
+      "section": "Графика, устройства и окно",
+      "description": "Инициализация, длительность NUMBER; DLSS/Reflex/PCL с версиями компонента и NGX (2–4 части); NIS/FSR/XeSS/PSSR proxy. Enabled true/false для семи компонентов; Reflex Low Latency/Flash Indicator ON/OFF. Shutdown Start/complete и длительность в десятичной форме без экспоненты."
+    },
+    "window": {
+      "section": "Графика, устройства и окно",
+      "description": "Lost/Gained focus; TriggerDeviceCreate/TriggerDeviceReset/TriggerDeviceDestroyed; DPI scale NUMBER. Потеря фокуса не доказывает бездействие."
+    },
+    "scene": {
+      "section": "Сцены, ресурсы и графы",
+      "description": "Static Walkability Texture и Height Map Texture с целыми размерами. Set Source содержит непустое значение в квадратных скобках; `(null)` и `(unknown)` сохраняются буквально."
+    },
+    "asset": {
+      "section": "Сцены, ресурсы и графы",
+      "description": "Путь `Art/….ast`; имя Bone из букв, цифр и подчёркиваний, допускает непустые сегменты через `|`; точное окончание has no vertex influences."
+    },
+    "effect": {
+      "section": "Сцены, ресурсы и графы",
+      "description": "Числовой ID отсутствующего типа узла; либо имя узла и путь `.fxgraph` в кавычках."
+    },
+    "mat": {
+      "section": "Сцены, ресурсы и графы",
+      "description": "Таблица: размер, число комбинаций и параметров с точными двойными пробелами. Отсутствующая таблица — отдельная точная фраза."
+    },
+    "graph": {
+      "section": "Сцены, ресурсы и графы",
+      "description": "Deadlock с timeout в ms и состоянием no running graph либо running graph nodes: Present/RecordUI."
+    },
+    "pathfinding": {
+      "section": "Сцены, ресурсы и графы",
+      "description": "CalculateShortestPathToRoot и целое число рассмотренных узлов."
+    },
+    "skill": {
+      "section": "Сцены, ресурсы и графы",
+      "description": "Идентификатор skill в точной форме Could not find row for … skill.., включая две точки."
+    },
+    "font": {
+      "section": "Сцены, ресурсы и графы",
+      "description": "Непустое имя typeface в Empty font file … Skipping..., с точными скобками и многоточием."
+    },
+    "clientstring": {
+      "section": "Сцены, ресурсы и графы",
+      "description": "INVALID CLIENTSTRING с идентификатором из букв, цифр и подчёркиваний."
+    },
+    "network": {
+      "section": "Сеть, HTTP, фильтры и Steam",
+      "description": "Подключение к instance: IPv4 с октетами 0–255, порт 1–65535,\nдопускается один конечный пробел. Async connecting использует имя хоста\nиз строчных букв, цифр, точек и дефисов с непустыми сегментами и тот же порт.\nConnected и instance latency содержат целые миллисекунды. Resyncing — целое\nбез предположения о единице. Три точные причины abnormal disconnect:\nнеожиданный разрыв, обслуживание realm, отказ подключения к instance.\nНовые типы автоматически не расширяют выбранный набор событий таймлайна.\nОшибка загрузки настроек сайта поддерживает точную цепочку cURL / SSL /\nschannel / InitializeSecurityContext, код SEC_E_* и восьмизначный HRESULT.\nОкончание о запланированном повторе обязательно; другие причины не угадываются."
+    },
+    "http": {
+      "section": "Сеть, HTTP, фильтры и Steam",
+      "description": "Backend cURL; User-Agent PoE release/tags/N.N.N с необязательным буквенным суффиксом, Windows x32/x64. Это текст клиента, а не определение ОС компьютера."
+    },
+    "filter": {
+      "section": "Сеть, HTTP, фильтры и Steam",
+      "description": "Идентификаторы фильтра, IPv4, HTTP-статусы 100–599, загрузка,\nсохранение, перезагрузка и список. Хеш — непустой токен `[0-9a-f]+`\nпеременной длины; прежнее ограничение 32 символа отменено. Алгоритм хеша\nне назначается и не проверяется. `(empty)` — отдельная форма; local_hash\nв списке также может быть `(empty)`. Reload: true/false, Type Normal,\nMessage может быть пустым. Распознанный статус не доказывает успех загрузки."
+    },
+    "steam": {
+      "section": "Сеть, HTTP, фильтры и Steam",
+      "description": "Stats stored; Achivement stored (исходная опечатка) с идентификатором из букв, цифр, подчёркиваний и необязательным конечным `%`; отказ установки stat; точное уведомление перепроверки содержимого."
+    },
+    "patch": {
+      "section": "Сеть, HTTP, фильтры и Steam",
+      "description": "Точное требование перезапустить Path of Exile после обновления."
+    },
+    "daily_deal": {
+      "section": "Сеть, HTTP, фильтры и Steam",
+      "description": "Конкретная форма исключения загрузки: URL HTTP/HTTPS и статус 100–599. URL не открывается."
+    },
+    "input": {
+      "section": "Ввод, интерфейс и звук",
+      "description": "Выбранная библиотека xinputN_N.dll в точном сообщении Selected XInput.dll."
+    },
+    "ui": {
+      "section": "Ввод, интерфейс и звук",
+      "description": "Rebuild UI с числовым mode, точное уведомление смены способа ввода.\nVirtual keyboard: mode, default text, title в одинарных кавычках; текст\nможет содержать апострофы. Разделители и завершающая кавычка обязательны;\nпри неоднозначности используется первое `' and title '`. Прежний запрет\nна апострофы отменён. Поля могут содержать пользовательский поисковый текст\nи остаются в локальном анализе."
+    },
+    "sound": {
+      "section": "Ввод, интерфейс и звук",
+      "description": "Размер буфера NUMBER с единицей B/KB/MB/GB, фактическое/запрошенное число каналов, число источников; шестнадцатеричная версия Fmod и имя устройства в кавычках."
+    }
+  }
+}

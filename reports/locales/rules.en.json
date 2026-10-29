@@ -1,0 +1,505 @@
+{
+  "version": "1",
+  "families": {
+    "area": {
+      "section": "Areas, characters and game operations",
+      "description": "Generation specifies level, the quoted area identifier and seed. Entry matches exactly \": You have entered ….\". Tile/Doodad hashes are decimal numbers. Two diagnostic phrases are matched literally. Generation alone does not prove a map visit."
+    },
+    "instance": {
+      "section": "Areas, characters and game operations",
+      "description": "Login server details and decimal Client-Safe Instance ID are separate messages. Analytics establishes their relationship to a visit."
+    },
+    "loading": {
+      "section": "Areas, characters and game operations",
+      "description": "An area name in parentheses and Duration in seconds, using NUMBER syntax. Loading time is not a visit duration."
+    },
+    "hideout": {
+      "section": "Areas, characters and game operations",
+      "description": "Exact Spawning discoverable Hideout form, with a Hideout… identifier made of letters, digits and underscores."
+    },
+    "passive": {
+      "section": "Areas, characters and game operations",
+      "description": "Operation allocated/unallocated, skill identifier (letters, digits, underscore and apostrophe) and nonempty name. Parsing does not validate the identifier against an external catalogue."
+    },
+    "mastery": {
+      "section": "Areas, characters and game operations",
+      "description": "Numeric effect ID, mastery identifier and nonempty name in the exact Successfully allocated mastery effect id form."
+    },
+    "jewel": {
+      "section": "Areas, characters and game operations",
+      "description": "ALTERNATE TREE JEWEL with decimal version, seed and keystone selection. Values are retained without interpreting the tree."
+    },
+    "currency": {
+      "section": "Areas, characters and game operations",
+      "description": "Literal CurrencyApplicationForesightResult recieved marker. The original typo is preserved. The marker does not establish the result of currency use."
+    },
+    "labyrinth": {
+      "section": "Areas, characters and game operations",
+      "description": "Literal InstanceClientLabyrinthCraftResultOptionsList recieved marker, preserving the original typo."
+    },
+    "settlers": {
+      "section": "Areas, characters and game operations",
+      "description": "GoldRespec with integer PassivesAllocated and GoldCost and exact vertical separators. Numbers remain strings."
+    },
+    "trade": {
+      "section": "Areas, characters and game operations",
+      "description": "Exact local player brought an item for … gold phrase. It does not determine the direction of item or money transfer."
+    },
+    "etrade": {
+      "section": "Areas, characters and game operations",
+      "description": "Service requests and responses: API type, request_id, error and latency in ms. A recognized response does not prove a successful player trade."
+    },
+    "stash": {
+      "section": "Areas, characters and game operations",
+      "description": "Two exact phrases for reordering tabs and subtabs to match stash data."
+    },
+    "tutorial": {
+      "section": "Areas, characters and game operations",
+      "description": "Exact request to complete tutorials due to a client setting. The parser performs no game operation."
+    },
+    "screen": {
+      "section": "On-screen notifications",
+      "description": "Every rule requires the \": \" prefix after the client header and a full format match. Character names exclude spaces and colons; names and classes are not validated against a registry. Numeric values remain strings. Point types, item actions, resistance and movement rewards, Kitava penalties and crafting notices accept only the alternatives in their patterns. apply_failed uses the finite APPLY_FAILURES list; use_failed has two explicit reasons. Trade accepted/cancelled and the expired hideout trade warning do not identify items, price or partner. Character messages may refer to others. Death/kill counters, played time and character age are displayed totals, not new events to add together. Duration variants preserve singular/plural forms. Remaining monsters has a separate singular form; comma-separated counts use groups of three digits. AFK ON/OFF is exact; the quoted reply may be empty. Bestiary, Hiveblood, divination card markup and Expedition artifact types accept only observed forms. screen.phrase.* covers the finite SCREEN_PHRASES list and Become the nightmare. The trailing space in \"Overpower, overrun, overcome. \" is required. No speaker, cause or action is inferred from a phrase. Other notifications are individual exact patterns, not a catch-all for any prefixed text. Optional chest_locked.key_required is null when the Treasure Key phrase is absent; otherwise its original delimiters are retained. Tree-roots notices have an exact three-line continuation sequence; screen phrases match a finite list. Supporter inscriptions are not inferred from a generic screen prefix."
+    },
+    "chat": {
+      "section": "Chat and named dialogue",
+      "description": "Channel messages start with % or #; whispers with @To or @From. An optional guild tag, character name excluding spaces/colons/angle brackets and possibly empty text follow. Markers, direction and text are preserved literally. Text is never executed, and a trade offer does not prove a completed trade. Conversations are displayed on their dedicated local report page. Unprefixed local chat requires a character name previously confirmed by a character notification or marked chat earlier in the same file, including previous log-opening sessions. One optional leading NUL is preserved as a marker; other controls are rejected. Known dialogue signatures retain priority."
+    },
+    "dialogue": {
+      "section": "Chat and named dialogue",
+      "description": "Only the finite SPEAKERS catalogue is accepted. A final CR can introduce a paragraph only when followed immediately by a CR-only separator and one nonempty line without controls or an initial timestamp. Headers and unframed text without the separator are not consumed. A signature alone does not establish the speaker’s role."
+    },
+    "action": {
+      "section": "Actions and GEAL",
+      "description": "Exact triggered/instant/update/animation/channelling errors, preserving actionwas. ContactAttack requires a Metadata/… path. Continuation fields are listed separately. A runtime action ID is not assumed to be a game skill ID."
+    },
+    "geal": {
+      "section": "Actions and GEAL",
+      "description": "Object errors contain a hexadecimal object_id, signed integer x/y coordinates, a Metadata/… path and one GEAL_REASONS value. Missing animation events and a Metadata/….ao path with a specific empty-result reason have separate rules."
+    },
+    "engine": {
+      "section": "Engine, startup and internal subsystems",
+      "description": "Versions have 2–4 numeric components; revision is an integer. Directories are Settings/Current/Cache/Download; cache names may include underscores. Found/deleted pipeline cache paths accept .foz, .bin, .toc, /TOUCH or /index, NUMBER size and B/KB/MB/GB units. Lifecycle stages are Init, Ready and Reset static. Windows Version/OS text and Build are recorded as client output; they do not contradict the confirmed Ubuntu/Steam origin of the logs."
+    },
+    "startup": {
+      "section": "Engine, startup and internal subsystems",
+      "description": "Start and duration of Registration/Game/Device/Tencent/Loading/DebugGUI stages. Duration is NUMBER in seconds."
+    },
+    "game": {
+      "section": "Engine, startup and internal subsystems",
+      "description": "Exact Closing game gracefully phrase. Log opening alone does not establish a game session boundary."
+    },
+    "setting": {
+      "section": "Engine, startup and internal subsystems",
+      "description": "Only subsystem/setting pairs in BOOLEAN_SETTINGS and ON/OFF state are accepted. A setting from one subsystem cannot be transferred to another. The observed MAT: Ingore Temp typo is preserved; an unverified corrected spelling is not accepted."
+    },
+    "job": {
+      "section": "Engine, startup and internal subsystems",
+      "description": "HIGH/MEDIUM/LOW/IDLE priorities and count; exact Start, Exception Callback: SET and true/false priority boost."
+    },
+    "storage": {
+      "section": "Engine, startup and internal subsystems",
+      "description": "Mapping bucket count and exact bundle cache initialization."
+    },
+    "runtime": {
+      "section": "Engine, startup and internal subsystems",
+      "description": "Dynamic Bucket count for MESH/MAT/GRAPH with an integer value."
+    },
+    "bundle": {
+      "section": "Engine, startup and internal subsystems",
+      "description": "BundlesN/….bin index path, entries/slots/directories counts, NUMBER size and B/KB/MB/GB units."
+    },
+    "memory": {
+      "section": "Engine, startup and internal subsystems",
+      "description": "Used, OsUsed and Total with a separate B/KB/MB/GB unit for each NUMBER. Units are not converted."
+    },
+    "precalc": {
+      "section": "Engine, startup and internal subsystems",
+      "description": "Only table names in PRECALC_TABLES after Precalc are accepted."
+    },
+    "entity2": {
+      "section": "Engine, startup and internal subsystems",
+      "description": "Regather Pass Types or Object Types."
+    },
+    "lmdb": {
+      "section": "Engine, startup and internal subsystems",
+      "description": "Environment path and exact Access denied error. After removing LF/CRLF, exactly one additional CR may remain; it is saved as trailing_cr, otherwise an empty string. No global strip is applied. raw_base64 retains the entire original delimiter."
+    },
+    "render": {
+      "section": "Graphics, devices and window",
+      "description": "Device start with null backend, Vulkan or DirectX11; 2–4 component driver versions; GPU scheduling Enabled/Disabled. Exact startup failure, DirectX11 fallback, Blit overflow and enumerated restart stages. A diagnostic line does not prove rendering succeeded."
+    },
+    "adapter": {
+      "section": "Graphics, devices and window",
+      "description": "Adapter name, integer Selected/Max feature levels and a DISPLAY device path with a numeric suffix."
+    },
+    "d3d11": {
+      "section": "Graphics, devices and window",
+      "description": "Buffer count, two-component runtime/feature versions, enumerated YES/NO driver capabilities, Intel/NVidia vendor and fullscreen 0/1."
+    },
+    "vulkan": {
+      "section": "Graphics, devices and window",
+      "description": "Supported/Requesting instance/device VK_… extensions; Fifo/Immediate/Mailbox/FifoRelaxed present modes and a separate hexadecimal invalid value. SwapChain dimensions, Min Image Count, heaps, Graphics/Transfer queues and GPU data are retained. Properties/flags require exact brace and separator syntax; combinations are not interpreted. LUID is hexadecimal and device text nonempty. Lifecycle stages and unsupported transfer queue use the exact finite alternatives. Extensions are validated syntactically without an external registry. The word invalid does not imply a parser error."
+    },
+    "shader": {
+      "section": "Graphics, devices and window",
+      "description": "Cache identifier, PSO Enabled/Disabled and the exact missing ShaderCacheVulkan.packed/index.dat error."
+    },
+    "dxc": {
+      "section": "Graphics, devices and window",
+      "description": "Exact dxcompiler.dll load message; the library name is retained."
+    },
+    "streamline": {
+      "section": "Graphics, devices and window",
+      "description": "Initialization and NUMBER duration; DLSS/Reflex/PCL component and NGX versions (2–4 components); NIS/FSR/XeSS/PSSR proxies. Enabled true/false for the supported components and Reflex Low Latency/Flash Indicator ON/OFF. Shutdown Start/complete and decimal duration without exponent."
+    },
+    "window": {
+      "section": "Graphics, devices and window",
+      "description": "Lost/Gained focus, TriggerDeviceCreate/TriggerDeviceReset/TriggerDeviceDestroyed and NUMBER DPI scale. Focus loss does not prove inactivity."
+    },
+    "scene": {
+      "section": "Scenes, resources and graphs",
+      "description": "Static Walkability Texture and Height Map Texture with integer dimensions. Set Source contains nonempty bracketed text; (null) and (unknown) are preserved literally."
+    },
+    "asset": {
+      "section": "Scenes, resources and graphs",
+      "description": "Art/….ast path and bone name with letters, digits, underscores and optional nonempty segments separated by vertical bars; exact has no vertex influences ending."
+    },
+    "effect": {
+      "section": "Scenes, resources and graphs",
+      "description": "Numeric missing node type ID, or a node name and quoted .fxgraph path."
+    },
+    "mat": {
+      "section": "Scenes, resources and graphs",
+      "description": "Table size, combination count and parameter count with exact double spaces. Missing table uses a separate literal phrase."
+    },
+    "graph": {
+      "section": "Scenes, resources and graphs",
+      "description": "Deadlock with timeout in ms and no running graph or running graph nodes: Present/RecordUI state."
+    },
+    "pathfinding": {
+      "section": "Scenes, resources and graphs",
+      "description": "CalculateShortestPathToRoot and an integer number of examined nodes."
+    },
+    "skill": {
+      "section": "Scenes, resources and graphs",
+      "description": "Skill identifier in the exact Could not find row for … skill.. form, including both trailing dots."
+    },
+    "font": {
+      "section": "Scenes, resources and graphs",
+      "description": "Nonempty typeface in Empty font file … Skipping..., with exact parentheses and ellipsis."
+    },
+    "clientstring": {
+      "section": "Scenes, resources and graphs",
+      "description": "INVALID CLIENTSTRING with a letters/digits/underscores identifier."
+    },
+    "network": {
+      "section": "Network, HTTP, filters and Steam",
+      "description": "Instance connections use IPv4 octets 0–255 and port 1–65535; one trailing space is allowed. Async hostnames use lowercase letters, digits, dots and hyphens with nonempty segments. Connected and instance latency contain integer milliseconds. Resyncing is an integer with no assumed unit. Disconnect forms cover unexpected disconnection, realm maintenance and instance connection failure. New types do not automatically extend the selected timeline events. Site-settings SSL failures require the exact cURL/schannel/InitializeSecurityContext chain, a SEC_E_* code, an eight-digit hexadecimal HRESULT and the retry suffix."
+    },
+    "http": {
+      "section": "Network, HTTP, filters and Steam",
+      "description": "cURL backend; PoE release/tags/N.N.N User-Agent with optional letter suffix and Windows x32/x64. This is client text, not detection of the host OS."
+    },
+    "filter": {
+      "section": "Network, HTTP, filters and Steam",
+      "description": "Filter IDs, IPv4, HTTP status 100–599, downloads, saving, reloading and lists. Hashes are nonempty lowercase hexadecimal tokens of variable length; no algorithm or fixed length is assumed. (empty) has a separate form and is also allowed for local_hash. Reload includes true/false, Type Normal and possibly empty Message. A recognized HTTP status does not prove download success."
+    },
+    "steam": {
+      "section": "Network, HTTP, filters and Steam",
+      "description": "Stats stored; Achivement stored preserving the original typo, with an identifier and optional trailing percent sign; stat failure and exact content recheck notice."
+    },
+    "patch": {
+      "section": "Network, HTTP, filters and Steam",
+      "description": "Exact request to restart Path of Exile after an update."
+    },
+    "daily_deal": {
+      "section": "Network, HTTP, filters and Steam",
+      "description": "Specific download exception with an HTTP/HTTPS URL and status 100–599. The URL is not opened."
+    },
+    "input": {
+      "section": "Input, interface and sound",
+      "description": "Selected xinputN_N.dll library in the exact Selected XInput.dll message."
+    },
+    "ui": {
+      "section": "Input, interface and sound",
+      "description": "Rebuild UI with numeric mode and an exact input method change notice. Virtual keyboard has mode, default text and title separated by single-quoted delimiters. Text may contain apostrophes. Delimiters and final quote are required; ambiguity uses the first ' and title ' separator. Fields may contain user search text and remain in the local analysis."
+    },
+    "sound": {
+      "section": "Input, interface and sound",
+      "description": "NUMBER buffer size with B/KB/MB/GB unit, actual/requested channel counts and source count; hexadecimal FMOD version and quoted device name."
+    },
+    "reliquary": {
+      "section": "On-screen notifications",
+      "description": "A custom chest message requires generation of a RELIQUARY_AREAS ID, a matching scene, entry and completed loading in the same client context. One INFO message is accepted per visit. System rules retain priority, except thrill_void and conqueror in this context. Consecutive unframed text lines belong to the same message until a new header, blank or invalid line. Area changes, log opening, disconnects, invalid records, client changes or tick regression reset the context. Item identity and pickup are not inferred. A temporary (null) scene is allowed before entry. Closing the game or connecting to another instance also resets the context."
+    }
+  },
+  "descriptions": {
+    "area.tile_hash": "Area tile checksum",
+    "area.doodad_hash": "Area decoration checksum",
+    "area.generate": "Area generation with level and seed",
+    "area.enter": "Area entry",
+    "area.unconnected_depth": "Unreachable area depth",
+    "area.activation_range_late": "Activation range set too late",
+    "instance.details": "Game instance details",
+    "instance.id": "Client-safe instance identifier",
+    "loading.duration": "Loading duration",
+    "hideout.discoverable": "Discoverable hideout spawned",
+    "passive.allocation": "Passive skill allocated or unallocated",
+    "mastery.allocated": "Mastery effect allocated",
+    "jewel.alternate_tree": "Alternate jewel tree",
+    "currency.foresight": "Foresight currency result marker",
+    "labyrinth.craft_options": "Labyrinth crafting options",
+    "settlers.gold_respec": "Gold cost of passive respec",
+    "trade.gold": "Gold message for an acquired item",
+    "etrade.request": "Trade service request",
+    "etrade.response": "Trade service response",
+    "stash.reorder": "Stash tabs reordered",
+    "stash.reorder_subtabs": "Stash subtabs reordered",
+    "tutorial.complete_request": "Request to complete all tutorials",
+    "screen.point_received": "One point received",
+    "screen.points_received": "Multiple points received",
+    "screen.items_identified": "Items identified",
+    "screen.chest_locked": "Chest locked",
+    "screen.trade": "Player trade result",
+    "screen.cursor_item_destroyed": "Item on cursor destroyed",
+    "screen.apply_failed": "Item application failed",
+    "screen.stash_full": "Stash full",
+    "screen.slain": "Character death message",
+    "screen.suicide": "Character death from self-damage",
+    "screen.nameless_seer": "Nameless Seer appeared nearby",
+    "screen.reflecting_mist": "Reflecting Mist appeared nearby",
+    "screen.level_up": "Character level increased",
+    "screen.afk_on": "AFK mode enabled",
+    "screen.afk_off": "AFK mode disabled",
+    "screen.area_presence": "Character entered or left an area",
+    "screen.death_count": "Displayed death count",
+    "screen.kill_count": "Displayed kill count",
+    "screen.played_time": "Displayed character playtime",
+    "screen.character_age": "Displayed character age",
+    "screen.area_unreachable": "Area unreachable",
+    "screen.portals_disabled": "Portals disabled",
+    "screen.bestiary_added": "Beast added to the Bestiary",
+    "screen.hiveblood_warning": "Hiveblood warning",
+    "screen.phrase.fear_not_elements": "On-screen phrase: Fear not the elements",
+    "screen.phrase.eye_of_storm": "On-screen phrase: Open the eye of the storm",
+    "screen.phrase.world_to_ice": "On-screen phrase: Turn your world to ice",
+    "screen.phrase.none_shall_stop": "On-screen phrase: None shall stop you",
+    "screen.phrase.courage": "On-screen phrase: Courage stands tall",
+    "screen.phrase.fog_of_war": "On-screen phrase: Shroud your path in the fog of war",
+    "screen.phrase.death_wait": "On-screen phrase: Death does not wait",
+    "screen.phrase.past_serves_present": "On-screen phrase: The past shall serve the present",
+    "screen.phrase.restore_lost": "On-screen phrase: Restore that which was lost",
+    "screen.phrase.hit_once": "On-screen phrase: Hit hard. Hit once",
+    "screen.phrase.pain_exquisite": "On-screen phrase: Pain is exquisite",
+    "screen.phrase.overpower": "On-screen phrase: Overpower, overrun, overcome",
+    "screen.phrase.rage": "On-screen phrase about rage",
+    "screen.phrase.shadows": "On-screen phrase about shadows",
+    "screen.quest_points": "Quest reward points",
+    "screen.quest_contribution": "Quest completion contribution",
+    "screen.ascendancy_points": "Ascendancy points",
+    "screen.resistance_reward": "Resistance reward",
+    "screen.kitava_affliction": "Kitava affliction",
+    "screen.betrayal_busy": "Betrayal system busy",
+    "screen.hideout_trade_expired": "Trading in an expired hideout instance",
+    "screen.locked": "Action or object locked",
+    "screen.bug_submitted": "Bug report submitted",
+    "screen.phrase.become_nightmare": "On-screen phrase: Become the nightmare",
+    "screen.character_info": "Character information",
+    "screen.played_time_days": "Playtime including days",
+    "screen.played_time_minutes": "Playtime in minutes and seconds",
+    "screen.character_age_hours": "Character age in hours",
+    "screen.use_failed": "Object use failed",
+    "screen.passive_points": "Passive point totals",
+    "screen.level_points": "Points from levels",
+    "screen.monsters_remaining": "Remaining monster count",
+    "screen.bug_reference": "Bug report reference number",
+    "screen.card_drawn": "Card drawn",
+    "screen.expedition_added": "Expedition artifacts added",
+    "screen.movement_reward": "Movement speed reward",
+    "screen.favoured_resources_busy": "Favoured resources busy",
+    "screen.hideout_quest_required": "Quest required for hideout",
+    "screen.recipe_already_unlocked": "Recipe already unlocked",
+    "screen.passage_item_required": "Item required for passage",
+    "screen.join_instances_failed": "Failed to join instances",
+    "screen.corrupted_target": "Cannot modify a corrupted target",
+    "screen.door_locked": "Door locked",
+    "screen.foreign_bench": "Another player's crafting bench",
+    "screen.crafting_no_target": "No crafting target selected",
+    "screen.lantern_required": "Lantern required",
+    "screen.achievement_server_failed": "Achievement server error",
+    "screen.pvp_list_timeout": "PvP list request timed out",
+    "screen.recombinator_cost": "Recombinator cost",
+    "screen.activation_cancelled": "Activation cancelled",
+    "screen.golden_key_required": "Golden key required",
+    "screen.item_no_room": "Not enough room for item",
+    "screen.contract_low_level": "Level too low for contract",
+    "screen.join_maintenance": "Cannot join during maintenance",
+    "screen.join_disconnected": "Joining interrupted by disconnection",
+    "screen.mission_client_required": "Mission client must be present",
+    "chat.channel": "Public or party chat message",
+    "chat.whisper": "Incoming or outgoing private message",
+    "dialogue.named": "Game dialogue with a known speaker label",
+    "action.trigger_failed": "Server action trigger failed",
+    "action.execute_failed": "Client action execution failed",
+    "action.detach_finished": "Action detach completed",
+    "action.update_missing": "Action to update not found",
+    "action.instant_failed": "Instant action failed",
+    "action.animation_missing": "Action animation missing",
+    "action.channel_mismatch": "Action channel mismatch",
+    "action.contact_bone_invalid": "Invalid contact bone",
+    "geal.error": "GEAL execution error",
+    "geal.animation_event_missing": "GEAL animation event missing",
+    "geal.path_error": "GEAL path error",
+    "engine.pipeline_cache": "Engine pipeline cache",
+    "engine.build_revision": "Client build revision",
+    "engine.version": "Engine version",
+    "engine.directory": "Engine directory",
+    "engine.wipe_cache": "Engine cache cleared",
+    "engine.os": "Operating system information reported by the client",
+    "engine.lifecycle": "Engine lifecycle stage",
+    "engine.deleted_pipeline": "Pipeline cache deleted",
+    "engine.old_version": "Old engine version detected",
+    "startup.stage_start": "Startup stage started",
+    "startup.stage_duration": "Startup stage duration",
+    "game.closing": "Game closing",
+    "setting.engine": "Engine boolean setting",
+    "setting.graph": "Graph boolean setting",
+    "setting.job": "Job boolean setting",
+    "setting.mat": "Material boolean setting",
+    "setting.mesh": "Mesh boolean setting",
+    "setting.particle": "Particle boolean setting",
+    "setting.render": "Render boolean setting",
+    "setting.resource": "Resource boolean setting",
+    "setting.shader": "Shader boolean setting",
+    "setting.sound": "Sound boolean setting",
+    "setting.storage": "Storage boolean setting",
+    "setting.texture": "Texture boolean setting",
+    "setting.trails": "Trails boolean setting",
+    "setting.video": "Video boolean setting",
+    "job.priority_count": "Background job priority count",
+    "job.start": "Background job startup",
+    "job.exception_callback": "Background job exception handler registration",
+    "job.priority_boost": "Job priority boost",
+    "storage.bucket_count": "Storage bucket count",
+    "storage.init_cache": "Bundle cache initialization",
+    "runtime.bucket_count": "Runtime bucket count",
+    "bundle.index": "Resource bundle index",
+    "bundle.contents": "Resource bundle contents",
+    "memory.usage": "Memory usage",
+    "precalc.table": "Table precalculation",
+    "entity2.regather": "Entity2 data regather",
+    "lmdb.access_denied": "LMDB access denied",
+    "render.start_device": "Graphics device startup",
+    "render.driver_version": "Graphics driver version",
+    "render.gpu_scheduling": "GPU scheduling",
+    "render.blit_overflow": "Blit buffer overflow",
+    "render.device_failed": "Graphics device failure",
+    "render.fallback_d3d11": "Fallback to Direct3D 11",
+    "render.lifecycle": "Render system lifecycle stage",
+    "adapter.enumerated": "Graphics adapter found",
+    "adapter.device": "Selected adapter device",
+    "adapter.output": "Graphics adapter output",
+    "d3d11.buffer_count": "Direct3D 11 buffer count",
+    "d3d11.runtime_version": "Direct3D 11 runtime version",
+    "d3d11.feature_level": "Direct3D 11 feature level",
+    "d3d11.driver_capability": "Graphics driver capability",
+    "d3d11.vendor": "Graphics adapter vendor",
+    "d3d11.swapchain_fullscreen": "Swap chain fullscreen mode",
+    "vulkan.extension": "Supported or requested Vulkan extension",
+    "vulkan.present_mode": "Image presentation mode",
+    "vulkan.invalid_present_mode": "Invalid presentation mode",
+    "vulkan.swapchain": "Swap chain creation or parameters",
+    "vulkan.min_images": "Minimum image count",
+    "vulkan.memory_type": "Vulkan memory type",
+    "vulkan.memory_heap": "Vulkan memory heap",
+    "vulkan.queue": "Vulkan queue",
+    "vulkan.selected_queue": "Selected graphics or transfer queue",
+    "vulkan.gpu_type": "Vulkan GPU type",
+    "vulkan.lifecycle": "Graphics resource reinitialization",
+    "vulkan.physical_device": "Physical graphics device found",
+    "vulkan.transfer_unsupported": "Separate transfer queue unsupported",
+    "shader.load_cache": "Shader cache loading",
+    "shader.pso_cache": "PSO pipeline cache",
+    "shader.cache_missing": "Shader cache missing",
+    "dxc.loaded": "DXC shader compiler loaded",
+    "streamline.init": "Streamline initialization",
+    "streamline.init_duration": "Streamline initialization duration",
+    "streamline.version": "Streamline component version",
+    "streamline.proxy": "Streamline proxy component",
+    "streamline.enabled": "Streamline component enabled state",
+    "streamline.reflex": "NVIDIA Reflex setting",
+    "streamline.shutdown": "Streamline shutdown",
+    "streamline.shutdown_duration": "Streamline shutdown duration",
+    "window.focus": "Window focus gained or lost",
+    "window.device": "Window graphics device event",
+    "window.dpi_scale": "Window DPI scale",
+    "scene.walkability": "Scene walkability",
+    "scene.source": "Scene data source",
+    "scene.height_map": "Scene height map",
+    "asset.bone_no_influences": "Asset bone has no vertex influences",
+    "effect.missing_node_type": "Effect node type missing",
+    "effect.missing_node": "Effect node missing",
+    "mat.table": "Material subsystem table",
+    "mat.table_missing": "Material table missing",
+    "graph.deadlock": "Graph deadlock detected",
+    "pathfinding.shortest_path": "Shortest path calculation",
+    "skill.missing_row": "Skill row missing",
+    "font.empty": "Empty font",
+    "clientstring.invalid": "Invalid client interface string",
+    "network.instance_connect": "Connecting to a game instance",
+    "network.instance_latency": "Game instance latency",
+    "network.async_connect": "Asynchronous connection",
+    "network.connected": "Connection established",
+    "network.resync": "Resynchronization",
+    "network.abnormal_disconnect": "Unexpected disconnection",
+    "network.maintenance_disconnect": "Disconnected for maintenance",
+    "network.instance_disconnect": "Instance disconnection",
+    "http.backend": "HTTP implementation",
+    "http.user_agent": "HTTP User-Agent",
+    "filter.resolved": "Item filter address resolved",
+    "filter.download": "Item filter download",
+    "filter.status": "Filter download HTTP status",
+    "filter.hash": "Item filter hash",
+    "filter.list_download": "Filter list download",
+    "filter.saved": "Filter saved",
+    "filter.reloaded": "Filter reloaded",
+    "filter.empty_hash": "Empty filter hash",
+    "filter.list_status": "Filter list HTTP status",
+    "filter.list_resolved": "Filter list address resolved",
+    "filter.list_entry": "Filter list entry",
+    "steam.stats_stored": "Steam statistics stored",
+    "steam.achievement": "Steam achievement",
+    "steam.stat_failed": "Failed to store Steam statistic",
+    "steam.content_recheck": "Steam content recheck requested",
+    "patch.restart_required": "Restart required after update",
+    "daily_deal.download_failed": "Daily deal download failed",
+    "input.xinput_library": "XInput library",
+    "ui.rebuild": "Interface properties rebuilt",
+    "ui.virtual_keyboard": "Virtual keyboard opened",
+    "ui.input_method_changed": "Input method changed",
+    "sound.buffer": "Audio buffer",
+    "sound.channels": "Audio channels",
+    "sound.sources": "Audio sources",
+    "sound.fmod_init": "FMOD initialization",
+    "sound.device": "Audio device",
+    "chat.local": "Local chat from a confirmed character or an INFO message with a guild tag",
+    "network.site_settings_ssl_failed": "SSL failure fetching site settings; the client schedules a retry",
+    "screen.microtransaction_converted": "Item converted to an account-bound microtransaction",
+    "screen.tree_roots_blocked": "Tree roots block the path",
+    "screen.phrase.goddess_watching": "Screen line about the watching Goddess",
+    "screen.phrase.heart_desire": "Screen line about the heart’s desire",
+    "screen.phrase.water_motion": "Screen line about still water",
+    "screen.phrase.wah_get_beh": "Screen line Wah get beh",
+    "screen.phrase.thrill_void": "Screen line about the void",
+    "screen.phrase.unmake": "Screen threat of destruction",
+    "screen.phrase.sink_stone": "Screen line about sinking",
+    "screen.phrase.conqueror": "Screen line about conqueror and conquered",
+    "screen.phrase.darkness_looms": "Screen notice of looming darkness",
+    "screen.phrase.room_quiet": "Screen notice of a quiet room",
+    "screen.phrase.drought": "Screen notice of continuing drought",
+    "screen.phrase.waters_flow": "Screen line about flowing water",
+    "screen.phrase.atmosphere_dissipates": "Screen notice of a dissipating oppressive atmosphere",
+    "reliquary.message": "Chest message in a confirmed Reliquary context"
+  }
+}

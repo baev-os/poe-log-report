@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="{{ language }}" data-bs-theme="dark">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ ctx['title'] }}</title>{% with ctx=ctx %}{% include "partials/assets.html" %}{% endwith %}</head>
+<body><div class="report-shell">{% with ctx=ctx %}{% include "partials/menu.html" %}{% endwith %}<main>
+{% set model = data['characters'] %}
+<header><p class="eyebrow">{{ translate("ui.player_history") }} · {{ model['timezone'] }}</p><h1>{{ ctx['title'] }}</h1></header>
+{% with ctx=ctx %}{% include "partials/statistics-status.html" %}{% endwith %}
+<p class="table-note">{{ translate("characters.overview_note") }}</p><p class="table-note">{{ translate("characters.delta_note") }}{% if data['report_period']['active'] %} {{ translate('period.delta') }}{% endif %}</p>
+<p class="table-note">{{ translate('characters.death_note') }}</p>
+{% if model['characters'] %}
+<div class="table-scroll"><table class="character-list">
+<thead><tr><th scope="col">{{ translate("field.character") }}</th><th scope="col">{{ translate("field.class") }}</th><th scope="col">{{ translate("characters.first") }}</th><th scope="col">{{ translate("characters.last") }}</th><th scope="col">{{ translate("characters.level_count") }}</th><th scope="col">{{ translate('characters.deaths') }}</th></tr></thead>
+<tbody>{% for character in model['characters'] %}<tr>
+<th scope="row"><a href="#character-{{ character['id'] }}">{{ character['name'] }}</a></th>
+<td>{{ character['classes']|join(' / ') or '—' }}</td><td>{{ character['first']['level'] if character['first'] else '—' }}</td><td>{{ character['last']['level'] if character['last'] else '—' }}</td><td>{{ character['count'] }}</td><td>{{ character['deaths']['count'] }}</td>
+</tr>{% endfor %}</tbody></table></div>
+<p class="table-note mt-3">{{ translate("characters.chart_hint") }}</p>
+<p class="table-note">{{ translate('characters.death_chart_note') }}</p>
+{% for character in model['characters'] %}
+<section class="card character-progress" id="character-{{ character['id'] }}">
+<div class="card-header"><h2>{{ character['name'] }} <small>{{ character['classes']|join(' / ') }}</small></h2></div>
+<div class="card-body">
+{% for chart in character['charts'] %}
+{% if chart['kind'] != 'all' %}<h3 class="character-chart-heading">{{ translate('characters.' + chart['kind']) }}</h3>{% endif %}
+{% if chart['events'] %}
+<div class="character-chart-scroll"><svg class="character-chart" viewBox="0 0 1000 270" role="group" aria-labelledby="chart-title-{{ character['id'] }}-{{ chart['kind'] }}" data-character-chart data-start="{{ chart['start'] }}" data-end="{{ chart['end'] }}" data-timezone="{{ model['timezone'] }}">
+<title id="chart-title-{{ character['id'] }}-{{ chart['kind'] }}">{{ translate('characters.chart_title', name=character['name']) }}{% if chart['kind'] != 'all' %} · {{ translate('characters.' + chart['kind']) }}{% endif %}</title>
+<text x="8" y="18">{{ translate("field.level") }}</text>
+{% for tick in chart['ticks'] %}<line class="chart-grid" x1="60" x2="940" y1="{{ tick['y'] }}" y2="{{ tick['y'] }}"/><text x="8" y="{{ tick['y'] }}">{{ tick['level'] }}</text>{% endfor %}
+{% for segment in chart['segments'] %}
+<line data-chart-line class="character-chart-line" x1="{{ segment['start']['x'] }}" y1="{{ segment['start']['y'] }}" x2="{{ segment['end']['x'] }}" y2="{{ segment['end']['y'] }}"/>
+
+{% endfor %}
+{% for event in chart['events'] %}<a href="../technical/timeline/{{ event['date'] }}/index.html#line-{{ event['line'] }}" tabindex="0" aria-label="{{ event['label'] }} · {{ translate('characters.level_value', level=event['level']) }} · {{ event['class'] }}">
+<circle data-timestamp="{{ event['timestamp'] }}" cx="{{ event['x'] }}" cy="{{ event['y'] }}" r="4"><title>{{ event['label'] }} · {{ translate('characters.level_value', level=event['level']) }} · {{ event['class'] }}</title></circle></a>{% endfor %}
+<g class="character-death-markers">{% for death in chart['deaths'] %}<a href="#death-{{ death['line'] }}" tabindex="0" aria-label="{{ translate('characters.death_marker', time=death['time'], count=death['count']) }}"><title>{{ translate('characters.death_marker', time=death['time'], count=death['count']) }}</title><path d="M {{ death['x'] - 5 }} 216 l 10 10 m -10 0 l 10 -10"/><rect x="{{ death['x'] - 8 }}" y="213" width="16" height="16"/>{% if death['count'] > 1 %}<text x="{{ death['x'] + 9 }}" y="225">{{ death['count'] }}</text>{% endif %}</a>{% endfor %}</g>
+{% for tick in chart['time_ticks'] %}<line class="chart-grid" x1="{{ tick['x'] }}" x2="{{ tick['x'] }}" y1="30" y2="210"/><text class="character-time-tick" x="{{ tick['x'] }}" y="240" text-anchor="{% if loop.first %}start{% elif loop.last %}end{% else %}middle{% endif %}">{{ tick['date'] }}<tspan x="{{ tick['x'] }}" dy="16">{{ tick['time'] }}</tspan></text>{% endfor %}
+</svg></div>
+{% else %}<p class="empty">{{ translate("characters.range_empty") }}</p>{% endif %}
+{% endfor %}
+{% include "partials/character-deaths.html" %}
+{% if character['events'] %}
+<details class="character-history"><summary>{{ translate("characters.history") }} · {{ character['count'] }}</summary>
+<div class="table-responsive"><table class="character-levels"><thead><tr><th scope="col">{{ translate("characters.date_time") }}</th><th scope="col">{{ translate("field.class") }}</th><th scope="col">{{ translate("field.level") }}</th><th scope="col">{{ translate("characters.delta") }}</th><th scope="col">{{ translate("ui.line_2") }}</th></tr></thead>
+<tbody>{% for event in character['events'] %}<tr><td><time datetime="{{ event['timestamp'] }}">{{ event['label'] }}</time></td><td>{{ event['class'] }}</td><td>{{ event['level'] }}</td><td>{{ event['delta_duration'] }}{% if event['delta_from_level'] is not none %}<br><small>{{ translate('characters.from_level', level=event['delta_from_level']) }}</small>{% endif %}</td><td><a href="../technical/timeline/{{ event['date'] }}/index.html#line-{{ event['line'] }}">#{{ event['line'] }}</a></td></tr>{% endfor %}</tbody></table></div>
+</details>{% endif %}</div></section>{% endfor %}
+{% else %}<p class="empty">{{ translate("characters.overview_empty") }}</p>{% endif %}
+{% set counters = data['period_counter_history']['rows']|selectattr('kind', 'equalto', 'deaths')|list %}
+{% if counters %}<details class="character-counters"><summary>{{ translate('characters.counters') }} · {{ counters|length }}</summary>
+<p class="table-note">{{ translate('characters.counters_note') }}</p><div class="table-scroll"><table><thead><tr><th>{{ translate('characters.date_time') }}</th><th>/deaths</th></tr></thead><tbody>{% for counter in counters %}<tr><td><a href="{{ ctx['root'] }}{{ counter['href'] }}">{{ counter['time'] }} · #{{ counter['line'] }}</a></td><td>{{ counter['count'] }}</td></tr>{% endfor %}</tbody></table></div></details>{% endif %}
+</main></div>{% with ctx=ctx %}{% include "partials/scripts.html" %}{% endwith %}</body></html>

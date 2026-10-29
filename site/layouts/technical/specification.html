@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="{{ language }}" data-bs-theme="dark">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ ctx['title'] }}</title>{% with ctx=ctx %}{% include "partials/assets.html" %}{% endwith %}</head>
+<body><div class="report-shell">{% with ctx=ctx %}{% include "partials/menu.html" %}{% endwith %}
+{% set a = data['analysis'] %}{% set s = data['log_specification'] %}
+<main class="log-specification">
+<header><p class="eyebrow">{{ translate("ui.technical_data") }}</p><h1>{{ ctx['title'] }}</h1>
+<p>{{ translate("ui.rule_catalogue") }} {{ s['rules_version'] }} {{ translate("ui.line_schema") }} {{ s['schema_version'] }} {{ translate("ui.specification") }} {{ s['version'] }}</p>
+<p>{{ s['rule_count'] }} {{ translate("ui.rule_codes") }} {{ s['type_count'] }} {{ translate("ui.types") }} {{ (s['families']|length) }} {{ translate("ui.message_families") }}</p>
+<p class="data-status">{{ a['source_label'] }} · {{ a['state'] }} {{ translate("ui.source_analysis_rules") }} {{ a['rules_version'] }}.</p>
+<p class="hash">{{ translate("ui.source_sha_256") }} {{ a['input_sha256'] }}</p></header>
+<section id="compact"><h2>{{ translate("ui.compact_code_specification") }}</h2>
+<p>{{ translate("ui.code_and_brief_description_follow_a_link_for_the_exact_format_and_fields") }}</p>
+<label for="code-search" class="form-label">{{ translate("ui.find_a_code") }}</label><input id="code-search" class="form-control mb-3" type="search" data-search="codes" placeholder="{{ translate("ui.for_example_area_or_screen") }}">
+<div data-results="codes">
+{% for group in s['groups'] %}<section class="card spec-group" data-group aria-labelledby="compact-{{ group['code'] }}">
+<div class="card-header"><h3 id="compact-{{ group['code'] }}"><a href="#family-{{ group['code'] }}"><code>{{ group['label'] }}</code></a> <span class="badge text-bg-secondary">{{ group['rules']|length }}</span></h3></div>
+<ul class="list-unstyled compact-codes card-body mb-0">
+{% for rule in group['rules'] %}<li data-item><a href="#rule-{{ rule['rule_id'] }}"><code>{{ rule['rule_id'] }}</code></a> — {{ rule['description'] }}</li>{% endfor %}
+</ul></section>{% endfor %}
+</div><p class="empty-filter" hidden>{{ translate("ui.no_matches") }}</p></section>
+<nav class="spec-index" aria-label="{{ translate("ui.specification_sections") }}">
+<a href="#format">{{ translate("ui.format_and_fields") }}</a> ·
+<a href="#messages">{{ translate("ui.all_rule_groups") }}</a> ·
+<a href="#catalogues">{{ translate("ui.allowed_values") }}</a></nav>
+<section id="format">{{ ctx['content'] }}
+<details><summary>{{ translate("ui.exact_header_pattern") }}</summary><pre><code>{{ s['header'] }}</code></pre></details></section>
+<section id="messages"><h2>{{ translate("ui.all_rule_groups") }}</h2>
+<ul class="kind-list">{% for group in s['groups'] %}<li><a href="#family-{{ group['code'] }}"><code>{{ group['label'] }}</code> ({{ group['rules']|length }})</a></li>{% endfor %}</ul>
+{% for group in s['groups'] %}<section class="card spec-group" id="family-{{ group['code'] }}" aria-labelledby="family-title-{{ group['code'] }}">
+<div class="card-header"><h3 id="family-title-{{ group['code'] }}"><code>{{ group['label'] }}</code> <span class="badge text-bg-secondary">{{ group['rules']|length }}</span></h3></div>
+<div class="card-body">
+{% if group['description'] %}<div class="explanation">{{ group['description']|markdown }}</div>{% endif %}
+{% for rule in group['rules'] %}{% with ctx=rule %}{% include "partials/specification-rule.html" %}{% endwith %}{% endfor %}
+</div></section>{% endfor %}</section>
+<section id="catalogues"><h2>{{ translate("ui.finite_sets_of_allowed_values") }}</h2>
+{% for item11 in s['catalogues'] %}<details id="catalogue-{{ item11['code'] }}"><summary>{{ item11['label'] }} — {{ (item11['values']|length) }}</summary>
+<p><code>{{ item11['code'] }}</code></p><ul>{% for item12 in item11['values'] %}<li><code>{{ item12 }}</code></li>{% endfor %}</ul></details>{% endfor %}</section>
+</main></div>{% with ctx=ctx %}{% include "partials/scripts.html" %}{% endwith %}</body></html>

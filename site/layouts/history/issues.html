@@ -1,0 +1,26 @@
+<!doctype html><html lang="{{ language }}" data-bs-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{{ ctx['title'] }}</title>{% include "partials/assets.html" %}</head>
+<body><div class="report-shell">{% include "partials/menu.html" %}<main class="timeline-day stability-report">
+<header><p class="eyebrow">{{ translate("ui.player_history") }} {{ data['analysis']['timezone'] }}</p><h1>{{ ctx['title'] }}</h1></header>{% include "partials/statistics-status.html" %}
+{% include "partials/stability.html" %}
+<h2 id="issue-history">{{ translate("stability.full_history") }}</h2>
+<p class="table-note">{{ translate("stability.history_note") }}</p>
+<p class="hash">{{ translate("ui.history_sha_256") }} {{ data['analysis']['input_sha256'] }}</p>{% set i = data['issues'] %}<p>{{ i['count'] }} {{ translate("ui.events") }} {{ (i['groups']|length) }} {{ translate("ui.groups_this_page_collects_client_errors_and_warnings_explicit_signs_of_crashes_and_lo") }}</p>
+<label for="issue-search" class="form-label">{{ translate("ui.search_issues") }}</label><input id="issue-search" type="search" class="form-control mb-3" data-search="issues">
+{% if data['issue_rows'] %}<div class="table-scroll" data-results="issues"><table class="timeline-rows history-rows">
+<caption class="visually-hidden">{{ ctx['title'] }}</caption>
+<thead><tr><th scope="col">{{ translate("characters.date_time") }}</th><th scope="col">{{ translate("timeline.event") }}</th><th scope="col">{{ translate("ui.line_2") }}</th></tr></thead>
+<tbody>{% for event in data['issue_rows'] %}<tr id="line-{{ event['line'] }}" data-item>
+<td><a href="#line-{{ event['line'] }}">{% if event['timestamp'] %}<time datetime="{{ event['timestamp'] }}">{{ event['time'] }}</time>{% else %}—{% endif %}</a></td>
+<td><details class="timeline-record"><summary class="timeline-message">{% if event['level'] %}<span class="badge text-bg-warning">{{ event['level'] }}</span> {% endif %}{{ event['presentation']['text'] }}</summary>
+<div class="timeline-record-body">
+{% with ctx=event['presentation'] %}{% include "partials/message.html" %}{% endwith %}
+<dl><dt>{{ translate("ui.diagnostic_category") }}</dt><dd>{{ event['category'] }}</dd>
+<dt>{{ translate("ui.message_type") }}</dt><dd><code>{{ event['code'] }}</code> · {{ event['title'] }}</dd>
+{% if event['timestamp'] %}<dt>{{ translate("ui.time_with_utc_offset") }}</dt><dd>{{ event['timestamp'] }}</dd>{% endif %}</dl>
+{% if event['details'] %}<pre class="message-text">{% for line in event['details'] %}{{ line }}
+{% endfor %}</pre>{% endif %}
+</div></details></td>
+<td><a href="#line-{{ event['line'] }}">#{{ event['line'] }}</a></td></tr>{% endfor %}</tbody></table></div>
+<p class="empty-filter" hidden>{{ translate("ui.no_matches") }}</p>
+{% else %}<p>{{ translate("ui.no_evidence_of_technical_issues_found") }}</p>{% endif %}
+</main></div>{% include "partials/scripts.html" %}</body></html>

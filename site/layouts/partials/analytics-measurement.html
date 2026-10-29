@@ -1,0 +1,11 @@
+{% macro measurement(span, areas=true) %}
+{% if span %}<dl class="analytics-measurement">
+{% for field, key in [('duration', 'measure.play'), ('afk_duration', 'afk.marked'), ('remaining_duration', 'afk.remaining_duration')] %}<div><dt>{{ translate(key) }}</dt><dd>{{ span.get(field, '—') }}</dd></div>{% endfor %}
+{% if areas %}{% for field, key in [('map_duration', 'measure.maps'), ('outside_duration', 'measure.outside'), ('unallocated_duration', 'measure.unallocated')] %}<div><dt>{{ translate(key) }}</dt><dd>{{ span.get(field, '—') }}</dd></div>{% endfor %}{% endif %}
+</dl>{% for reason in span.get('excluded', []) %}<p class="table-note">{{ translate('pace.reason.' + reason) }}</p>{% endfor %}
+{% if span.get('clipped') and 'clipped' not in span.get('excluded', []) %}<p class="table-note">{{ translate('sessions.clipped') }}</p>{% endif %}
+{% if span.get('covered') is sameas false or span.get('overlapping') %}<p class="table-note">{{ translate('measure.partial') }}</p>{% endif %}
+{% else %}<p>{{ translate('measure.unknown') }}</p>{% endif %}
+{% endmacro %}
+{% macro zones(span) %}{% if span and span.get('zones') %}<ul>{% for zone in span['zones'] %}<li>{{ zone.get('name') or translate('area.' + zone['kind']) }} · {{ translate('area.' + zone['kind']) }} · {{ zone['duration'] }}</li>{% endfor %}</ul>{% endif %}{% endmacro %}
+{% macro statistics(stats) %}<p>{{ translate('measure.sample', complete=stats['complete'], count=stats['count']) }}</p><div class="counts"><div><strong>{{ stats['median'] }}</strong><span>{{ translate('pace.median') }}</span></div><div><strong>{{ stats['mean'] }}</strong><span>{{ translate('pace.mean') }}</span></div></div>{% endmacro %}

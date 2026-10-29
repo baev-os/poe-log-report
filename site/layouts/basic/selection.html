@@ -1,0 +1,10 @@
+<!doctype html><html lang="{{ language }}" data-bs-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ ctx['title'] }}</title><script src="ReportTheme.js"></script><link rel="stylesheet" href="vendor/bootstrap.min.css"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="BasicReport.css"></head>
+<body><main class="selection"><p class="eyebrow">Path of Exile</p><h1>{{ ctx['title'] }}</h1>
+<button type="button" class="btn btn-outline-secondary theme-toggle" data-theme-toggle aria-pressed="true" hidden>{{ translate('ui.dark_theme') }}</button>
+<p>{{ data['basic']['period']['label'] }} · {{ data['basic']['timezone'] }}</p><div class="output-grid">
+{% for key in ['basic', 'extended'] %}{% if data['outputs'][key] or data['outputs'][key + '_pdf'] %}<section class="panel">
+<h2>{{ translate('basic.' + key) }}</h2>
+{% if data['outputs'][key] %}<a class="btn btn-outline-primary" href="../{{ key }}/public/index.html">{{ translate('basic.open_html') }}</a>{% endif %}
+{% if data['outputs'][key + '_pdf'] %}<a class="btn btn-outline-secondary" href="../pdf/{{ key }}/report.pdf" download="report.pdf">{{ translate('pdf.download') }}</a>{% endif %}
+</section>{% endif %}{% endfor %}</div></main></body></html>

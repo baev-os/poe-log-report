@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="{{ language }}" data-bs-theme="dark">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ ctx['title'] }}</title>{% with ctx=ctx %}{% include "partials/assets.html" %}{% endwith %}</head>
+<body><div class="report-shell">{% with ctx=ctx %}{% include "partials/menu.html" %}{% endwith %}<main class="timeline-day">
+{% set a = data['analysis'] %}{% set d = data['timeline']['by_date'][ctx['day']] %}
+
+<header><p class="eyebrow">{{ translate("ui.path_of_exile_daily_timeline") }}</p><h1>{{ d['label'] }}</h1><p class="source">{{ a['source_label'] }} · {{ a['timezone'] }}</p></header>
+<section class="state {% if a['recognition_complete'] %}complete{% else %}incomplete{% endif %}"><h2>{{ a['state'] }}</h2>
+<p>{{ translate("ui.daily_total") }} {{ d['lines'] }} {{ translate("ui.dated_lines_recognized") }} {{ d['recognized'] }}{{ translate("ui.unknown") }} {{ d['unknown'] }}{{ translate("ui.errors") }} {{ d['error'] }}{{ translate("ui.timeline") }} {{ d['event_count'] }} {{ translate("ui.events_2") }}</p></section>
+<nav class="day-navigation" aria-label="{{ translate("ui.adjacent_days") }}">{% if d['previous'] %}<a href="../{{ d['previous'] }}/index.html">← {{ d['previous'] }}</a>{% endif %}<a href="../index.html#day-{{ d['date'] }}">{{ translate("timeline.back_to_calendar") }}</a>{% if d['next'] %}<a href="../{{ d['next'] }}/index.html">{{ d['next'] }} →</a>{% endif %}</nav>
+{% if d['events'] %}<div class="table-scroll"><table class="timeline-rows">
+<caption class="visually-hidden">{{ ctx['title'] }}</caption>
+<thead><tr><th scope="col">{{ translate("timeline.time") }}</th><th scope="col">{{ translate("timeline.event") }}</th><th scope="col">{{ translate("ui.line_2") }}</th></tr></thead>
+<tbody>{% for event in d['events'] %}<tr id="line-{{ event['line_number'] }}">
+<td><a href="#line-{{ event['line_number'] }}"><time datetime="{{ event['timestamp'] }}">{{ event['time'] }}</time></a></td>
+<td><details class="timeline-record"><summary class="timeline-message" title="{{ event['presentation']['text'] }}">{{ event['presentation']['text'] }}</summary>
+<div class="timeline-record-body">
+{% with ctx=event['presentation'] %}{% include "partials/message.html" %}{% endwith %}
+<dl><dt>{{ translate("ui.message_type") }}</dt><dd><code>{{ event['type'] }}</code> · {{ event['kind'] }}</dd>
+<dt>{{ translate("ui.original_timestamp") }}</dt><dd>{{ event['timestamp_raw'] }}</dd>
+<dt>{{ translate("ui.time_with_utc_offset") }}</dt><dd>{{ event['timestamp'] }}</dd>
+<dt>UTC</dt><dd>{{ event['utc'] }}</dd></dl>
+</div></details></td>
+<td><a href="#line-{{ event['line_number'] }}">#{{ event['line_number'] }}</a></td>
+</tr>{% endfor %}</tbody></table></div>
+{% else %}<p class="empty">{{ translate("ui.this_day_contains_log_lines_but_none_of_the_selected_event_types") }}</p>{% endif %}
+<details class="timeline-notes"><summary>{{ translate("ui.how_to_read_the_timeline_and_what_it_includes") }}</summary><div class="explanation">{{ ctx['content'] }}</div></details>
+</main></div>{% with ctx=ctx %}{% include "partials/scripts.html" %}{% endwith %}</body></html>

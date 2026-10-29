@@ -1,0 +1,24 @@
+{% set deaths = character['deaths'] %}
+<section class="character-deaths">
+<h3>{{ translate('characters.deaths') }} · {{ deaths['count'] }}</h3>
+{% if deaths['count'] %}
+<p class="table-note">{{ translate('characters.self_count', count=deaths['self_inflicted']) }}</p>
+<div class="character-death-summary">
+<details><summary>{{ translate('characters.death_days') }}</summary>
+<div class="table-scroll"><table><thead><tr><th>{{ translate('characters.day') }}</th><th>{{ translate('characters.deaths') }}</th><th>{{ translate('characters.self') }}</th></tr></thead><tbody>
+{% for day in deaths['days'] %}<tr><th><a href="#death-{{ day['line'] }}">{{ translate('characters.undated') if day['date'] == 'undated' else day['date'] }}</a></th><td>{{ day['count'] }}</td><td>{{ day['self_inflicted'] }}</td></tr>{% endfor %}
+</tbody></table></div></details>
+<details><summary>{{ translate('characters.death_areas') }}</summary>
+<div class="table-scroll"><table><thead><tr><th>{{ translate('characters.client_area') }}</th><th>{{ translate('characters.deaths') }}</th></tr></thead><tbody>
+{% for group in deaths['areas'] %}<tr><th>{% if group['area'] %}<a href="{{ ctx['root'] }}{{ group['area']['href'] }}">{{ group['area']['name'] }}</a>{% else %}{{ translate('characters.area_' + group['status']) }}{% endif %}</th><td>{{ group['count'] }}</td></tr>{% endfor %}
+</tbody></table></div></details>
+</div>
+<div class="table-scroll"><table class="character-death-rows"><thead><tr><th>{{ translate('characters.date_time') }}</th><th>{{ translate('field.character') }}</th><th>{{ translate('characters.client_area') }}</th><th>{{ translate('characters.death_type') }}</th><th>{{ translate('characters.session') }}</th></tr></thead><tbody>
+{% for death in deaths['rows'] %}<tr id="death-{{ death['line'] }}">
+<td><a href="{{ ctx['root'] }}{{ death['href'] }}">{{ death['time'] or translate('characters.undated') }} · #{{ death['line'] }}</a></td><td>{{ death['character'] }}</td>
+<td>{% if death['area'] %}<a href="{{ ctx['root'] }}{{ death['area']['href'] }}">{{ death['area']['name'] }}</a>{% else %}<span class="muted">{{ translate('characters.area_' + death['area_status']) }}</span>{% endif %}</td>
+<td>{% if death['code'] == 'screen.suicide' %}<span class="character-self-death">{{ translate('characters.self') }}</span>{% else %}{{ translate('characters.slain') }}{% endif %}</td>
+<td>{% if death['session_href'] %}<a href="{{ ctx['root'] }}{{ death['session_href'] }}">{{ death['session_start'] }}</a>{% else %}—{% endif %}</td>
+</tr>{% endfor %}</tbody></table></div>
+{% else %}<p class="empty">{{ translate('characters.no_deaths') }}</p>{% endif %}
+</section>

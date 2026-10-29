@@ -1,0 +1,9 @@
+<article class="spec-rule" id="rule-{{ ctx['rule_id'] }}">
+<h4><code>{{ ctx['rule_id'] }}</code>{% with item1=ctx['priority']|default(none) %}{% if item1 %} <small>{{ translate("ui.priority") }} {{ item1 }}</small>{% endif %}{% endwith %}</h4>
+{% with item2=ctx['description']|default(none) %}{% if item2 %}<p>{{ item2 }}</p>{% endif %}{% endwith %}
+<p>{{ translate("ui.type_2") }} <code>{{ ctx['type'] }}</code> {{ translate("ui.status") }} <code>{{ ctx['status'] }}</code>
+{% with item3=ctx['parent']|default(none) %}{% if item3 %} {{ translate("ui.parent") }} <a href="#rule-{{ item3 }}"><code>{{ item3 }}</code></a>{% endif %}{% endwith %}
+{% with item4=ctx['sequence']|default(none) %}{% if item4 %} {{ translate("ui.step") }} {{ item4 }}{% endif %}{% endwith %}</p>
+<p>{{ translate("ui.fields") }} <code>fields</code>: {% for item5 in ctx['fields'] %}<code>{{ item5 }}</code> ({{ translate(("field.%s" % item5)) }}) {% else %}{{ translate("ui.none") }}{% endfor %}.</p>
+{% with item6=ctx['pattern']|default(none) %}{% if item6 %}<details><summary>{{ translate("ui.exact_pattern") }}</summary><pre><code>{{ item6 }}</code></pre></details>{% endif %}{% endwith %}
+</article>

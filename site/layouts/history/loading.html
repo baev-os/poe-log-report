@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="{{ language }}" data-bs-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ ctx['title'] }}</title>{% include "partials/assets.html" %}</head>
+<body><div class="report-shell">{% include "partials/menu.html" %}<main class="loading-report">
+{% set model = data['loading'] %}
+{% macro headings(first) %}<tr><th scope="col">{{ translate(first) }}</th>{% for key in ['count', 'total', 'mean', 'median', 'max'] %}<th scope="col">{{ translate('loading.' + key) }}</th>{% endfor %}</tr>{% endmacro %}
+{% macro cells(row) %}<td>{{ row['count'] }}</td>{% for key in ['total', 'mean', 'median', 'max'] %}<td>{{ row[key] }}</td>{% endfor %}{% endmacro %}
+<header><p class="eyebrow">{{ translate('ui.player_history') }} · {{ model['timezone'] }}</p><h1>{{ ctx['title'] }}</h1></header>
+{% include "partials/statistics-status.html" %}
+<p>{{ translate('loading.note') }}</p>
+<div class="counts">{% for key in ['count', 'total', 'mean', 'median', 'max'] %}<div><strong>{{ model['summary'][key] }}</strong><span>{{ translate('loading.' + key) }}</span></div>{% endfor %}</div>
+{% if model['summary']['count'] %}
+<nav class="loading-sections" aria-label="{{ translate('page.loading') }}">{% for section in ['chart', 'routes', 'areas', 'slowest', 'days', 'sessions'] %}<a href="#{{ section }}">{{ translate('loading.' + section) }}</a>{% endfor %}</nav>
+<section id="chart"><h2>{{ translate('loading.chart') }}</h2><p class="table-note">{{ translate('loading.chart_hint') }}</p>
+{% if model['undated'] %}<p>{{ translate('loading.undated_note', count=model['undated']) }}</p>{% endif %}
+{% if model['chart']['points'] %}
+<div class="loading-chart-scroll"><svg class="loading-chart" viewBox="0 0 1000 325" role="group" aria-labelledby="loading-chart-title">
+<title id="loading-chart-title">{{ translate('loading.chart') }}</title><text x="8" y="20">{{ translate('loading.seconds') }}</text>
+{% for tick in model['chart']['ticks'] %}<line class="chart-grid" x1="70" x2="930" y1="{{ tick['y'] }}" y2="{{ tick['y'] }}"/><text x="60" y="{{ tick['y'] }}" text-anchor="end">{{ tick['seconds'] }}</text>{% endfor %}
+{% for tick in model['chart']['time_ticks'] %}<line class="chart-grid" x1="{{ tick['x'] }}" x2="{{ tick['x'] }}" y1="40" y2="260"/><text class="loading-time-tick" x="{{ tick['x'] }}" y="289" text-anchor="{% if loop.first %}start{% elif loop.last %}end{% else %}middle{% endif %}">{{ tick['date'] }}<tspan x="{{ tick['x'] }}" dy="18">{{ tick['time'] }}</tspan></text>{% endfor %}
+{% for point in model['chart']['points'] %}{% set row = model['rows'][point['index']] %}
+<a href="../{{ row['href'] }}" tabindex="0" aria-label="{{ row['time'] }} · {{ row['area'] }} · {{ translate('loading.seconds_value', value=row['seconds']) }}"><title>{{ row['time'] }} · {{ row['area'] }} · {{ translate('loading.seconds_value', value=row['seconds']) }}</title><circle cx="{{ point['x'] }}" cy="{{ point['y'] }}" r="4"/></a>
+{% endfor %}</svg></div>
+{% else %}<p>{{ translate('loading.no_dates') }}</p>{% endif %}</section>
+{% include 'partials/loading-routes.html' %}
+<section id="areas"><h2>{{ translate('loading.areas') }}</h2><p class="table-note">{{ translate('loading.area_note') }}</p>
+<div class="table-scroll"><table class="loading-table"><thead>{{ headings('activities.zone') }}</thead><tbody>{% for row in model['areas'] %}<tr><th scope="row">{{ row['area'] }}</th>{{ cells(row) }}</tr>{% endfor %}</tbody></table></div></section>
+<section id="slowest"><h2>{{ translate('loading.slowest') }}</h2><p class="table-note">{{ translate('loading.top_note', count=model['slowest']|length) }}</p>
+<div class="table-scroll"><table class="loading-table"><thead><tr><th>{{ translate('characters.date_time') }}</th><th>{{ translate('activities.zone') }}</th><th>{{ translate('loading.seconds') }}</th><th>{{ translate('sessions.detail') }}</th><th>{{ translate('ui.line_2') }}</th></tr></thead><tbody>
+{% for index in model['slowest'] %}{% set row = model['rows'][index] %}<tr><td>{{ row['time'] or translate('date.time_unknown') }}</td><td>{{ row['area'] }}</td><td>{{ row['seconds'] }}</td><td>{% if row['session_href'] %}<a href="../{{ row['session_href'] }}">{{ row['session_start'] }}</a>{% else %}{{ translate('loading.unassigned') }}{% endif %}</td><td><a href="../{{ row['href'] }}">#{{ row['line'] }}</a></td></tr>{% endfor %}
+</tbody></table></div></section>
+<section id="days"><h2>{{ translate('loading.days') }}</h2><div class="table-scroll"><table class="loading-table"><thead>{{ headings('pdf.day') }}</thead><tbody>{% for row in model['days'] %}<tr><th scope="row">{{ row['date'] if row['date'] != 'undated' else translate('date.time_unknown') }}</th>{{ cells(row) }}</tr>{% endfor %}</tbody></table></div></section>
+<section id="sessions"><h2>{{ translate('loading.sessions') }}</h2><p class="table-note">{{ translate('loading.session_note') }}</p><div class="table-scroll"><table class="loading-table"><thead>{{ headings('sessions.bounds') }}</thead><tbody>{% for row in model['sessions'] %}<tr id="session-{{ row['id'] or 'unassigned' }}"><th scope="row">{% if row['href'] %}<a href="../{{ row['href'] }}">{{ row['start'] }}<br>{{ row['end'] }}</a>{% else %}{{ translate('loading.unassigned') }}{% endif %}</th>{{ cells(row) }}</tr>{% endfor %}</tbody></table></div></section>
+{% else %}<p class="empty">{{ translate('loading.empty') }}</p>{% endif %}
+</main></div>{% include "partials/scripts.html" %}</body></html>

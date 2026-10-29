@@ -1,0 +1,19 @@
+{% set overview = data['day_overview']['by_date'][ctx['day']] %}
+<section class="day-overview">
+<h2>{{ translate('day_overview.title') }}</h2>
+{% set issue_day = data['stability']['by_date'].get(ctx['day']) %}{% if issue_day %}<p><a class="calendar-issue" href="{{ ctx['root'] }}technical/issues/index.html#{{ issue_day['anchor'] }}">{{ translate('stability.calendar', count=issue_day['count']) }}</a></p>{% endif %}
+<div class="counts"><div><strong>{{ overview['duration'] }}</strong><span>{{ translate('ui.playtime') }}</span></div><div><strong>{{ overview['sessions']|length }}</strong><span>{{ translate('sessions.title') }}</span></div><div><strong>{{ overview['loading_seconds'] }} {{ translate('ui.s') }}</strong><span>{{ translate('page.loading') }}</span></div><div><strong>{{ overview['events']|length }}</strong><span>{{ translate('day_overview.events') }}</span></div></div>
+<p class="table-note">{{ translate('day_overview.note') }}</p>
+{% if ctx['day'] in data['afk']['by_date'] %}{% with afk_summary=data['afk']['by_date'][ctx['day']] %}{% include "partials/afk-summary.html" %}{% endwith %}{% endif %}
+{% if overview['sessions'] %}<h3>{{ translate('sessions.title') }}</h3><div class="table-scroll"><table class="timeline-rows"><thead><tr><th>{{ translate('sessions.bounds') }}</th><th>{{ translate('day_overview.time') }}</th><th>{{ translate('afk.marked') }}</th><th>{{ translate('field.status') }}</th></tr></thead><tbody>
+{% for session in overview['sessions'] %}<tr><td><a href="{{ ctx['root'] }}{{ session['href'] }}">{{ session['start'] }} → {{ session['end'] }}</a></td><td>{{ session['duration'] }}</td><td>{{ data['afk']['by_session'][session['id']]['by_date'].get(ctx['day'], {}).get('afk_duration', '00:00:00') }}</td><td>{% for reason in session['ending_reasons'] %}{{ translate('session_end.' + reason) }}{% if not loop.last %} · {% endif %}{% endfor %}</td></tr>{% endfor %}
+</tbody></table></div>{% endif %}
+<details class="day-observations"><summary>{{ translate('day_overview.events') }} · {{ overview['events']|length }}</summary>
+{% if overview['events'] %}<div class="table-scroll"><table class="timeline-rows"><thead><tr><th>{{ translate('timeline.time') }}</th><th>{{ translate('day_overview.message') }}</th><th>{{ translate('ui.line_2') }}</th></tr></thead><tbody>
+{% for item in overview['events'] %}{% set event = item['event'] %}<tr><td>{{ event['time'] }}</td><td><details class="timeline-record"><summary class="timeline-message">{{ event['presentation']['text'] }}</summary><div class="timeline-record-body"><p>{{ event['kind'] }}</p>{% with ctx=event['presentation'] %}{% include "partials/message.html" %}{% endwith %}</div></details></td><td><a href="{{ ctx['root'] }}{{ item['href'] }}">#{{ event['line_number'] }}</a></td></tr>{% endfor %}
+</tbody></table></div>{% else %}<p>{{ translate('day_overview.empty') }}</p>{% endif %}</details>
+<details class="day-observations"><summary>{{ translate('page.loading') }} · {{ overview['loading']|length }}</summary>
+{% if overview['loading'] %}<div class="table-scroll"><table class="timeline-rows"><thead><tr><th>{{ translate('timeline.time') }}</th><th>{{ translate('activities.zone') }}</th><th>{{ translate('ui.duration') }}</th><th>{{ translate('ui.line_2') }}</th></tr></thead><tbody>
+{% for item in overview['loading'] %}<tr><td>{{ item['time'] or '—' }}</td><td>{{ item['area'] }}</td><td>{{ item['seconds'] }} {{ translate('ui.s') }}</td><td><a href="{{ ctx['root'] }}{{ item['href'] }}">#{{ item['line'] }}</a></td></tr>{% endfor %}
+</tbody></table></div>{% else %}<p>{{ translate('day_overview.empty') }}</p>{% endif %}</details>
+</section>

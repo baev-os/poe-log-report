@@ -1,0 +1,5 @@
+{% if afk_rows %}<details class="afk-intervals"><summary>{{ translate('afk.intervals') }} · {{ afk_rows|length }}</summary>
+<p class="table-note">{{ translate('afk.interval_note') }}</p>
+<div class="table-scroll"><table><thead><tr><th>{{ translate('sessions.bounds') }}</th><th>{{ translate('activities.zone') }}</th><th>{{ translate('ui.duration') }}</th><th>{{ translate('afk.evidence') }}</th></tr></thead><tbody>
+{% for row in afk_rows %}<tr><td>{{ row['start'] }}<br>{{ row['end'] }}</td><td>{{ row['name'] or translate('afk.unallocated') }}</td><td>{{ row['duration'] }}</td><td><a href="{{ ctx['root'] }}{{ row['href'] }}">{{ translate('afk.on') }}</a> · <a href="{{ ctx['root'] }}{{ row['end_href'] }}">{{ translate('session_end.' + row['end_reason']) if row['open_at_end'] else translate('afk.off') }}</a></td></tr>{% endfor %}
+</tbody></table></div></details>{% endif %}

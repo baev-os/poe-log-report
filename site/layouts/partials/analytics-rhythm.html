@@ -1,0 +1,12 @@
+{% set rhythm = data['session_rhythm'] %}
+<p class="table-note">{{ translate('rhythm.method') }}</p>
+{% for session in rhythm['by_session'].values() %}<section id="session-{{ session['id'] }}" data-rhythm-session>
+<h2><a href="{{ ctx['root'] }}{{ session['href'] }}">{{ session['start'] }}</a></h2>
+<p>{{ translate('rhythm.anchor') }}: <time>{{ session['anchor'] }}</time>{% if session['clipped'] %} · {{ translate('sessions.clipped') }}{% endif %}{% if session['branched'] %} · {{ translate('sessions.branches_note') }}{% endif %}</p>
+<p>{{ translate('rhythm.change') }}: {{ session['early']['rate_label'] }} → {{ session['late']['rate_label'] }} ({{ session['difference_label'] }})</p>
+<div class="table-scroll"><table><thead><tr>{% for key in ['elapsed', 'new', 'play', 'map', 'hideout', 'gap', 'afk', 'rate', 'rate_without_afk'] %}<th scope="col">{{ translate('rhythm.' + key) }}</th>{% endfor %}</tr></thead><tbody>
+{% for row in session['bins'] %}<tr data-rhythm-bin="{{ row['index'] }}"><th scope="row">{{ row['elapsed'] }}<small>{{ row['start'] }}</small></th><td>{{ row['new'] }}</td>{% for field in ['play', 'map', 'hideout', 'gap', 'afk'] %}<td>{{ row[field + '_duration'] }}</td>{% endfor %}<td>{{ row['rate_label'] }}</td><td>{{ row['rate_without_afk_label'] }}</td></tr>{% endfor %}
+</tbody></table></div>
+<details><summary>{{ translate('rhythm.streaks') }}</summary><p>{{ translate('rhythm.streak_method') }}</p>
+{% if session['streaks'] %}<ol>{% for streak in session['streaks'] %}<li>{{ streak['count'] }}: {% for line in streak['lines'] %}<a href="{{ ctx['root'] }}maps/runs/{{ line }}/index.html">#{{ line }}</a> {% endfor %}</li>{% endfor %}</ol>{% else %}<p>{{ translate('rhythm.no_streaks') }}</p>{% endif %}</details></section>
+{% else %}<p>{{ translate('rhythm.empty') }}</p>{% endfor %}

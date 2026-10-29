@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="{{ language }}" data-bs-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ ctx['title'] }} · {{ ctx['session']['start'] }}</title>{% include "partials/assets.html" %}</head>
+<body><div class="report-shell">{% include "partials/menu.html" %}<main class="session-page">
+{% set session = ctx['session'] %}
+<header><p class="eyebrow">{{ data['sessions']['timezone'] }}</p><h1>{{ ctx['title'] }}</h1><p>{{ session['start'] }} → {{ session['end'] }}</p></header>
+{% include "partials/statistics-status.html" %}
+<p><a href="../compare/index.html?a={{ session['id'] }}">{{ translate("session_compare.with") }}</a></p>
+<p><a href="{{ ctx['root'] }}analytics/rhythm/index.html#session-{{ session['id'] }}">{{ translate('analytics.rhythm') }}</a> · <a href="{{ ctx['root'] }}analytics/trading/index.html">{{ translate('analytics.trading') }}</a></p>
+{% set issue_session = data['stability']['by_session'].get(session['id']) %}{% if issue_session %}<p><a href="{{ ctx['root'] }}technical/issues/index.html#{{ issue_session['anchor'] }}">{{ translate('stability.calendar', count=issue_session['count']) }}</a></p>{% endif %}
+<nav class="day-navigation d-flex flex-wrap gap-3 my-3" aria-label="{{ translate('sessions.title') }}">
+{% if session['previous'] %}<a href="{{ ctx['root'] }}{{ session['previous'] }}">← {{ translate("sessions.previous") }}</a>{% endif %}
+<a href="../index.html#session-{{ session['id'] }}">{{ translate("sessions.back") }}</a>
+{% if session['next'] %}<a href="{{ ctx['root'] }}{{ session['next'] }}">{{ translate("sessions.next") }} →</a>{% endif %}</nav>
+<div class="counts session-counts">
+<div><strong>{{ session['duration'] }}</strong><span>{{ translate("sessions.time") }}</span></div>
+<div><strong>{{ session['statistics']['maps']['count'] }}</strong><span>{{ translate("stats.map_count") }}</span></div>
+<div><strong>{{ session['statistics']['maps']['duration'] }}</strong><span>{{ translate("sessions.map_time") }}</span></div>
+<div><strong>{{ session['observations']['loading_duration'] }}</strong><span><a href="{{ ctx['root'] }}loading/index.html{% if session['observations']['loading_count'] %}#session-{{ session['id'] }}{% endif %}">{{ translate("sessions.loading") }}</a></span></div>
+<div><strong>{{ session['observations']['items_identified'] }}</strong><span>{{ translate("observations.identified") }}</span></div>
+</div>
+<p>{{ session['ending_label'] }}{% if session['clipped'] %} · {{ translate("sessions.clipped") }}{% endif %}</p>
+{% if session['branched'] %}<p class="explanation">{{ translate("sessions.branches_note") }}</p>{% endif %}
+<details><summary>{{ translate("sessions.boundaries") }}</summary><p>{{ translate("sessions.method") }}</p><p>{{ translate("sessions.scope_note") }}</p>
+<div class="table-scroll"><table class="table"><thead><tr><th scope="col">{{ translate("sessions.start") }}</th><th scope="col">{{ translate("sessions.end") }}</th><th scope="col">{{ translate("sessions.reason") }}</th><th scope="col">{{ translate("ui.line_2") }}</th></tr></thead>
+<tbody>{% for branch in session['branches'] %}<tr><td>{{ branch['start'] }}</td><td>{{ branch['end'] }}</td><td>{{ translate('session_end.' + branch['reason']) }}</td><td><a href="{{ ctx['root'] }}{{ branch['end_href'] }}">#{{ branch['last_line'] }}</a></td></tr>{% endfor %}</tbody></table></div></details>
+<p><a href="{{ ctx['root'] }}{{ session['start_href'] }}">{{ translate("sessions.history") }}</a></p>
+{% include 'partials/session-timeline.html' %}
+{% with afk_summary=data['afk']['by_session'][session['id']] %}{% include 'partials/afk-summary.html' %}{% endwith %}
+{% with afk_rows=data['afk']['rows']|selectattr('session_id', 'equalto', session['id'])|list %}{% include 'partials/afk-intervals.html' %}{% endwith %}
+{% if session['mechanics'] %}<section><h2>{{ translate("map_observations.title") }}</h2><p class="table-note">{{ translate("map_observations.note") }}</p><ul class="flow-mechanics">{% for item in session['mechanics'] %}<li>{{ translate(item['label_key']) }}: {{ item['count'] }}</li>{% endfor %}</ul></section>{% endif %}
+<section><h2>{{ translate("nav.maps") }}</h2>
+{% if session['maps'] %}<div class="table-scroll"><table class="timeline-rows session-maps"><thead><tr><th scope="col">{{ translate("ui.entry_time") }}</th><th scope="col">{{ translate("ui.map") }}</th><th scope="col">{{ translate("ui.duration") }}</th><th scope="col">{{ translate("flow.observations") }}</th></tr></thead>
+<tbody>{% for visit in session['maps'] %}<tr><td>{{ visit['entry'] }}</td><td><a href="{{ ctx['root'] }}{{ visit['href'] }}">{% if visit['icon'] %}<img class="session-map-icon" src="{{ ctx['root'] }}{{ visit['icon'] }}" alt="">{% endif %}{{ visit['name'] }}</a></td><td>{{ visit['duration'] }}{% if visit['incomplete'] %}<br><small>{{ translate("ui.partially_measured") }}</small>{% endif %}</td>
+<td>{% for event in visit['mechanics'] %}<a href="{{ ctx['root'] }}{{ event['href'] }}">{{ translate('mechanic.' + event['code']) }}</a> {% endfor %}{% for event in visit['discoveries'] %}<a href="{{ ctx['root'] }}{{ event['href'] }}">{{ translate('discovery.' + event['code']) }}</a> {% endfor %}{% for event in visit['mercenaries'] %}<a href="{{ ctx['root'] }}{{ event['href'] }}">{{ event['speaker'] }}</a> {% endfor %}{% for event in visit['death_messages'] %}<a href="{{ ctx['root'] }}{{ event['href'] }}">{{ translate("flow.deaths") }}: {{ event['character'] }}</a> {% endfor %}</td></tr>{% endfor %}</tbody></table></div>{% else %}<p class="empty">{{ translate("sessions.no_maps") }}</p>{% endif %}</section>
+{% with zone_summary=session['statistics'], zone_note=translate('sessions.zones_note') %}{% include "partials/zone-summary.html" %}{% endwith %}
+<section><h2>{{ translate("sessions.events") }}</h2>
+{% if session['events'] %}<div class="table-scroll"><table class="timeline-rows session-events"><thead><tr><th scope="col">{{ translate("timeline.time") }}</th><th scope="col">{{ translate("timeline.event") }}</th><th scope="col">{{ translate("ui.line_2") }}</th></tr></thead><tbody>
+{% for item in session['events'] %}{% set event = item['event'] %}<tr><td><time datetime="{{ event['timestamp'] }}">{{ item['time'] }}</time></td><td><details class="timeline-record"><summary class="timeline-message">{{ event['presentation']['text'] }}</summary><div class="timeline-record-body">{% with ctx=event['presentation'] %}{% include "partials/message.html" %}{% endwith %}</div></details></td><td><a href="{{ ctx['root'] }}{{ item['href'] }}">#{{ event['line_number'] }}</a></td></tr>{% endfor %}
+</tbody></table></div>{% else %}<p class="empty">{{ translate("sessions.no_events") }}</p>{% endif %}</section>
+</main></div>{% include "partials/scripts.html" %}</body></html>
