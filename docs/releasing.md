@@ -60,7 +60,7 @@ builds the Ubuntu 24.04 toolchain image, compiles the application, packages it,
 and runs the extracted archive in English and Russian:
 
 ```bash
-./scripts/build_linux.sh --release-tag v0.1.4 --output build/linux-v0.1.4
+./scripts/build_linux.sh --release-tag v0.1.5 --output build/linux-v0.1.5
 ```
 
 Replace the example with the actual tag. The output directory must be new and
@@ -86,7 +86,7 @@ docker build -f scripts/linux/Runtime.Dockerfile -t poe-log-report-runtime:24.04
 mkdir -p build/clean-runtime
 docker run --rm --init --memory=7g --memory-swap=7g --network=none \
   --user "$(id -u):$(id -g)" \
-  -v "$PWD/build/linux-v0.1.4/release:/assets:ro" \
+  -v "$PWD/build/linux-v0.1.5/release:/assets:ro" \
   -v "$PWD/build/clean-runtime:/release" \
   -e TMPDIR=/release/tmp -e TEMP=/release/tmp -e TMP=/release/tmp \
   poe-log-report-runtime:24.04 sh -eu -c '
@@ -95,8 +95,8 @@ docker run --rm --init --memory=7g --memory-swap=7g --network=none \
       exit 1
     fi
     mkdir -p /release/tmp
-    tar -xzf /assets/poe-log-report-0.1.4-linux-x86_64.tar.gz -C /release
-    app=/release/poe-log-report-0.1.4-linux-x86_64
+    tar -xzf /assets/poe-log-report-0.1.5-linux-x86_64.tar.gz -C /release
+    app=/release/poe-log-report-0.1.5-linux-x86_64
     xvfb-run -a "$app/poe-log-analyze" --self-test "$app/build/clean-en" --report-language en
     xvfb-run -a "$app/poe-log-analyze" --self-test "$app/build/clean-ru" --report-language ru
   '
@@ -119,7 +119,7 @@ After a native build, the packaging command on Linux is:
 ```bash
 .venv/bin/python scripts/package_release.py \
   --distribution build/standalone/poe_desktop.dist \
-  --output build/release --tag v0.1.4 --commit FULL_COMMIT_SHA --verify
+  --output build/release --tag v0.1.5 --commit FULL_COMMIT_SHA --verify
 ```
 
 On Windows, use `.\.venv\Scripts\python.exe` and PowerShell line continuation,
@@ -184,6 +184,7 @@ bundle, and release notes agree. Read the notes as a new user: they must name
 only available assets and tested platforms.
 
 Keep the release in draft until the maintainer has explicitly approved its
-publication and resolved the documented distribution scope. Repository
+publication and reviewed the platform results, native-component conditions,
+and recorded game-material inclusion/removal policy. Repository
 visibility must be changed separately only when approved. Do not infer approval
 from successful CI, an existing tag, or a completed checklist.

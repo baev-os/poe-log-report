@@ -9,7 +9,7 @@ Each selected report type automatically includes a PDF.
 
 ## Downloads
 
-Portable v0.1.4 archives have passed native build and relocated English/Russian
+Portable v0.1.5 archives have passed native build and relocated English/Russian
 self-tests on Windows Server 2022 x64 and Ubuntu 24.04 x86_64. Linux also passed
 in a clean desktop runtime without a separately installed Python. Windows 10/11
 manual acceptance remains outstanding.
@@ -61,7 +61,7 @@ To check the source, install `requirements-dev.txt`:
 [check commands](tests/README.md).
 
 For a Linux release from a clean version tag, run
-`./scripts/build_linux.sh --release-tag v0.1.4` with Docker installed.
+`./scripts/build_linux.sh --release-tag v0.1.5` with Docker installed.
 The [release process](docs/releasing.md) explains the pinned build environment,
 archive verification, and clean-system checks.
 

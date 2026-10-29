@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.5 (draft preparation)
+## 0.1.5 (private draft)
 
 - Map all nine copied Windows DLLs to exact upstream binary hashes, component
   versions, sources, and original notices, including OpenSSL 3.0.19, Tcl/Tk's

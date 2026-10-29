@@ -1,6 +1,6 @@
 # Public release readiness
 
-Status on 2026-10-29: [private v0.1.4 draft](https://github.com/baev-os/poe-log-report/releases/tag/untagged-487ac730e2bf6ce0d203)
+Status on 2026-10-29: [private v0.1.5 draft](https://github.com/baev-os/poe-log-report/releases/tag/untagged-bf0a5f4a1bf2889ca7df)
 created after both source and native build jobs passed. The repository remains
 private and no binary release has been published. Outstanding manual checks
 below remain required before public distribution.
@@ -31,6 +31,10 @@ available refs (7 reachable commits) and 1,083 nonignored source files passed
 with zero findings. The same strict settings were used. Re-scan after any
 subsequent changes or newly fetched refs before publication. A clean scan is not
 proof that no undiscovered secret exists.
+
+The v0.1.5 source commit `495194643e901af310ab1c3a05a6c09fa6bbece1` was also
+scanned with the same settings: 10 locally available refs, 9 reachable commits,
+and 1,088 nonignored files, with zero findings in history and working tree.
 
 Tracked paths and paths in the available history contained no named raw game
 logs, local data inputs, credential files, databases, or generated report output
@@ -90,7 +94,7 @@ The continuing policy is recorded in [GAME_DATA.md](../licenses/GAME_DATA.md).
 
 ## Builds and publication
 
-### Native notice inventory
+### Initial v0.1.4 native notice inventory
 
 A private v0.1.4 inventory review verified archive, embedded build, license-file,
 and original notice-text hashes. All nine Windows DLLs matched the compiler
@@ -137,21 +141,29 @@ receipt before the draft helper clears the copied-DLL review item. This scope
 does not claim a separate provenance audit of every Python extension. Older
 archives without that summary retain their pending item.
 
-### v0.1.4 native acceptance
+### v0.1.5 native acceptance
 
-The immutable build commit is `e58fad5ca46bb58e726b72dfde13a7be6e4c07f6`.
+The immutable build commit is `495194643e901af310ab1c3a05a6c09fa6bbece1`.
 Both native build jobs passed in
-[workflow 40838577731](https://github.com/baev-os/poe-log-report/actions/runs/40838577731).
+[workflow 40849045733](https://github.com/baev-os/poe-log-report/actions/runs/40849045733).
 The archives were downloaded again and matched their manifests and verification
 receipts, including the exact version, tag, source commit, and archive hash.
-Both archives were then downloaded from the draft itself and checked against
-its combined `SHA256SUMS`; the attached metadata and three verification receipts
-identify the same tag, commit, and bytes.
+The final draft's attachments were downloaded separately and checked against
+its combined `SHA256SUMS`. Both archives, all three verification receipts, and
+the draft metadata identify the same tag, commit, and bytes.
+
+The Windows archive carries an identical nine-DLL verification summary in its
+embedded build metadata, license manifest, source catalogue, release manifest,
+relocated receipt, and private license-check record. Every DLL matches its
+official CPython binary pin. All seven new native notice entries preserve the
+exact original bytes and source details. The complete Windows license folder
+contains eight files, including the manifest and `WINDOWS_RUNTIME.md`.
+Both archives contain the recorded GGG inclusion/removal policy verbatim.
 
 | Archive | Size in bytes | SHA-256 |
 | --- | ---: | --- |
-| `poe-log-report-0.1.4-windows-x64.zip` | 36,625,791 | `358862f7e48d879f9f43395a8bb424d01f0a4064df57a2dd2721e51917d819b7` |
-| `poe-log-report-0.1.4-linux-x86_64.tar.gz` | 58,758,221 | `78fabf34458d641a9d9511f0e31c550b9afb5d4cdc058c192e8d526c480c8f4a` |
+| `poe-log-report-0.1.5-windows-x64.zip` | 36,633,683 | `97e903604756e431454ff0c36c1c434c49e15525ac1e3cce072425aa72773a5f` |
+| `poe-log-report-0.1.5-linux-x86_64.tar.gz` | 58,759,923 | `83a005edb71aac8189469e6ac81ed5fe97c5e26e1906ebfbbac5ec3a87a9b268` |
 
 Both complete portable archives passed English and Russian compiled self-tests
 after relocation into a path with spaces and Cyrillic characters and launch
@@ -163,20 +175,20 @@ Ubuntu runtime with a display and system fonts, no Python, and no development
 tools. These automated checks do not establish manual Windows 10/11 desktop
 acceptance or support for other Linux distributions.
 
-### Source validation
+### v0.1.5 source validation
 
-Windows CI completed 692 unit tests with seven explicit skips and mypy for
+Windows CI completed 714 unit tests with seven explicit skips and mypy for
 42 source files. Four skips cover POSIX launcher/executable/symlink/tar behavior;
 the remaining three require the X11 file dialog, optional native mouse input,
 or a separate display of at least 1800 by 1080 pixels. These skips do not stand
 in for clean client Windows 10/11 manual acceptance.
 
-On the same build commit, Linux CI completed 692 unit tests with two skips
+On the same build commit, Linux CI completed 714 unit tests with two skips
 (native mouse input and the separate high-DPI display test), mypy for 42 source
 files, and all 19 browser harnesses: 546 scenarios and 38,246 assertions. The
 browser matrix uses synthetic reports across languages, themes, and viewport
-sizes. The tagged Linux source scan covered all 6 CI refs, 7 reachable commits,
-and 1,083 snapshot files with zero findings in both history and working tree.
+sizes. The tagged Linux source scan covered all 7 CI refs, 9 reachable commits,
+and 1,088 snapshot files with zero findings in both history and working tree.
 
 The browser checks exposed and verified a fix for focused chart tooltips:
 visible tooltips now follow their focused point during viewport changes while

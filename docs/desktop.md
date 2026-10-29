@@ -15,7 +15,7 @@ sharing. Bug reports and screenshots should use synthetic inputs.
 
 ## Portable application
 
-The private v0.1.4 packages passed native builds and relocated English/Russian
+The private v0.1.5 packages passed native builds and relocated English/Russian
 self-tests on Windows Server 2022 x64 and Ubuntu 24.04 x86_64. Linux also passed
 in a clean desktop runtime without Python. Windows 10/11 manual desktop
 acceptance remains outstanding; no binary release has been published.
@@ -45,7 +45,7 @@ Check the finished distribution on its target OS; source tests do not replace th
 
 The Linux release baseline is Ubuntu 24.04 x86_64 with
 a pinned container image, package snapshot, and Python 3.14.4. The Windows build
-uses Python 3.14 and MSVC x64. The workflows contain the configured build inputs;
+uses Python 3.14.4 and MSVC x64. The workflows contain the configured build inputs;
 compiler evidence records the actual toolchain versions selected on each runner.
 Building on another Linux distribution can require a reviewed native-library
 license catalogue and can change the minimum runtime requirements.
