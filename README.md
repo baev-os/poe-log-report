@@ -16,7 +16,6 @@ Download the portable **v0.1.6** packages from
 - [Linux x86_64 (.tar.gz)](https://github.com/baev-os/poe-log-report/releases/download/v0.1.6/poe-log-report-0.1.6-linux-x86_64.tar.gz)
 - [SHA-256 checksums](https://github.com/baev-os/poe-log-report/releases/download/v0.1.6/SHA256SUMS)
 
-The repository is currently private; downloads require access to the repository.
 Extract the complete archive into a writable folder, keeping the launcher beside
 `app/`. On Windows, start `poe-log-analyze.cmd`; on Linux, run `./poe-log-analyze`.
 Python installation is not required for these packages.

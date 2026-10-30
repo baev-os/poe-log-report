@@ -1,5 +1,10 @@
 # Handoff
 
+On 2026-10-30, the maintainer requested removal of the README's private-access
+notice before opening the repository. The notice was removed; release links
+and extraction instructions are unchanged. The maintainer will change GitHub
+visibility separately. Documentation whitespace checks passed.
+
 README report examples added on 2026-10-30 show the maintainer-supplied
 playtime overview and weekly heatmap. Both PNGs are copied unchanged into
 `docs/images/` with descriptive names and English captions. They show aggregate
