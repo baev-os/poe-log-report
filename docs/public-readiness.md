@@ -1,9 +1,9 @@
 # Public release readiness
 
-Status on 2026-10-29: [private v0.1.5 draft](https://github.com/baev-os/poe-log-report/releases/tag/untagged-bf0a5f4a1bf2889ca7df)
-created after both source and native build jobs passed. The repository remains
-private and no binary release has been published. Outstanding manual checks
-below remain required before public distribution.
+Status on 2026-10-30: [v0.1.6 is published](https://github.com/baev-os/poe-log-report/releases/tag/v0.1.6)
+after both source and native build jobs passed. The repository remains private,
+confirmed before and after publication. Outstanding manual checks below remain
+required before claiming additional platform support or public distribution.
 
 ## Secret and privacy review
 
@@ -195,6 +195,42 @@ visible tooltips now follow their focused point during viewport changes while
 preserving Escape dismissal. Deterministic regressions fail the previous code
 and pass the fix; native mouse-input evidence was also collected locally.
 
+### v0.1.6 validation
+
+The source tag `v0.1.6` identifies
+`3d5719041a78e6818b6ccade11714150328de16c`. Both native jobs in
+[workflow 40977605249](https://github.com/baev-os/poe-log-report/actions/runs/40977605249)
+passed on Ubuntu 24.04 x86_64 and Windows Server 2022 x64. Both archives passed
+relocated English/Russian GUI self-tests; Linux also passed in the clean Ubuntu
+runtime without Python. Windows manifests and receipts agree on verified
+provenance for nine included DLLs from Python 3.14.4.
+
+Downloaded workflow artifacts matched their manifests and checksum sidecars:
+
+| Archive | Bytes | SHA-256 |
+| --- | ---: | --- |
+| `poe-log-report-0.1.6-windows-x64.zip` | 36,633,672 | `3d0a3b9ff9feda4398aae3d964824b0b111fd19b946fa5c68d5650bc46744dce` |
+| `poe-log-report-0.1.6-linux-x86_64.tar.gz` | 58,759,931 | `45953212210f1816e1077a87cfc8c14211ead1d69988af3c8144efbdcf6d5d70` |
+
+Linux source CI passed 717 unit tests with the same two explicit native-input
+and high-DPI skips, mypy for 42 files, and all 19 browser harnesses: 546 scenarios
+and 38,246 assertions. Its secret scan covered eight refs, 13 reachable commits,
+and 1,088 snapshot files with zero findings in both history and working tree.
+Windows source CI completed 717 tests with the same seven explicit POSIX,
+X11-dialog, native-input, and high-DPI skips described for v0.1.5; mypy passed
+for 42 source files. The complete workflow passed, including draft creation.
+All 11 draft attachments were subsequently downloaded and checked against GitHub
+asset digests; both archive hashes matched the combined `SHA256SUMS` before
+publication. Release metadata records publication while preserving the remaining
+manual Windows acceptance item.
+
+The downloaded Linux binary additionally passed headless CLI analysis from an
+unrelated directory on Ubuntu 26.04. Synthetic January and July timestamps
+confirmed the `Europe/London` default with `+00:00` and `+01:00` offsets,
+explicit Almaty selection, and analysis version `0.1.6`. This additional CLI
+check does not claim a desktop acceptance test on that host. Manual clean
+Windows 10/11 acceptance remains outstanding.
+
 The release workflow prepares drafts only. Before publication, confirm:
 
 - The final tagged commit is clean, fully scanned, and matches build provenance.
@@ -205,7 +241,7 @@ The release workflow prepares drafts only. Before publication, confirm:
 - Native-library and Tcl/Tk notices match the exact shipped files.
 - The recorded game-material inclusion decision, unconfirmed GGG permission,
   and removal policy remain accurate and documented.
-- The maintainer has approved the separate visibility and release publication
-  actions.
+- The maintainer has approved release publication. Any repository visibility
+  change requires separate approval.
 
 The repeatable process is in [releasing.md](releasing.md).

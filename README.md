@@ -9,22 +9,23 @@ Each selected report type automatically includes a PDF.
 
 ## Downloads
 
-Download the portable **v0.1.5** packages from
-[GitHub Releases](https://github.com/baev-os/poe-log-report/releases/tag/v0.1.5):
+Download the portable **v0.1.6** packages from
+[GitHub Releases](https://github.com/baev-os/poe-log-report/releases/tag/v0.1.6):
 
-- [Windows x64 (.zip)](https://github.com/baev-os/poe-log-report/releases/download/v0.1.5/poe-log-report-0.1.5-windows-x64.zip)
-- [Linux x86_64 (.tar.gz)](https://github.com/baev-os/poe-log-report/releases/download/v0.1.5/poe-log-report-0.1.5-linux-x86_64.tar.gz)
-- [SHA-256 checksums](https://github.com/baev-os/poe-log-report/releases/download/v0.1.5/SHA256SUMS)
+- [Windows x64 (.zip)](https://github.com/baev-os/poe-log-report/releases/download/v0.1.6/poe-log-report-0.1.6-windows-x64.zip)
+- [Linux x86_64 (.tar.gz)](https://github.com/baev-os/poe-log-report/releases/download/v0.1.6/poe-log-report-0.1.6-linux-x86_64.tar.gz)
+- [SHA-256 checksums](https://github.com/baev-os/poe-log-report/releases/download/v0.1.6/SHA256SUMS)
 
 The repository is currently private; downloads require access to the repository.
 Extract the complete archive into a writable folder, keeping the launcher beside
 `app/`. On Windows, start `poe-log-analyze.cmd`; on Linux, run `./poe-log-analyze`.
 Python installation is not required for these packages.
 
-Portable v0.1.5 archives have passed native build and relocated English/Russian
-self-tests on Windows Server 2022 x64 and Ubuntu 24.04 x86_64. Linux also passed
-in a clean desktop runtime without a separately installed Python. Windows 10/11
-manual acceptance remains outstanding.
+The release workflow validates native builds and relocated English/Russian
+self-tests on Windows Server 2022 x64 and Ubuntu 24.04 x86_64. Linux also runs
+in a clean desktop runtime without a separately installed Python. Version-specific
+results are recorded in the release notes. Windows 10/11 manual acceptance remains
+outstanding.
 
 Build and release workflows create a **draft** for review; the maintainer
 publishes it separately. See the
@@ -73,7 +74,7 @@ To check the source, install `requirements-dev.txt`:
 [check commands](tests/README.md).
 
 For a Linux release from a clean version tag, run
-`./scripts/build_linux.sh --release-tag v0.1.5` with Docker installed.
+`./scripts/build_linux.sh --release-tag v0.1.6` with Docker installed.
 The [release process](docs/releasing.md) explains the pinned build environment,
 archive verification, and clean-system checks.
 

@@ -17,10 +17,12 @@ sharing. Bug reports and screenshots should use synthetic inputs.
 
 ## Portable application
 
-The private v0.1.5 packages passed native builds and relocated English/Russian
-self-tests on Windows Server 2022 x64 and Ubuntu 24.04 x86_64. Linux also passed
-in a clean desktop runtime without Python. Windows 10/11 manual desktop
-acceptance remains outstanding; no binary release has been published.
+Download the private [v0.1.6 packages](https://github.com/baev-os/poe-log-report/releases/tag/v0.1.6)
+with an account that has repository access. The release workflow validates native
+builds and relocated English/Russian self-tests on Windows Server 2022 x64 and
+Ubuntu 24.04 x86_64, including a clean Linux desktop runtime without Python.
+Version-specific results are recorded in the release notes. Windows 10/11 manual
+desktop acceptance remains outstanding.
 See the [validation record](public-readiness.md) and [release process](releasing.md).
 
 Extract the entire Windows ZIP or Linux tar archive into a writable directory.

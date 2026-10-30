@@ -1,6 +1,8 @@
 # Changelog
 
-## 0.1.6 (in preparation)
+## 0.1.6 (2026-10-30)
+
+Published in the private repository; repository visibility is unchanged.
 
 - Default to `Europe/London` in the desktop interface, command-line analysis,
   and single-file and collection analysis services. IANA timezone rules apply

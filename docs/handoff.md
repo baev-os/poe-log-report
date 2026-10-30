@@ -1,34 +1,58 @@
 # Handoff
 
-Release preparation for v0.1.6 is authorized. The application and analysis
-manifest versions now both read 0.1.6. This release includes the London time-zone
-default described below. Native archives and complete source checks will be
-produced by the tag-triggered workflow before publication. The repository must
-remain private; GitHub API authentication is needed locally to inspect the
-workflow and publish its verified draft.
+Version [v0.1.6](https://github.com/baev-os/poe-log-report/releases/tag/v0.1.6)
+was published on 2026-10-30 after the maintainer requested the release. The
+repository was confirmed private before and after publication; its visibility
+must remain private. Tag `v0.1.6` identifies
+`3d5719041a78e6818b6ccade11714150328de16c`. The application and analysis
+manifest versions both read 0.1.6.
+
+[Workflow 40977605249](https://github.com/baev-os/poe-log-report/actions/runs/40977605249)
+passed both native builds and both complete source jobs. Each OS completed 717
+unit tests (two Linux skips, seven Windows skips) and mypy for 42 files. All 19
+Linux browser harnesses passed: 546 scenarios and 38,246 assertions. CI scanned
+eight refs, 13 reachable commits, and 1,088 source files with zero findings.
+Both archives passed relocated English/Russian GUI self-tests; Linux also passed
+in the clean runtime without Python. Manual clean Windows 10/11 acceptance
+remains outstanding.
+
+All 11 attachments were downloaded from the draft and verified against GitHub
+asset digests, archive manifests, verification receipts, and the combined
+`SHA256SUMS`. Publication notes describe the changed default and actual platform
+results; `RELEASE_METADATA.json` records the published state. The downloaded
+Linux binary independently confirmed winter/summer offsets, explicit Almaty
+selection, and analysis version 0.1.6 from an unrelated working directory.
+Exact archive hashes and platform limitations are in
+[public-readiness.md](public-readiness.md). Local evidence remains under
+`build/release-v016-assets/`, `build/release-v016-downloads/`,
+`build/release-v016-checks/`, and `build/check-v016-compiled-london.json`.
+Documentation checks confirmed 34 local link targets and all four README release
+links against the published version and asset names; evidence is in
+`build/check-v016-doc-links.json`.
+
 Local release preparation passed 48 version, packaging, draft, and analysis
 tests. Gitleaks 8.24.3 found no findings in the available history or the 1,088-file
 source snapshot. Evidence remains in ignored `build/check-v016-release-preparation.log`
 and `build/audit-v016-preparation/results.json`.
 
-Unreleased source update on 2026-10-30: the desktop selector, CLI, core request,
-analysis services, and composition fallbacks now default to `Europe/London`.
+In v0.1.6, the desktop selector, CLI, core request, analysis services, and
+composition fallbacks default to `Europe/London`.
 Timestamp dates determine GMT/BST offsets. Explicit time zones and the time zone
 stored in existing analyses remain authoritative. README and desktop usage
-describe the new default. Published v0.1.5 archives have not been rebuilt.
-Focused analysis, CLI, collection, report, period, timeline, map, event-history,
-parser, and architecture checks passed, including seasonal offsets, explicit
+describe the new default.
+Local focused analysis, CLI, collection, report, period, timeline, map,
+event-history, parser, and architecture checks passed, including seasonal offsets, explicit
 overrides, and export of an existing Almaty analysis. The display-dependent GUI
-suite was skipped because no display was available. Mypy passed for 42 source
-files. Logs remain ignored in `build/check-timezone-targeted.log`,
+suite was skipped locally because no display was available. Mypy passed for
+42 source files. Logs remain ignored in `build/check-timezone-targeted.log`,
 `build/check-timezone-composition.log`, and `build/check-timezone-mypy.log`.
 
 The maintainer confirmed on 2026-10-30 that v0.1.5 has been published. The
 repository remains private, and changing its visibility is not authorized.
-README now links to the versioned release, both portable archives, and
-`SHA256SUMS`, and explains extraction and startup without installing Python.
-Publication status is recorded from maintainer confirmation; release attachments
-were not downloaded again for this documentation update.
+The v0.1.5 README update linked its release, both portable archives, and
+`SHA256SUMS`, and explained extraction and startup without installing Python.
+That update recorded publication from maintainer confirmation; its release
+attachments were not downloaded again for that documentation update.
 Documentation validation passed for 16 local link targets and four versioned
 release URLs matching the project version. Whitespace checks passed; local
 evidence is in the ignored build/check-readme-links.json file.
