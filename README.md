@@ -31,6 +31,17 @@ Build and release workflows create a **draft** for review; the maintainer
 publishes it separately. See the
 [release process](docs/releasing.md) and [readiness record](docs/public-readiness.md).
 
+## Report examples
+
+The basic report shows recorded playtime, time spent in different areas,
+and cumulative and daily activity.
+
+![Basic report with playtime totals, area distribution, and activity charts](docs/images/report-overview.png)
+
+The weekly heatmap shows when you play across weekdays and hours.
+
+![Weekly playtime heatmap by weekday and time of day](docs/images/weekly-playtime.png)
+
 ## Run from source
 
 Requires Python 3.14 and Tkinter/Tcl/Tk.

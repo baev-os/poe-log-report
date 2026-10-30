@@ -1,5 +1,17 @@
 # Handoff
 
+README report examples added on 2026-10-30 show the maintainer-supplied
+playtime overview and weekly heatmap. Both PNGs are copied unchanged into
+`docs/images/` with descriptive names and English captions. They show aggregate
+activity, dates, and the selected time zone; no names, conversations, local
+paths, or credentials are visible. PNG metadata contains only the capture time
+and screenshot software, with no EXIF entries.
+
+All 13 README local link targets exist. Both new images decode successfully
+and match the supplied originals by SHA-256. Validation evidence is ignored in
+`build/check-readme-screenshots.json`. This documentation change requires no
+application rebuild; no GitHub publication or visibility change was requested.
+
 Privacy audit on 2026-10-30 covered source commit
 `f30aab9f797cf62760fbca7fd72dd107dafe7546`: 12 refs, 14 reachable commits,
 1,203 Git blobs, and 1,088 current source files. The 38 local unreachable blobs
