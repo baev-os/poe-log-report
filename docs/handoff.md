@@ -1,5 +1,16 @@
 # Handoff
 
+Release preparation for v0.1.6 is authorized. The application and analysis
+manifest versions now both read 0.1.6. This release includes the London time-zone
+default described below. Native archives and complete source checks will be
+produced by the tag-triggered workflow before publication. The repository must
+remain private; GitHub API authentication is needed locally to inspect the
+workflow and publish its verified draft.
+Local release preparation passed 48 version, packaging, draft, and analysis
+tests. Gitleaks 8.24.3 found no findings in the available history or the 1,088-file
+source snapshot. Evidence remains in ignored `build/check-v016-release-preparation.log`
+and `build/audit-v016-preparation/results.json`.
+
 Unreleased source update on 2026-10-30: the desktop selector, CLI, core request,
 analysis services, and composition fallbacks now default to `Europe/London`.
 Timestamp dates determine GMT/BST offsets. Explicit time zones and the time zone

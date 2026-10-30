@@ -1,6 +1,18 @@
 # Changelog
 
-## 0.1.5 (private draft)
+## 0.1.6 (in preparation)
+
+- Default to `Europe/London` in the desktop interface, command-line analysis,
+  and single-file and collection analysis services. IANA timezone rules apply
+  GMT in winter and BST in summer.
+- Preserve explicitly selected timezones and the timezone recorded in saved
+  analyses when exporting reports.
+- Align the analysis manifest's `tool_version` with the application release
+  version.
+
+## 0.1.5 (2026-10-30)
+
+Published in the private repository; repository visibility is unchanged.
 
 - Map all nine copied Windows DLLs to exact upstream binary hashes, component
   versions, sources, and original notices, including OpenSSL 3.0.19, Tcl/Tk's
@@ -45,5 +57,5 @@
 - Hash analysis artifacts in cancellable blocks without changing stored hashes.
 - Build large report conversations without argument-count limits.
 
-No version has been published yet. Platform compatibility and available downloads
-will be recorded with the first reviewed release.
+Platform validation and remaining acceptance checks are recorded in the
+[readiness record](docs/public-readiness.md).
