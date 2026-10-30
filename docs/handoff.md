@@ -1,5 +1,41 @@
 # Handoff
 
+Privacy audit on 2026-10-30 covered source commit
+`f30aab9f797cf62760fbca7fd72dd107dafe7546`: 12 refs, 14 reachable commits,
+1,203 Git blobs, and 1,088 current source files. The 38 local unreachable blobs
+and one unreachable commit were also reviewed; that commit was not retrievable
+through the GitHub API. Commit identities use GitHub noreply addresses.
+
+The GitHub audit covered all three releases and 17 current assets, all 15
+workflow log archives, all 46 Actions artifacts, and nine distinct application
+archives, including earlier Actions-only builds. Application inspection covered
+20,375 member locations and 150 native binaries. All bundled original-notice
+archives were verified. Repository metadata, comments, variables, environments,
+deployments, webhooks, deploy keys, forks, and Actions caches were checked.
+
+No confirmed secret or private maintainer-data exposure was found in repository
+or GitHub content; no unresolved candidates remain. Gitleaks 8.24.3 found zero
+history/source findings. All 95 extended content-scan candidates were proven
+SHA-256 integrity values. A separate sensitive `temp_clone_token` field came
+from the authenticated GitHub metadata API response and was captured only in
+the protected local audit snapshot. It was replaced with null; a residual-copy
+check and repeat scan passed. The local collector now strips the field before
+saving. No token values were printed, tested against providers, or committed.
+
+Expected matches were public GitHub identities, required third-party contacts,
+synthetic fixtures, generic CI/compiler paths, a public upstream metadata path
+example, and Pillow font data. Image checks covered metadata, hashes, fixture
+provenance, and visual review of the source screenshot; OCR and steganography
+were outside scope. GitHub Secret Scanning alerts were unavailable through the
+API (HTTP 404). Ignored local environments and personal inputs were excluded
+from the publishable-source audit. Static checks do not prove the absence of
+every possible encoded identifier.
+
+GitHub content and settings were not changed; the repository was confirmed
+private. All detailed evidence remains ignored and access-restricted under
+`build/privacy-audit-20261030/`; `summary.json` contains the sanitized result and
+links to per-finding proofs. Do not publish the raw audit snapshots.
+
 Version [v0.1.6](https://github.com/baev-os/poe-log-report/releases/tag/v0.1.6)
 was published on 2026-10-30 after the maintainer requested the release. The
 repository was confirmed private before and after publication; its visibility
