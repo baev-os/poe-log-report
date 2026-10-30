@@ -1,5 +1,17 @@
 # Handoff
 
+Unreleased source update on 2026-10-30: the desktop selector, CLI, core request,
+analysis services, and composition fallbacks now default to `Europe/London`.
+Timestamp dates determine GMT/BST offsets. Explicit time zones and the time zone
+stored in existing analyses remain authoritative. README and desktop usage
+describe the new default. Published v0.1.5 archives have not been rebuilt.
+Focused analysis, CLI, collection, report, period, timeline, map, event-history,
+parser, and architecture checks passed, including seasonal offsets, explicit
+overrides, and export of an existing Almaty analysis. The display-dependent GUI
+suite was skipped because no display was available. Mypy passed for 42 source
+files. Logs remain ignored in `build/check-timezone-targeted.log`,
+`build/check-timezone-composition.log`, and `build/check-timezone-mypy.log`.
+
 The maintainer confirmed on 2026-10-30 that v0.1.5 has been published. The
 repository remains private, and changing its visibility is not authorized.
 README now links to the versioned release, both portable archives, and

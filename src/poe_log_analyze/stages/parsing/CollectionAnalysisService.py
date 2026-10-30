@@ -11,7 +11,7 @@ class CollectionAnalysisService:
     """Independent analysis collection: preserve each selected file without deduplication."""
 
     @staticmethod
-    def analyze_collection(inputs: tuple[Path, ...] | list[Path], output: Path, timezone_name: str = "Asia/Almaty",
+    def analyze_collection(inputs: tuple[Path, ...] | list[Path], output: Path, timezone_name: str = "Europe/London",
                            *, control: ExecutionContext | None = None,
                            require_complete: bool = False) -> Path:
         """Create the collection atomically; repeated paths and identical bytes remain separate inputs."""

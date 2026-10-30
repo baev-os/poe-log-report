@@ -83,7 +83,7 @@ class CharacterProgressionBuilder:
                 'count': len(characters), 'event_count': sum(item['count'] for item in characters)}
 
     @staticmethod
-    def chart(events: list[dict], kind: str, timezone_name: str = 'Asia/Almaty') -> dict:
+    def chart(events: list[dict], kind: str, timezone_name: str = 'Europe/London') -> dict:
         if not events:
             return {'kind': kind, 'events': []}
 

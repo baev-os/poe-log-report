@@ -77,6 +77,38 @@ class AnalysisTests(unittest.TestCase):
 
         self.assertEqual(len((first / "diagnostics.jsonl").read_text().splitlines()), 2)
 
+    def test_service_defaults_to_london_with_seasonal_offsets(self):
+        self.input.write_bytes(
+            AnalysisFixture.message("[WINDOW] Lost focus", "2026/01/15 10:00:00")
+            + AnalysisFixture.message("[WINDOW] Lost focus", "2026/07/15 10:00:00"))
+        output = self.root / "london"
+
+        LogAnalysisService.analyze(self.input, output)
+        rows = [json.loads(line) for line in (output / "lines.jsonl").read_text().splitlines()]
+        manifest = json.loads((output / "manifest.json").read_text())
+
+        self.assertEqual(manifest["parameters"]["timezone"], "Europe/London")
+        self.assertEqual([row["timestamp"] for row in rows], [
+            "2026-01-15T10:00:00+00:00", "2026-07-15T10:00:00+01:00"])
+
+    def test_cli_default_and_explicit_timezones(self):
+        self.input.write_bytes(AnalysisFixture.message("[WINDOW] Lost focus", "2026/07/15 10:00:00"))
+
+        for zone, offset, options in (("Europe/London", "+01:00", []),
+                                      ("Asia/Almaty", "+05:00", ["--timezone", "Asia/Almaty"])):
+            with self.subTest(zone = zone):
+                output = self.root / zone.replace("/", "-")
+
+                with redirect_stdout(StringIO()), redirect_stderr(StringIO()):
+                    status = AnalysisCli.main(["--input", str(self.input), "--output", str(output), *options])
+
+                self.assertEqual(status, 0)
+                manifest = json.loads((output / "manifest.json").read_text())
+                row = json.loads((output / "lines.jsonl").read_text())
+
+                self.assertEqual(manifest["parameters"]["timezone"], zone)
+                self.assertEqual(row["timestamp"], "2026-07-15T10:00:00" + offset)
+
     def test_artifact_hash_preserves_sha256_for_empty_and_multiple_blocks(self):
         artifact = self.root / "artifact.bin"
 

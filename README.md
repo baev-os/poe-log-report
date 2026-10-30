@@ -51,6 +51,8 @@ py -3.14 -m venv .venv
 ```
 
 Add logs, check the time zone, select report types, and start the analysis.
+The default log time zone is `Europe/London` (GMT in winter, BST in summer),
+in both the interface and CLI. Select the time zone used by your input logs.
 Results are saved in `report/`; open `index.html` to view them.
 A successful analysis replaces the previous report. Errors and cancellation preserve it.
 Logs, reports, the environment, and local settings are excluded from Git.

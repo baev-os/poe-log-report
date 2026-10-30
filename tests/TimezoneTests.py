@@ -27,6 +27,10 @@ class TimezoneTests(unittest.TestCase):
 
         self.assertEqual(winter["Europe/Berlin"].offset_minutes, 60)
         self.assertEqual(summer["Europe/Berlin"].offset_minutes, 120)
+        self.assertEqual(winter["Europe/London"].label, "GMT+00:00 — Europe/London")
+        self.assertEqual(summer["Europe/London"].label, "GMT+01:00 — Europe/London")
+        self.assertEqual(winter["Europe/London"].offset_minutes, 0)
+        self.assertEqual(summer["Europe/London"].offset_minutes, 60)
 
         with self.assertRaises(ValueError):
             TimezoneCatalogue.timezone_options(datetime(2026, 1, 15))

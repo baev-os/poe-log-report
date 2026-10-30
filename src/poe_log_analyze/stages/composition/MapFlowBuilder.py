@@ -20,7 +20,7 @@ class MapFlowBuilder:
         """Display visits by known time while retaining incomplete records."""
 
         rows = []
-        zone = ZoneInfo(maps.get("timezone", "Asia/Almaty"))
+        zone = ZoneInfo(maps.get("timezone", "Europe/London"))
 
         for day in maps["by_date"].values():
             for run in day["runs"]:

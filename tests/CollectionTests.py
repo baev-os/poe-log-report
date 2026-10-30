@@ -37,7 +37,8 @@ class CollectionTests(unittest.TestCase):
     def test_copied_history_counts_once_and_reopens_without_logs(self):
         result = self.root / "collection"
 
-        CollectionAnalysisService.analyze_collection([self.source, self.source], result)
+        CollectionAnalysisService.analyze_collection([self.source, self.source], result,
+                                                     timezone_name = "Asia/Almaty")
         self.source.unlink()
         children = ResultDirectories.result_directories(result)
 
@@ -49,6 +50,9 @@ class CollectionTests(unittest.TestCase):
         ReportFixture.export_report(result, self._copied_report)
 
         self.assertEqual(self._copied_read("activity")["seconds"], 40)
+        self.assertEqual(self._copied_read("analysis")["timezone"], "Asia/Almaty")
+        self.assertEqual(self._copied_read("timeline")["timezone"], "Asia/Almaty")
+        self.assertEqual(self._copied_read("timeline")["first"], "2026-09-01T00:00:00+05:00")
         self.assertEqual(self._copied_read("activity")["incomplete"], 0)
         self.assertEqual(self._copied_read("map_flow")["seconds"], 10)
         self.assertEqual(self._copied_read("map_flow")["count"], 1)
@@ -74,6 +78,19 @@ class CollectionTests(unittest.TestCase):
         for path in (self._copied_report / "public").rglob("*"):
             if path.is_file():
                 self.assertEqual(path.read_bytes(), (second / "public" / path.relative_to(self._copied_report / "public")).read_bytes())
+
+    def test_collection_defaults_to_london_for_every_source(self):
+        result = self.root / "london-collection"
+
+        CollectionAnalysisService.analyze_collection([self.source, self.source], result)
+
+        for directory in ResultDirectories.result_directories(result):
+            with self.subTest(source = directory.name):
+                manifest = json.loads((directory / "manifest.json").read_text())
+                row = json.loads((directory / "lines.jsonl").read_text().splitlines()[0])
+
+                self.assertEqual(manifest["parameters"]["timezone"], "Europe/London")
+                self.assertEqual(row["timestamp"], "2026-09-01T00:00:00+01:00")
 
     def test_common_prefix_keeps_new_events_and_three_copies_count_once(self):
         extended = self.root / "Работа.txt"

@@ -190,7 +190,7 @@ class ReportPeriodTests(unittest.TestCase):
 
                 manifest = json.loads((public.parent / 'report-manifest.json').read_text())
 
-                self.assertEqual(manifest['report_period']['end_exclusive'], '2026-09-01T19:00:00+00:00')
+                self.assertEqual(manifest['report_period']['end_exclusive'], '2026-09-01T23:00:00+00:00')
                 self.assertIn('report_period', manifest['views_sha256'])
                 self.assertEqual(source.read_bytes(), original)
 

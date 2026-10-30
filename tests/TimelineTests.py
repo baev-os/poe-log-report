@@ -32,7 +32,7 @@ class TimelineTests(unittest.TestCase):
         source = self.root / "source.txt"
         source.write_text(text, encoding = "utf-8")
         result = self.root / "analysis"
-        LogAnalysisService.analyze(source, result)
+        LogAnalysisService.analyze(source, result, timezone_name = "Asia/Almaty")
         manifest = json.loads((result / "manifest.json").read_text())
         timeline = TimelineBuilder.build_timeline(result / "lines.jsonl", "Asia/Almaty", manifest["artifacts_sha256"]["lines.jsonl"])
 

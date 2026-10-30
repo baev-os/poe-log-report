@@ -56,7 +56,7 @@ class LogAnalysisService:
         return digest.hexdigest()
 
     @staticmethod
-    def analyze(input_path: Path, output_path: Path, timezone_name: str = "Asia/Almaty",
+    def analyze(input_path: Path, output_path: Path, timezone_name: str = "Europe/London",
                 require_complete: bool = False, *,
                 control: ExecutionContext | None = None, source_label: str = "") -> dict:
         """Create a new result directory; never overwrite an existing one."""

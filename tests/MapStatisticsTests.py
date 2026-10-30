@@ -127,7 +127,8 @@ class MapStatisticsTests(unittest.TestCase):
             {"entry_line": 2, "entered_at": None, "ended_at": "2026-09-01T12:10:00+05:00", "seconds": None},
             {"entry_line": 3, "entered_at": "2026-09-01T12:05:00+05:00", "ended_at": None, "seconds": None},
         ]
-        model = {"by_date": {"undated": {"runs": [{"kind": "Карта", "name": "Beach", "visits": visits}]}}}
+        model = {"timezone": "Asia/Almaty", "by_date": {"undated": {
+            "runs": [{"kind": "Карта", "name": "Beach", "visits": visits}]}}}
 
         flow = MapFlowBuilder.build_map_flow(model)
 

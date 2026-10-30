@@ -34,8 +34,8 @@ class AnalysisCli:
                             metavar = 'FILE', help = 'source file (required)')
         parser.add_argument("--output", type = Path, default = Path("build/analysis"),
                             metavar = 'DIRECTORY', help = 'new result directory (default: build/analysis)')
-        parser.add_argument("--timezone", default = "Asia/Almaty", metavar = 'ZONE',
-                            help = 'IANA timestamp time zone (default: Asia/Almaty)')
+        parser.add_argument("--timezone", default = "Europe/London", metavar = 'ZONE',
+                            help = 'IANA timestamp time zone (default: Europe/London)')
         parser.add_argument("--require-complete", action = "store_true",
                             help = 'require no unknown lines or errors')
         args = parser.parse_args(argv)

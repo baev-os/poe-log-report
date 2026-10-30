@@ -210,7 +210,7 @@ class StabilityTests(unittest.TestCase):
 
             self.assertEqual((model['summary']['count'], model['series_count']), (3, 3))
 
-            shared = next(row for row in self.rows(model) if row['time'].endswith('23:59:01 +0500'))
+            shared = next(row for row in self.rows(model) if row['time'].endswith('23:59:01 +0100'))
 
             self.assertEqual({load['area'] for load in shared['loading']}, {'Branch A', 'Branch B'})
 

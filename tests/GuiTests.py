@@ -232,7 +232,7 @@ class GuiTests(unittest.TestCase):
 
         combo = self.window.inputs.timezone
 
-        self.assertEqual(self.window.inputs.timezone_key(), "Asia/Almaty")
+        self.assertEqual(self.window.inputs.timezone_key(), "Europe/London")
         self.assertIn("GMT", combo.get())
 
         self.window.inputs.set_timezone("Asia/Kathmandu")

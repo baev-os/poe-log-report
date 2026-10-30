@@ -114,7 +114,7 @@ class LogObservationsTests(unittest.TestCase):
                 self.assertIn('ChartTooltip.js" defer', characters)
 
                 for second in range(3):
-                    self.assertIn(f'data-timestamp="2026-09-01T00:00:0{second}+05:00"', characters)
+                    self.assertIn(f'data-timestamp="2026-09-01T00:00:0{second}+01:00"', characters)
 
                 maps = (entry.parent / 'technical/maps/index.html').read_text()
 

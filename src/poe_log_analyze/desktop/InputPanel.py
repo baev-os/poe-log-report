@@ -35,7 +35,7 @@ class InputPanel(ttk.Frame):
         self.timezones = TimezoneCatalogue.timezone_options()
         self.timezone = ttk.Combobox(self, values = [option.label for option in self.timezones],
                                      state = "readonly", height = 16, width = 40)
-        self.set_timezone("Asia/Almaty")
+        self.set_timezone("Europe/London")
 
         ttk.Label(self, text = 'Log time zone:').grid(row = 2, column = 0, sticky = "w", padx = (0, 10))
 

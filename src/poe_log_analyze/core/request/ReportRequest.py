@@ -13,7 +13,7 @@ class ReportRequest:
 
     inputs: tuple[Path, ...]
     output: Path
-    timezone: str = "Asia/Almaty"
+    timezone: str = "Europe/London"
     report_language: str = "en"
     mode: ReportMode = ReportMode.FULL
     require_complete: bool = False

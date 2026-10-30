@@ -5,6 +5,8 @@
 Run `scripts/poe_desktop.py`; Python 3.14 and Tkinter/Tcl/Tk are required.
 Add logs and select a time zone, language, and report types. PDFs are created
 automatically for the selected types. The report period is optional.
+The default log time zone is `Europe/London`, with GMT/BST selected according
+to each timestamp's date. Change it if your logs use another time zone.
 
 Processing runs in a worker thread; the GUI displays progress and an execution log.
 Cancellation and errors preserve the previous result.

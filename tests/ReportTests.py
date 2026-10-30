@@ -123,7 +123,7 @@ class ReportTests(unittest.TestCase):
         self.assertIn("Требуют разбора", html)
         self.assertNotIn("PRIVATE_CHAT_MARKER", (self.output / "project/data/analysis.json").read_text())
         self.assertNotIn(str(self.result), html)
-        self.assertIn("Asia/Almaty", html)
+        self.assertIn("Europe/London", html)
         self.assertEqual({p.name for p in entry.parent.iterdir()}, {"index.html", "style.css", "technical", "maps", "statistics", "flow", "events", "characters", "activities", "areas", "conversations", "playtime", "sessions", "loading", "pace", "search", "ReportSearch.js", "MapExplorer.js", "SessionComparison.js", "ComparisonDisplay.js", "MapRunComparison.js", "explore", "analytics", "vendor", "images", "ReportInteractions.js", "BasicReport.css", "BasicReport.js", "ChartTooltip.css", "ChartTooltip.js", "ReportTheme.js"})
 
         second = ReportFixture.export_report(self.result, self.root / "second")
@@ -240,7 +240,7 @@ class ReportTests(unittest.TestCase):
             '2026/07/20 21:00:02 123 abcd [INFO Client 42] : You have entered Beach.\n'
             '2026/07/20 21:00:12 123 abcd [INFO Client 42] Connecting to instance server at 127.0.0.1:1234\n')
         result = self.root / "map-analysis"
-        LogAnalysisService.analyze(source, result)
+        LogAnalysisService.analyze(source, result, timezone_name = "Asia/Almaty")
         manifest = json.loads((result / "manifest.json").read_text())
 
         maps = MapActivityBuilder.build_map_activity(result / "lines.jsonl", "Asia/Almaty", manifest["artifacts_sha256"]["lines.jsonl"])

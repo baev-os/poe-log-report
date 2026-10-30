@@ -23,7 +23,7 @@ class EventHistoryBuilder:
 
     @staticmethod
     def build(ledger: Path, descriptions: dict[str, str], control: ExecutionContext,
-              *, event_rows: Path, period: ReportPeriod = ReportPeriod(), zone_name: str = 'Asia/Almaty',
+              *, event_rows: Path, period: ReportPeriod = ReportPeriod(), zone_name: str = 'Europe/London',
               comparison_period: ReportPeriod | None = None,
               sessions: SessionHistoryBuilder | None = None,
               deaths: CharacterDeathBuilder | None = None) -> dict[str, Any]:
